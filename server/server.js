@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test');
+mongoose.connect('mongodb://localhost:27017/test');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
