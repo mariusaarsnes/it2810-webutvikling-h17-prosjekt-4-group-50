@@ -1,21 +1,26 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+var express = require('express'),
+    app = express(),
+    port = process.env.PORT || 8080,
+    mongoose = require('mongoose'),
+    Song = require("./models/SongModel"),
+    bodyParser = require('body-parser');
+
+mongoose.Promise = global.Promise; //
+mongoose.connect('mongodb://localhost:27017',
+    {
+        useMongoClient: true
+    });
+const db = mongoose.connection;
+
+db.once("open", () => {
+    console.log("Connected to database");
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8080;
-
-var router = express.Router();
-
-router.get('/', function (req, res) {
-    res.json({message: 'hooray! welcome to our api!'});
-});
-
-app.use('/api', router);
+var songRoute = require('./routes/SongRouter');
+songRoute(app);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
