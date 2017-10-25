@@ -19,6 +19,10 @@ db.once("open", () => {
     console.log("Connected to database");
 });
 
+db.on("error", (err) => {
+    console.log(err);
+    console.log("Daniel er en possi");
+})
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
