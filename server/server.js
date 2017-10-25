@@ -12,6 +12,9 @@ mongoose.connect('mongodb://localhost:27017/test',
     }, (err) => {
         if (err) throw err;
         else console.log("Connected");
+        Song.find({}, (err, task) => {
+            console.log(task);
+        });
     });
 const db = mongoose.connection;
 
