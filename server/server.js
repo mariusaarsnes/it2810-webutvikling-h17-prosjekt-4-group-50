@@ -6,7 +6,7 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise; //
-mongoose.connect('mongodb://localhost:27017',
+mongoose.connect('mongodb://localhost:27017/test',
     {
         useMongoClient: true
     });
