@@ -1,4 +1,4 @@
-var express = require('express'),
+let express = require('express'),
     app = express(),
     port = process.env.PORT || 8080,
     mongoose = require('mongoose'),
@@ -19,7 +19,7 @@ db.once("open", () => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-var songRoute = require('./routes/SongRouter');
+let songRoute = require('./routes/SongRouter');
 songRoute(app);
 
 app.listen(port);

@@ -1,12 +1,14 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose");
+let Schema = mongoose.Schema;
 
-var Song = new Schema({
+let Song = new Schema({
     name: {
-        type: String
+        type: String,
+        required: "Kindly enter the name of the song"
     },
     duration: {
         type: Number
+
     }
 });
 
