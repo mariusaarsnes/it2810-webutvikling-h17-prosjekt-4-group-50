@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost:27017/test',
         useMongoClient: true
     }, (err) => {
         if (err) throw err;
-        else console.log("possi");
+        else console.log("Connected");
     });
 const db = mongoose.connection;
 
@@ -21,8 +21,8 @@ db.once("open", () => {
 
 db.on("error", (err) => {
     console.log(err);
-    console.log("Daniel er en possi");
-})
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
