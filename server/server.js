@@ -6,10 +6,8 @@ var express = require('express'),
     bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise; //
-mongoose.connect('mongodb://localhost:27017/test',
+mongoose.connect('mongodb://localhost:27017',
     {
-        user: "gruppe50",
-        pass: "gruppe50",
         useMongoClient: true
     });
 const db = mongoose.connection;
