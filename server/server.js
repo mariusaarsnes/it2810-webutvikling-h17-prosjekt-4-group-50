@@ -8,7 +8,6 @@ let express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('./models/UserModel'),
-    path = require('path'),
     session = require('express-session'),
     bcrypt = require('bcrypt-nodejs');
 
@@ -19,15 +18,6 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     }, (err) => {
         if (err) throw err;
     });
-const db = mongoose.connection;
-
-db.once("open", () => {
-    console.log("Connected to database");
-});
-
-db.on("error", (err) => {
-    console.log(err);
-});
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -56,7 +46,11 @@ passport.use(new LocalStrategy(
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -70,49 +64,15 @@ isAuthorized = (req, res, next) => {
     if (req.user)
         next();
     else
-        res.redirect("/message/You don't have access to this page!");
+        res.redirect("/api/message/You don't have access to this page!");
 };
-
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname+'/Login.html'));
-});
-
-app.get('/create_user', (req, res) => {
-    res.sendFile(path.join(__dirname+'/CreateUser.html'));
-});
-
-/**
- * Used to maintain a user session. Uses the LocalStrategy provided to passport.
- */
-app.post('/login',
-    passport.authenticate('local', {
-        successRedirect: '/logged_in/failed/false/message/Successfully logged in!',
-        failureRedirect: '/logged_in/failed/true/message/Invalid username or password!',
-    })
-);
-
-/**
- * Called by the authentication function and returns a json object containing if it managed
- * to log in or not, aswell as a message with more information
- */
-app.get('/logged_in/failed/:failed/message/:message', (req, res) => {
-    res.json(req.params);
-});
-
-/**
- * Called by various controllers and returns a json object with a message
- */
-app.get('/message/:message', (req, res) => {
-    res.json(req.params);
-});
 
 /**
  * All the routers for the different parts of the database. The user router also takes in bcrypt, as it needs to
  * encrypt passwords when new users are created
  */
-let songRoute = require('./routes/SongRouter'), userRoute = require('./routes/UserRouter');
-songRoute(app, isAuthorized);
-userRoute(app, isAuthorized, bcrypt);
+let api = require('./routes/Router')(isAuthorized, passport);
+app.use("/api", api);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
