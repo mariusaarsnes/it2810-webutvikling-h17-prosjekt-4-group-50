@@ -38,7 +38,7 @@ passport.deserializeUser((user, done) => {
 });
 
 /**
- * Provides a LocalStrategy to passport that checks if a user provided the correct username/password for login.
+ * Provides a LocalStrategy to passport that checks if a user provided the correct username/password.
  */
 passport.use(new LocalStrategy(
     (username, password, done) => {
@@ -112,7 +112,7 @@ app.get('/message/:message', (req, res) => {
  */
 let songRoute = require('./routes/SongRouter'), userRoute = require('./routes/UserRouter');
 songRoute(app, isAuthorized);
-userRoute(app, isAuthorized, bcrypt); 
+userRoute(app, isAuthorized, bcrypt);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
