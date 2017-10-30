@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 Song = mongoose.model("Song");
 
 exports.addSong = (req, res) => {
-    var song = new Song({name: req.params.name, duration: req.params.duration});
+    let song = new Song({name: req.params.name, duration: req.params.duration});
     song.save((err, task) => {
         if (err) res.send(err);
         res.json(task);

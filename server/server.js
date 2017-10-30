@@ -11,10 +11,6 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
         useMongoClient: true
     }, (err) => {
         if (err) throw err;
-        else console.log("Connected");
-        Song.find({}, (err, task) => {
-            console.log(task);
-        });
     });
 const db = mongoose.connection;
 
