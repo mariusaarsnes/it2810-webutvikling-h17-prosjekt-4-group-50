@@ -44,3 +44,5 @@ Thumbs.db
 #package shiet
 website/package-lock*
 server/package-lock*
+website/node_modules
+server/node_modules

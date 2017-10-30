@@ -9,7 +9,11 @@ let Song = new Schema({
     duration: {
         type: Number
 
+    },
+    album: {
+        type: String,
     }
+    
 });
 
 module.exports = mongoose.model("Song", Song);
