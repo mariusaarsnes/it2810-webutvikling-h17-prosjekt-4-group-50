@@ -2,7 +2,7 @@ require('./models/SongModel');
 
 let express = require('express'),
     app = express(),
-    port = process.env.PORT || 8084,
+    port = process.env.PORT || 8080,
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
@@ -55,6 +55,10 @@ app.use(bodyParser.json());
 app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname+'/danielsgroveside.html'));
+});
 
 app.post('/login',
     passport.authenticate('local', {
