@@ -1,18 +1,16 @@
+let mongoose = require('mongoose'),
+    User = mongoose.model("User");
+
 exports.findUser = (req, res) => {
-    if (req.user) {
-        res.json(req.user);
-    } else {
-        res.send("You are not logged in!");
-    }
+    res.json(req.user);
 };
 
-exports.createUser = (req, res) => {
+exports.createUser = (req, res, bcrypt) => {
+    let hashedPassword = bcrypt.hashSync(req.body.password),
+        user = new User({username: req.body.username, password: hashedPassword});
 
-};
-
-exports.login = (req, res) => {
-    passport.authenticate('local', {
-        successRedirect: '/logged_in/failed/false/message/Successfully logged in!',
-        failureRedirect: '/logged_in/failed/true/message/Invalid username or password!',
+    user.save((err, task) => {
+        if (err) res.send(err);
+        res.json(task);
     });
 };

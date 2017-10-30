@@ -1,7 +1,7 @@
-module.exports = (app) => {
-    let controller = require("../controllers/UserController");
+module.exports = (app, isAuthorized, bcrypt) => {
 
-    app.route('/user/').get(controller.findUser);
-    app.route('/login').post(controller.login);
+    let controller = require("../controllers/UserController");
+    app.route('/user/').get(isAuthorized, controller.findUser);
+    app.route('/create_user').post((req, res) => controller.createUser(req, res, bcrypt));
 
 };

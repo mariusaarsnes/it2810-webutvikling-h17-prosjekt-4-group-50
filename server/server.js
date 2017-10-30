@@ -9,7 +9,8 @@ let express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('./models/UserModel'),
     path = require('path'),
-    session = require('express-session');
+    session = require('express-session'),
+    bcrypt = require('bcrypt-nodejs');
 
 mongoose.Promise = global.Promise; //
 mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
@@ -38,11 +39,11 @@ passport.deserializeUser((user, done) => {
 
 passport.use(new LocalStrategy(
     (username, password, done) => {
-        User.findOne({username: username, password: password}, (err, user) => {
+        User.findOne({username: username}, (err, user) => {
             if (err) {
                 return done(err);
             }
-            if (!user || !password) {
+            if (!user || !bcrypt.compareSync(password, user.password)) {
                 return done(null, false);
             }
             return done(null, user);
@@ -56,12 +57,20 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-function isAuthorized(req, res, next) {
+isAuthorized = (req, res, next) => {
     if (req.user)
         next();
     else
         res.redirect("/message/You don't have access to this page!");
-}
+};
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname+'/Login.html'));
+});
+
+app.get('/create_user', (req, res) => {
+    res.sendFile(path.join(__dirname+'/CreateUser.html'));
+});
 
 app.post('/login',
     passport.authenticate('local', {
@@ -74,9 +83,13 @@ app.get('/logged_in/failed/:failed/message/:message', (req, res) => {
     res.json(req.params);
 });
 
+app.get('/message/:message', (req, res) => {
+    res.json(req.params);
+});
+
 let songRoute = require('./routes/SongRouter'), userRoute = require('./routes/UserRouter');
-songRoute(app);
-userRoute(app);
+songRoute(app, isAuthorized);
+userRoute(app, isAuthorized, bcrypt);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
