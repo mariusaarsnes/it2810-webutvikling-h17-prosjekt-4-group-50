@@ -56,6 +56,13 @@ app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+function isAuthorized(req, res, next) {
+    if (req.user)
+        next();
+    else
+        res.redirect("/message/You don't have access to this page!");
+}
+
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/logged_in/failed/false/message/Successfully logged in!',
@@ -66,13 +73,6 @@ app.post('/login',
 app.get('/logged_in/failed/:failed/message/:message', (req, res) => {
     res.json(req.params);
 });
-
-function isAuthorized(req, res, next) {
-    if (req.user)
-        next();
-    else
-        res.redirect("/message/You don't have access to this page!");
-}
 
 let songRoute = require('./routes/SongRouter'), userRoute = require('./routes/UserRouter');
 songRoute(app);
