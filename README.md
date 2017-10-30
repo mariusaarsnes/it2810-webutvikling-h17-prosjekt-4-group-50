@@ -32,8 +32,11 @@ In addition to express, we also use mongoose to make it easier to connect, and i
 below illustrates how the different aspects of the stack interact with each other.
 
 ![alt text](images/image.png "Image of our MEAN stack")
- 
 
+
+Write about Data her: structure and a little bit about MongoDB.
+
+Write about design:
 
 
 ### File Structure <a name="FileStruct"></a>
