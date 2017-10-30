@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-Song = mongoose.model("Song");
+    Song = mongoose.model("Song");
 
 exports.addSong = (req, res) => {
     let song = new Song({name: req.params.name, duration: req.params.duration});

@@ -1,15 +1,15 @@
 let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     Song = "SongModel.js",
-    Album = "AlbumModel.js",
-    Artist =  new Schema({
+    Artist = "ArtistModel.js",
+    Album =  new Schema({
     name:{
         type: String,
-        required: "Kindly enter the name of the artist"
+        required: "Kindly enter the name of the album"
     },
-    albums:[
+    artists:[
         {
-            type: Album
+            type: Artist
         }
     ],
     songs: [
@@ -20,4 +20,4 @@ let mongoose = require("mongoose"),
 
 });
 
-module.exports = mongoose.model("Artist", Artist);
+module.exports = mongoose.model("Album", Album);

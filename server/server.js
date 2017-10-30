@@ -1,8 +1,9 @@
+require('./models/SongModel');
+
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 8080,
     mongoose = require('mongoose'),
-    Song = require("./models/SongModel"),
     bodyParser = require('body-parser');
 
 mongoose.Promise = global.Promise; //
@@ -25,8 +26,12 @@ db.on("error", (err) => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-let songRoute = require('./routes/SongRouter');
+let songRoute = require('./routes/SongRouter'),
+    albumRoute = require('./routes/AlbumRouter'),
+    artistRoute = require('./routes/ArtistRouter');
 songRoute(app);
+//albumRoute(app);
+//artistRoute(app);
 
 app.listen(port);
 console.log('Server running on port: ' + port);
