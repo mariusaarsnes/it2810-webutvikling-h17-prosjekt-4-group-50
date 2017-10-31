@@ -2,14 +2,15 @@ require('./models/SongModel');
 
 let express = require('express'),
     app = express(),
-    port = process.env.PORT || 8085,
+    port = process.env.PORT || 8084,
     mongoose = require('mongoose'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     User = require('./models/UserModel'),
     session = require('express-session'),
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    path = require("path");
 
 mongoose.Promise = global.Promise; //
 mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
@@ -46,6 +47,7 @@ passport.use(new LocalStrategy(
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/../website/dist')));
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
@@ -73,6 +75,13 @@ isAuthorized = (req, res, next) => {
  */
 let api = require('./routes/Router')(isAuthorized, passport);
 app.use("/api", api);
+
+/**
+ * For all requests excecpt api/*, route to the angular page
+ */
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/../website/dist/index.html'));
+});
 
 app.listen(port);
 console.log('Server running on port: ' + port);
