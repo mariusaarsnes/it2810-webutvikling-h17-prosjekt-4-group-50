@@ -10,7 +10,8 @@ let express = require('express'),
     User = require('./models/UserModel'),
     session = require('express-session'),
     bcrypt = require('bcrypt-nodejs'),
-    path = require("path");
+    path = require("path"),
+    error = require("./router/Error");
 
 /**
  * Connects mongoose to the database
@@ -60,7 +61,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /**
- * Checks wether the user is logged in or not, will display a message if it failed to authorize user
+ * Middleware function that checks wether the user is logged in or not. Will display a message if it failed to authorize user
  * @param req
  * @param res
  * @param next
@@ -69,14 +70,14 @@ isAuthorized = (req, res, next) => {
     if (req.user)
         next();
     else
-        res.redirect("/api/message/You don't have access to this page!");
+        error(res, "You don't have access to this page!");
 };
 
 /**
  * All the routers for the different parts of the database. The user router also takes in bcrypt, as it needs to
  * encrypt passwords when new users are created
  */
-let api = require('./routes/Router')(isAuthorized, passport);
+let api = require('./router/Router')(isAuthorized, passport);
 app.use("/api", api);
 
 /**

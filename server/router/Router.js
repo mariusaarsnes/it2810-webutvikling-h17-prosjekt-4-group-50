@@ -6,7 +6,7 @@ module.exports = (isAuthorized, passport) => {
         userController = require("../controllers/UserController");
 
     /**
-     * Router middleware.
+     * Router middleware. Can be used to verify input (API token?)
      */
     router.use((req, res, next) => {
         next();
