@@ -1,6 +1,6 @@
 module.exports = (isAuthorized, passport) => {
     const router = require("express").Router(),
-        bcrypt = require("bcrypt-nodejs"),
+        bcrypt = require("bcrypt-nodejs"), //Requires bcrypt to hash the user passwords
         path = require("path");
     let //songController = require("../controllers/SongController"),
         userController = require("../controllers/UserController");
@@ -12,6 +12,9 @@ module.exports = (isAuthorized, passport) => {
         next();
     });
 
+    /**
+     * Default message when entering the API. This could be replaced with a static HTML file as a API guide.
+     */
     router.get("/", (req, res) => {
         res.json({message: "This is the API"});
     });

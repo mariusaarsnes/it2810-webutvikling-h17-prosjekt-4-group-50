@@ -12,7 +12,10 @@ let express = require('express'),
     bcrypt = require('bcrypt-nodejs'),
     path = require("path");
 
-mongoose.Promise = global.Promise; //
+/**
+ * Connects mongoose to the database
+ */
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     {
         useMongoClient: true
