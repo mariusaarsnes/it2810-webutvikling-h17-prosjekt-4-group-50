@@ -1,6 +1,6 @@
 # Project 4 server
 
-##How to run
+## How to run
 
 1. Install the dependencies. This can be done with `npm install`
 2. Install the dependencies in the website folder. Then run the command `ng build`. This builds the angular app that
