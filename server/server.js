@@ -7,11 +7,11 @@ let express = require('express'),
     bodyParser = require('body-parser'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    User = require('./models/UserModel'),
     session = require('express-session'),
     bcrypt = require('bcrypt-nodejs'),
     path = require("path"),
-    error = require("./router/Error");
+    error = require("./router/Error"),
+    User = require('./models/UserModel') ;
 
 /**
  * Connects mongoose to the database
@@ -53,7 +53,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../website/dist')));
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'oursecretappkey',
     resave: true,
     saveUninitialized: true
 }));
