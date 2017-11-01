@@ -8,17 +8,10 @@ var Song = new Schema({
     name: {
         type: String
     },
-    imageLink: {
-        //Om vi bare velger ett bilde, så String, hvis ikke array
-        type: String
-    },
     type: {
         type: String
     },
     duration: {
-        type: Number
-    },
-    popularity: {
         type: Number
     }
 });

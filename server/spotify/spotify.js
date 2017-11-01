@@ -4,7 +4,8 @@ var spotifyApi = new SpotifyWebApi();
 
 console.log(spotifyApi);
 
-spotifyApi.setAccessToken('');
+spotifyApi.setAccessToken('BQAXRUeGEhp3yNAv5D3ubD3rS3X5GnTWwVh3jlf61MmmYQAbSMEzudYJIChbJXH4qvDmnS78EnAVvNHyF3' +
+    'xZBUkXG7ee4xA2BxTIyX3QrAvs0sQ4o6bmc4vQpVY0QbxtfrdL330upJo80XE');
 
 
 var artists1 = [ '246dkjvS1zLTtiykXe5h60',
@@ -71,19 +72,46 @@ function getPlaylist() {
 
 }
 
-spotifyApi.getArtists(artists1)
+spotifyApi.getArtists(['4utLUGcTvOJFr6aqIJtYWV'])
     .then(function(data) {
         data.body.artists.forEach(function(artist, index) {
-            console.log((index+1) + '.   name: ' + artist.name  + "    id: " + artist.id + "   " +
-                " Genres: " + artist.genres + "   imageLink: " + artist.images[1].url
-                + "  Type: " + artist.type);
+            console.log((index+1)
+                + ".  id: " + artist.id
+                + "   name: " + artist.name
+                +"    genres: " + artist.genres
+                + "   imageLink: " + artist.images[1].url
+                + "   type: " + artist.type
+                + "   popularity: " + artist.popularity);
         });
-        var stringify = JSON.stringify(data.body);
-
-
     }, function(err) {
         console.error(err);
     });
 
+spotifyApi.getArtistAlbums('4utLUGcTvOJFr6aqIJtYWV')
+    .then(function(data) {
+        data.body.items.forEach(function(album, index) {
+            console.log((index+1)
+                + ".  id: " + album.id
+                + "   name: " + album.name
+                + "   imageLink: " + album.images[1].url
+                + "   type: " + album.album_type);
 
+        });
+    }, function(err) {
+        console.error(err);
+    });
+
+spotifyApi.getAlbumTracks('1isHoxcm6IP2s2TJXcNDcy')
+    .then(function(data) {
+        data.body.items.forEach(function(track, index) {
+            console.log((index+1)
+                + ".  id: " + track.id
+                + "   name: " + track.name
+                + "   duration: " + track.duration_ms
+                + "   type: " + track.type);
+
+        });
+    }, function(err) {
+        console.log('Something went wrong!', err);
+    });
 
