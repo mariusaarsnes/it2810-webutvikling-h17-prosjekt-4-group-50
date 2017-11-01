@@ -71,14 +71,8 @@ Album:
         type: {
             type: String
         },
-        artists: {
-            //List of artist id's
-            type: Array
-        },
-        tracks: {
-            //List of track id's
-            type: Array
-        }
+        artist: {
+            type: String
     });
     
 Songs:
@@ -105,4 +99,4 @@ Songs:
         }
     });
     
-Write about design: (Fredrik do this pls)
+Write about design:
