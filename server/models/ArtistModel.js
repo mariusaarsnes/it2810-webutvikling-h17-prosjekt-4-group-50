@@ -1,6 +1,9 @@
 let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     Artist = new Schema({
+        _id: {
+            type: String
+        },
         name: {
             type: String,
             required: "Kindly enter the name of the artist"

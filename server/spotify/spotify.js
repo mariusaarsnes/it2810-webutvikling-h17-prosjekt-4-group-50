@@ -1,4 +1,7 @@
 let Artist = require('../models/ArtistModel');
+let Album = require('../models/AlbumModel');
+let Song = require('../models/SongModel');
+
 
 let SpotifyWebApi = require('spotify-web-api-node');
 
@@ -6,7 +9,7 @@ let spotifyApi = new SpotifyWebApi();
 
 console.log(spotifyApi);
 
-spotifyApi.setAccessToken('BQDvIj6cxotXvaOABj_ZdZIui0U0_rD7SnJ--LxHLx_cyrRw_sObo_iFOql5lSy7WSempz8FdFi7vN_fAK7XYvEIsxFnz7BoUtEnYYlAhVqoRtj7odhKrYjefyLyO7R9jDKL8c3rDyst2bw');
+spotifyApi.setAccessToken('BQBJR8Prx_WTv8wsyAlLc6mN_4ISfc1NxeQUb-aUKcE7giD1aebPveiEMQBmrLfNRA-bkaS1BCKj0CqXq80P-xOnr22us11x6ulz0jZpdF_iqTqmHQV8cgxYtAeFu4LIVlwCROD9VUvykbo');
 
 
 let artists1 = ['246dkjvS1zLTtiykXe5h60',
@@ -54,8 +57,6 @@ let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1L9i6qZYIGQedgM9QLSyzb'];
 
 
-let parsedArtists = [];
-
 
 function getPlaylist() {
 
@@ -74,41 +75,77 @@ function getPlaylist() {
         });
 
 }
-module.exports =  () => {
+
+module.exports = () => {
+    // Fetching all the artists from artists1, containing all the IDs
     spotifyApi.getArtists(artists1)
         .then(function (data) {
-            data.body.artists.forEach(function (artist, index) {
-                //console.log(artist);
-                let tempArtist = new Artist({
+            // Looping through all artists, parsing the data, and saving to the database.
+            data.body.artists.forEach(function (artist) {
+                let parsedArtist = new Artist({
                     _id: artist.id,
                     name: artist.name,
                     genres: artist.genres,
-                    //imageLink: artist.images[1].url,
+                    imageLink: artist.images[1].uri,
                     type: artist.type,
                     popularity: artist.popularity
                 });
 
-                parsedArtists.push(tempArtist);
-                /*
-                console.log((index + 1)
-                    + ".  id: " + artist.id
-                    + "   name: " + artist.name
-                    + "    genres: " + artist.genres
-                    + "   imageLink: " + artist.images[1].url
-                    + "   type: " + artist.type
-                    + "   popularity: " + artist.popularity);
-                    */
+                //Saving artist to the database
+                parsedArtist.save();
 
+                // Fetching All the albums of an artist from spotify
+                spotifyApi.getArtistAlbums(artist.id).then(data => {
+                    // Going through all albums, parsing the data nd savign it to the database.
+                    data.body.items.forEach(album => {
+                        let tempArtists = [];
+
+                        album.artists.forEach(data => {
+                            tempArtists.push(data.id)
+                        });
+                        let parsedAlbum = new Album({
+                            _id: album.id,
+                            name: album.name,
+                            imageLink: album.images[1].uri,
+                            artists: tempArtists
+                        });
+                        // Saving album to the database
+                        parsedAlbum.save();
+
+                        // Fetching all the tracks for each album, from Spotify
+                        spotifyApi.getAlbumTracks(album.id).then(data => {
+                            data.body.items.forEach(track => {
+                                let tempArtists = [];
+
+                                track.artists.forEach( artist =>{
+                                    tempArtists.push(artist)
+                                    }
+                                );
+                                let parsedTrack = new Song({
+                                    _id: track.id,
+                                    name: track.name,
+                                    duration: track.duration,
+                                    artists: tempArtists
+                                });
+                                console.log(parsedTrack);
+                                parsedTrack.save();
+                            })
+                        }, err => {
+                            console.error(err);
+                        });
+                    });
+
+                }, err => {
+                    console.error(err);
+                });
             });
-            console.log(parsedArtists);
-            parsedArtists.forEach(element =>{
-                element.save()
-            })
+
         }, function (err) {
             console.error(err);
         });
 
-}
+
+};
 
 /*
 spotifyApi.getArtistAlbums('4utLUGcTvOJFr6aqIJtYWV')

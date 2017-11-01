@@ -1,6 +1,10 @@
 let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     Album = new Schema({
+
+        _id: {
+            type: String
+        },
         name: {
             type: String,
             required: "Kindly enter the name of the album"
@@ -11,8 +15,8 @@ let mongoose = require("mongoose"),
         type: {
             type: String
         },
-        artist: {
-            type: String
+        artists: {
+            type: Array
         }
 
     });
