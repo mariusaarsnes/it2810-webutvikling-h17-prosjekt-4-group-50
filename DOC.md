@@ -82,6 +82,7 @@ Album:
     });
     
 Songs:
+
     var Song = new Schema({
         id: {
             type: String
@@ -104,4 +105,4 @@ Songs:
         }
     });
     
-Write about design:
+Write about design: (Fredrik do this pls)
