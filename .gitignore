@@ -14,7 +14,7 @@
 .classpath
 .c9/
 *.launch
-.iml
+prosjekt4.iml
 .settings/
 *.sublime-workspace
 
