@@ -17,6 +17,6 @@ exports.addSong = (req, res) => {
 exports.findAllSongs = (req, res) => {
     Song.find({}, (err, task) => {
         if (err) res.send(err);
-        res.status(201).json(task);
+        res.status(200).json(task);
     });
 };
