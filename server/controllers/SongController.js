@@ -14,6 +14,13 @@ exports.addSong = (req, res) => {
     });
 };
 
+exports.findSongs((req, res) => {
+    Song.find({username: {$regex: ".*" + req.params.search_string + "*."}}, (err, songs) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(songs);
+    });
+});
+
 exports.findAllSongs = (req, res) => {
     Song.find({}, (err, task) => {
         if (err) res.send(err);

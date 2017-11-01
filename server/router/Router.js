@@ -2,8 +2,10 @@ module.exports = (isAuthorized, passport) => {
     const router = require("express").Router(),
         bcrypt = require("bcrypt-nodejs"), //Requires bcrypt to hash the user passwords
         path = require("path");
-    let //songController = require("../controllers/SongController"),
-        userController = require("../controllers/UserController");
+    let songController = require("../controllers/SongController"),
+        userController = require("../controllers/UserController"),
+        albumController = require("../controllers/AlbumController"),
+        artistController = require("../controllers/ArtistController");
 
     /**
      * Router middleware. Can be used to verify input (API token?)
@@ -29,6 +31,10 @@ module.exports = (isAuthorized, passport) => {
     /**
      * Album related API queries
      */
+    router.get("/get_all_albums", isAuthorized, albumController.findAllAlbums); //Finds all albums
+    router.get("/get_albums/:search_string", isAuthorized, albumController.findAlbums)
+        .put("/get_albums/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.post
     //router.get("/get_albums/name/:name/", albumController.getAlbums);
     //router.post("/add_album/name/:name/id/:id/link/:link/type/:type/artist/:artist", albumController.addAlbum);
 
