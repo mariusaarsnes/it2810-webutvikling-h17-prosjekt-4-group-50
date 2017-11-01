@@ -13,6 +13,10 @@ let mongoose = require("mongoose"),
     },
     duration: {
         type: Number
+    },
+    album: {
+        //Lagre albumid
+        type: String
     }
 });
 

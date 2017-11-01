@@ -16,6 +16,10 @@ let mongoose = require("mongoose"),
     },
     type: {
         type: String
+    },
+    artist: {
+        //Lagre artist id.
+        type: String
     }
 
 });
