@@ -13,7 +13,10 @@ let express = require('express'),
     path = require("path"),
     error = require("./router/Error"),
     User = require('./models/UserModel'),
-    Search = require('./models/SearchModel');
+    Search = require('./models/SearchModel'),
+    Album = require('./models/AlbumModel'),
+    Artist = require('./models/ArtistModel'),
+    Song = require('./models/SongModel');
 
 /**
  * Connects mongoose to the database
@@ -44,7 +47,7 @@ passport.deserializeUser((user, done) => {
  */
 passport.use(new LocalStrategy(
     (username, password, done) => {
-        User.findOne({username: username}, (err, user) => {
+        User.findOne({username: username.toLowerCase()}, (err, user) => {
             if (err) {
                 return done(err);
             }
@@ -81,10 +84,23 @@ isAuthorized = (req, res, next) => {
 };
 
 /**
+ * Middleware function to check if the given user is admin. Is used for most post functions
+ * @param req
+ * @param res
+ * @param next
+ */
+isAdmin = (req, res, next) => {
+    if (req.user && req.user.admin)
+        next();
+    else
+        error(res, "You are not an admin!", 401);
+};
+
+/**
  * All the routers for the different parts of the database. The user router also takes in bcrypt, as it needs to
  * encrypt passwords when new users are created
  */
-let api = require('./router/Router')(isAuthorized, passport);
+let api = require('./router/Router')(isAuthorized, isAdmin, passport);
 app.use("/api", api);
 
 /**

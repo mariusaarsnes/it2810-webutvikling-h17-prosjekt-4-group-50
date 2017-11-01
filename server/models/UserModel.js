@@ -9,6 +9,10 @@ let mongoose = require("mongoose"),
         },
         search_history: {
             type: Array,
+        },
+        admin: {
+            type: Boolean,
+            default: false,
         }
     });
 

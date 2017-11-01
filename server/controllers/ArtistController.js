@@ -17,7 +17,7 @@ exports.addArtist = (req, res) => {
     });
 };
 
-exports.findArtists((req, res) => {
+exports.findArtists = ((req, res) => {
     Artist.find({name: {$regex: ".*" + req.params.search_string + "*."}}, (err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
