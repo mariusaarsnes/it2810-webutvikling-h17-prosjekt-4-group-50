@@ -7,13 +7,17 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import { SearchPageComponent } from './components/search-page/search-page.component';
 import { FormsModule } from "@angular/forms";
+import { SearchResultComponent } from './components/search-result/search-result.component';
+import { ArtistComponent } from './components/artist/artist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     NavbarComponent,
-    SearchPageComponent
+    SearchPageComponent,
+    SearchResultComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
