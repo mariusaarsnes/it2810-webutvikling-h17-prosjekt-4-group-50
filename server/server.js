@@ -11,7 +11,8 @@ let express = require('express'),
     bcrypt = require('bcrypt-nodejs'),
     path = require("path"),
     error = require("./router/Error"),
-    User = require('./models/UserModel') ;
+    User = require('./models/UserModel'),
+    Search = require('./models/SearchModel');
 
 /**
  * Connects mongoose to the database
@@ -23,6 +24,10 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     }, (err) => {
         if (err) throw err;
     });
+
+mongoose.connection.once("open", () => {
+
+});
 
 passport.serializeUser((user, done) => {
     done(null, user);
@@ -70,7 +75,7 @@ isAuthorized = (req, res, next) => {
     if (req.user)
         next();
     else
-        error(res, "You don't have access to this page!");
+        error(res, "You don't have access to this page!", 401);
 };
 
 /**
