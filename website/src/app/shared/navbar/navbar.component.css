@@ -15,7 +15,6 @@ a {
 .logo {
   width: 100px;
 }
-
 .navbar-container {
   background-color: white;
   width: 100%;
@@ -36,6 +35,10 @@ a {
   display: block;
   padding: 10px;
   color: #a52842;
+  transition: all .4s ease-in-out;
+}
+.navbar-top-container ul li a:hover {
+  color: #13738c;
 }
 .navbar-bottom-container {
   display: flex;
@@ -52,6 +55,17 @@ a {
   widows:300px;
   margin-right: 20px;
 }
+.nav-bottom-right h3 {
+  margin: 0;
+}
+.nav-bottom-right p {
+  font-size: 10px;
+  margin: 0;
+  margin-top: 3px;
+}
+.nav-bottom-right {
+  color: #5a5a5a;
+}
 .nav-bottom-left {
   margin-left: 20px;
 }
@@ -61,9 +75,27 @@ a {
   padding: 0;
   font-size: 13px;
 }
+.nav-bottom-left ul li a {
+  display: block;
+  color: #5a5a5a;
+  transition: all .4s ease-in-out;
+}
+.nav-bottom-left ul li a:hover {
+  color: black;
+}
 .nav-bottom-left ul li {
   list-style-type: none;
   padding: 10px;
 }
-
+.sort-by {
+  display: flex;
+  margin-top: 10px;
+}
+.filter-by {
+  display: flex;
+  font-size: 10px;
+}
+.input-select:focus {
+  outline-style: none;
+}
 
