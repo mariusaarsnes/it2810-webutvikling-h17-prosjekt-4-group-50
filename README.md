@@ -13,7 +13,7 @@ Engineering.
 
 
 ### Documentation <a name ="Documentation"></a>
-
+Read DOC.md for documentation about architecture etc. 
 
 
 ### File Structure <a name="FileStruct"></a>
