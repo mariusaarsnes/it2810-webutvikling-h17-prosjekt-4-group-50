@@ -7,16 +7,22 @@ let mongoose = require("mongoose"),
         type: String,
         required: "Kindly enter the name of the artist"
     },
-    albums:[
-        {
-            type: Album
-        }
-    ],
-    songs: [
-        {
-            type: Song
-        }
-    ]
+    id: {
+        type: String
+    },
+    genres: {
+        type: Array
+    },
+    imageLink: {
+        //Om vi bare velger ett bilde, så String, hvis ikke array
+        type: String
+    },
+    type: {
+        type: String
+    },
+    popularity: {
+        type: Number
+    }
 
 });
 
