@@ -13,31 +13,22 @@ module.exports = (isAuthorized, passport) => {
     });
 
     /**
-     * Default message when entering the API. This could be replaced with a static HTML file as a API guide.
-     */
-    router.get("/", (req, res) => {
-        res.json({message: "This is the API"});
-    });
-
-    /**
-     * Returns the user object of the user currently logged in
+     * User related API queries
      */
     router.get("/get_user/", isAuthorized, userController.findUser);
-
-    /**
-     * Creates a new user with the given username/password, then hashes the password
-     */
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
-
-    /**
-     * Used to maintain a user session. Uses the LocalStrategy provided to passport.
-     */
     router.post('/login',
         passport.authenticate('local', {
             successRedirect: '/api/logged_in/failed/false/message/Successfully logged in!',
             failureRedirect: '/api/logged_in/failed/true/message/Invalid username or password!',
         })
     );
+
+    /**
+     * Album related API queries
+     */
+    router.get("/get_albums/name/:name/", albumController.getAlbums);
+    router.post("/add_album/name/:name/id/:id/link/:link/type/:type/artist/:artist", albumController.addAlbum);
 
     /**
      * Called by the authentication function and returns a json object containing if it managed
@@ -63,6 +54,13 @@ module.exports = (isAuthorized, passport) => {
 
     router.get('/create_user', (req, res) => {
         res.sendFile(path.join(__dirname + '/CreateUser.html'));
+    });
+
+    /**
+     * Default message when entering the API. This could be replaced with a static HTML file as a API guide.
+     */
+    router.get("/", (req, res) => {
+        res.sendFile(path.join(__dirname + '/../api.html'));
     });
 
     return router;
