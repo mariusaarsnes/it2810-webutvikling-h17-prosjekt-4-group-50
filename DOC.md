@@ -102,4 +102,4 @@ Songs:
 Write about design:
 
 
-![Image of design](images/frontpage.pdf)
+![Image of design](images/frontpage.jpg)
