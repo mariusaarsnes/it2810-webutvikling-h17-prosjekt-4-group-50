@@ -31,11 +31,91 @@ flexibility in deciding both how we want to associate data with each other and h
 In addition to express, we also use mongoose to make it easier to connect, and interact with the database. The figure
 below illustrates how the different aspects of the stack interact with each other.
 
-![alt text](images/image.png "Image of our MEAN stack")
+![alt text](images/mean_stack.png "Image of our MEAN stack")
 
 
-Write about Data her: structure and a little bit about MongoDB.
+We have decided to make a type of music database, using the Spotify api to get data to store in our own database. We 
+decided to focus on artists, their albums and their songs. This gives us a rich data source which we also can make a 
+simple but useful application for. De tenkte modellene våre ser, per nå, slik ut:
 
+Artist:
+
+    var Artist = new Schema({
+
+        id: {
+            type: String
+        },
+        name: {
+            type: String
+        },
+        genres: {
+            type: Array
+        },
+        imageLink: {
+            //Om vi bare velger ett bilde, så String, hvis ikke array
+            type: String
+        },
+        type: {
+            type: String
+        },
+        popularity: {
+            type: Number
+        }
+    });
+
+Album: 
+
+    var Album = new Schema({
+        id: {
+            type: String
+        },
+        name: {
+            type: String
+        },
+        genres: {
+            type: Array
+        },
+        imageLink: {
+            //Om vi bare velger ett bilde, så String, hvis ikke array
+            type: String
+        },
+        type: {
+            type: String
+        },
+        artists: {
+            //List of artist id's
+            type: Array
+        },
+        tracks: {
+            //List of track id's
+            type: Array
+        }
+    });
+    
+Songs:
+
+    var Song = new Schema({
+        id: {
+            type: String
+        },
+        name: {
+            type: String
+        },
+        imageLink: {
+            //Om vi bare velger ett bilde, så String, hvis ikke array
+            type: String
+        },
+        type: {
+            type: String
+        },
+        duration: {
+            type: Number
+        },
+        popularity: {
+            type: Number
+        }
+    });
+    
 Write about design:
 
 
