@@ -56,26 +56,6 @@ let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1Xfv0o1xU7jH7M9QYod7rj',
     '1L9i6qZYIGQedgM9QLSyzb'];
 
-
-
-function getPlaylist() {
-
-    spotifyApi.getPlaylist('spotifycharts', '37i9dQZEVXbJvfa0Yxg7E7')
-        .then(function (data) {
-            let artists = [];
-            data.body.tracks.items.forEach(function (item, index) {
-                item.track.artists.forEach(function (artist, index) {
-                    artists.push(artist.id);
-                });
-            });
-            console.log(artists)
-
-        }, function (err) {
-            console.log('Something went wrong!', err);
-        });
-
-}
-
 module.exports = () => {
     // Fetching all the artists from artists1, containing all the IDs
     spotifyApi.getArtists(artists1)
@@ -117,8 +97,8 @@ module.exports = () => {
                             data.body.items.forEach(track => {
                                 let tempArtists = [];
 
-                                track.artists.forEach( artist =>{
-                                    tempArtists.push(artist)
+                                track.artists.forEach(artist => {
+                                        tempArtists.push(artist)
                                     }
                                 );
                                 let parsedTrack = new Song({
@@ -146,33 +126,3 @@ module.exports = () => {
 
 
 };
-
-/*
-spotifyApi.getArtistAlbums('4utLUGcTvOJFr6aqIJtYWV')
-    .then(function(data) {
-        data.body.items.forEach(function(album, index) {
-            console.log((index+1)
-                + ".  id: " + album.id
-                + "   name: " + album.name
-                + "   imageLink: " + album.images[1].url
-                + "   type: " + album.album_type);
-
-        });
-    }, function(err) {
-        console.error(err);
-    });
-
-spotifyApi.getAlbumTracks('1isHoxcm6IP2s2TJXcNDcy')
-    .then(function(data) {
-        data.body.items.forEach(function(track, index) {
-            console.log((index+1)
-                + ".  id: " + track.id
-                + "   name: " + track.name
-                + "   duration: " + track.duration_ms
-                + "   type: " + track.type);
-
-        });
-    }, function(err) {
-        console.log('Something went wrong!', err);
-    });
-*/
