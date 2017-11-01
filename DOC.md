@@ -100,3 +100,6 @@ Songs:
     });
     
 Write about design:
+
+
+![Image of design](images/frontpage.pdf)
