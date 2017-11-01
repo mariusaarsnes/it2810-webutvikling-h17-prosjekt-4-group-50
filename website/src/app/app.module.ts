@@ -9,6 +9,7 @@ import { SearchPageComponent } from './components/search-page/search-page.compon
 import { FormsModule } from "@angular/forms";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ArtistComponent } from './components/artist/artist.component';
+import { SearchService } from "./components/search-result/search.service";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ArtistComponent } from './components/artist/artist.component';
       }
     ])
   ],
-  providers: [],
+  providers: [SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
