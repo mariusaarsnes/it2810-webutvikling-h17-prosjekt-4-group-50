@@ -1,5 +1,6 @@
 export class Artist {
   name: string;
-  age: number;
+  tracks: number;
   popularity: number;
+  image: string;
 }
