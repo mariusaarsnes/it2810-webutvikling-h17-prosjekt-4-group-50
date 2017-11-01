@@ -29,12 +29,12 @@ exports.findUser = (req, res) => {
 };
 
 exports.createUser = (req, res, bcrypt) => {
-    User.findOne({username: req.body.username}, (err, user) => {
+    User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
         if (user)
             error(res, "This user already exists!", 500);
         else {
             const hashedPassword = bcrypt.hashSync(req.body.password),
-                user = new User({username: req.body.username, password: hashedPassword});
+                user = new User({username: req.body.username.toLowerCase(), password: hashedPassword});
 
             user.save((err, task) => {
                 if (err) error(res, error, 500);

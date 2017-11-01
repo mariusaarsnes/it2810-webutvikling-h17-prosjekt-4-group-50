@@ -12,7 +12,10 @@ let express = require('express'),
     path = require("path"),
     error = require("./router/Error"),
     User = require('./models/UserModel'),
-    Search = require('./models/SearchModel');
+    Search = require('./models/SearchModel'),
+    Album = require('./models/AlbumModel'),
+    Artist = require('./models/ArtistModel'),
+    Song = require('./models/SongModel');
 
 /**
  * Connects mongoose to the database
@@ -42,7 +45,7 @@ passport.deserializeUser((user, done) => {
  */
 passport.use(new LocalStrategy(
     (username, password, done) => {
-        User.findOne({username: username}, (err, user) => {
+        User.findOne({username: username.toLowerCase()}, (err, user) => {
             if (err) {
                 return done(err);
             }
