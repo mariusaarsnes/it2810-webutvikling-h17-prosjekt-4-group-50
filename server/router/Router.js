@@ -1,11 +1,12 @@
-module.exports = (isAuthorized, passport) => {
+module.exports = (isAuthorized, isAdmin, passport) => {
     const router = require("express").Router(),
         bcrypt = require("bcrypt-nodejs"), //Requires bcrypt to hash the user passwords
         path = require("path");
     let songController = require("../controllers/SongController"),
         userController = require("../controllers/UserController"),
         albumController = require("../controllers/AlbumController"),
-        artistController = require("../controllers/ArtistController");
+        artistController = require("../controllers/ArtistController"),
+        generalController = require("../controllers/GeneralController");
 
     /**
      * Router middleware. Can be used to verify input (API token?)
@@ -31,12 +32,32 @@ module.exports = (isAuthorized, passport) => {
     /**
      * Album related API queries
      */
-    router.get("/get_all_albums", isAuthorized, albumController.findAllAlbums); //Finds all albums
+    router.get("/get_all_albums", isAuthorized, albumController.findAllAlbums);
     router.get("/get_albums/:search_string", isAuthorized, albumController.findAlbums)
         .put("/get_albums/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.post
-    //router.get("/get_albums/name/:name/", albumController.getAlbums);
-    //router.post("/add_album/name/:name/id/:id/link/:link/type/:type/artist/:artist", albumController.addAlbum);
+    router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
+
+    /**
+     * Artist related API queries
+     */
+    router.get("/get_all_artists", isAuthorized, artistController.findAllArtists);
+    router.get("/get_artists/:search_string", isAuthorized, artistController.findArtists)
+        .put("/get_artists/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
+
+    /**
+     * Song related API queries
+     */
+    router.get("/get_all_songs", isAuthorized, songController.findAllSongs);
+    router.get("/get_songs/:search_string", isAuthorized, songController.findSongs)
+        .put("/get_songs/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
+
+    /**
+     * General related API queries (E.g find all artists/songs/albums that contains some text
+     */
+    router.get("/get_all/:search_string", isAuthorized, generalController.findAll)
+        .post("/get_all/:search_string", isAuthorized, userController.updateSearchHistory);
 
     /**
      * Called by the authentication function and returns a json object containing if it managed

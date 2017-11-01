@@ -79,10 +79,23 @@ isAuthorized = (req, res, next) => {
 };
 
 /**
+ * Middleware function to check if the given user is admin. Is used for most post functions
+ * @param req
+ * @param res
+ * @param next
+ */
+isAdmin = (req, res, next) => {
+    if (req.user && req.user.admin)
+        next();
+    else
+        error(res, "You are not an admin!", 401);
+};
+
+/**
  * All the routers for the different parts of the database. The user router also takes in bcrypt, as it needs to
  * encrypt passwords when new users are created
  */
-let api = require('./router/Router')(isAuthorized, passport);
+let api = require('./router/Router')(isAuthorized, isAdmin, passport);
 app.use("/api", api);
 
 /**
