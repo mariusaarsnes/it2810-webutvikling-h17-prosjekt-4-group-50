@@ -1,17 +1,14 @@
 let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     Song = "SongModel.js",
-    Album = "AlbumModel.js",
-    Artist =  new Schema({
+    Artist = "ArtistModel.js",
+    Album =  new Schema({
     name:{
         type: String,
-        required: "Kindly enter the name of the artist"
+        required: "Kindly enter the name of the album"
     },
     id: {
         type: String
-    },
-    genres: {
-        type: Array
     },
     imageLink: {
         //Om vi bare velger ett bilde, så String, hvis ikke array
@@ -20,10 +17,11 @@ let mongoose = require("mongoose"),
     type: {
         type: String
     },
-    popularity: {
-        type: Number
+    artist: {
+        //Lagre artist id.
+        type: String
     }
 
 });
 
-module.exports = mongoose.model("Artist", Artist);
+module.exports = mongoose.model("Album", Album);
