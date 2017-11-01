@@ -25,7 +25,7 @@ below illustrates how the different aspects of the stack interact with each othe
 
 We have decided to make a type of music database, using the Spotify api to get data to store in our own database. We 
 decided to focus on artists, their albums and their songs. This gives us a rich data source which we also can make a 
-simple but useful application for. De tenkte modellene våre ser, per nå, slik ut:
+simple but useful application for. Our models look are as follows:
 
 Artist:
 
