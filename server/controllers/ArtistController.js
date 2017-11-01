@@ -24,7 +24,6 @@ exports.findArtists((req, res) => {
     });
 });
 
-
 exports.findAllArtists = (req, res) => {
     Artist.find({}, (err, task) => {
         if (err) res.send(err);
