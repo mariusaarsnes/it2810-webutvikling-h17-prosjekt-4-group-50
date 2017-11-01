@@ -1,14 +1,15 @@
-var SpotifyWebApi = require('spotify-web-api-node');
+let Artist = require('../models/ArtistModel');
 
-var spotifyApi = new SpotifyWebApi();
+let SpotifyWebApi = require('spotify-web-api-node');
+
+let spotifyApi = new SpotifyWebApi();
 
 console.log(spotifyApi);
 
-spotifyApi.setAccessToken('BQAXRUeGEhp3yNAv5D3ubD3rS3X5GnTWwVh3jlf61MmmYQAbSMEzudYJIChbJXH4qvDmnS78EnAVvNHyF3' +
-    'xZBUkXG7ee4xA2BxTIyX3QrAvs0sQ4o6bmc4vQpVY0QbxtfrdL330upJo80XE');
+spotifyApi.setAccessToken('BQDvIj6cxotXvaOABj_ZdZIui0U0_rD7SnJ--LxHLx_cyrRw_sObo_iFOql5lSy7WSempz8FdFi7vN_fAK7XYvEIsxFnz7BoUtEnYYlAhVqoRtj7odhKrYjefyLyO7R9jDKL8c3rDyst2bw');
 
 
-var artists1 = [ '246dkjvS1zLTtiykXe5h60',
+let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1URnnhqYAYcrqrcwql10ft',
     '6fOMl44jA4Sp5b9PpYCkzz',
     '7vk5e3vY1uw9plTHJAMwjN',
@@ -53,40 +54,63 @@ var artists1 = [ '246dkjvS1zLTtiykXe5h60',
     '1L9i6qZYIGQedgM9QLSyzb'];
 
 
+let parsedArtists = [];
+
 
 function getPlaylist() {
 
     spotifyApi.getPlaylist('spotifycharts', '37i9dQZEVXbJvfa0Yxg7E7')
-        .then(function(data) {
-            var artists = [];
-            data.body.tracks.items.forEach(function(item, index) {
-                item.track.artists.forEach(function(artist, index) {
+        .then(function (data) {
+            let artists = [];
+            data.body.tracks.items.forEach(function (item, index) {
+                item.track.artists.forEach(function (artist, index) {
                     artists.push(artist.id);
                 });
             });
             console.log(artists)
 
-        }, function(err) {
+        }, function (err) {
             console.log('Something went wrong!', err);
         });
 
 }
+module.exports =  () => {
+    spotifyApi.getArtists(artists1)
+        .then(function (data) {
+            data.body.artists.forEach(function (artist, index) {
+                //console.log(artist);
+                let tempArtist = new Artist({
+                    _id: artist.id,
+                    name: artist.name,
+                    genres: artist.genres,
+                    //imageLink: artist.images[1].url,
+                    type: artist.type,
+                    popularity: artist.popularity
+                });
 
-spotifyApi.getArtists(['4utLUGcTvOJFr6aqIJtYWV'])
-    .then(function(data) {
-        data.body.artists.forEach(function(artist, index) {
-            console.log((index+1)
-                + ".  id: " + artist.id
-                + "   name: " + artist.name
-                +"    genres: " + artist.genres
-                + "   imageLink: " + artist.images[1].url
-                + "   type: " + artist.type
-                + "   popularity: " + artist.popularity);
+                parsedArtists.push(tempArtist);
+                /*
+                console.log((index + 1)
+                    + ".  id: " + artist.id
+                    + "   name: " + artist.name
+                    + "    genres: " + artist.genres
+                    + "   imageLink: " + artist.images[1].url
+                    + "   type: " + artist.type
+                    + "   popularity: " + artist.popularity);
+                    */
+
+            });
+            console.log(parsedArtists);
+            parsedArtists.forEach(element =>{
+                element.save()
+            })
+        }, function (err) {
+            console.error(err);
         });
-    }, function(err) {
-        console.error(err);
-    });
 
+}
+
+/*
 spotifyApi.getArtistAlbums('4utLUGcTvOJFr6aqIJtYWV')
     .then(function(data) {
         data.body.items.forEach(function(album, index) {
@@ -114,4 +138,4 @@ spotifyApi.getAlbumTracks('1isHoxcm6IP2s2TJXcNDcy')
     }, function(err) {
         console.log('Something went wrong!', err);
     });
-
+*/

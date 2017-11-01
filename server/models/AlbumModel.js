@@ -5,9 +5,6 @@ let mongoose = require("mongoose"),
             type: String,
             required: "Kindly enter the name of the album"
         },
-        id: {
-            type: String
-        },
         imageLink: {
             type: String
         },

@@ -5,9 +5,6 @@ let mongoose = require("mongoose"),
             type: String,
             required: "Kindly enter the name of the artist"
         },
-        id: {
-            type: String
-        },
         genres: {
             type: Array
         },
