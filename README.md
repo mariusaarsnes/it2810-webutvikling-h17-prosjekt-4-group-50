@@ -31,7 +31,7 @@ flexibility in deciding both how we want to associate data with each other and h
 In addition to express, we also use mongoose to make it easier to connect, and interact with the database. The figure
 below illustrates how the different aspects of the stack interact with each other.
 
-![alt text](images/mean_stack.png "Image of our MEAN stack")
+![alt text](images/mean_stack.png)
 
 
 We have decided to make a type of music database, using the Spotify api to get data to store in our own database. We 
