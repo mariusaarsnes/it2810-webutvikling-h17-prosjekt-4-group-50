@@ -1,17 +1,10 @@
+// Models used to populate our database
 let Artist = require('../models/ArtistModel');
 let Album = require('../models/AlbumModel');
 let Song = require('../models/SongModel');
 
 
-let SpotifyWebApi = require('spotify-web-api-node');
-
-let spotifyApi = new SpotifyWebApi();
-
-console.log(spotifyApi);
-
-spotifyApi.setAccessToken('BQBJR8Prx_WTv8wsyAlLc6mN_4ISfc1NxeQUb-aUKcE7giD1aebPveiEMQBmrLfNRA-bkaS1BCKj0CqXq80P-xOnr22us11x6ulz0jZpdF_iqTqmHQV8cgxYtAeFu4LIVlwCROD9VUvykbo');
-
-
+// List of ArtistIDs we use to populate the database
 let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1URnnhqYAYcrqrcwql10ft',
     '6fOMl44jA4Sp5b9PpYCkzz',
@@ -56,7 +49,14 @@ let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1Xfv0o1xU7jH7M9QYod7rj',
     '1L9i6qZYIGQedgM9QLSyzb'];
 
-module.exports = () => {
+
+module.exports = (req, res) => {
+    let SpotifyWebApi = require('spotify-web-api-node');
+
+    let spotifyApi = new SpotifyWebApi();
+
+    // Access-token to the DB. This needs to be changed at certain interval.
+    spotifyApi.setAccessToken(req.params.access_token);
     // Fetching all the artists from artists1, containing all the IDs
     spotifyApi.getArtists(artists1)
         .then(function (data) {
