@@ -4,11 +4,11 @@ let mongoose = require('mongoose'),
     Album = mongoose.model("Album");
 
 exports.findAll = (req, res) => {
-    Artist.find({name: {$regex: ".*" + req.params.search_string + "*."}}, (err, artists) => {
+    Artist.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, artists) => {
         if (err) error(res, err, 500);
-        Song.find({name: {$regex: ".*" + req.params.search_string + "*."}}, (err, songs) => {
+        Song.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, songs) => {
             if (err) error(res, err, 500);
-            Album.find({name: {$regex: ".*" + req.params.search_string + "*."}}, (err, albums) => {
+            Album.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, albums) => {
                 if (err) error(res, err, 500);
                 res.status(200).json(artists.concat(songs).concat(albums));
             });

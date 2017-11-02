@@ -17,7 +17,7 @@ exports.addAlbum = (req, res) => {
 };
 
 exports.findAlbums = ((req, res) => {
-    Album.find({name: {$regex: ".*" + req.params.search_string + "*."}}, (err, albums) => {
+    Album.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, albums) => {
         if (err) error(res, err, 500);
         res.status(200).json(albums);
     });

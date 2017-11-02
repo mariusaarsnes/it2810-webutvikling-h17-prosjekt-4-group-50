@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <title>Sound API</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<html>
+    <body>
+        <header>
+        </header>
+        <content>
+            <h1>API Reference</h1>
+            <p>The API was built with <b>Express</b> and <b>MongoDB</b>. It is a JSON API, and therefore all responses are JSON. </p>
+            <br>
+            <p>This documentation explains how to use the <a href="">music find</a> API.</p>
+            <h1>Authorization</h1>
+            <p>
+                All API requests requires authorization. In order to get authorized a user has to be created, which can be done at ---.
+                In order to get authorized a post request has to be made:
+            </p>
+            <code>
+                POST /api/login&username=User&password=Password
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>string</td>
+                    <td><b>Required</b></td>
+                </tr>
+                <tr>
+                    <td>password</td>
+                    <td>string</td>
+                    <td><b>Required</b></td>
+                </tr>
+            </table>
+            <h1>Data</h1>
+            <h2>Artists</h2>
+            <p>Getting all the artists in the database: </p>
+            <code>
+                GET /api/get_all_artists
+            </code>
+            <p>Getting all artists that contains the given parameter:</p>
+            <code>
+                GET /api/get_artists/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all artists if empty</b></td>
+                </tr>
+            </table>
+            <h2>Albums</h2>
+            <p>Getting all the albums in the database: </p>
+            <code>
+                GET /api/get_all_albums
+            </code>
+            <p>Getting all albums that contains the given parameter:</p>
+            <code>
+                GET /api/get_albums/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all albums if empty</b></td>
+                </tr>
+            </table>
+            <h2>Songs</h2>
+            <p>Getting all the songs in the database: </p>
+            <code>
+                GET /api/get_all_songs
+            </code>
+            <p>Getting all songs that contains the given parameter:</p>
+            <code>
+                GET /api/get_songs/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all songs if empty</b></td>
+                </tr>
+            </table>
+        </content>
+    </body>
+</html>
