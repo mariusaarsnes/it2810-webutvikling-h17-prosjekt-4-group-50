@@ -19,10 +19,12 @@ export class ArtistComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {
-      height: '350px'
+      height: '350px',
+      width: '500px'
+
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result:`);
+      console.log(`Dialog result: ${result}`);
     });
   }
 
