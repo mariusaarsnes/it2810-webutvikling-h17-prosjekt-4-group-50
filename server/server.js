@@ -30,7 +30,6 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     });
 
 mongoose.connection.once("open", () => {
-    spotify();
 
 });
 
