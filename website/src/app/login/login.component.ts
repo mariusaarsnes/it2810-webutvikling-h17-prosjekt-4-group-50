@@ -22,9 +22,11 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 		this.http.post("api/login/", {username: this.username, password: this.password}).subscribe(data => {
 			console.log(data);
-			this.result = data["message"];
-			//if (data["failed"] === 'true')
-			//	route();
+			if (data["failed"] === 'false') {
+				//TODO - Handle routing to some page after login was successful
+			} else {
+				this.result = data["message"];
+			}
 		});
 	}
 
