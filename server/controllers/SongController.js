@@ -15,7 +15,7 @@ exports.addSong = (req, res) => {
 };
 
 exports.findSongs = ((req, res) => {
-    Song.find({username: {$regex: ".*" + req.params.search_string + "*."}}, (err, songs) => {
+    Song.find({username: { "$regex": req.params.search_string, "$options": "i" }}, (err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
