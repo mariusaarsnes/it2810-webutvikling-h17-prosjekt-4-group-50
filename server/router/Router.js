@@ -89,7 +89,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Default message when entering the API. This could be replaced with a static HTML file as a API guide.
      */
     router.get("/", (req, res) => {
-        res.sendFile(path.join(__dirname + '/../api.html'));
+        res.sendFile(path.join(__dirname + '/../static/html/api.html'));
     });
 
     return router;
