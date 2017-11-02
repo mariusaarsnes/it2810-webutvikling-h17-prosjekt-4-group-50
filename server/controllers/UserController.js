@@ -30,6 +30,11 @@ exports.findUser = (req, res) => {
 
 exports.createUser = (req, res, bcrypt) => {
     User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
+        if (req.body.username.length < 3)
+            error(res, "Your username needs to be atleast 3 characters long!", 202)
+        else if (req.body.password === "")
+            error(res, "You have not entered a password!", 202);
+        else
         if (user)
             error(res, "This user already exists. Please try again with another username!", 202);
         else {

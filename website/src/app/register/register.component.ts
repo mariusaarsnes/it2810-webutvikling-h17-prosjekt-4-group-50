@@ -19,14 +19,18 @@ export class RegisterComponent implements OnInit {
 	}
 
 	onSubmit() {
-		this.http.post("api/create_user/", {username: this.username, password: this.password}).subscribe(data => {
-			console.log(data);
-			if (!data["message"]) {
-				this.result = "New user created!";
-			} else {
-				this.result = data["message"];
-			}
-		});
+		if (this.username.length < 3)
+			this.result = "Your username needs to have atleast 3 characters!";
+		else if (this.password === "")
+			this.result = "Your password field is empty! Please fill it out!";
+		else {
+			this.http.post("api/create_user/", {username: this.username, password: this.password}).subscribe(data => {
+				if (!data["message"])
+					this.result = "New user created!";
+				else
+					this.result = data["message"];
+			});
+		}
 	}
 
 }
