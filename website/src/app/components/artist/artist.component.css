@@ -48,12 +48,13 @@
   flex: 1 1 auto;
   text-align: center;
 }
-.bottom-button a {
+.bottom-button span {
   display: block;
   padding: 10px;
   font-family: "Intro Rust";
   color: #5a5a5a;
   font-size: 13px;
+  cursor: pointer;
 }
 .border-right {
   border-right: 1px solid rgba(0,0,0,0.1);

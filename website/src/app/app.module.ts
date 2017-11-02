@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
-
+import { MatDialogModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -12,6 +13,7 @@ import { ArtistComponent } from './components/artist/artist.component';
 import { SearchService } from "./components/search-result/search.service";
 import { AdditionalInfoComponent } from "./components/additional_info/additional-info.component";
 import { AdditionalInfoService } from "./components/additional_info/additional-info.service";
+import { DialogComponent} from "./components/artist/dialog.component";
 
 @NgModule({
   declarations: [
@@ -21,11 +23,15 @@ import { AdditionalInfoService } from "./components/additional_info/additional-i
     SearchPageComponent,
     SearchResultComponent,
     ArtistComponent,
-    AdditionalInfoComponent
+    AdditionalInfoComponent,
+    DialogComponent,
+
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       {
         path: 'search',
@@ -36,6 +42,9 @@ import { AdditionalInfoService } from "./components/additional_info/additional-i
         component: AdditionalInfoComponent
       }
     ])
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   providers: [SearchService, AdditionalInfoService],
   bootstrap: [AppComponent]

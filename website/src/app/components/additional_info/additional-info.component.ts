@@ -17,7 +17,7 @@ export class AdditionalInfoComponent implements OnInit{
     this.additonalInfo = this.additonalInfoService.getAdditionalInfo();
   }
   ngOnInit(): void {
-    
+
   }
 
 }
