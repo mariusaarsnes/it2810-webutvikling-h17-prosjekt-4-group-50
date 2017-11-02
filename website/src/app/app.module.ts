@@ -10,6 +10,8 @@ import { FormsModule } from "@angular/forms";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { SearchService } from "./components/search-result/search.service";
+import { AdditionalInfoComponent } from "./components/additional_info/additional-info.component";
+import { AdditionalInfoService } from "./components/additional_info/additional-info.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { SearchService } from "./components/search-result/search.service";
     NavbarComponent,
     SearchPageComponent,
     SearchResultComponent,
-    ArtistComponent
+    ArtistComponent,
+    AdditionalInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -27,10 +30,14 @@ import { SearchService } from "./components/search-result/search.service";
       {
         path: 'search',
         component: SearchPageComponent
+      },
+      {
+        path: 'info',
+        component: AdditionalInfoComponent
       }
     ])
   ],
-  providers: [SearchService],
+  providers: [SearchService, AdditionalInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
