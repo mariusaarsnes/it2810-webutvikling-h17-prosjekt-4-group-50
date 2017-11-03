@@ -35,6 +35,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/get_all_albums", isAuthorized, albumController.findAllAlbums);
     router.get("/get_albums/:search_string", isAuthorized, albumController.findAlbums)
         .put("/get_albums/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/get_albums_asc/:search_string", isAuthorized, albumController.findAlbumsAsc)
+        .put("/get_albums_asc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/get_albums_desc/:search_string", isAuthorized, albumController.findAlbumsDesc)
+        .put("/get_albums_desc/:search_string", isAuthorized, userController.updateSearchHistory);
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
     /**
@@ -42,6 +46,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      */
     router.get("/get_all_artists", isAuthorized, artistController.findAllArtists);
     router.get("/get_artists/:search_string", isAuthorized, artistController.findArtists)
+        .put("/get_artists/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/get_artists_asc/:search_string", isAuthorized, artistController.findArtistsAsc)
+        .put("/get_artists/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/get_artists_desc/:search_string", isAuthorized, artistController.findArtistsDesc)
         .put("/get_artists/:search_string", isAuthorized, userController.updateSearchHistory);
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
