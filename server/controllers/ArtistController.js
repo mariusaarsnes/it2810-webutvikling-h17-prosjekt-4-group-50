@@ -18,12 +18,35 @@ exports.addArtist = (req, res) => {
 };
 
 exports.findArtists = ((req, res) => {
-    Artist.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, artists) => {
+    Artist.find({name: {"$regex": req.params.search_string, "$options": "i"}}, (err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
     });
 });
 
+exports.findArtistsAsc = ((req, res) => {
+    Artist.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "asc"}).exec((err, artists) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(artists);
+    });
+});
+
+exports.findArtistsDesc = ((req, res) => {
+    Artist.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "desc"}).exec((err, artists) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(artists);
+    });
+});
 
 exports.findAllArtists = (req, res) => {
     Artist.find({}, (err, task) => {

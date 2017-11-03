@@ -14,6 +14,31 @@ exports.addSong = (req, res) => {
     });
 };
 
+exports.findSongsAsc = ((req, res) => {
+    Song.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "asc"}).exec((err, songs) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(songs);
+    });
+});
+
+exports.findSongsDesc = ((req, res) => {
+    Song.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "desc"}).exec((err, songs) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(songs);
+    });
+});
+
+
 exports.findSongs = ((req, res) => {
     Song.find({username: { "$regex": req.params.search_string, "$options": "i" }}, (err, songs) => {
         if (err) error(res, err, 500);

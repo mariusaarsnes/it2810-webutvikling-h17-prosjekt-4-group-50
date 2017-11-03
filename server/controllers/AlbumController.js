@@ -17,7 +17,31 @@ exports.addAlbum = (req, res) => {
 };
 
 exports.findAlbums = ((req, res) => {
-    Album.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, albums) => {
+    Album.find({name: {"$regex": req.params.search_string, "$options": "i"}}, (err, albums) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(albums);
+    });
+});
+
+exports.findAlbumsAsc = ((req, res) => {
+    Album.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "asc"}).exec((err, albums) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(albums);
+    });
+});
+
+exports.findAlbumsDesc = ((req, res) => {
+    Album.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).sort({name: "desc"}).exec((err, albums) => {
         if (err) error(res, err, 500);
         res.status(200).json(albums);
     });

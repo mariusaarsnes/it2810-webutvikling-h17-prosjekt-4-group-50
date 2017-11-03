@@ -32,9 +32,12 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Album related API queries
      */
-    router.get("/albums", isAuthorized, albumController.findAllAlbums);
-    router.get("/albums/:search_string", isAuthorized, albumController.findAlbums)
+    router.get("/albums/:search_string", albumController.findAlbums)
         .put("/albums/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/albums_asc/:search_string", isAuthorized, albumController.findAlbumsAsc)
+        .put("/albums_asc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/albums_desc/:search_string", isAuthorized, albumController.findAlbumsDesc)
+        .put("/albums_desc/:search_string", isAuthorized, userController.updateSearchHistory);
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
     /**
@@ -43,6 +46,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/artists", isAuthorized, artistController.findAllArtists);
     router.get("/artists/:search_string", isAuthorized, artistController.findArtists)
         .put("/artists/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/artists_asc/:search_string", isAuthorized, artistController.findArtistsAsc)
+        .put("/artists_asc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/artists_desc/:search_string", isAuthorized, artistController.findArtistsDesc)
+        .put("/artists_desc/:search_string", isAuthorized, userController.updateSearchHistory);
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
     /**
@@ -51,6 +58,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/songs", isAuthorized, songController.findAllSongs);
     router.get("/songs/:search_string", isAuthorized, songController.findSongs)
         .put("/songs/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/songs_asc/:search_string", isAuthorized, songController.findSongsAsc)
+        .put("/songs_asc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/songs_desc/:search_string", isAuthorized, songController.findSongsDesc)
+        .put("/songs_desc/:search_string", isAuthorized, userController.updateSearchHistory);
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
 
     /**

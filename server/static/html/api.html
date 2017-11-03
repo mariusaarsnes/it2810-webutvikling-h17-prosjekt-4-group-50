@@ -39,13 +39,9 @@
             </table>
             <h1>Data</h1>
             <h2>Artists</h2>
-            <p>Getting all the artists in the database: </p>
+            <h3>Getting all artists with names that contain the given parameter:</h3>
             <code>
-                GET /api/artists
-            </code>
-            <p>Getting all artists with names that contain the given parameter:</p>
-            <code>
-                GET /api/artists/parameter
+                GET /api/artists/search_string
             </code>
             <table>
                 <tr>
@@ -56,17 +52,45 @@
                 <tr>
                     <td>Search string</td>
                     <td>string</td>
-                    <td><b>Not required. Returns all artists if empty</b></td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/albums_asc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all albums if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all artists that contains the given parameter and sort <u>descending</u>:</h3>
+            <code>
+                GET /api/artists_desc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all albums if no parameter</b></td>
                 </tr>
             </table>
             <h2>Albums</h2>
-            <p>Getting all the albums in the database: </p>
+            <h3>Getting all albums with names that contain the given parameter:</h3>
             <code>
-                GET /api/albums
-            </code>
-            <p>Getting all albums with names that contain the given parameter:</p>
-            <code>
-                GET /api/albums/parameter
+                GET /api/albums/search_string
             </code>
             <table>
                 <tr>
@@ -77,17 +101,45 @@
                 <tr>
                     <td>Search string</td>
                     <td>string</td>
-                    <td><b>Not required. Returns all albums if empty</b></td>
+                    <td><b>Not required. Returns all albums if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/albums_asc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all albums if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all albums that contains the given parameter and sort <u>descending</u>:</h3>
+            <code>
+                GET /api/albums_desc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all albums if no parameter</b></td>
                 </tr>
             </table>
             <h2>Songs</h2>
-            <p>Getting all the songs in the database: </p>
+            <h3>Getting all songs that contains the given parameter:</h3>
             <code>
-                GET /api/songs
-            </code>
-            <p>Getting all songs that contains the given parameter:</p>
-            <code>
-                GET /api/get_songs/searchstring
+                GET /api/songs/searchstring
             </code>
             <table>
                 <tr>
@@ -98,7 +150,39 @@
                 <tr>
                     <td>Search string</td>
                     <td>string</td>
-                    <td><b>Not required. Returns all songs if empty</b></td>
+                    <td><b>Not required. Returns all songs if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all songs that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/songs_asc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all songs if no parameter</b></td>
+                </tr>
+            </table>
+            <h3>Getting all songs that contains the given parameter and sort <u>decsending</u>:</h3>
+            <code>
+                GET /api/songs_desc/searchstring
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>string</td>
+                    <td><b>Not required. Returns all songs if no parameter</b></td>
                 </tr>
             </table>
         </content>
