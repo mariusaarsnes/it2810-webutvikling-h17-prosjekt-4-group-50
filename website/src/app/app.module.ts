@@ -24,7 +24,7 @@ import { DialogComponent} from "./components/artist/dialog.component";
     SearchResultComponent,
     ArtistComponent,
     AdditionalInfoComponent,
-    DialogComponent,
+    DialogComponent
 
   ],
   imports: [
