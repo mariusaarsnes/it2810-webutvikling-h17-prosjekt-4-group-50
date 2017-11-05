@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 
 @Component({
-  selector: 'dialog',
+  selector: 'app-dialog',
   templateUrl: './dialog.component.html',
 })
 

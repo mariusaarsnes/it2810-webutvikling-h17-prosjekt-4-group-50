@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Artist } from "./artist";
+import { Artist } from './artist';
 import { MatDialog } from '@angular/material';
-import { DialogComponent } from "./dialog.component";
+import { DialogComponent } from './dialog.component';
 
 @Component({
   selector: 'app-artist',
