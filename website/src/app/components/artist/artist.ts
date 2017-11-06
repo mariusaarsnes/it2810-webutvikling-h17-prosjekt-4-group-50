@@ -1,7 +1,10 @@
 export class Artist {
-  id: number;
-  name: string;
-  tracks: number;
-  popularity: number;
-  image: string;
+	id: number;
+	name: string;
+	tracks: number;
+	popularity: number;
+	image: string;
+	albums: [
+			string
+		];
 }
