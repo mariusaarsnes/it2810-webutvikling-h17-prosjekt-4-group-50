@@ -30,7 +30,6 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     });
 
 mongoose.connection.once("open", () => {
-    spotify();
 
 });
 
@@ -41,6 +40,7 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user);
 });
+
 
 /**
  * Provides a LocalStrategy to passport that checks if a user provided the correct username/password.
@@ -62,6 +62,7 @@ passport.use(new LocalStrategy(
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/../website/dist')));
+app.use(express.static(path.join(__dirname, "/static")));
 app.use(session({
     secret: 'oursecretappkey',
     resave: true,
