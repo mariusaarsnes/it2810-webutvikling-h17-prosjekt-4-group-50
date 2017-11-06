@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ArtistResponse } from "../../interfaces/artist-response.interface";
 
 @Component({
   selector: 'app-artist',
@@ -12,6 +13,6 @@ export class ArtistComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input() artist: string[];
+  @Input() artist: ArtistResponse;
 
 }

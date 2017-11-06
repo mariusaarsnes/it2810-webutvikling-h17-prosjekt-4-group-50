@@ -1,13 +1,13 @@
 
 <div class="artist-container">
   <div class="image-wrapper">
-    <img src="#" alt="artist picture"/>
+    <img src="{{artist.imageLink}}" alt="artist picture"/>
   </div>
-  <h4>{{artist[0]}}</h4>
-  <p class="track-info">{{artist[1]}} tracks</p>
+  <h4>{{artist.name}}</h4>
+  <p class="track-info">{{artist.album ? artist.album.length : 0}} albums</p>
   <div class="bottom-buttons">
     <div class="bottom-button border-right">
-      <a href="#">tracks</a>
+      <a href="#">Albums</a>
     </div>
     <div class="bottom-button">
       <a href="#">info</a>
