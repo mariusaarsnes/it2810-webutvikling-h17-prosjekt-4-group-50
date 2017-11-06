@@ -1,4 +1,5 @@
 require('./models/SongModel');
+let spotify = require('./spotify/spotify');
 
 let express = require('express'),
     app = express(),
@@ -29,6 +30,7 @@ mongoose.connect('mongodb://it2810-50.idi.ntnu.no:27017/test',
     });
 
 mongoose.connection.once("open", () => {
+    spotify();
 
 });
 
