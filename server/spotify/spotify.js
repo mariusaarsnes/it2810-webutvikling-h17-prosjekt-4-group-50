@@ -49,7 +49,6 @@ let artists1 = ['246dkjvS1zLTtiykXe5h60',
     '1Xfv0o1xU7jH7M9QYod7rj',
     '1L9i6qZYIGQedgM9QLSyzb'];
 
-
 module.exports = (req, res) => {
     let SpotifyWebApi = require('spotify-web-api-node');
 
@@ -68,15 +67,13 @@ module.exports = (req, res) => {
                     genres: artist.genres,
                     imageLink: artist.images[1].uri,
                     type: artist.type,
-                    popularity: artist.popularity
+                    popularity: artist.popularity,
+                    albums: []
                 });
-
-                //Saving artist to the database
-                parsedArtist.save();
 
                 // Fetching All the albums of an artist from spotify
                 spotifyApi.getArtistAlbums(artist.id).then(data => {
-                    // Going through all albums, parsing the data nd savign it to the database.
+                    // Going through all albums, parsing the data nd saving it to the database.
                     data.body.items.forEach(album => {
                         let tempArtists = [];
 
@@ -89,6 +86,10 @@ module.exports = (req, res) => {
                             imageLink: album.images[1].uri,
                             artists: tempArtists
                         });
+
+                        // Add album to artist.
+                        parsedArtist.albums.push(data.id);
+
                         // Saving album to the database
                         parsedAlbum.save();
 
@@ -107,7 +108,6 @@ module.exports = (req, res) => {
                                     duration: track.duration,
                                     artists: tempArtists
                                 });
-                                console.log(parsedTrack);
                                 parsedTrack.save();
                             })
                         }, err => {
@@ -118,6 +118,9 @@ module.exports = (req, res) => {
                 }, err => {
                     console.error(err);
                 });
+
+                // Saving artist after adding all the albums
+                parsedArtist.save();
             });
 
         }, function (err) {

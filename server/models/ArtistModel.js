@@ -20,6 +20,9 @@ let mongoose = require("mongoose"),
         },
         popularity: {
             type: Number
+        },
+        albums: {
+            type: Array
         }
 
     });
