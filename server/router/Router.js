@@ -40,34 +40,51 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      */
     router.get("/albums/:search_string/:index/:amount", albumController.findAlbums)
         .put("/albums/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/albums/:index/:amount", albumController.findAllAlbums)
+        .put("/albums/:index/:amount", userController.updateSearchHistory);
+
     router.get("/albums_asc/:search_string/:index/:amount", albumController.findAlbumsAsc)
         .put("/albums_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/albums_asc/:index/:amount", albumController.findAlbumsAsc);
+
     router.get("/albums_desc/:search_string/:index/:amount", albumController.findAlbumsDesc)
         .put("/albums_desc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/albums_desc/:index/:amount", albumController.findAlbumsDesc);
+
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
     /**
      * Artist related API queries
      */
-    router.get("/artists", artistController.findAllArtists);
+    router.get("/artists/:index/:amount", artistController.findAllArtists);
     router.get("/artists/:search_string/:index/:amount", artistController.findArtists)
         .put("/artists/:search_string/:index/:amount", userController.updateSearchHistory);
+
     router.get("/artists_asc/:search_string/:index/:amount", artistController.findArtistsAsc)
         .put("/artists_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/artists_asc/:index/:amount", artistController.findArtistsAsc);
+
     router.get("/artists_desc/:search_string/:index/:amount", artistController.findArtistsDesc)
         .put("/artists_desc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/artists_desc/:index/:amount", artistController.findArtistsDesc);
+
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
     /**
      * Song related API queries
      */
-    router.get("/songs", songController.findAllSongs);
+    router.get("/songs/:index/:amount", songController.findAllSongs);
     router.get("/songs/:search_string/:index/:amount", songController.findSongs)
         .put("/songs/:search_string/:index/:amount", userController.updateSearchHistory);
+
     router.get("/songs_asc/:search_string/:index/:amount", songController.findSongsAsc)
         .put("/songs_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/songs_asc/:index/:amount", songController.findSongsAsc);
+
     router.get("/songs_desc/:search_string/:index/:amount", songController.findSongsDesc)
         .put("/songs_desc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/songs_desc/:index/:amount", songController.findSongsDesc);
+
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
 
     /**

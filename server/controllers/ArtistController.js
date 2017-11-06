@@ -1,5 +1,6 @@
 let mongoose = require('mongoose'),
-    Artist = mongoose.model("Artist");
+    Artist = mongoose.model("Artist"),
+    error = require("../router/Error");
 
 exports.addArtist = (req, res) => {
     let artist = new Artist({
@@ -30,24 +31,26 @@ exports.findArtists = ((req, res) => {
 });
 
 exports.findArtistsAsc = ((req, res) => {
-    Artist.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
+    };
+    Artist.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
     });
 });
 
 exports.findArtistsDesc = ((req, res) => {
-    Artist.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "desc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
+    };
+    Artist.find(req.params.search_string ? query : {}).sort({name: "desc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
     });

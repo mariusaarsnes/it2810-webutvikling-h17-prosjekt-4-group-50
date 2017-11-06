@@ -30,24 +30,26 @@ exports.findAlbums = ((req, res) => {
 });
 
 exports.findAlbumsAsc = ((req, res) => {
-    Album.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
+    };
+    Album.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
         if (err) error(res, err, 500);
         res.status(200).json(albums);
     });
 });
 
 exports.findAlbumsDesc = ((req, res) => {
-    Album.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "desc"}).skip(req.params.index).limit(req.params.amount).exec((err, albums) => {
+    };
+    Album.find(req.params.search_string ? query : {}).sort({name: "desc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
         if (err) error(res, err, 500);
         res.status(200).json(albums);
     });

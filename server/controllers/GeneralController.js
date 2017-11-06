@@ -1,7 +1,8 @@
 let mongoose = require('mongoose'),
     Artist = mongoose.model("Artist"),
     Song = mongoose.model("Song"),
-    Album = mongoose.model("Album");
+    Album = mongoose.model("Album"),
+    error = require("../router/Error");
 
 exports.findAll = (req, res) => {
     Artist.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, artists) => {

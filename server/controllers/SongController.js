@@ -1,5 +1,6 @@
 let mongoose = require('mongoose'),
-    Song = mongoose.model("Song");
+    Song = mongoose.model("Song"),
+    error = require("../router/Error");
 
 exports.addSong = (req, res) => {
     let song = new Song({
@@ -15,24 +16,26 @@ exports.addSong = (req, res) => {
 };
 
 exports.findSongsAsc = ((req, res) => {
-    Song.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "asc"}).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
+    };
+    Song.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
 });
 
 exports.findSongsDesc = ((req, res) => {
-    Song.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "desc"}).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
+    };
+    Song.find(req.params.search_string ? query : {}).sort({name: "desc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
@@ -41,18 +44,18 @@ exports.findSongsDesc = ((req, res) => {
 
 exports.findSongs = ((req, res) => {
     Song.find({
-        username: {
+        name: {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
+    }).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
 });
 
 exports.findAllSongs = (req, res) => {
-    Song.find({}).skip(req.params.index).limit(req.params.amount).exec((err, task) => {
+    Song.find({}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, task) => {
         if (err) res.send(err);
         res.status(200).json(task);
     });
