@@ -8,8 +8,8 @@ export class SearchService {
 
   constructor(private http: HttpClient) { }
 
-  getArtistsByName(name: string, amount: number, index: number): Promise<ArtistResponse[]> {
-  	return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + index + '/' + amount).toPromise();
+  getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Promise<ArtistResponse[]> {
+  	return this.http.get<ArtistResponse[]>('api/artists/' +  name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount).toPromise();
   }
 
 }

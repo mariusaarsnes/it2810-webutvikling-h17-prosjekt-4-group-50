@@ -23,11 +23,11 @@ export class SearchResultComponent implements OnInit {
   artists: ArtistResponse[];
 
   index = 0;
-  renderTreshold = 15;
+  public renderTreshold = 15;
   canRenderNew = true;
 
   public getArtistsByName(): void {
-  	this.searchService.getArtistsByName(this.searchString, this.renderTreshold, this.index).then(artists => {
+  	this.searchService.getArtists(this.searchString, this.renderTreshold, this.index).then(artists => {
 		this.artists = artists;
 		this.canRenderNew = true;
 	});

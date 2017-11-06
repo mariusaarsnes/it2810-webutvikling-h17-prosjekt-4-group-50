@@ -15,8 +15,9 @@ export class SearchPageComponent implements OnInit {
   ngOnInit() {
   }
   onChangeSearch(): void {
+  	this.child.renderTreshold = 15;
   	if(this.searchInput !== '') {
-		this.child.getArtistsByName();
+		this.child.getArtists();
 	}
   }
   searchInput: string;
