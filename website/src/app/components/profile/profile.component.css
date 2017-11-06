@@ -1,0 +1,8 @@
+.userinfoWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.userinfoInput{
+    height: 2rem;
+    width: 40%
+}

@@ -13,6 +13,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     BrowserModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ProfileComponent]
 })
 export class AppModule { }
