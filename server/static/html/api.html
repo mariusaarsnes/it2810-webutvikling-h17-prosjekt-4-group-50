@@ -41,39 +41,15 @@
             <h2>Artists</h2>
             <h3>Getting all artists with names that contain the given parameter:</h3>
             <code>
-                GET /api/artists/search_string
+                GET /api/artists/search_string/offset/amount
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all artists if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
             <code>
-                GET /api/albums_asc/searchstring
+                GET /api/albums_asc/search_string/offset/amount
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all albums if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all artists that contains the given parameter and sort <u>descending</u>:</h3>
             <code>
-                GET /api/artists_desc/searchstring
+                GET /api/artists_desc/search_string/offset/amount
             </code>
             <table>
                 <tr>
@@ -83,8 +59,18 @@
                 </tr>
                 <tr>
                     <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all albums if no parameter</b></td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
                 </tr>
             </table>
             <h2>Albums</h2>
@@ -92,37 +78,13 @@
             <code>
                 GET /api/albums/search_string
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all albums if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
             <code>
-                GET /api/albums_asc/searchstring
+                GET /api/albums_asc/search_string/offset/amount
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all albums if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all albums that contains the given parameter and sort <u>descending</u>:</h3>
             <code>
-                GET /api/albums_desc/searchstring
+                GET /api/albums_desc/search_string/offset/amount
             </code>
             <table>
                 <tr>
@@ -132,46 +94,32 @@
                 </tr>
                 <tr>
                     <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all albums if no parameter</b></td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
                 </tr>
             </table>
             <h2>Songs</h2>
             <h3>Getting all songs that contains the given parameter:</h3>
             <code>
-                GET /api/songs/searchstring
+                GET /api/songs/search_string/offset/amount
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all songs if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all songs that contains the given parameter and sort <u>ascending</u>:</h3>
             <code>
-                GET /api/songs_asc/searchstring
+                GET /api/songs_asc/search_string/offset/amount
             </code>
-            <table>
-                <tr>
-                    <th>Parameter</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                <tr>
-                    <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all songs if no parameter</b></td>
-                </tr>
-            </table>
             <h3>Getting all songs that contains the given parameter and sort <u>decsending</u>:</h3>
             <code>
-                GET /api/songs_desc/searchstring
+                GET /api/songs_desc/search_string/offset/amount
             </code>
             <table>
                 <tr>
@@ -181,8 +129,18 @@
                 </tr>
                 <tr>
                     <td>Search string</td>
-                    <td>string</td>
-                    <td><b>Not required. Returns all songs if no parameter</b></td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
                 </tr>
             </table>
         </content>

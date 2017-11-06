@@ -18,9 +18,9 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * User related API queries
      */
-    router.get("/user", isAuthorized, userController.findUser);
-    router.get("/history", isAuthorized, userController.findSearchHistory);
-    router.put("/update_history/search/:search", isAuthorized, userController.updateSearchHistory);
+    router.get("/user", userController.findUser);
+    router.get("/history", userController.findSearchHistory);
+    router.put("/update_history/search/:search", userController.updateSearchHistory);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
     router.post('/login',
         passport.authenticate('local', {
@@ -32,36 +32,36 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Album related API queries
      */
-    router.get("/albums/:search_string", albumController.findAlbums)
-        .put("/albums/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/albums_asc/:search_string", isAuthorized, albumController.findAlbumsAsc)
-        .put("/albums_asc/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/albums_desc/:search_string", isAuthorized, albumController.findAlbumsDesc)
-        .put("/albums_desc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/albums/:search_string/:index/:amount", albumController.findAlbums)
+        .put("/albums/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/albums_asc/:search_string/:index/:amount", albumController.findAlbumsAsc)
+        .put("/albums_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/albums_desc/:search_string/:index/:amount", albumController.findAlbumsDesc)
+        .put("/albums_desc/:search_string/:index/:amount", userController.updateSearchHistory);
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
     /**
      * Artist related API queries
      */
-    router.get("/artists", isAuthorized, artistController.findAllArtists);
-    router.get("/artists/:search_string", isAuthorized, artistController.findArtists)
-        .put("/artists/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/artists_asc/:search_string", isAuthorized, artistController.findArtistsAsc)
-        .put("/artists_asc/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/artists_desc/:search_string", isAuthorized, artistController.findArtistsDesc)
-        .put("/artists_desc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/artists", artistController.findAllArtists);
+    router.get("/artists/:search_string/:index/:amount", artistController.findArtists)
+        .put("/artists/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/artists_asc/:search_string/:index/:amount", artistController.findArtistsAsc)
+        .put("/artists_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/artists_desc/:search_string/:index/:amount", artistController.findArtistsDesc)
+        .put("/artists_desc/:search_string/:index/:amount", userController.updateSearchHistory);
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
     /**
      * Song related API queries
      */
-    router.get("/songs", isAuthorized, songController.findAllSongs);
-    router.get("/songs/:search_string", isAuthorized, songController.findSongs)
-        .put("/songs/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/songs_asc/:search_string", isAuthorized, songController.findSongsAsc)
-        .put("/songs_asc/:search_string", isAuthorized, userController.updateSearchHistory);
-    router.get("/songs_desc/:search_string", isAuthorized, songController.findSongsDesc)
-        .put("/songs_desc/:search_string", isAuthorized, userController.updateSearchHistory);
+    router.get("/songs", songController.findAllSongs);
+    router.get("/songs/:search_string/:index/:amount", songController.findSongs)
+        .put("/songs/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/songs_asc/:search_string/:index/:amount", songController.findSongsAsc)
+        .put("/songs_asc/:search_string/:index/:amount", userController.updateSearchHistory);
+    router.get("/songs_desc/:search_string/:index/:amount", songController.findSongsDesc)
+        .put("/songs_desc/:search_string/:index/:amount", userController.updateSearchHistory);
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
 
     /**

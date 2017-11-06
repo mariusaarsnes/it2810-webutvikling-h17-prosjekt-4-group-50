@@ -20,7 +20,7 @@ exports.findSongsAsc = ((req, res) => {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "asc"}).exec((err, songs) => {
+    }).sort({name: "asc"}).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
@@ -32,7 +32,7 @@ exports.findSongsDesc = ((req, res) => {
             "$regex": req.params.search_string,
             "$options": "i"
         }
-    }).sort({name: "desc"}).exec((err, songs) => {
+    }).sort({name: "desc"}).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
@@ -40,14 +40,19 @@ exports.findSongsDesc = ((req, res) => {
 
 
 exports.findSongs = ((req, res) => {
-    Song.find({username: { "$regex": req.params.search_string, "$options": "i" }}, (err, songs) => {
+    Song.find({
+        username: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).skip(req.params.index).limit(req.params.amount).exec((err, songs) => {
         if (err) error(res, err, 500);
         res.status(200).json(songs);
     });
 });
 
 exports.findAllSongs = (req, res) => {
-    Song.find({}, (err, task) => {
+    Song.find({}).skip(req.params.index).limit(req.params.amount).exec((err, task) => {
         if (err) res.send(err);
         res.status(200).json(task);
     });
