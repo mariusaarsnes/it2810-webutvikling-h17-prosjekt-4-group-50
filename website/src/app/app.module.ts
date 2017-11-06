@@ -11,9 +11,8 @@ import { FormsModule } from "@angular/forms";
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { ArtistComponent } from './components/artist/artist.component';
 import { SearchService } from "./components/search-result/search.service";
-import { AdditionalInfoComponent } from "./components/additional_info/additional-info.component";
-import { AdditionalInfoService } from "./components/additional_info/additional-info.service";
-import { DialogComponent} from "./components/artist/dialog.component";
+import { DialogComponent} from "./components/dialog/dialog.component";
+import { ArtistService } from "./components/artist/artist.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +22,6 @@ import { DialogComponent} from "./components/artist/dialog.component";
     SearchPageComponent,
     SearchResultComponent,
     ArtistComponent,
-    AdditionalInfoComponent,
     DialogComponent
 
   ],
@@ -37,16 +35,13 @@ import { DialogComponent} from "./components/artist/dialog.component";
         path: 'search',
         component: SearchPageComponent
       },
-      {
-        path: 'info',
-        component: AdditionalInfoComponent
-      }
+
     ])
   ],
   entryComponents: [
     DialogComponent
   ],
-  providers: [SearchService, AdditionalInfoService],
+  providers: [SearchService, ArtistService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
