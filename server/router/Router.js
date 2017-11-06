@@ -56,7 +56,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Artist related API queries
      */
-    router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtistsTest);
+    router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtists);
 
     router.get("/artists/:index/:amount", artistController.findAllArtists);
     router.get("/artists/:search_string/:index/:amount", artistController.findArtists)
