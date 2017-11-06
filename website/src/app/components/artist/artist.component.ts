@@ -22,26 +22,24 @@ export class ArtistComponent implements OnInit {
 
   @Input() artist: Artist;
 
-
-
   getArtists(): void {
     this.artistService.getArtists().then(artists => this.artists = artists);
   }
 
-
-
-  openDialog(artist: Artist): void{
-
-    this.selectedArtist = artist;
-
+  openDialog(id){
+    this.artists.forEach((artist) => {
+      if(artist.id === id) {
+        this.selectedArtist = artist;
+      }
+    });
     const dialogRef = this.dialog.open(DialogComponent, {
       height: '80%',
       width: '70%',
-      data: this.artists,
+      data: this.selectedArtist,
 
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      console.log(`Dialog result: closed`);
     });
   }
 
