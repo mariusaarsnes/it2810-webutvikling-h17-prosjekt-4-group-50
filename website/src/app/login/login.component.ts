@@ -17,11 +17,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+
 	}
 
 	onSubmit() {
 		this.http.post("api/login/", {username: this.username, password: this.password}).subscribe(data => {
-			console.log(data);
 			if (data["failed"] === 'false') {
 				//TODO - Handle routing to some page after login was successful
 			} else {
