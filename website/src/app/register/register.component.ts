@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-register',
@@ -12,10 +13,12 @@ export class RegisterComponent implements OnInit {
 	password = "";
 	result = "";
 
-	constructor(private http: HttpClient) {
+	constructor(private http: HttpClient, private router: Router) {
+
 	}
 
 	ngOnInit() {
+
 	}
 
 	onSubmit() {
@@ -26,7 +29,7 @@ export class RegisterComponent implements OnInit {
 		else {
 			this.http.post("api/create_user/", {username: this.username, password: this.password}).subscribe(data => {
 				if (!data["message"])
-					this.result = "New user created!";
+					console.log("");
 				else
 					this.result = data["message"];
 			});

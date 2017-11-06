@@ -34,6 +34,15 @@ module.exports = (isAuthorized, isAdmin, passport) => {
             failureRedirect: '/api/logged_in/failed/true/message/Invalid username or password!',
         })
     );
+    router.post('/logout', (req, res) => {
+        req.logout();
+        res.redirect("/api/message/Successfully logged out!");
+    });
+    router.get("/logged_in", (req, res) => {
+        if (req.user)
+            return res.json({result: true});
+        return res.json({result: false});
+    });
 
     /**
      * Album related API queries

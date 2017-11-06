@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
 	selector: 'app-login',
@@ -12,8 +13,11 @@ export class LoginComponent implements OnInit {
 	password = "";
 	result = "";
 
-	constructor(private http: HttpClient) {
-
+	constructor(private http: HttpClient, private router: Router) {
+		/*this.http.get("/api/logged_in").subscribe(data => {
+			if (data["result"])
+				this.router.navigate(['/search']);
+		});*/
 	}
 
 	ngOnInit() {
@@ -23,8 +27,7 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 		this.http.post("api/login/", {username: this.username, password: this.password}).subscribe(data => {
 			if (data["failed"] === 'false') {
-				this.result = "Temp message, but managed to log in!";
-				//TODO - Handle routing to some page after login was successful
+				this.router.navigate(['/search']);
 			} else {
 				this.result = data["message"];
 			}

@@ -10,8 +10,10 @@ import {SearchResultComponent} from './components/search-result/search-result.co
 import {ArtistComponent} from './components/artist/artist.component';
 import {SearchService} from "./components/search-result/search.service";
 import {LoginComponent} from './login/login.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RegisterComponent} from './register/register.component';
+import {CanActivateService} from "./shared/auth/can-activate.service";
+import {Permissions} from "./shared/auth/Permissions";
 
 @NgModule({
 	declarations: [
@@ -30,12 +32,22 @@ import {RegisterComponent} from './register/register.component';
 		RouterModule.forRoot([
 			{
 				path: 'search',
-				component: SearchPageComponent
+				component: SearchPageComponent,
+				canActivate: [CanActivateService]
+
+			},
+			{
+				path: 'login',
+				component: LoginComponent,
+			},
+			{
+				path: 'register',
+				component: RegisterComponent,
 			}
 		]),
 		HttpClientModule
 	],
-	providers: [SearchService],
+	providers: [SearchService, CanActivateService, Permissions, HttpClient],
 	bootstrap: [AppComponent]
 })
 
