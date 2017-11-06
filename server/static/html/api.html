@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<head>
+    <title>Sound API</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<html>
+    <body>
+        <header>
+        </header>
+        <content>
+            <h1>API Reference</h1>
+            <p>The API was built with <b>Express</b> and <b>MongoDB</b>. It is a JSON API, and therefore all responses are JSON. </p>
+            <br>
+            <p>This documentation explains how to use the <a href="">music find</a> API.</p>
+            <h1>Authorization</h1>
+            <p>
+                All API requests requires authorization. In order to get authorized a user has to be created, which can be done at ---.
+                In order to get authorized a post request has to be made:
+            </p>
+            <code>
+                POST /api/login&username=User&password=Password
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>string</td>
+                    <td><b>Required</b></td>
+                </tr>
+                <tr>
+                    <td>password</td>
+                    <td>string</td>
+                    <td><b>Required</b></td>
+                </tr>
+            </table>
+            <h1>Data</h1>
+            <h2>Artists</h2>
+            <h3>Getting all artists with names that contain the given parameter:</h3>
+            <code>
+                GET /api/artists/search_string/offset/amount
+            </code>
+            <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/albums_asc/search_string/offset/amount
+            </code>
+            <h3>Getting all artists that contains the given parameter and sort <u>descending</u>:</h3>
+            <code>
+                GET /api/artists_desc/search_string/offset/amount
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
+                </tr>
+            </table>
+            <h2>Albums</h2>
+            <h3>Getting all albums with names that contain the given parameter:</h3>
+            <code>
+                GET /api/albums/search_string
+            </code>
+            <h3>Getting all albums that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/albums_asc/search_string/offset/amount
+            </code>
+            <h3>Getting all albums that contains the given parameter and sort <u>descending</u>:</h3>
+            <code>
+                GET /api/albums_desc/search_string/offset/amount
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
+                </tr>
+            </table>
+            <h2>Songs</h2>
+            <h3>Getting all songs that contains the given parameter:</h3>
+            <code>
+                GET /api/songs/search_string/offset/amount
+            </code>
+            <h3>Getting all songs that contains the given parameter and sort <u>ascending</u>:</h3>
+            <code>
+                GET /api/songs_asc/search_string/offset/amount
+            </code>
+            <h3>Getting all songs that contains the given parameter and sort <u>decsending</u>:</h3>
+            <code>
+                GET /api/songs_desc/search_string/offset/amount
+            </code>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Search string</td>
+                    <td>String</td>
+                    <td><b>Not required. Returns all artists if no parameter</b></td>
+                </tr>
+                <tr>
+                    <td>Offset</td>
+                    <td>Integer</td>
+                    <td><b>The first index of the result query to be returned.</b></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>Integer</td>
+                    <td><b>The amount of objects to be returned.</b></td>
+                </tr>
+            </table>
+        </content>
+    </body>
+</html>
