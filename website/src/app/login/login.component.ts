@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
 	onSubmit() {
 		this.http.post("api/login/", {username: this.username, password: this.password}).subscribe(data => {
 			if (data["failed"] === 'false') {
+				this.result = "Temp message, but managed to log in!";
 				//TODO - Handle routing to some page after login was successful
 			} else {
 				this.result = data["message"];

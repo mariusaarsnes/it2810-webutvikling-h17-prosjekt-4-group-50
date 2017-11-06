@@ -17,14 +17,48 @@ exports.addAlbum = (req, res) => {
 };
 
 exports.findAlbums = ((req, res) => {
-    Album.find({name: { "$regex": req.params.search_string, "$options": "i" }}, (err, albums) => {
+    Album.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    }).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(albums);
+        }
+    );
+});
+
+exports.findAlbumsAsc = ((req, res) => {
+    const query = {
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    };
+    Album.find(req.params.search_string ? query : {}).sort({name: "asc"})
+        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(albums);
+    });
+});
+
+exports.findAlbumsDesc = ((req, res) => {
+    const query = {
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        }
+    };
+    Album.find(req.params.search_string ? query : {}).sort({name: "desc"})
+        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
         if (err) error(res, err, 500);
         res.status(200).json(albums);
     });
 });
 
 exports.findAllAlbums = (req, res) => {
-    Album.find({}, (err, albums) => {
+    Album.find({}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
         if (err) res.send(err);
         res.status(200).json(albums);
     });
