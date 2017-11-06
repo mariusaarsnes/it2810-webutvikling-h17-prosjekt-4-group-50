@@ -43,6 +43,20 @@ exports.findArtistsAsc = ((req, res) => {
     });
 });
 
+exports.findArtists = ((req, res) => {
+    Artist.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        },
+        [req.params.filter]: req.params.filter_value,
+    }).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type })
+        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(artists);
+    });
+});
+
 exports.findArtistsDesc = ((req, res) => {
     const query = {
         name: {

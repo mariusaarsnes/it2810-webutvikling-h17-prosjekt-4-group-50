@@ -13,6 +13,9 @@ let mongoose = require("mongoose"),
         admin: {
             type: Boolean,
             default: false,
+        },
+        date_registered: {
+            type: Date, default: Date.now
         }
     });
 
