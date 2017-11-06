@@ -11,6 +11,9 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit() {
   }
+  onChangeSearch(e): void {
+
+  }
   searchInput: string;
 
 }

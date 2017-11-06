@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Artist } from "../artist/artist";
+import {Component, Input, OnInit} from '@angular/core';
 import { SearchService } from "./search.service";
 
 @Component({
@@ -11,7 +10,7 @@ export class SearchResultComponent implements OnInit {
 
   constructor(private searchService: SearchService) { }
 
-  artists: Artist[];
+  artists: string[];
   getArtists(): void {
     this.searchService.getArtists().then(artists => this.artists = artists);
   };
@@ -19,5 +18,6 @@ export class SearchResultComponent implements OnInit {
     this.getArtists();
   }
 
+  @Input('search') searchString: string;
 
 }
