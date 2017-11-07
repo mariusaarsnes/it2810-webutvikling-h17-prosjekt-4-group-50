@@ -1,7 +1,15 @@
 ## Documentation
-This document gives a description of the architecture of the page, the data we store and our design. This has been 
-made early in the project so changes may occur, but it gives a general outline of the project.
+This document contains the description of our project. See the Table of contents for an overview of the  information 
+that can be found here. 
 
+### Table of contents:
+1. [Achitecture](#Architecture)
+2. [Database](#Database) 
+3. [Design](#Design)
+4. [File Structure](#FileStructure)
+
+
+### Architecture <a name="Architecture"></a>
 A given requirement for the project is that we use Nodejs on the backend, and Angular frontend. This made
 it pretty easy deciding on which type of architecture we wanted to go for. We ended up going for the wastly used MEAN
 Stack. The MEANS stack provides a set of Open Source components that together provide an end-to-end framework. 
@@ -23,6 +31,7 @@ below illustrates how the different aspects of the stack interact with each othe
 ![Image of mean stack](images/mean_stack.jpg)
 
 
+### Database <a name="Database"></a>
 We have decided to make a type of music database, using the Spotify api to get data to store in our own database. We 
 decided to focus on artists, their albums and their songs. This gives us a rich data source which we also can make a 
 simple but useful application for. Our models look are as follows:
@@ -49,6 +58,12 @@ Artist:
         },
         popularity: {
             type: Number
+        },
+        albums: {
+            type: Array
+        },
+        tracks: {
+            type: Array
         }
     });
 
@@ -73,6 +88,10 @@ Album:
         },
         artist: {
             type: String
+        },
+        tracks: {
+            type: Array
+        }
     });
     
 Songs:
@@ -96,9 +115,16 @@ Songs:
         },
         popularity: {
             type: Number
+        },
+        album: {
+            type: String,
+        },
+        artists: {
+            type: Array
         }
     });
     
+### Design <a name= "Design"></a>
 Write about design:
 
 
