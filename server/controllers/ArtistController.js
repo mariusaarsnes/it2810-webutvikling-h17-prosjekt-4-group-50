@@ -44,13 +44,17 @@ exports.findArtistsAsc = ((req, res) => {
 });
 
 exports.findArtists = ((req, res) => {
-    Artist.find({
+    const query = {
         name: {
             "$regex": req.params.search_string,
             "$options": "i"
         },
-        [req.params.filter]: req.params.filter_value,
-    }).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type })
+    };
+    //Checks if the filter is not specified as none, append it to our query
+    if (req.params.filter !== 'none') {
+        query[req.params.filter] = req.params.filter_value;
+    }
+    Artist.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
         .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
