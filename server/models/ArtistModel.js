@@ -23,6 +23,9 @@ let mongoose = require("mongoose"),
         },
         albums: {
             type: Array
+        },
+        tracks: {
+            type: Array
         }
 
     });
