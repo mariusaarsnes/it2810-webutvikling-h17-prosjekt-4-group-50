@@ -31,7 +31,7 @@ Artist:
 
     var Artist = new Schema({
 
-        id: {
+        _id: {
             type: String
         },
         name: {
@@ -55,7 +55,7 @@ Artist:
 Album: 
 
     var Album = new Schema({
-        id: {
+        _id: {
             type: String
         },
         name: {
@@ -78,7 +78,7 @@ Album:
 Songs:
 
     var Song = new Schema({
-        id: {
+        _id: {
             type: String
         },
         name: {
