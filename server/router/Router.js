@@ -47,6 +47,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Album related API queries
      */
+    //Finds all almbums with ids in the provided array
+    router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", albumController.findAlbumsAdvanced);
+    router.get("/albums/:ids", albumController.findAlbumsByIds);
+
     router.get("/albums/:search_string/:index/:amount", albumController.findAlbums)
         .put("/albums/:search_string/:index/:amount", userController.updateSearchHistory);
     router.get("/albums/:index/:amount", albumController.findAllAlbums)
@@ -65,6 +69,8 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Artist related API queries
      */
+    //Find all artists with ids in the provided array
+    router.get("/artists/:ids", artistController.findArtistsByIds);
     router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtists);
 
     router.get("/artists/:index/:amount", artistController.findAllArtists);
@@ -84,6 +90,9 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Song related API queries
      */
+    router.get("/songs/:ids", songController.findSongsByIds);
+    router.get("/songs/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", songController.findSongsAdvanced);
+
     router.get("/songs/:index/:amount", songController.findAllSongs);
     router.get("/songs/:search_string/:index/:amount", songController.findSongs)
         .put("/songs/:search_string/:index/:amount", userController.updateSearchHistory);

@@ -2,17 +2,18 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/Rx';
 
-export interface dataResult {
+export interface DataResult {
 	result: boolean;
 }
 
 export class Permissions {
 
 	constructor() {
+
 	}
 
-	isLoggedIn(http: HttpClient): Observable<dataResult> {
-		return http.get<dataResult>("/api/logged_in");
+	isLoggedIn(http: HttpClient): Observable<DataResult> {
+		return http.get<DataResult>("/api/logged_in");
 	}
 
 	canActivate(http: HttpClient): Observable<boolean> {
