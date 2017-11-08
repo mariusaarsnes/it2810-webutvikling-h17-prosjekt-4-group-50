@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-navbar-search',
@@ -7,7 +7,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 })
 export class NavbarSearchComponent implements OnInit {
 
-	@ViewChild('child') child;
 	constructor() {
 	}
 
@@ -16,15 +15,21 @@ export class NavbarSearchComponent implements OnInit {
 	}
 
 	filterlist = [];
+	sort = "none";
+	sortType = "ascending";
+
+	selectSort(e): void {
+		this.sort = e.target.value;
+	}
 
 	selectFilter(e): void {
+		console.log("Change");
 		const index = this.filterlist.findIndex(array => array[1] == e.target.name);
 		if (index > -1) {
 			this.filterlist.splice(index, 1);
 		} else {
 			this.filterlist.push([e.target.dataset["type"], e.target.name]);
 		}
-		this.child.updateSearch();
+		this.filterlist = this.filterlist.slice();
 	};
-
 }

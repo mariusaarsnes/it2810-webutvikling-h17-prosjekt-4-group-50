@@ -9,7 +9,6 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
   getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Promise<ArtistResponse[]> {
-  	console.log('api/artists/' +  name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
   	return this.http.get<ArtistResponse[]>('api/artists/' +  name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount).toPromise();
   }
 

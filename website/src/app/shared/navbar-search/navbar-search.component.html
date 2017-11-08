@@ -17,12 +17,12 @@
 				<h3 class="title-blue">Search settings</h3>
 				<div class="sort-by">
 					<p>Sort by: </p>&nbsp;&nbsp;
-					<select name="cars" class="input-select">
-						<option value="volvo">None</option>
-						<option value="saab">Popularity</option>
-						<option value="fiat">Title</option>
-						<option value="audi">Date</option>
+					<select (change)="selectSort($event)" name="sortBy" class="input-select">
+						<option value="none">None</option>
+						<option value="popularity">Popularity</option>
+						<option value="name">Name</option>
 					</select>
+
 				</div>
 				<div class="filter-by">
 					<p>Filter by:</p>&nbsp;&nbsp;
@@ -34,4 +34,4 @@
 		</div>
 	</div>
 </div>
-<app-search-page [filterList]="filterlist" #child></app-search-page>
+<app-search-page [sort]="sort" [sortType]="sortType" [filterList]="filterlist" #child></app-search-page>

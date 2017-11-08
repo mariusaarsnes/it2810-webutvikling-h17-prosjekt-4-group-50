@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, HostListener, Inject} from '@angular/core';
+import {Component, Input, OnInit, HostListener, Inject, OnChanges} from '@angular/core';
 import {SearchService} from "./search.service";
 import {HttpClient} from "@angular/common/http";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
@@ -12,7 +12,7 @@ import {DOCUMENT} from "@angular/common";
 })
 
 
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, OnChanges {
 
 	constructor(private searchService: SearchService,
 				private http: HttpClient,
@@ -26,8 +26,18 @@ export class SearchResultComponent implements OnInit {
 	public renderTreshold = 15;
 	canRenderNew = true;
 
+	ngOnChanges(changes: any) {
+		console.log("Here");
+		if (this.searchString && this.searchString !== "") {
+			this.renderTreshold = 15;
+			this.getArtistsByName();
+		} else {
+			this.clearArtists();
+		}
+	}
+
 	public getArtistsByName(): void {
-		this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", "name", "ascending").then(artists => {
+		this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").then(artists => {
 			this.artists = artists;
 			this.canRenderNew = true;
 		});
@@ -41,11 +51,13 @@ export class SearchResultComponent implements OnInit {
 	}
 
 	@Input() filterList = [];
+	@Input() sort: string;
+	@Input() sortType: string;
 	@Input('search') searchString: string;
+
 
 	@HostListener("window:scroll", [])
 	onWindowScroll() {
-		console.log("??");
 		if (this.canRenderNew) {
 			let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {

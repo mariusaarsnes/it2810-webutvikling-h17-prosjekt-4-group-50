@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
 	selector: 'app-search-page',
@@ -8,8 +8,6 @@ import {Component, Input, OnInit, ViewChild} from '@angular/core';
 })
 export class SearchPageComponent implements OnInit {
 
-	@ViewChild('child') child;
-
 	constructor() {
 	}
 
@@ -17,19 +15,8 @@ export class SearchPageComponent implements OnInit {
 	}
 
 	@Input() filterList: string[];
-
-	public updateSearch(): void {
-		this.child.renderTreshold = 10;
-		this.child.getArtistsByName();
-	}
-
-	onChangeSearch(): void {
-		if (this.searchInput !== '') {
-			this.updateSearch();
-		} else {
-			this.child.clearArtists();
-		}
-	}
+	@Input() sort: string;
+	@Input() sortType = "ascending";
 
 	searchInput: string;
 
