@@ -33,15 +33,14 @@ import {Permissions} from "./shared/auth/Permissions";
 	],
 	imports: [
 		BrowserModule,
-		FormsModule,
 		BrowserAnimationsModule,
+		FormsModule,
 		HttpClientModule,
 		MatDialogModule,
 		RouterModule.forRoot([
 			{
 				path: 'search',
 				component: SearchPageComponent,
-				canActivate: [CanActivateService]
 
 			},
 			{
@@ -55,6 +54,7 @@ import {Permissions} from "./shared/auth/Permissions";
 		]),
 		HttpClientModule
 	],
+	entryComponents: [DialogComponent],
 	providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
 	bootstrap: [AppComponent]
 })

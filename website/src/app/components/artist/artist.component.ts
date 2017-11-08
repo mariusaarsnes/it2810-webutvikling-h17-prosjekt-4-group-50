@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { AlbumService } from "./album.service";
-import { Album } from "./album";
 import { ArtistResponse } from "../../interfaces/artist-response.interface";
+import { AlbumResponse } from "../../interfaces/album-response.interface";
 
 @Component({
 	selector: 'app-artist',
@@ -15,28 +15,31 @@ export class ArtistComponent implements OnInit {
 	constructor(public dialog: MatDialog, private albumService: AlbumService) {
 	}
 
-	albums: Album[];
+	albums: AlbumResponse[];
 
 	ngOnInit(): void {
-		this.getAlbums()
 	}
 
 	@Input() artist: ArtistResponse;
 
-	getAlbums(): void {
-		this.albumService.getAlbums().then(albums => this.albums = albums);
+	getAlbums(albums): Promise<AlbumResponse[]> {
+		return this.albumService.getAlbums(albums);
 	}
 
-	openDialog(artist) {
-		const dialogRef = this.dialog.open(DialogComponent, {
-			height: '80%',
-			width: '70%',
-			data: [artist],
+	openDialog() {
+		console.log(this.artist.albums.join(','));
+		this.getAlbums(this.artist.albums.join(',')).then(albums => {
+			console.log(albums);
+			this.albums = albums;
+			const dialogRef = this.dialog.open(DialogComponent, {
+				height: '80%',
+				width: '70%',
+				data: [this.artist, this.albums],
+			});
+			dialogRef.afterClosed();
+		});
 
-		});
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: closed`);
-		});
+
 	}
 
 
