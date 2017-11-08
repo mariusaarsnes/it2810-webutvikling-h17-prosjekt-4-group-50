@@ -9,6 +9,9 @@
 			<p id="genres-dialog">Genres: {{data[0].genres.slice(0,4).join(', ')}}</p>
 			<p id="popularity-dialog">Popularity: {{data[0].popularity}}</p>
 		</div>
+		<div id="close-dialog" (click)="closeDialog()">
+			<span>X</span>
+		</div>
 
 	</div>
 	<br><hr id="hr-dialog">

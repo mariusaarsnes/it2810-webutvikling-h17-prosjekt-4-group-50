@@ -1,11 +1,12 @@
 #modal-dialog {
-
 	font-family: "Intro Rust", sans-serif;
 }
 
 #modal-artist-dialog {
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+	position: relative;
 }
 
 #left-dialog h3{
@@ -31,6 +32,23 @@
 	overflow: hidden;
 	margin-right: 3%;
 	border-radius: 5px;
+}
+
+#close-dialog {
+	align-self: flex-start;
+	position: absolute;
+	right: 0;
+}
+#close-dialog span {
+	font-family: Avenir, serif;
+	font-size: 25px;
+	color: darkgray;
+	cursor: pointer;
+}
+#close-dialog span:hover {
+	font-family: Avenir, serif;
+	font-size: 25px;
+	color: gray;
 }
 
 #artist-img-dialog {
