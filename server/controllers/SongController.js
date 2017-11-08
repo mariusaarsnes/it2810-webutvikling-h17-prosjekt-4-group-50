@@ -15,32 +15,6 @@ exports.addSong = (req, res) => {
     });
 };
 
-exports.findSongsAsc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    Song.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(songs);
-    });
-});
-
-exports.findSongsDesc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    Song.find(req.params.search_string ? query : {}).sort({name: "desc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(songs);
-    });
-});
-
 exports.findSongsByIds = ((req, res) => {
     const ids = req.params.ids.split(",");
     Song.find({
@@ -61,7 +35,10 @@ exports.findSongsAdvanced = ((req, res) => {
     };
     //Checks if the filter is not specified as none, append it to our query
     if (req.params.filter !== 'none') {
-        query[req.params.filter] = req.params.filter_value;
+        const filters = req.params.filter.split(","),
+            filterValues = req.params.filter_value.split(",");
+        for (let i = 0; i < filters.length; i++)
+            query[filters[i]] = filterValues[i];
     }
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
@@ -85,7 +62,7 @@ exports.findSongs = ((req, res) => {
 });
 
 exports.findAllSongs = (req, res) => {
-    Song.find({}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, task) => {
+    Song.find({}, (err, task) => {
         if (err) res.send(err);
         res.status(200).json(task);
     });

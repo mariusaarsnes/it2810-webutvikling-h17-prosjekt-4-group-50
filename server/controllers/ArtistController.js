@@ -18,19 +18,6 @@ exports.addArtist = (req, res) => {
     });
 };
 
-exports.findArtistsAsc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    Artist.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(artists);
-    });
-});
-
 exports.findArtistsByIds = ((req, res) => {
     const ids = req.params.ids.split(",");
     Artist.find({
@@ -51,7 +38,10 @@ exports.findArtists = ((req, res) => {
     };
     //Checks if the filter is not specified as none, append it to our query
     if (req.params.filter !== 'none') {
-        query[req.params.filter] = req.params.filter_value;
+        const filters = req.params.filter.split(","),
+            filterValues = req.params.filter_value.split(",");
+        for (let i = 0; i < filters.length; i++)
+            query[filters[i]] = filterValues[i];
     }
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
@@ -62,24 +52,8 @@ exports.findArtists = ((req, res) => {
     });
 });
 
-exports.findArtistsDesc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    const offset = parseInt(req.params.index),
-        amount = parseInt(req.params.amount);
-    Artist.find(req.params.search_string ? query : {}).sort({name: "desc"})
-        .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, artists) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(artists);
-    });
-});
-
 exports.findAllArtists = (req, res) => {
-    Artist.find({}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, task) => {
+    Artist.find({}, (err, task) => {
         if (err) res.send(err);
         res.status(200).json(task);
     });
