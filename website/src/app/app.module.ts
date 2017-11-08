@@ -7,9 +7,10 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import {SearchPageComponent} from './components/search-page/search-page.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import {SearchResultComponent} from './components/search-result/search-result.component';
 import {ArtistComponent} from './components/artist/artist.component';
+
 import {SearchService} from "./components/search-result/search.service";
 import {HttpClientModule} from "@angular/common/http";
 import {AdditionalInfoComponent} from "./components/additional_info/additional-info.component";
