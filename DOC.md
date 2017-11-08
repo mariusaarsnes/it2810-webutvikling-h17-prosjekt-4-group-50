@@ -100,7 +100,10 @@ Searches:
         });
     
 ### Design <a name= "Design"></a>
-Write about design:
+We have desided to go for a very simple design. The main focus of this project is the database interaction, and we 
+felt that with a simple design this focus could be even more enhanced. Seeing as changes may arise during 
+development, the images below simply serve as a rough approximation of how the site may end up looking. There may, 
+and probably will be made changes to the final design.
 
 
 ![Image of design](images/frontpage.jpg)
