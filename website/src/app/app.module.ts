@@ -45,7 +45,7 @@ import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.comp
 	  RouterModule.forRoot([
 		  {
 			  path: 'search',
-			  component: SearchPageComponent,
+			  component: NavbarSearchComponent,
 			  //canActivate: [CanActivateService]
 
 		  },
