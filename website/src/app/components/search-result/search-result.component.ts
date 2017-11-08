@@ -27,7 +27,7 @@ export class SearchResultComponent implements OnInit {
   canRenderNew = true;
 
   public getArtistsByName(): void {
-  	this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, "genres", "edm", "name", "ascending").then(artists => {
+  	this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, "none", "none", "name", "ascending").then(artists => {
 		this.artists = artists;
 		this.canRenderNew = true;
 	});

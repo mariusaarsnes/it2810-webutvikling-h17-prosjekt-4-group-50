@@ -19,6 +19,7 @@ import {CanActivateService} from "./shared/auth/can-activate.service";
 import {Permissions} from "./shared/auth/Permissions";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
+import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {LoginComponent} from "./login/login.component";
     AdditionalInfoComponent,
     DialogComponent,
 	  RegisterComponent,
-	  LoginComponent
+	  LoginComponent,
+	  NavbarSearchComponent
   ],
   imports: [
     BrowserModule,
