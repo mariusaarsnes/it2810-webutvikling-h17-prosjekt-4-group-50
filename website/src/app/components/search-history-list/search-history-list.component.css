@@ -6,7 +6,7 @@
     margin: 10px;
     text-align: center;
     max-height: 500px;
-    min-width: 400px;
+    min-width: 500px;
 }
 
 .mat-table {
@@ -21,4 +21,13 @@ mat-row:hover{
 
 mat-row:active{
     background-color: grey
+}
+
+@media screen and (max-width: 600px) {
+    .mat-column-date {
+        display: none;
+    }
+    .example-container {
+        min-width: 300px;
+    }
 }
