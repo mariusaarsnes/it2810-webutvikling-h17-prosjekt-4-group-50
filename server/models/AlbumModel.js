@@ -17,6 +17,9 @@ let mongoose = require("mongoose"),
         },
         artists: {
             type: Array
+        },
+        tracks: {
+            type: Array
         }
 
     });
