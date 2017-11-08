@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Artist } from "./artist";
+import { Artist } from './artist';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from './dialog.component';
 
 @Component({
   selector: 'app-artist',
@@ -8,11 +10,24 @@ import { Artist } from "./artist";
 })
 export class ArtistComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   @Input() artist: Artist;
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      height: '80%',
+      width: '70%'
+
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
+
+

@@ -16,6 +16,7 @@
 *.launch
 prosjekt4.iml
 .settings/
+prosjekt4.iml
 *.sublime-workspace
 
 # IDE - VSCode

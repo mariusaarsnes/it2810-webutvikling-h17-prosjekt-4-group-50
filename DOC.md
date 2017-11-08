@@ -54,9 +54,11 @@ Artist:
         popularity: {type: Number},
         albums:     {type: Array},
         tracks:     {type: Array}
+
     });
 
 Album: 
+
 
     let Album = new Schema({
         id:         {type: String},
