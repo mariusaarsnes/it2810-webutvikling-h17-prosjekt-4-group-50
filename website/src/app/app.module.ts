@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
+
+import { MatDialogModule, MatTableModule } from '@angular/material';
+import { CdkTableModule } from '@angular/cdk/table';
+import { SearchHistoryListComponent } from './components/search-history-list/search-history-list.component';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -26,28 +29,29 @@ import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.comp
   declarations: [
     AppComponent,
     ProfileComponent,
+    SearchHistoryListComponent,
     NavbarComponent,
     SearchPageComponent,
     SearchResultComponent,
     ArtistComponent,
     AdditionalInfoComponent,
     DialogComponent,
-	  RegisterComponent,
-	  LoginComponent,
-	  NavbarSearchComponent
+	RegisterComponent,
+	LoginComponent,
+	NavbarSearchComponent
   ],
   imports: [
     BrowserModule,
-	  HttpClientModule,
+	HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     MatDialogModule,
-	  RouterModule.forRoot([
+    MatTableModule,
+	RouterModule.forRoot([
 		  {
 			  path: 'search',
 			  component: SearchPageComponent,
 			  //canActivate: [CanActivateService]
-
 		  },
 		  {
 			  path: 'login',
@@ -56,7 +60,15 @@ import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.comp
 		  {
 			  path: 'register',
 			  component: RegisterComponent,
-		  }
+		  },
+          {
+            path: 'info',
+            component: AdditionalInfoComponent
+          },
+          {
+            path: 'profilepage',
+            component: ProfileComponent
+          }
 	  ])
   ],
   entryComponents: [

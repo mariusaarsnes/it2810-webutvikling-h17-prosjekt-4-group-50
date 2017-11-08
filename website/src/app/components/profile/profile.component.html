@@ -1,3 +1,33 @@
-<p>
-  profile works!
-</p>
+<div class="info-wrapper">
+    <h1>Profile info for {{username}}</h1>
+    <div class="search-container">
+        <h2>Credentials:</h2>
+        <h3>Username: {{username}}</h3>
+        <h3>Password: {{password}}</h3>
+        <br>
+        <h3>Member since: {{since}}</h3>
+        <button class="deleteButton">
+            Delete profile
+        </button>
+    </div>
+</div>
+<br>
+<div class="info-wrapper">
+    <h1>Search history for {{username}}</h1>
+    <div class="search-info-wrapper">
+        <div class="search-container">
+            <h3>Unique searches</h3>
+            <div class="underline"></div>
+            <h1>{{uniqueSearches}}</h1>
+        </div>
+        <div class="search-container">
+            <h3>Total searches</h3>
+            <div class="underline"></div>
+            <h1>{{totalSearches}}</h1>
+        </div>
+    </div>
+    <div>
+        <h2>Recent viewed</h2>
+        <search-history-list></search-history-list>
+    </div>
+</div>
