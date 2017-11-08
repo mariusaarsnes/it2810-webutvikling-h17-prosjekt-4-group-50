@@ -1,21 +1,22 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ArtistResponse } from "../../interfaces/artist-response.interface";
 import { MatDialog } from '@angular/material';
-import { DialogComponent } from './dialog.component';
+import {DialogComponent} from "../artist/dialog.component";
+import {TrackResponse} from "../../interfaces/track-response.interface";
 
 @Component({
-  selector: 'app-artist',
+  selector: 'app-track',
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.css']
 })
-export class ArtistComponent implements OnInit {
+export class TrackComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
+
   }
 
-  @Input() artist: ArtistResponse;
+  @Input() track: TrackResponse;
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {

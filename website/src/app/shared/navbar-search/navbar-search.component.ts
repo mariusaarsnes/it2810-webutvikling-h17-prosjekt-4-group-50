@@ -23,7 +23,6 @@ export class NavbarSearchComponent implements OnInit {
 	}
 
 	selectFilter(e): void {
-		console.log("Change");
 		const index = this.filterlist.findIndex(array => array[1] == e.target.name);
 		if (index > -1) {
 			this.filterlist.splice(index, 1);

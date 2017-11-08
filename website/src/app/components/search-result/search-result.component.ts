@@ -27,13 +27,22 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	canRenderNew = true;
 
 	ngOnChanges(changes: any) {
-		console.log("Here");
 		if (this.searchString && this.searchString !== "") {
 			this.renderTreshold = 15;
 			this.getArtistsByName();
 		} else {
 			this.clearArtists();
 		}
+
+		this.searchService.getTracks('a', 10, 0).then(tracks => {
+			let promises = [];
+			tracks.forEach(track => {
+				promises.push(this.searchService.getAlbum(track.album))
+			});
+			Promise.all(promises).then(data => {
+				console.log(data);
+			});
+		});
 	}
 
 	public getArtistsByName(): void {
@@ -48,6 +57,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	}
 
 	ngOnInit() {
+
 	}
 
 	@Input() filterList = [];
