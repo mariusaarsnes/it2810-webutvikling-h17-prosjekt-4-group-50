@@ -1,16 +1,16 @@
 <div id="modal-artist-dialog">
 	<div id="right-dialog">
-		<img id="artist-img-dialog" src="{{data[0].image}}" alt="Artist picture"/>
+		<img id="artist-img-dialog" src="{{data[0].imageLink}}" alt="Artist picture"/>
 	</div>
 	<div id="left-dialog">
 		<h3>Artist</h3>
 		<h1>{{data[0].name}}</h1>
-		<p id="genres-dialog">Genres: Pop, Dance</p>
+		<p id="genres-dialog">Genres: {{data[0].genres.join(', ')}}</p>
 		<p id="popularity-dialog">Popularity: 97</p>
 
 	</div>
 </div>
 <br><hr><br>
 <div id="modal-album-dialog">
-	<p>{{data[1][0].name}}</p>
+
 </div>

@@ -18,7 +18,7 @@ exports.addArtist = (req, res) => {
     });
 };
 
-exports.findArtists = ((req, res) => {
+/*exports.findArtists = ((req, res) => {
     Artist.find({
         name: {
             "$regex": req.params.search_string,
@@ -28,7 +28,7 @@ exports.findArtists = ((req, res) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
     });
-});
+});*/
 
 exports.findArtistsAsc = ((req, res) => {
     const query = {
@@ -38,6 +38,20 @@ exports.findArtistsAsc = ((req, res) => {
         }
     };
     Artist.find(req.params.search_string ? query : {}).sort({name: "asc"}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(artists);
+    });
+});
+
+exports.findArtists = ((req, res) => {
+    Artist.find({
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        },
+        [req.params.filter]: req.params.filter_value,
+    }).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type })
+        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, artists) => {
         if (err) error(res, err, 500);
         res.status(200).json(artists);
     });
