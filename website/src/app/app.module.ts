@@ -23,6 +23,9 @@ import {Permissions} from "./shared/auth/Permissions";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.component';
+import { NavbarProfileComponent } from './shared/navbar-profile/navbar-profile.component';
+import { MyInfoComponent } from './components/my-info/my-info.component';
+import { HistoryComponent } from './components/history/history.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.comp
     DialogComponent,
 	RegisterComponent,
 	LoginComponent,
-	NavbarSearchComponent
+	NavbarSearchComponent,
+	NavbarProfileComponent,
+	MyInfoComponent,
+	HistoryComponent
   ],
   imports: [
     BrowserModule,
