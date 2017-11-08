@@ -1,11 +1,15 @@
-#modal-artist-dialog {
-	display: flex;
-	flex-direction: row;
+#modal-dialog {
+
 	font-family: "Intro Rust", sans-serif;
 }
 
+#modal-artist-dialog {
+	display: flex;
+	flex-direction: row;
+}
+
 #left-dialog h3{
-	margin-top: 8%;
+	margin-top: 10%;
 	margin-bottom: 0;
 }
 #left-dialog h1 {
@@ -22,7 +26,7 @@
 }
 
 #right-dialog {
-	width: 25%;
+	width: 200px;
 	height: 200px;
 	overflow: hidden;
 	margin-right: 3%;
@@ -36,4 +40,33 @@
 
 #hr-dialog {
 	opacity: 0.4;
+}
+
+
+#modal-album-dialog {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+
+}
+
+.album-info-dialog {
+	margin-right: 2%;
+}
+
+.img-dialog {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+
+.album-img-dialog {
+	border-radius: 5px;
+	width: 100%;
+}
+
+.album-text-dialog {
+	width: 150px;
 }
