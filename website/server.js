@@ -1,6 +1,3 @@
-require('./models/SongModel');
-let spotify = require('./spotify/spotify');
-
 let express = require('express'),
     app = express(),
     port = process.env.PORT || 8084,
@@ -11,12 +8,12 @@ let express = require('express'),
     session = require('express-session'),
     bcrypt = require('bcrypt-nodejs'),
     path = require("path"),
-    error = require("./router/Error"),
-    User = require('./models/UserModel'),
-    Search = require('./models/SearchModel'),
-    Album = require('./models/AlbumModel'),
-    Artist = require('./models/ArtistModel'),
-    Song = require('./models/SongModel');
+    error = require("./server/router/Error"),
+    User = require('./server/models/UserModel'),
+    Search = require('./server/models/SearchModel'),
+    Album = require('./server/models/AlbumModel'),
+    Artist = require('./server/models/ArtistModel'),
+    Song = require('./server/models/SongModel');
 
 /**
  * Connects mongoose to the database
@@ -61,8 +58,8 @@ passport.use(new LocalStrategy(
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, '/../website/dist')));
-app.use(express.static(path.join(__dirname, "/static")));
+app.use(express.static(path.join(__dirname, '/dist')));
+app.use(express.static(path.join(__dirname, "./server/static")));
 app.use(session({
     secret: 'oursecretappkey',
     resave: true,
@@ -101,14 +98,14 @@ isAdmin = (req, res, next) => {
  * All the routers for the different parts of the database. The user router also takes in bcrypt, as it needs to
  * encrypt passwords when new users are created
  */
-let api = require('./router/Router')(isAuthorized, isAdmin, passport);
+let api = require('./server/router/Router')(isAuthorized, isAdmin, passport);
 app.use("/api", api);
 
 /**
  * For all requests excecpt api/*, route to the angular page
  */
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/../website/dist/index.html'));
+    res.sendFile(path.join(__dirname, './dist/index.html'));
 });
 
 app.listen(port);
