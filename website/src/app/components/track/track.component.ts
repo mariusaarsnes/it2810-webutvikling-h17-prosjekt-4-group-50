@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import {DialogComponent} from "../artist/dialog.component";
-import {TrackResponse} from "../../interfaces/track-response.interface";
+import {SongResponse} from "../../interfaces/song-response.interface";
 
 @Component({
   selector: 'app-track',
@@ -16,7 +16,7 @@ export class TrackComponent implements OnInit {
 
   }
 
-  @Input() track: TrackResponse;
+  @Input() track: SongResponse;
 
   openDialog() {
     const dialogRef = this.dialog.open(DialogComponent, {

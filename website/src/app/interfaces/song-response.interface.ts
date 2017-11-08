@@ -1,7 +1,7 @@
 
 import {AlbumResponse} from "./album-response.interface";
 
-export interface TrackResponse {
+export interface SongResponse {
 	_id: string;
 	name: string;
 	album: string;

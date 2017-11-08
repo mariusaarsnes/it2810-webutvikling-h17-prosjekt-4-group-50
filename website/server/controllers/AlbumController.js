@@ -32,7 +32,7 @@ exports.findAlbumsById = ((req, res) => {
             _id: req.params.id
         }, (err, album) => {
             if (err) error(res, err, 500);
-            res.status(200).json(album);
+            res.status(200).json(album[0]);
         }
     );
 });
