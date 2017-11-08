@@ -82,6 +82,13 @@ export class SearchService {
         return this.http.get<SongResponse[]>('api/songs/' + ids.join(","));
     }
 
+    /**
+     * Fetches all albums that contains the name.
+     * @param {string} name
+     * @param {number} amount
+     * @param {number} index
+     * @returns {Observable<AlbumResponse[]>}
+     */
 	getAlbums(name: string, amount:number, index:number): Observable<AlbumResponse[]> {
         return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + index + "/" + amount).switchMap(result => {
             let observables = [];
