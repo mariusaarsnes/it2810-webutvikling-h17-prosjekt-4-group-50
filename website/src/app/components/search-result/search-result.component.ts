@@ -34,13 +34,9 @@ export class SearchResultComponent implements OnInit, OnChanges {
 			this.clearArtists();
 		}
 
-		this.searchService.getTracks('a', 10, 0).then(tracks => {
-			let promises = [];
+		this.searchService.getTracks('a', 10, 0).subscribe(tracks => {
 			tracks.forEach(track => {
-				promises.push(this.searchService.getAlbum(track.album))
-			});
-			Promise.all(promises).then(data => {
-				console.log(data);
+				console.log(track);
 			});
 		});
 	}

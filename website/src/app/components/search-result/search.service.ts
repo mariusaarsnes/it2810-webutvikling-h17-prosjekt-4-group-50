@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 
 import {TrackResponse} from "../../interfaces/track-response.interface";
 import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SearchService {
@@ -16,13 +17,28 @@ export class SearchService {
 		return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount).toPromise();
 	}
 
-	getAlbum(id: string): Promise<AlbumResponse[]> {
-		return this.http.get<AlbumResponse[]>('api/albums' + id).toPromise();
+	getAlbum(id: string): Observable<AlbumResponse> {
+		return this.http.get<AlbumResponse>('api/album/' + id);
 	}
 
-	getTracks(name: string, amount: number, index: number): Promise<TrackResponse[]> {
-		return this.http.get<TrackResponse[]>('api/songs/' + name + "/" + index + "/" + amount).toPromise();
+	/**
+	 * Fetches all tracks containing the given name and fetches their corresponding album.
+	 * @param {string} name
+	 * @param {number} amount
+	 * @param {number} index
+	 * @returns {Observable<TrackResponse[]>}
+	 */
+	getTracks(name: string, amount: number, index: number): Observable<TrackResponse[]> {
+		return this.http.get<TrackResponse[]>('api/songs/' + name + "/" + index + "/" + amount).switchMap(result => {
+			let observables = [];
+			result.forEach((res) => {
+				const obs = this.getAlbum(res.album);
+				observables.push(Observable.of(res).combineLatest(obs, (res, album) => {
+					return <TrackResponse>{...res, albumData: album};
+				}));
+			});
+			return observables;
+		});
 	}
-
 
 }

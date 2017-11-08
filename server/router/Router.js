@@ -50,6 +50,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     //Finds all almbums with ids in the provided array
     router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", albumController.findAlbumsAdvanced);
     router.get("/albums/:ids", albumController.findAlbumsByIds);
+    router.get("/album/:id", albumController.findAlbumsById);
 
     router.get("/albums/:search_string/:index/:amount", albumController.findAlbums)
         .put("/albums/:search_string/:index/:amount", userController.updateSearchHistory);
