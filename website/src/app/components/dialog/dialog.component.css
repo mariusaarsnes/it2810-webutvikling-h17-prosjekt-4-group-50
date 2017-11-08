@@ -33,3 +33,7 @@
 	width: 100%;
 	border-radius: 5px;
 }
+
+#hr-dialog {
+	opacity: 0.4;
+}

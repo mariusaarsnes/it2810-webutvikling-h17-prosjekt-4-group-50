@@ -5,12 +5,11 @@
 	<div id="left-dialog">
 		<h3>Artist</h3>
 		<h1>{{data[0].name}}</h1>
-		<p id="genres-dialog">Genres: {{data[0].genres.join(', ')}}</p>
-		<p id="popularity-dialog">Popularity: 97</p>
-
+		<p id="genres-dialog">Genres: {{data[0].genres.slice(0,4).join(', ')}}</p>
+		<p id="popularity-dialog">Popularity: {{data[0].popularity}}</p>
 	</div>
 </div>
-<br><hr><br>
+<br><hr id="hr-dialog"><br>
 <div id="modal-album-dialog">
 
 </div>
