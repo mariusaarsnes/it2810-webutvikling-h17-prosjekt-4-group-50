@@ -6,13 +6,15 @@
     margin: 10px;
     text-align: center;
     max-height: 500px;
-    min-width: 500px;
+    min-width: 400px;
 }
 
 .mat-table {
   overflow: auto;
   max-height: 500px;
+  font-family: "Intro Rust", sans-serif;
 }
+
 mat-row:hover{
     background-color: lightgrey
 }
