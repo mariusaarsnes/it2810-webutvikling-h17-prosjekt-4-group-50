@@ -15,6 +15,11 @@ import { HttpClientModule } from "@angular/common/http";
 import { AdditionalInfoComponent } from "./components/additional_info/additional-info.component";
 import { AdditionalInfoService } from "./components/additional_info/additional-info.service";
 import { DialogComponent} from "./components/artist/dialog.component";
+import {CanActivateService} from "./shared/auth/can-activate.service";
+import {Permissions} from "./shared/auth/Permissions";
+import {RegisterComponent} from "./register/register.component";
+import {LoginComponent} from "./login/login.component";
+
 
 @NgModule({
   declarations: [
@@ -25,7 +30,9 @@ import { DialogComponent} from "./components/artist/dialog.component";
     SearchResultComponent,
     ArtistComponent,
     AdditionalInfoComponent,
-    DialogComponent
+    DialogComponent,
+	  RegisterComponent,
+	  LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,21 +40,30 @@ import { DialogComponent} from "./components/artist/dialog.component";
     BrowserAnimationsModule,
     FormsModule,
     MatDialogModule,
-    RouterModule.forRoot([
-      {
-        path: 'search',
-        component: SearchPageComponent
-      },
-      {
-        path: 'info',
-        component: AdditionalInfoComponent
-      }
-	])
+	  RouterModule.forRoot([
+		  {
+			  path: 'search',
+			  component: SearchPageComponent,
+			  //canActivate: [CanActivateService]
+
+		  },
+		  {
+			  path: 'login',
+			  component: LoginComponent,
+		  },
+		  {
+			  path: 'register',
+			  component: RegisterComponent,
+		  }
+	  ])
   ],
   entryComponents: [
     DialogComponent
   ],
-  providers: [SearchService, AdditionalInfoService],
+  providers: [SearchService, AdditionalInfoService, CanActivateService, Permissions],
   bootstrap: [AppComponent]
+
 })
-export class AppModule { }
+
+export class AppModule {
+}

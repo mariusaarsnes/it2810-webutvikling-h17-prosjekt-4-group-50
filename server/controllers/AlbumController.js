@@ -16,6 +16,37 @@ exports.addAlbum = (req, res) => {
     });
 };
 
+exports.findAlbumsByIds = ((req, res) => {
+    const ids = req.params.ids.split(",");
+    Album.find({
+        _id: { $in: ids }
+    }, (err, albums) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(albums);
+        }
+    );
+});
+
+exports.findAlbumsAdvanced = ((req, res) => {
+    const query = {
+        name: {
+            "$regex": req.params.search_string,
+            "$options": "i"
+        },
+    };
+    //Checks if the filter is not specified as none, append it to our query
+    if (req.params.filter !== 'none') {
+        query[req.params.filter] = req.params.filter_value;
+    }
+    const offset = parseInt(req.params.index),
+        amount = parseInt(req.params.amount);
+    Album.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
+        .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, albums) => {
+        if (err) error(res, err, 500);
+        res.status(200).json(albums);
+    });
+});
+
 exports.findAlbums = ((req, res) => {
     Album.find({
         name: {

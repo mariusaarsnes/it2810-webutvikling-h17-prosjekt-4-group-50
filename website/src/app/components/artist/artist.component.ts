@@ -22,7 +22,7 @@ export class ArtistComponent implements OnInit {
       height: '80%',
       width: '70%'
 
-    });
+});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
