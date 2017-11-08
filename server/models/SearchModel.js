@@ -3,6 +3,9 @@ let mongoose = require("mongoose"),
     Search = new Schema({
         search_string: {
             type: String,
+        },
+        date: {
+            type: Date, default: Date.now
         }
     });
 
