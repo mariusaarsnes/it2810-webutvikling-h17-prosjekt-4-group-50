@@ -6,7 +6,7 @@ that can be found here.
 1. [Achitecture](#Architecture)
 2. [Database](#Database) 
 3. [Design](#Design)
-4. [File Structure](#FileStructure)
+4. [Project Structure](#ProjectStructure)
 
 
 ### Architecture <a name="Architecture"></a>
@@ -100,10 +100,18 @@ Searches:
         });
     
 ### Design <a name= "Design"></a>
-We have desided to go for a very simple design. The main focus of this project is the database interaction, and we 
+We have decided to go for a very simple design. The main focus of this project is the database interaction, and we 
 felt that with a simple design this focus could be even more enhanced. Seeing as changes may arise during 
 development, the images below simply serve as a rough approximation of how the site may end up looking. There may, 
 and probably will be made changes to the final design.
 
 
 ![Image of design](images/frontpage.jpg)
+
+
+### Project Structure <a name="ProjectStructure"></a>
+Our structure is, right now, a bit messy. The frontend and back-end are split in two different main directories. The 
+thought of this as a logical differentiation at first, but now see benefits of having the functionality of the 
+server-side in a sub-folder while the functionality of the website is at the root folder. alternatively, have the 
+website in a main folder and the server in a subfolder under the website. Seeing as we are most likely to cahnge the 
+project structure in the future, we have not added a description of it in this document, just yet.
