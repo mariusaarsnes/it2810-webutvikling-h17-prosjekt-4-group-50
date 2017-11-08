@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build --watch",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "^4.4.6",
     "@angular/platform-server": "^4.4.6",
     "@angular/router": "^4.4.6",
+    "@auth0/angular-jwt": "^1.0.0-beta.2",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.2",
     "typescript": "^2.6.1",
