@@ -23,9 +23,9 @@ everything on the page, route between pages and much more. In our project we hav
 functionality express provides. Focusing on the **Express.Router library** to help us interact with the REST-api and 
 working as our production server.
 - **Node**: A run-time environment that lets us implement our Javascript code back-end. We don't really use much of 
-nodes. The functionality it brings is the role of handling our server side javascript. This is useful since our 
+Node. The functionality it brings is the role of handling our server side javascript. This is useful since our 
 REST-api is written in javascript, and is on the server. Also, our test environment, when up and running, will be run
-by node. 
+by Node. 
 - **MongoDB**: A document database. We use this database to store our data, in JSON documents. MongoDB gives us much 
 flexibility in deciding both how we want to associate data with each other and how we want to store it. To make the 
 interaction with MongoDB easier we use the plugin **Mongoose**. Mongoose allows us, among other things, to make Schemas 
@@ -114,6 +114,6 @@ and probably will be made changes to the final design.
 ### Project Structure <a name="ProjectStructure"></a>
 Our structure is, right now, a bit messy. The frontend and back-end are split in two different main directories. The 
 thought of this as a logical differentiation at first, but now see benefits of having the functionality of the 
-server-side in a sub-folder while the functionality of the website is at the root folder. alternatively, have the 
-website in a main folder and the server in a subfolder under the website. Seeing as we are most likely to cahnge the 
+server-side in a sub-folder while the functionality of the website is at the root folder. Alternatively, have the 
+website in a main folder and the server in a subfolder under the website. Seeing as we are most likely to change the 
 project structure in the future, we have not added a description of it in this document, just yet.
