@@ -1,18 +1,17 @@
-
 <div class="artist-container">
-  <div class="image-wrapper">
-    <img src="{{artist.image}}" alt="artist picture"/>
-  </div>
-  <h4>{{artist.name}}</h4>
-  <p class="track-info">{{artist.tracks}} tracks</p>
-  <div class="bottom-buttons">
-    <div class="bottom-button border-right">
-      <span>tracks</span>
+    <div class="image-wrapper">
+        <img src="{{artist.imageLink}}" alt="artist picture"/>
     </div>
-    <div class="bottom-button">
-      <span  (click)="openDialog()">Info</span>
+    <h4>{{artist.name}}</h4>
+    <p class="track-info">{{artist.album ? artist.album.length : 0}} albums</p>
+    <div class="bottom-buttons">
+        <div class="bottom-button border-right">
+            <a href="#">Albums</a>
+        </div>
+        <div class="bottom-button">
+            <span (click)="openDialog()">Info</span>
 
+        </div>
     </div>
-  </div>
 </div>
 
