@@ -1,13 +1,26 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+let mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
+    Song = new Schema({
 
-var Song = new Schema({
-    name: {
-        type: String
-    },
-    duration: {
-        type: Number
-    }
-});
+        _id: {
+            type: String
+        },
+        name: {
+            type: String,
+            required: "Kindly enter the name of the song"
+        },
+        type: {
+            type: String
+        },
+        duration: {
+            type: Number
+        },
+        album: {
+            type: String
+        },
+        artists: {
+            type: Array
+        }
+    });
 
 module.exports = mongoose.model("Song", Song);

@@ -14,7 +14,9 @@
 .classpath
 .c9/
 *.launch
+prosjekt4.iml
 .settings/
+prosjekt4.iml
 *.sublime-workspace
 
 # IDE - VSCode
@@ -44,3 +46,5 @@ Thumbs.db
 #package shiet
 website/package-lock*
 server/package-lock*
+website/node_modules
+server/node_modules
