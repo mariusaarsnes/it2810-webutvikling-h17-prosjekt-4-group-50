@@ -14,10 +14,9 @@ export class ArtistComponent implements OnInit {
     constructor(public dialog: MatDialog) {
     }
 
+    @Input() artist: ArtistResponse;
     ngOnInit() {
     }
-
-    @Input() artist: ArtistResponse;
 
     openDialog() {
         const dialogRef = this.dialog.open(DialogComponent, {

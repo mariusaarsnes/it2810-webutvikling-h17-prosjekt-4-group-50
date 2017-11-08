@@ -14,6 +14,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RegisterComponent} from './register/register.component';
 import {CanActivateService} from './shared/auth/can-activate.service';
 import {Permissions} from './shared/auth/Permissions';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,7 @@ import {Permissions} from './shared/auth/Permissions';
         ]),
         HttpClientModule
     ],
-    providers: [SearchService, CanActivateService, Permissions, HttpClient],
+    providers: [APP_BASE_HREF, SearchService, CanActivateService, Permissions, HttpClient],
     bootstrap: [AppComponent]
 })
 

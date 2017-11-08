@@ -1,11 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CanActivateService } from './can-activate.service';
+import {Permissions} from './Permissions';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('CanActivateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CanActivateService]
+      providers: [CanActivateService, Permissions, HttpClient, HttpHandler]
     });
   });
 
