@@ -31,9 +31,21 @@ export class ArtistComponent implements OnInit {
 		this.getAlbums(this.artist.albums.join(',')).then(albums => {
 			console.log(albums);
 			this.albums = albums;
+			const w = window,
+				d = document,
+				e = d.documentElement,
+				g = d.getElementsByTagName('body')[0],
+				x = w.innerWidth || e.clientWidth || g.clientWidth;
+			let height = "80%",
+				width = "70%";
+			if (x < 768) {
+				width = "100%";
+				height = "100%";
+			}
 			const dialogRef = this.dialog.open(DialogComponent, {
-				height: '80%',
-				width: '70%',
+
+				height: height,
+				width: width,
 				data: [this.artist, this.albums],
 			});
 			dialogRef.afterClosed();
