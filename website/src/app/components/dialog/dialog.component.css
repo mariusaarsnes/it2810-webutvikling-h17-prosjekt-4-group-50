@@ -16,8 +16,14 @@
 }
 #left-dialog h1 {
 	margin-top: 3px;
+    color: rgb(156, 43, 66);
 
 }
+
+#type-dialog {
+    color: rgb(156, 43, 66);
+}
+
 #genres-dialog {
 	margin-top: 0;
 	margin-bottom: 0;
@@ -58,7 +64,8 @@
 }
 
 #hr-dialog {
-	opacity: 0.4;
+	opacity: 0.2;
+    width: 100%;
 }
 
 

@@ -29,7 +29,7 @@
     "bcrypt-nodejs": "0.0.3",
     "core-js": "^2.4.1",
     "express-session": "^1.15.6",
-    "mongoose": "^4.13.0",
+    "mongoose": "^4.13.1",
     "passord": "^1.1.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

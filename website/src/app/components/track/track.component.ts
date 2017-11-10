@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import {DialogComponent} from "../artist/dialog.component";
+import {DialogComponent} from '../dialog/dialog.component';
 import {SongResponse} from "../../interfaces/song-response.interface";
 
 @Component({
@@ -23,7 +23,7 @@ export class TrackComponent implements OnInit {
       height: '80%',
       width: '70%'
 
-});
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
