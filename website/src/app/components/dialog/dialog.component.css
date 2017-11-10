@@ -5,6 +5,7 @@
 #modal-artist-dialog {
 	display: flex;
 	flex-direction: row;
+
 	width: 100%;
 	position: relative;
 }
@@ -87,4 +88,37 @@
 
 .album-text-dialog {
 	width: 150px;
+}
+
+@media screen and (max-width: 480px) {
+	#modal-artist-dialog {
+		flex-direction: column;
+	}
+	#right-dialog {
+		width: 100%;
+		height: auto;
+		order: 2;
+	}
+	#left-dialog {
+		width: 100%;
+		order: 3;
+	}
+	#close-dialog {
+		order: 1;
+		width: 100%;
+		position: static;
+	}
+	#close-dialog span{
+		float: right;
+		margin-bottom: 10px;
+		font-size: 35px;
+	}
+	#modal-album-dialog {
+		justify-content: center;
+	}
+}
+@media screen and (max-width: 320px) {
+	#modal-album-dialog {
+		justify-content: center;
+	}
 }

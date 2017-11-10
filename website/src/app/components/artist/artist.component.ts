@@ -38,10 +38,7 @@ export class ArtistComponent implements OnInit {
 				x = w.innerWidth || e.clientWidth || g.clientWidth;
 			let height = "80%",
 				width = "70%";
-			if (x < 768) {
-				width = "100%";
-				height = "100%";
-			}
+
 			const dialogRef = this.dialog.open(DialogComponent, {
 
 				height: height,

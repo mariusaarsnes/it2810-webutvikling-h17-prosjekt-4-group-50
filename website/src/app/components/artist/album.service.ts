@@ -8,7 +8,6 @@ export class AlbumService {
 	constructor(private http: HttpClient) { }
 
 	getAlbums(albums): Promise<AlbumResponse[]> {
-		console.log('api/albums/' + albums);
 		return this.http.get<AlbumResponse[]>('api/albums/' +  albums).toPromise();
 	}
 
