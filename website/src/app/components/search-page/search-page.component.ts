@@ -1,25 +1,23 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import { SearchResultComponent } from "../search-result/search-result.component";
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-search-page',
-  templateUrl: './search-page.component.html',
-  styleUrls: ['./search-page.component.css']
+	selector: 'app-search-page',
+	templateUrl: './search-page.component.html',
+	styleUrls: ['./search-page.component.css']
 
 })
 export class SearchPageComponent implements OnInit {
 
-	@ViewChild('child') child;
-  constructor() { }
-
-  ngOnInit() {
-  }
-  onChangeSearch(): void {
-  	this.child.renderTreshold = 10;
-  	if(this.searchInput !== '') {
-		this.child.getArtistsByName();
+	constructor() {
 	}
-  }
-  searchInput: string;
+
+	ngOnInit() {
+	}
+
+	@Input() filterList: string[];
+	@Input() sort: string;
+	@Input() sortType = "ascending";
+
+	searchInput: string;
 
 }

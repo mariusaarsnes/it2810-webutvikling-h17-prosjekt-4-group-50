@@ -19,7 +19,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Query to populate the database with data from Spotify
      */
-    router.get("/populate_database/:access_token", spotify);
+    router.get("/populate_database/:access_token", isAdmin, spotify);
 
     /**
      * User related API queries
@@ -47,22 +47,15 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * Album related API queries
      */
-    //Finds all almbums with ids in the provided array
+    //A more advanced query which finds all albums that contains the search string
+    //Then sorts it on the attribute given with the sort type given (Ascending/descending)
+    //It also supports filtering on the attribute given with the given value
     router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", albumController.findAlbumsAdvanced);
+    //Finds all almbums with ids in the provided array
     router.get("/albums/:ids", albumController.findAlbumsByIds);
-
-    router.get("/albums/:search_string/:index/:amount", albumController.findAlbums)
-        .put("/albums/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/albums/:index/:amount", albumController.findAllAlbums)
-        .put("/albums/:index/:amount", userController.updateSearchHistory);
-
-    router.get("/albums_asc/:search_string/:index/:amount", albumController.findAlbumsAsc)
-        .put("/albums_asc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/albums_asc/:index/:amount", albumController.findAlbumsAsc);
-
-    router.get("/albums_desc/:search_string/:index/:amount", albumController.findAlbumsDesc)
-        .put("/albums_desc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/albums_desc/:index/:amount", albumController.findAlbumsDesc);
+    router.get("/album/:id", albumController.findAlbumsById);
+    router.get("/albums/:search_string/:index/:amount", albumController.findAlbums);
+    router.get("/albums", albumController.findAllAlbums);
 
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
@@ -73,17 +66,8 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/artists/:ids", artistController.findArtistsByIds);
     router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtists);
 
-    router.get("/artists/:index/:amount", artistController.findAllArtists);
-    router.get("/artists/:search_string/:index/:amount", artistController.findArtists)
-        .put("/artists/:search_string/:index/:amount", userController.updateSearchHistory);
-
-    router.get("/artists_asc/:search_string/:index/:amount", artistController.findArtistsAsc)
-        .put("/artists_asc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/artists_asc/:index/:amount", artistController.findArtistsAsc);
-
-    router.get("/artists_desc/:search_string/:index/:amount", artistController.findArtistsDesc)
-        .put("/artists_desc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/artists_desc/:index/:amount", artistController.findArtistsDesc);
+    router.get("/artists", artistController.findAllArtists);
+    router.get("/artists/:search_string/:index/:amount", artistController.findArtists);
 
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
@@ -93,17 +77,8 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/songs/:ids", songController.findSongsByIds);
     router.get("/songs/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", songController.findSongsAdvanced);
 
-    router.get("/songs/:index/:amount", songController.findAllSongs);
-    router.get("/songs/:search_string/:index/:amount", songController.findSongs)
-        .put("/songs/:search_string/:index/:amount", userController.updateSearchHistory);
-
-    router.get("/songs_asc/:search_string/:index/:amount", songController.findSongsAsc)
-        .put("/songs_asc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/songs_asc/:index/:amount", songController.findSongsAsc);
-
-    router.get("/songs_desc/:search_string/:index/:amount", songController.findSongsDesc)
-        .put("/songs_desc/:search_string/:index/:amount", userController.updateSearchHistory);
-    router.get("/songs_desc/:index/:amount", songController.findSongsDesc);
+    router.get("/songs", songController.findAllSongs);
+    router.get("/songs/:search_string/:index/:amount", songController.findSongs);
 
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
 

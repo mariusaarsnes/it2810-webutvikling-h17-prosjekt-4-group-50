@@ -27,6 +27,16 @@ exports.findAlbumsByIds = ((req, res) => {
     );
 });
 
+exports.findAlbumsById = ((req, res) => {
+    Album.find({
+            _id: req.params.id
+        }, (err, album) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(album[0]);
+        }
+    );
+});
+
 exports.findAlbumsAdvanced = ((req, res) => {
     const query = {
         name: {
@@ -36,7 +46,10 @@ exports.findAlbumsAdvanced = ((req, res) => {
     };
     //Checks if the filter is not specified as none, append it to our query
     if (req.params.filter !== 'none') {
-        query[req.params.filter] = req.params.filter_value;
+        const filters = req.params.filter.split(","),
+            filterValues = req.params.filter_value.split(",");
+        for (let i = 0; i < filters.length; i++)
+            query[filters[i]] = filterValues[i];
     }
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
@@ -60,36 +73,8 @@ exports.findAlbums = ((req, res) => {
     );
 });
 
-exports.findAlbumsAsc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    Album.find(req.params.search_string ? query : {}).sort({name: "asc"})
-        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(albums);
-    });
-});
-
-exports.findAlbumsDesc = ((req, res) => {
-    const query = {
-        name: {
-            "$regex": req.params.search_string,
-            "$options": "i"
-        }
-    };
-    Album.find(req.params.search_string ? query : {}).sort({name: "desc"})
-        .skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(albums);
-    });
-});
-
 exports.findAllAlbums = (req, res) => {
-    Album.find({}).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
+    Album.find({}, (err, albums) => {
         if (err) res.send(err);
         res.status(200).json(albums);
     });

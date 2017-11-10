@@ -1,4 +1,5 @@
 <div class="artist-container">
+<<<<<<< HEAD
   <div class="image-wrapper">
     <img src="{{artist.imageLink}}" alt="artist picture"/>
   </div>
@@ -10,7 +11,21 @@
     </div>
     <div class="bottom-button">
 		<span (click)="openDialog(artist)">albums</span>
+=======
+    <div class="image-wrapper">
+        <img src="{{artist.imageLink}}" alt="artist picture"/>
     </div>
-  </div>
+    <h4>{{artist.name}}</h4>
+    <p class="track-info">{{artist.albums ? artist.albums.length : 0}} albums</p>
+    <div class="bottom-buttons">
+        <div class="bottom-button border-right">
+            <a href="#">Albums</a>
+        </div>
+        <div class="bottom-button">
+            <span (click)="openDialog()">Info</span>
+
+        </div>
+>>>>>>> 3e4953e2d85ac9c19618df963fa20212cbd0d7db
+    </div>
 </div>
 
