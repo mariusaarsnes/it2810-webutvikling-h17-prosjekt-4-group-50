@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'my-info',
+  templateUrl: './my-info.component.html',
+  styleUrls: ['./my-info.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class MyInfoComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
   }
+
   // USER INFO
   username = "Testbruker123"
   password = "pass123"
@@ -20,5 +21,4 @@ export class ProfileComponent implements OnInit {
   //SEARCH HISTORY
   uniqueSearches = 60
   totalSearches = 104
-  recentSearches = ["Queen", "Johnny Cash", "Rapsody", "Yellow", "Coldplay"]
 }

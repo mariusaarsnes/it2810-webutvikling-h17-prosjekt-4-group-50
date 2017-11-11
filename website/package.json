@@ -33,6 +33,7 @@
     "passord": "^1.1.2",
     "passport-local": "^1.0.0",
     "rxjs": "^5.4.2",
+    "zingchart-angularjs": "^1.2.0",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
