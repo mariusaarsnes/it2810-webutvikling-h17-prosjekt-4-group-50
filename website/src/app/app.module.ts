@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
@@ -18,11 +17,11 @@ import { SearchService } from "./components/search-result/search.service";
 import { HttpClientModule } from "@angular/common/http";
 import { AdditionalInfoComponent } from "./components/additional_info/additional-info.component";
 import { AdditionalInfoService } from "./components/additional_info/additional-info.service";
-import { DialogComponent} from "./components/artist/dialog.component";
-import {CanActivateService} from "./shared/auth/can-activate.service";
-import {Permissions} from "./shared/auth/Permissions";
-import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
+import { DialogComponent } from "./components/artist/dialog.component";
+import { CanActivateService } from "./shared/auth/can-activate.service";
+import { Permissions } from "./shared/auth/Permissions";
+import { RegisterComponent } from "./register/register.component";
+import { LoginComponent } from "./login/login.component";
 import { NavbarSearchComponent } from './shared/navbar-search/navbar-search.component';
 import { NavbarProfileComponent } from './shared/navbar-profile/navbar-profile.component';
 import { MyInfoComponent } from './components/my-info/my-info.component';
@@ -83,60 +82,6 @@ import { HistoryComponent } from './components/history/history.component';
   ],
   providers: [SearchService, AdditionalInfoService, CanActivateService, Permissions],
   bootstrap: [AppComponent]
-
-=======
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {AppComponent} from './app.component';
-import {ProfileComponent} from './components/profile/profile.component';
-import {NavbarComponent} from './shared/navbar/navbar.component';
-import {RouterModule} from '@angular/router';
-import {SearchPageComponent} from './components/search-page/search-page.component';
-import {FormsModule} from '@angular/forms';
-import {SearchResultComponent} from './components/search-result/search-result.component';
-import {ArtistComponent} from './components/artist/artist.component';
-import {SearchService} from './components/search-result/search.service';
-import {LoginComponent} from './login/login.component';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {RegisterComponent} from './register/register.component';
-import {CanActivateService} from './shared/auth/can-activate.service';
-import {Permissions} from './shared/auth/Permissions';
-
-@NgModule({
-    declarations: [
-        AppComponent,
-        ProfileComponent,
-        NavbarComponent,
-        SearchPageComponent,
-        SearchResultComponent,
-        ArtistComponent,
-        LoginComponent,
-        RegisterComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        RouterModule.forRoot([
-            {
-                path: 'search',
-                component: SearchPageComponent,
-                canActivate: [CanActivateService]
-
-            },
-            {
-                path: 'login',
-                component: LoginComponent,
-            },
-            {
-                path: 'register',
-                component: RegisterComponent,
-            }
-        ]),
-        HttpClientModule
-    ],
-    providers: [SearchService, CanActivateService, Permissions, HttpClient],
-    bootstrap: [AppComponent]
->>>>>>> 3bea5ae8ef2ed61bb4f56e3450c2bd37a41d2a6b
 })
 
 export class AppModule {
