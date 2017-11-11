@@ -73,7 +73,12 @@ import { HistoryComponent } from './components/history/history.component';
           },
           {
             path: 'profilepage',
-            component: ProfileComponent
+            component: ProfileComponent,
+            children: [
+                {path: '', redirectTo: 'my-info', pathMatch: 'full'},
+                {path: 'my-info', component: MyInfoComponent},
+                {path: 'history', component: HistoryComponent}
+            ]
           }
 	  ])
   ],
