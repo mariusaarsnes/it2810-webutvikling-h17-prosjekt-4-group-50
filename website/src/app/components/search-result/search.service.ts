@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {SongResponse} from "../../interfaces/song-response.interface";
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
+import {GenresResponse} from "../../interfaces/genres-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -51,6 +52,10 @@ export class SearchService {
                 return <AlbumResponse>{...res, artistsData: artists};
             });
         });
+    }
+
+    getFavoriteGenres(): Observable<GenresResponse[]> {
+        return this.http.get<GenresResponse[]>('api/aggregate_genres');
     }
 
     /**

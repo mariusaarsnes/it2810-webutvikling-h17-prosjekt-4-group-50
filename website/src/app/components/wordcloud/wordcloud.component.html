@@ -1,6 +1,8 @@
-<div AgWordCloud
-     #word_cloud_chart=ag-word-cloud
-     [wordData]="wordData"
-     [options]="options"
-     [color]="colors">
+<div *ngIf="loaded">
+    <div AgWordCloud
+         #word_cloud_chart=ag-word-cloud
+         [wordData]="wordData"
+         [options]="options"
+         [color]="colors">
+    </div>
 </div>

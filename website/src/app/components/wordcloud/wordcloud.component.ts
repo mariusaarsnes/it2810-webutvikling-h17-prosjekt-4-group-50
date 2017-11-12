@@ -1,5 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AgWordCloudData} from "angular4-word-cloud";
+import {SearchService} from "../search-result/search.service";
+import {GenresResponse} from "../../interfaces/genres-response.interface";
 
 @Component({
     selector: 'app-wordcloud',
@@ -8,6 +10,8 @@ import {AgWordCloudData} from "angular4-word-cloud";
     encapsulation: ViewEncapsulation.None
 })
 export class WordcloudComponent implements OnInit {
+
+    loaded: boolean = false;
 
     //The colors specified for our word cloud
     colors: Array<String> = [
@@ -18,26 +22,9 @@ export class WordcloudComponent implements OnInit {
         'black',
         'gray',
         'cyan',
-        'yellow'
     ];
 
-    wordData: Array<AgWordCloudData> = [
-        {text: "This", size: 12},
-        {text: "Is", size: 13},
-        {text: "A", size: 14},
-        {text: "Test", size: 15},
-        {text: "Word", size: 16},
-        {text: "Cloud", size: 17},
-        {text: "Stuff", size: 18},
-        {text: "More", size: 19},
-        {text: "Things", size: 20},
-        {text: "Yes", size: 21},
-        {text: "Jakob", size: 22},
-        {text: "Daniel", size: 23},
-        {text: "MH", size: 24},
-        {text: "Marius", size: 25},
-        {text: "Fredrik", size: 26},
-    ];
+    wordData: Array<AgWordCloudData>;
 
     options = {
         settings: {
@@ -50,13 +37,23 @@ export class WordcloudComponent implements OnInit {
             bottom: 10,
             left: 10
         },
-        labels: false // false to hide hover labels
+        labels: true // false to hide hover labels
     };
 
-    constructor() {
+    constructor(private searchService: SearchService) {
     }
 
     ngOnInit() {
+        this.searchService.getFavoriteGenres().subscribe(data => {
+            this.wordData = this.mapGenresToWordCloud(data);
+            this.loaded = true;
+        });
+    }
+
+    mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
+        return data.map(genre => {
+            return {text: genre._id, size: genre.count}
+        });
     }
 
 }

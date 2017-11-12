@@ -25,6 +25,8 @@ import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.compon
 import {NavbarProfileComponent} from './shared/navbar-profile/navbar-profile.component';
 import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
+import {AgWordCloudModule} from "angular4-word-cloud";
+import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
 
 
 @NgModule({
