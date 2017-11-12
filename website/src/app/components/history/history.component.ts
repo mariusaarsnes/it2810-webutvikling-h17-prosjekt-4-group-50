@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'history',
+  templateUrl: './history.component.html',
+  styleUrls: ['./history.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class HistoryComponent implements OnInit {
 
   constructor() { }
 
@@ -20,5 +20,4 @@ export class ProfileComponent implements OnInit {
   //SEARCH HISTORY
   uniqueSearches = 60
   totalSearches = 104
-  recentSearches = ["Queen", "Johnny Cash", "Rapsody", "Yellow", "Coldplay"]
 }

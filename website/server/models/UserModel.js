@@ -16,6 +16,9 @@ let mongoose = require("mongoose"),
         },
         date_registered: {
             type: Date, default: Date.now
+        },
+        favorite_artists: {
+            type: Array,
         }
     });
 
