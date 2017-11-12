@@ -63,6 +63,10 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
                 //canActivate: [CanActivateService]
             },
             {
+                path: 'wordcloud',
+                component: WordcloudComponent
+            },
+            {
                 path: 'login',
                 component: LoginComponent,
             },
