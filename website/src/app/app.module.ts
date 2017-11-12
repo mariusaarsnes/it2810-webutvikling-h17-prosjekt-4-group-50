@@ -22,6 +22,8 @@ import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import {TrackComponent} from "./components/track/track.component";
+import {AgWordCloudModule} from "angular4-word-cloud";
+import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
 
 
 @NgModule({
@@ -37,9 +39,11 @@ import {TrackComponent} from "./components/track/track.component";
 		RegisterComponent,
 		LoginComponent,
 		NavbarSearchComponent,
-		TrackComponent
+		TrackComponent,
+		WordcloudComponent
 	],
 	imports: [
+	    AgWordCloudModule.forRoot(),
 		BrowserModule,
 		HttpClientModule,
 		BrowserAnimationsModule,
