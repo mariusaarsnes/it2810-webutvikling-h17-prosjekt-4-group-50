@@ -18,41 +18,48 @@ export class SearchResultComponent implements OnInit, OnChanges {
 				private http: HttpClient,
 				@Inject(DOCUMENT) private document: Document) {
 	}
-
 	artists: ArtistResponse[];
 
-
 	index = 0;
-	public renderTreshold = 15;
+	renderTreshold = 15;
 	canRenderNew = true;
 
 	ngOnChanges(changes: any) {
 		if (this.searchString && this.searchString !== "") {
 			this.renderTreshold = 15;
-			this.getArtistsByName();
+			this.getData();
 		} else {
 			this.clearArtists();
 		}
-	}
+	};
+	getData(): void {
 
-	public getArtistsByName(): void {
-		this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe(artists => {
-			this.artists = artists;
-			this.canRenderNew = true;
-		});
-	}
-
+	    switch (this.searchType) {
+            case "album":
+                this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe(artists => {
+                    this.artists = artists;
+                    this.canRenderNew = true;
+                });
+                break;
+            case "artist":
+                console.log("fetch artists");
+                break;
+            case "track":
+                console.log("fetch tracks");
+                break;
+        }
+	};
 	public clearArtists(): void {
 		this.artists = [];
-	}
-
+	};
 	ngOnInit() {
 
-	}
+	};
 
 	@Input() filterList = [];
 	@Input() sort: string;
 	@Input() sortType: string;
+	@Input() searchType: string;
 	@Input('search') searchString: string;
 
 
@@ -64,7 +71,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 				//reached bottom
 				this.canRenderNew = false;
 				this.renderTreshold += 10;
-				this.getArtistsByName();
+				this.getData();
 			}
 		}
 	}

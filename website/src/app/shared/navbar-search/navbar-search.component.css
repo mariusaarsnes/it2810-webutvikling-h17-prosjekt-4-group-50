@@ -67,9 +67,20 @@
 	margin-top: 10px;
 }
 .filter-by {
-	display: flex;
-	font-size: 10px;
+    display: flex;
+}
+.filter-box {
+    display: flex;
+    font-size: 10px;
 }
 .input-select:focus {
 	outline-style: none;
+}
+
+.search-type-selectors a:hover {
+    cursor: pointer;
+}
+.selected-type {
+    color: black !important;
+    font-size: 16px;
 }
