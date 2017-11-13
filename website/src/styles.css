@@ -16,4 +16,21 @@ a {
   text-decoration: none;
 }
 
+.mat-dialog-container {
+	border-radius: 8px !important;
+}
+
+
+@media screen and (max-width: 768px) {
+	.mat-dialog-container {
+		max-width: 100vw !important;
+		border-radius: 0 !important;
+	}
+	.cdk-overlay-pane {
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
+
+
 
