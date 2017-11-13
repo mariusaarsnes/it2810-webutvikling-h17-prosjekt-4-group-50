@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
-import { AlbumService } from "./album.service";
 import { ArtistResponse } from "../../interfaces/artist-response.interface";
 import { AlbumResponse } from "../../interfaces/album-response.interface";
 import {SongResponse} from "../../interfaces/song-response.interface";
 import {SongsDialogComponent} from "../songs-dialog/songs-dialog.component";
+import {SearchService} from "../search-result/search.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
 	selector: 'app-artist',
@@ -14,7 +15,7 @@ import {SongsDialogComponent} from "../songs-dialog/songs-dialog.component";
 })
 export class ArtistComponent implements OnInit {
 
-    constructor(public dialog: MatDialog, private albumService: AlbumService) {
+    constructor(public dialog: MatDialog, private albumService: SearchService) {
     }
 
     albums: AlbumResponse[];
@@ -26,17 +27,17 @@ export class ArtistComponent implements OnInit {
     @Input() artist: ArtistResponse;
 
 
-    getAlbums(albums): Promise<AlbumResponse[]> {
-        return this.albumService.getAlbums(albums);
+    getAlbums(albums): Observable<AlbumResponse[]> {
+        return this.albumService.getAlbumsByIds(albums);
     }
-    getSongs(songs): Promise<SongResponse[]> {
-        return this.albumService.getSongs(songs);
+    getSongs(songs): Observable<SongResponse[]> {
+        return this.albumService.getSongsByIdsWithAlbums(songs);
     }
 
 
     openDialogAlbums() {
         console.log(this.artist);
-        this.getAlbums(this.artist.albums.join(',')).then(albums => {
+        this.getAlbums(this.artist.albums).subscribe(albums => {
             this.albums = albums;
 
             const dialogRef = this.dialog.open(DialogComponent, {
@@ -50,7 +51,7 @@ export class ArtistComponent implements OnInit {
     }
     openDialogTracks() {
 
-        this.getSongs(this.artist.songs.join(',')).then(songs => {
+        this.getSongs(this.artist.songs).subscribe(songs => {
             this.songs = songs;
             console.log(this.songs);
 
