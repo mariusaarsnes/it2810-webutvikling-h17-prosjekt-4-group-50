@@ -27,7 +27,6 @@ let mongoose = require("mongoose"),
         songs: {
             type: Array
         }
-
     });
 
 module.exports = mongoose.model("Artist", Artist);

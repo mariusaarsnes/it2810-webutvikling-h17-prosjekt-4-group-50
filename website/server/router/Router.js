@@ -25,7 +25,8 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * User related API queries
      */
     router.get("/user", userController.findUser);
-    router.get("/history", userController.findSearchHistory);
+    router.get("/aggregate_genres", isAuthorized, userController.findAggregateGenres);
+    router.get("/add_favorite_artist/:id", userController.addFavoriteArtist);
     router.put("/update_history/search/:search", userController.updateSearchHistory);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
     router.post('/login',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'app-root',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -11,5 +11,4 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

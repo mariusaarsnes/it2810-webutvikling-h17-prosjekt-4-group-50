@@ -6,9 +6,11 @@ import {Overlay, OVERLAY_PROVIDERS, OverlayContainer, ScrollStrategyOptions} fro
 import {ScrollDispatcher, ViewportRuler} from '@angular/cdk/scrolling';
 import {Platform} from '@angular/cdk/platform';
 
+
 describe('ArtistComponent', () => {
     let component: ArtistComponent;
     let fixture: ComponentFixture<ArtistComponent>;
+
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({

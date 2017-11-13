@@ -3,7 +3,7 @@ export interface ArtistResponse {
     name: string;
     type: string;
     popularity: number;
-    album: string[];
+    albums: string[];
     __v: number;
     genres: string[];
     imageLink: string;
