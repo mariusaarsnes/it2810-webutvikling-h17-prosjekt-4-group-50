@@ -48,9 +48,6 @@ export class WordcloudComponent implements OnInit {
             this.wordData = this.mapGenresToWordCloud(data);
             this.loaded = true;
         });
-        this.searchService.getSearchHistory().subscribe(data => {
-            console.log(data);
-        });
     }
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {

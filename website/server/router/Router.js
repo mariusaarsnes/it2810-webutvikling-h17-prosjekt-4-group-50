@@ -55,6 +55,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", albumController.findAlbumsAdvanced);
     //Finds all almbums with ids in the provided array
     router.get("/albums/:ids", albumController.findAlbumsByIds);
+    router.get("/album/:id", albumController.findAlbumById);
     router.get("/albums/:search_string/:index/:amount", albumController.findAlbums);
     router.get("/albums", albumController.findAllAlbums);
 
@@ -65,6 +66,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      */
     //Find all artists with ids in the provided array
     router.get("/artists/:ids", artistController.findArtistsByIds);
+    router.get("/artist/:id", artistController.findArtistById);
     router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtists);
 
     router.get("/artists", artistController.findAllArtists);
@@ -76,6 +78,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Song related API queries
      */
     router.get("/songs/:ids", songController.findSongsByIds);
+    router.get("/song/:id", songController.findSongById);
     router.get("/songs/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", songController.findSongsAdvanced);
 
     router.get("/songs", songController.findAllSongs);

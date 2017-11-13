@@ -88,7 +88,7 @@ export class SearchService {
                     return <SongResponse>{...res, albumData: album};
                 }));
             });
-            return observables;
+            return Observable.forkJoin(observables);
         });
     }
 
@@ -121,7 +121,7 @@ export class SearchService {
                     return <AlbumResponse>{...res, artistsData: both.artists, songsData: both.songs};
                 }));
             });
-            return observables;
+            return Observable.forkJoin(observables);
         });
     }
 
@@ -139,10 +139,19 @@ export class SearchService {
     }
 
     getSearchHistory() {
-        return this.http.get<SearchHistoryResponse[]>('api/search_history');
+        return this.http.get<SearchHistoryResponse[]>('api/search_history').switchMap(data => {
+            let observables = [];
+            data.forEach(val => {
+                const schema = this.getSchemaById(val.type, val.type_id);
+                observables.push(Observable.of(val).combineLatest(schema, (val, schema) => {
+                    return <SearchHistoryResponse>{...val, typeData: schema};
+                }));
+            });
+           return Observable.forkJoin(observables);
+        });
     }
 
-    getSchemaById(type: string, id: number) {
+    getSchemaById(type: string, id: string) {
         switch (type) {
             case "album":
                 return this.getAlbum(id);
