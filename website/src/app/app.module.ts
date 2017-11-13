@@ -60,7 +60,7 @@ import {TrackComponent} from './components/track/track.component';
             {
                 path: 'search',
                 component: NavbarSearchComponent,
-                //canActivate: [CanActivateService]
+                // canActivate: [CanActivateService]
             },
             {
                 path: 'login',
@@ -85,11 +85,10 @@ import {TrackComponent} from './components/track/track.component';
             }
         ])
     ],
-    providers: [APP_BASE_HREF, SearchService, CanActivateService, Permissions, HttpClient],
+    providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent
     ],
-    providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
     bootstrap: [AppComponent]
 
 })

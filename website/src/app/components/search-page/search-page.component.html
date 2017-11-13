@@ -1,6 +1,9 @@
 <div class="search-top-content">
-  <div class="input-search-wrapper"><input type="text" [(ngModel)]="searchInput" placeholder="Search here" class="input-search"></div>
+    <div class="input-search-wrapper"><input type="text" [(ngModel)]="searchInput" placeholder="Search here"
+                                             class="input-search"></div>
 </div>
 <br>
-<app-search-result [search]="searchInput" [sort]="sort" [sortType]="sortType" [filterList]="filterList" #child></app-search-result>
+<app-search-result [attr.search]="searchInput" [attr.sort]="sort" [attr.sortType]="sortType"
+                   [attr.filterList]="filterList"
+                   #child></app-search-result>
 

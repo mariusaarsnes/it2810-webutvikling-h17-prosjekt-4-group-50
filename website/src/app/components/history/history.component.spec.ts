@@ -1,25 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { HistoryComponent } from './history.component';
+import {HistoryComponent} from './history.component';
+import {SearchHistoryListComponent} from '../search-history-list/search-history-list.component';
+import {MatCell, MatCellDef, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable} from '@angular/material';
 
 describe('HistoryComponent', () => {
-  let component: HistoryComponent;
-  let fixture: ComponentFixture<HistoryComponent>;
+    let component: HistoryComponent;
+    let fixture: ComponentFixture<HistoryComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                HistoryComponent,
+                SearchHistoryListComponent,
+                MatHeaderCell,
+                MatCell,
+                MatCellDef,
+                MatHeaderRow,
+                MatHeaderRowDef,
+                MatRow,
+                MatRowDef,
+                MatTable,
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HistoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+            ]
+        })
+            .compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(HistoryComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

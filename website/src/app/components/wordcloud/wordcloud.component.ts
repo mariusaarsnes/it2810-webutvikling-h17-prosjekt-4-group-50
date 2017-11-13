@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AgWordCloudData} from "angular4-word-cloud";
-import {SearchService} from "../search-result/search.service";
-import {GenresResponse} from "../../interfaces/genres-response.interface";
+import {AgWordCloudData} from 'angular4-word-cloud';
+import {SearchService} from '../search-result/search.service';
+import {GenresResponse} from '../../interfaces/genres-response.interface';
 
 @Component({
     selector: 'wordcloud',
@@ -52,7 +52,7 @@ export class WordcloudComponent implements OnInit {
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
         return data.map(genre => {
-            return <AgWordCloudData>{text: genre._id, size: genre.count}
+            return <AgWordCloudData>{text: genre._id, size: genre.count};
         });
     }
 

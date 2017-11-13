@@ -1,17 +1,19 @@
-
 <div class="artist-container">
-  <div class="image-wrapper">
-    <img src="#" alt="artist picture"/>
-  </div>
-  <h4>{{track.name}}</h4>
-  <p class="track-info">{{track.album ? track.albums.length : 0}} albums</p>
-  <div class="bottom-buttons">
-    <div class="bottom-button border-right">
-      <span>Albums</span>
+    <div class="image-wrapper">
+        <img src="#" alt="artist picture"/>
     </div>
-    <div class="bottom-button">
-      <span>Info</span>
+    <h4>{{track.name}}</h4>
+    <!-- Gives an error in the code. What is the purpose of track.albums.length? no tracks are part of more than one
+    album in our database
+    <p class="track-info">{{track.album ? track.albums.length : 0}} albums</p>
+     -->
+    <div class="bottom-buttons">
+        <div class="bottom-button border-right">
+            <span>Albums</span>
+        </div>
+        <div class="bottom-button">
+            <span>Info</span>
+        </div>
     </div>
-  </div>
 </div>
 
