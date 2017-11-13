@@ -3,6 +3,7 @@ import {SearchService} from "./search.service";
 import {HttpClient} from "@angular/common/http";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DOCUMENT} from "@angular/common";
+import {SongResponse} from "../../interfaces/song-response.interface";
 
 
 @Component({
@@ -19,10 +20,12 @@ export class SearchResultComponent implements OnInit, OnChanges {
 				@Inject(DOCUMENT) private document: Document) {
 	}
 	artists: ArtistResponse[];
+	tracks: SongResponse[];
 
 	index = 0;
 	renderTreshold = 15;
 	canRenderNew = true;
+    prevSearchType = 'artist';
 
 	ngOnChanges(changes: any) {
 		if (this.searchString && this.searchString !== "") {
@@ -50,6 +53,11 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 break;
             case "track":
                 console.log("fetch tracks");
+                /*
+                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index).subscribe( tracks => {
+                    this.tracks = tracks;
+                    this.canRenderNew = true;
+                });*/
                 break;
         }
 	};
@@ -65,7 +73,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	@Input() sortType: string;
 	@Input() searchType: string;
 	@Input('search') searchString: string;
-	prevSearchType = 'artist';
+
 
 
 	@HostListener("window:scroll", [])

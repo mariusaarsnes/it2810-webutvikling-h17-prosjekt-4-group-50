@@ -1,4 +1,4 @@
-.result-container {
-  display: flex;
-  flex-wrap: wrap;
+.result-container > div {
+    display: flex;
+    flex-wrap: wrap;
 }
