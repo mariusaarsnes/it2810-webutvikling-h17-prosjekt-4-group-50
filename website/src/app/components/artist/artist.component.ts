@@ -5,7 +5,6 @@ import { AlbumService } from "./album.service";
 import { ArtistResponse } from "../../interfaces/artist-response.interface";
 import { AlbumResponse } from "../../interfaces/album-response.interface";
 
-
 @Component({
 	selector: 'app-artist',
 	templateUrl: './artist.component.html',
@@ -23,14 +22,13 @@ export class ArtistComponent implements OnInit {
 
     @Input() artist: ArtistResponse;
 
+
     getAlbums(albums): Promise<AlbumResponse[]> {
         return this.albumService.getAlbums(albums);
     }
 
-    openDialog(type) {
-
+    openDialog() {
         this.getAlbums(this.artist.albums.join(',')).then(albums => {
-            console.log(albums);
             this.albums = albums;
 
             const dialogRef = this.dialog.open(DialogComponent, {

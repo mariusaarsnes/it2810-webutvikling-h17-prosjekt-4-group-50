@@ -5,13 +5,14 @@ import {HttpClient} from "@angular/common/http";
 import {SongResponse} from "../../interfaces/song-response.interface";
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
+import {GenresResponse} from "../../interfaces/genres-response.interface";
 
 @Injectable()
 export class SearchService {
 
-	constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) {
 
-	}
+    }
 
     /**
      * Fetches artists with names containing 'name'. Limits the result size to 'amount'. Filters the results on the
@@ -26,16 +27,16 @@ export class SearchService {
      * @param {string} sortType
      * @returns {Observable<ArtistResponse[]>}
      */
-	getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
-		return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
-	}
+    getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
+        return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
+    }
 
     /**
      * Fetches artists with the given ids.
      * @param {string[]} ids
      * @returns {Observable<ArtistResponse[]>}
      */
-	getArtistsByIds(ids: string[]): Observable<ArtistResponse[]> {
+    getArtistsByIds(ids: string[]): Observable<ArtistResponse[]> {
         return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(","));
     }
 
@@ -44,34 +45,38 @@ export class SearchService {
      * @param {string} id
      * @returns {Observable<AlbumResponse>}
      */
-	getAlbum(id: string): Observable<AlbumResponse> {
-		return this.http.get<AlbumResponse>('api/album/' + id).switchMap(res => {
-		    let observable = this.getArtistsByIds(res.artists);
+    getAlbum(id: string): Observable<AlbumResponse> {
+        return this.http.get<AlbumResponse>('api/album/' + id).switchMap(res => {
+            let observable = this.getArtistsByIds(res.artists);
             return Observable.of(res).combineLatest(observable, (res, artists) => {
                 return <AlbumResponse>{...res, artistsData: artists};
             });
         });
-	}
+    }
 
-	/**
-	 * Fetches all tracks containing the given name and links them with their corresponding album.
-	 * @param {string} name
-	 * @param {number} amount
-	 * @param {number} index
-	 * @returns {Observable<SongResponse[]>}
-	 */
-	getSongs(name: string, amount: number, index: number): Observable<SongResponse[]> {
-		return this.http.get<SongResponse[]>('api/songs/' + name + "/" + index + "/" + amount).switchMap(result => {
-			let observables = [];
-			result.forEach((res) => {
-				const album = this.getAlbum(res.album);
-				observables.push(Observable.of(res).combineLatest(album, (res, album) => {
-					return <SongResponse>{...res, albumData: album};
-				}));
-			});
-			return observables;
-		});
-	}
+    getFavoriteGenres(): Observable<GenresResponse[]> {
+        return this.http.get<GenresResponse[]>('api/aggregate_genres');
+    }
+
+    /**
+     * Fetches all tracks containing the given name and links them with their corresponding album.
+     * @param {string} name
+     * @param {number} amount
+     * @param {number} index
+     * @returns {Observable<SongResponse[]>}
+     */
+    getSongs(name: string, amount: number, index: number): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + name + "/" + index + "/" + amount).switchMap(result => {
+            let observables = [];
+            result.forEach((res) => {
+                const album = this.getAlbum(res.album);
+                observables.push(Observable.of(res).combineLatest(album, (res, album) => {
+                    return <SongResponse>{...res, albumData: album};
+                }));
+            });
+            return observables;
+        });
+    }
 
     /**
      * Fetches songs with the given ids
@@ -89,7 +94,7 @@ export class SearchService {
      * @param {number} index
      * @returns {Observable<AlbumResponse[]>}
      */
-	getAlbums(name: string, amount:number, index:number): Observable<AlbumResponse[]> {
+    getAlbums(name: string, amount: number, index: number): Observable<AlbumResponse[]> {
         return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + index + "/" + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
