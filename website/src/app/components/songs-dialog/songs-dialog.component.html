@@ -1,0 +1,22 @@
+<div id="modal-dialog">
+    <div id="modal-artist-dialog">
+        <div id="right-dialog">
+            <img id="artist-img-dialog" src="{{data[0].imageLink}}" alt="Artist picture"/>
+        </div>
+        <div id="left-dialog">
+            <h3>Artist</h3>
+            <h1>{{data[0].name}}</h1>
+            <p id="genres-dialog">Genres: {{data[0].genres.slice(0,4).join(', ')}}</p>
+            <p id="popularity-dialog">Popularity: {{data[0].popularity}}</p>
+        </div>
+        <div id="close-dialog" (click)="closeDialog()">
+            <span>X</span>
+        </div>
+
+    </div>
+    <br><hr id="hr-dialog">
+    <h2 id="type-dialog">Tracks</h2>
+    <div>
+
+    </div>
+</div>

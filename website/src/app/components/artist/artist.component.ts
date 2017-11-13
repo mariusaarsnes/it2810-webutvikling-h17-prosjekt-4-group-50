@@ -27,7 +27,7 @@ export class ArtistComponent implements OnInit {
         return this.albumService.getAlbums(albums);
     }
 
-    openDialog() {
+    openDialogAlbums() {
         this.getAlbums(this.artist.albums.join(',')).then(albums => {
             this.albums = albums;
 
@@ -39,5 +39,14 @@ export class ArtistComponent implements OnInit {
             });
             dialogRef.afterClosed();
         });
+    }
+    openDialogTracks() {
+        const dialogRef = this.dialog.open(DialogComponent, {
+
+            height: "80%",
+            width: "70%",
+            data: [this.artist],
+        });
+        dialogRef.afterClosed();
     }
 }

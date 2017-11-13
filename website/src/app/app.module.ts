@@ -28,6 +28,7 @@ import {Permissions} from "./shared/auth/Permissions";
 import {LoginComponent} from "./login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import {TrackComponent} from "./components/track/track.component";
+import { SongsDialogComponent } from './components/songs-dialog/songs-dialog.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {TrackComponent} from "./components/track/track.component";
         MyInfoComponent,
         HistoryComponent,
         TrackComponent,
-        WordcloudComponent
+        WordcloudComponent,
+        SongsDialogComponent
     ],
     imports: [
         BrowserModule,
