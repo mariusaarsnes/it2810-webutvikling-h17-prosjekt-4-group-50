@@ -26,8 +26,9 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      */
     router.get("/user", userController.findUser);
     router.get("/aggregate_genres", isAuthorized, userController.findAggregateGenres);
-    router.get("/add_favorite_artist/:id", userController.addFavoriteArtist);
-    router.put("/update_history/search/:search", userController.updateSearchHistory);
+    router.post("/add_favorite_artist/:id", userController.addFavoriteArtist);
+    router.get("/update_history/:type/:id", userController.updateSearchHistory);
+    router.get("/search_history", userController.findSearchHistory);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
     router.post('/login',
         passport.authenticate('local', {

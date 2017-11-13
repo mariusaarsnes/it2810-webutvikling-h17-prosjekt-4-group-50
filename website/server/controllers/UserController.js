@@ -1,12 +1,12 @@
 let mongoose = require('mongoose'),
     User = mongoose.model("User"),
     Artist = mongoose.model("Artist"),
-    Search = mongoose.model("Search"),
+    History = mongoose.model("History"),
     error = require("../router/Error");
 
 exports.findSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, result) => {
-        Search.find({_id: {$in: result.search_history}}, (err, searchHistory) => {
+        History.find({_id: {$in: result.search_history}}, (err, searchHistory) => {
             if (err) error(res, err, 202);
             res.status(200).json(searchHistory);
         });
@@ -15,9 +15,10 @@ exports.findSearchHistory = (req, res) => {
 
 exports.updateSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        const search = new Search({search_string: req.params.search});
-        user.search_history.push(search._id);
-        search.save();
+        const history = new History({ type: req.params.type, type_id: req.params.id });
+        user.search_history.push(history._id);
+        console.log(history);
+        history.save();
         user.save((err, result) => {
             if (err) error(res, err, 202);
             res.status(200).json(result);

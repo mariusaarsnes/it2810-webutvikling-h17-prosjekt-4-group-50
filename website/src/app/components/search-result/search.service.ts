@@ -7,6 +7,7 @@ import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 import {UserResponse} from "../../interfaces/user-response.interface";
+import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -53,6 +54,14 @@ export class SearchService {
                 return <AlbumResponse>{...res, artistsData: artists};
             });
         });
+    }
+
+    getArtist(id: string): Observable<ArtistResponse> {
+        return this.http.get<ArtistResponse>('api/artist/' + id);
+    }
+
+    getSong(id: string): Observable<SongResponse> {
+        return this.http.get<SongResponse>('api/song/' + id);
     }
 
     /**
@@ -127,6 +136,22 @@ export class SearchService {
                 return <UserResponse>{...res, favorite_artistsData: artists};
             });
         });
+    }
+
+    getSearchHistory() {
+        return this.http.get<SearchHistoryResponse[]>('api/search_history');
+    }
+
+    getSchemaById(type: string, id: number) {
+        switch (type) {
+            case "album":
+                return this.getAlbum(id);
+            case "song":
+                return this.getSong(id);
+            case "artist":
+                return this.getArtist(id);
+        }
+        return null;
     }
 
 }
