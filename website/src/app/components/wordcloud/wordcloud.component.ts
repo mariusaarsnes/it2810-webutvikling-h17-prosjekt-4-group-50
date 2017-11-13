@@ -46,7 +46,6 @@ export class WordcloudComponent implements OnInit {
     ngOnInit() {
         this.searchService.getFavoriteGenres().subscribe(data => {
             this.wordData = this.mapGenresToWordCloud(data);
-            console.log(this.wordData);
             this.loaded = true;
         });
     }
