@@ -4,14 +4,14 @@ import {SearchService} from "../search-result/search.service";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 
 @Component({
-    selector: 'app-wordcloud',
+    selector: 'wordcloud',
     templateUrl: './wordcloud.component.html',
     styleUrls: ['./wordcloud.component.css'],
     encapsulation: ViewEncapsulation.None
 })
 export class WordcloudComponent implements OnInit {
 
-    loaded: boolean = false;
+    loaded: boolean = true;
 
     //The colors specified for our word cloud
     colors: Array<String> = [

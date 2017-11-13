@@ -13,6 +13,11 @@
 	color: red;
 }
 
+.gray{
+	color: #5a5a5a;
+	text-align: center;
+}
+
 button {
 	width: 100%;
 	background-color: green;

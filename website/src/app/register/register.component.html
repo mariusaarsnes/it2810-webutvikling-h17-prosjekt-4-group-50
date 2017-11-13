@@ -1,4 +1,5 @@
 <div class="container">
+	<p class="gray">Fill in your desired username and password to create a user <p>
 	<p class="red">{{result}}</p>
 	<form (ngSubmit)="onSubmit()">
 		<label>Username</label>
@@ -7,5 +8,5 @@
 		<input type="password" placeholder="Password" name="password" class="input" [(ngModel)]="password">
 		<button type="submit">Register user</button>
 	</form>
-	<p><a href="/login">Already have a user? Click here to log in</a></p>
+	<p><a routerLink="/login" routerLinkActive="disabled">Already have a user? Click here to log in</a></p>
 </div>
