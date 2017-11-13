@@ -49,6 +49,7 @@ export class WordcloudComponent implements OnInit {
             this.loaded = true;
         });
         this.searchService.getSearchHistory().subscribe(data => {
+            console.log("??");
             console.log(data);
         });
     }

@@ -29,6 +29,18 @@ exports.findArtistsByIds = ((req, res) => {
     );
 });
 
+exports.findArtistById = ((req, res) => {
+    Artist.find({
+            _id: req.params.id
+        }, (err, artists) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(artists[0]);
+        }
+    );
+});
+
+
+
 exports.findArtists = ((req, res) => {
     const query = {
         name: {
