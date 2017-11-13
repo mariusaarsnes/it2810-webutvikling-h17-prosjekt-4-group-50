@@ -92,6 +92,8 @@ export class SearchService {
         return this.http.get<SongResponse[]>('api/songs/' + ids.join(","));
     }
 
+    
+
     /**
      * Fetches all albums that contains the name.
      * @param {string} name

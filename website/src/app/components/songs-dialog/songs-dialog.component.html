@@ -17,6 +17,9 @@
     <br><hr id="hr-dialog">
     <h2 id="type-dialog">Tracks</h2>
     <div>
+        <div *ngFor="let song of data[1];" class="song-info-dialog">
+            <p>{{song.name}}</p>
+        </div>
 
     </div>
 </div>

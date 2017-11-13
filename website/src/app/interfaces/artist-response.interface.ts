@@ -4,6 +4,7 @@ export interface ArtistResponse {
     type: string;
     popularity: number;
     albums: string[];
+    songs: string[];
     __v: number;
     genres: string[];
     imageLink: string;
