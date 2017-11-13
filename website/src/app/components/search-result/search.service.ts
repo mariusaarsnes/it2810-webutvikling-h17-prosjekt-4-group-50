@@ -93,6 +93,33 @@ export class SearchService {
     }
 
     /**
+     * Fetches all songs and links them with their corresponding album.
+     * @param {string[]} ids
+     * @returns {Observable<SongResponse[]>}
+     */
+    getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(",")).switchMap(result => {
+            let observables = [];
+            result.forEach((res) => {
+                const album = this.getAlbum(res.album);
+                observables.push(Observable.of(res).combineLatest(album, (res, album) => {
+                    return <SongResponse>{...res, albumData: album};
+                }));
+            });
+            return observables;
+        });
+    }
+
+    /**
+     *
+     * @param {string[]} ids
+     * @returns {Observable<AlbumResponse[]>}
+     */
+    getAlbumsByIds(ids: string[]): Observable<AlbumResponse[]> {
+        return this.http.get<AlbumResponse[]>('api/albums/' +  ids.join(","));
+    }
+
+    /**
      * Fetches all albums that contains the name.
      * @param {string} name
      * @param {number} amount

@@ -28,6 +28,7 @@ import {Permissions} from "./shared/auth/Permissions";
 import {LoginComponent} from "./login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import {TrackComponent} from "./components/track/track.component";
+import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import {TrackComponent} from "./components/track/track.component";
         HistoryComponent,
         WordcloudComponent,
         FavoriteArtistsComponent,
-        TrackComponent
+        TrackComponent,
+        SongsDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -87,7 +89,8 @@ import {TrackComponent} from "./components/track/track.component";
         ])
     ],
     entryComponents: [
-        DialogComponent
+        DialogComponent,
+        SongsDialogComponent
     ],
     providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
     bootstrap: [AppComponent]
