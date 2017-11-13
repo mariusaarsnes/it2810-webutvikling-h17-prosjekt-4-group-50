@@ -15,7 +15,7 @@ import {Observable} from "rxjs/Observable";
 })
 export class ArtistComponent implements OnInit {
 
-    constructor(public dialog: MatDialog, private albumService: SearchService) {
+    constructor(public dialog: MatDialog, private searchService: SearchService) {
     }
 
     albums: AlbumResponse[];
@@ -28,10 +28,10 @@ export class ArtistComponent implements OnInit {
 
 
     getAlbums(albums): Observable<AlbumResponse[]> {
-        return this.albumService.getAlbumsByIds(albums);
+        return this.searchService.getAlbumsByIds(albums);
     }
     getSongs(songs): Observable<SongResponse[]> {
-        return this.albumService.getSongsByIdsWithAlbums(songs);
+        return this.searchService.getSongsByIdsWithAlbums(songs);
     }
 
 
