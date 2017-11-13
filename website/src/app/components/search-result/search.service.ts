@@ -6,6 +6,7 @@ import {SongResponse} from "../../interfaces/song-response.interface";
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
+import {UserResponse} from "../../interfaces/user-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -54,6 +55,10 @@ export class SearchService {
         });
     }
 
+    /**
+     * Fetches a list of genres + counts of the favorite artists
+     * @returns {Observable<GenresResponse[]>}
+     */
     getFavoriteGenres(): Observable<GenresResponse[]> {
         return this.http.get<GenresResponse[]>('api/aggregate_genres');
     }
@@ -108,6 +113,19 @@ export class SearchService {
                 }));
             });
             return observables;
+        });
+    }
+
+    /**
+     * Returns the user with its favorite artists
+     * @returns {Observable<UserResponse>}
+     */
+    getUser(): Observable<UserResponse> {
+        return this.http.get<UserResponse>('api/user').switchMap(result => {
+            const artists = this.getArtistsByIds(result.favorite_artists);
+            return Observable.of(result).combineLatest(artists, (res, artists) => {
+                return <UserResponse>{...res, favorite_artistsData: artists};
+            });
         });
     }
 
