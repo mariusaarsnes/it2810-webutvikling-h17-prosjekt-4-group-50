@@ -1,7 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { SearchService } from '../../components/search-result/search.service';
+import { UserResponse } from '../../interfaces/user-response.interface';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { MatDialog } from '@angular/material';
+import { ArtistResponse } from '../../interfaces/artist-response.interface';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'favorite-artists',
@@ -10,39 +15,36 @@ import 'rxjs/add/observable/of';
   encapsulation: ViewEncapsulation.None
 })
 export class FavoriteArtistsComponent implements OnInit {
+    constructor(private searchService: SearchService, private dialog: MatDialog) { }
 
-    displayedColumns = ['type', 'name', 'date'];
-    dataSource = new ExampleDataSource();
+    ngOnInit() {
+        this.searchService.getUser().subscribe(data => {
+            this.user = data;
+            this.dataSource = new ArtistDataSource(this.user.favorite_artistsData);
+        })
+    }
+    user: UserResponse;
+
+    displayedColumns = ['image', 'name', 'popularity'];
+    dataSource: ArtistDataSource;
 
     //Denne logger søkestrengen du trykker på i listen
     handleRowClick = (row) => {
-        console.log(row.name, row.type, row.date)
+        this.openDialog(row);
     }
 
+    openDialog(artist: ArtistResponse) {
+        this.searchService.getAlbumsByIds(artist.albums).subscribe(data => {
+            const dialogRef = this.dialog.open(DialogComponent, {
+                height: "80%",
+                width: "70%",
+                data: [artist, data],
+            });
+            dialogRef.afterClosed();
+        });
+    }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
 }
-
-export interface Element {
-    type: string;
-    name: string;
-    date: string;
-}
-
-const data: Element[] = [
-    {type: "album", name: "Dave's Picks, Volume 24: Berkeley Community Theatre, Berkeley, CA, 8/25/72", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-    {type: "artist", name: "Queen", date: "06-11-2017"},
-];
 
 /**
  * Data source to provide what data should be rendered in the table. The observable provided
@@ -50,10 +52,18 @@ const data: Element[] = [
  * altered, the observable should emit that new set of data on the stream. In our case here,
  * we return a stream that contains only one set of data that doesn't change.
  */
-export class ExampleDataSource extends DataSource<any> {
+export class ArtistDataSource extends DataSource<any> {
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Element[]> {
-    return Observable.of(data);
+
+  constructor(data: ArtistResponse[]) {
+      super();
+      this.data = data;
+  }
+
+  data: ArtistResponse[];
+
+  connect(): Observable<ArtistResponse[]> {
+    return Observable.of(this.data);
   }
 
   disconnect() {}

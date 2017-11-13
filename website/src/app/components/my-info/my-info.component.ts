@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../../components/search-result/search.service';
+import { UserResponse } from '../../interfaces/user-response.interface';
 
 @Component({
   selector: 'my-info',
@@ -7,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+      this.searchService.getUser().subscribe(data => {
+          this.user = data;
+          this.profileType = data.isAdmin ? "admin" : "user"
+          this.date = data.date_registered.substr(0,10);
+      })
   }
-
-  // USER INFO
-  username = "Testbruker123"
-  profileType = "user"
-  since = "06-11-2017"
+  user: UserResponse;
+  profileType: string;
+  date: string;
 }
