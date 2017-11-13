@@ -1,0 +1,40 @@
+.title-blue {
+	color: #13738c;
+	margin: 5px;
+}
+.under-line {
+	width: 200px;
+	height:5px;
+	background-color: #13738c;
+}
+.navbar-bottom-container {
+	background-color: white;
+	margin-left: -20px;
+	margin-right: -20px;
+	margin-top: -20px;
+	display: flex;
+}
+.nav-bottom-left-container {
+	flex: 1 1 auto;
+}
+.nav-bottom-left {
+	margin-left: 20px;
+}
+.nav-bottom-left ul {
+	display: flex;
+	margin: 0;
+	padding: 0;
+	font-size: 13px;
+}
+.nav-bottom-left ul li a {
+	display: block;
+	color: #5a5a5a;
+	transition: all .4s ease-in-out;
+}
+.nav-bottom-left ul li a:hover {
+	color: black;
+}
+.nav-bottom-left ul li {
+	list-style-type: none;
+	padding: 10px;
+}
