@@ -69,7 +69,7 @@ module.exports = (req, res) => {
                     type: artist.type,
                     popularity: artist.popularity,
                     albums: [],
-                    tracks: []
+                    songs: []
                 });
             });
         });
@@ -108,7 +108,7 @@ module.exports = (req, res) => {
                             name: album.name,
                             imageLink: album.images[1].url,
                             artists: tempArtists,
-                            tracks: []
+                            songs: []
                         });
                     }
                     if (j === data.body.items.length) {

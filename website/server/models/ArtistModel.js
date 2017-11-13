@@ -24,10 +24,9 @@ let mongoose = require("mongoose"),
         albums: {
             type: Array
         },
-        tracks: {
+        songs: {
             type: Array
         }
-
     });
 
 module.exports = mongoose.model("Artist", Artist);
