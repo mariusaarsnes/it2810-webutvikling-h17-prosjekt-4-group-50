@@ -1,18 +1,15 @@
-import {Component} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-/**
- * @title Basic table
- */
- @Component({
-   selector: 'search-history-list',
-   templateUrl: './search-history-list.component.html',
-   styleUrls: ['./search-history-list.component.css']
- })
-
-export class SearchHistoryListComponent {
+@Component({
+  selector: 'favorite-artists',
+  templateUrl: './favorite-artists.component.html',
+  styleUrls: ['./favorite-artists.component.css'],
+  encapsulation: ViewEncapsulation.None
+})
+export class FavoriteArtistsComponent implements OnInit {
 
     displayedColumns = ['type', 'name', 'date'];
     dataSource = new ExampleDataSource();
@@ -22,6 +19,11 @@ export class SearchHistoryListComponent {
         console.log(row.name, row.type, row.date)
     }
 
+
+  constructor() { }
+
+  ngOnInit() {
+  }
 }
 
 export interface Element {

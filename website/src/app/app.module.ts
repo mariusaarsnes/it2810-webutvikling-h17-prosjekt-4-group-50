@@ -27,6 +27,7 @@ import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
 import {AgWordCloudModule} from "angular4-word-cloud";
 import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
+import { FavoriteArtistsComponent } from './components/favorite-artists/favorite-artists.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
         NavbarProfileComponent,
         MyInfoComponent,
         HistoryComponent,
-        WordcloudComponent
+        WordcloudComponent,
+        FavoriteArtistsComponent
     ],
     imports: [
         BrowserModule,

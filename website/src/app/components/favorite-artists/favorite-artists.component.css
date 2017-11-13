@@ -1,0 +1,33 @@
+.example-container {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    text-align: center;
+    max-height: 500px;
+    min-width: 500px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+  font-family: "Intro Rust", sans-serif;
+}
+
+mat-row:hover{
+    background-color: lightgrey
+}
+
+mat-row:active{
+    background-color: grey
+}
+
+@media screen and (max-width: 600px) {
+    .mat-column-date {
+        display: none;
+    }
+    .example-container {
+        min-width: 300px;
+    }
+}

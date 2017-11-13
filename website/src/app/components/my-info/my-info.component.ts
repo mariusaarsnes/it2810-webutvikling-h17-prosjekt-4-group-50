@@ -14,11 +14,6 @@ export class MyInfoComponent implements OnInit {
 
   // USER INFO
   username = "Testbruker123"
-  password = "pass123"
+  profileType = "user"
   since = "06-11-2017"
-
-
-  //SEARCH HISTORY
-  uniqueSearches = 60
-  totalSearches = 104
 }
