@@ -37,7 +37,7 @@ export class WordcloudComponent implements OnInit {
             bottom: 10,
             left: 10
         },
-        labels: true // false to hide hover labels
+        labels: false // false to hide hover labels
     };
 
     constructor(private searchService: SearchService) {
@@ -46,6 +46,7 @@ export class WordcloudComponent implements OnInit {
     ngOnInit() {
         this.searchService.getFavoriteGenres().subscribe(data => {
             this.wordData = this.mapGenresToWordCloud(data);
+            console.log(this.wordData);
             this.loaded = true;
         });
     }
