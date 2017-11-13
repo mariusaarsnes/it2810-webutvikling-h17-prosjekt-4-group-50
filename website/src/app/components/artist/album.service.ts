@@ -11,4 +11,6 @@ export class AlbumService {
 		return this.http.get<AlbumResponse[]>('api/albums/' +  albums).toPromise();
 	}
 
+
+
 }

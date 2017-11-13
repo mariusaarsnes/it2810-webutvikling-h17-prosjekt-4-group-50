@@ -27,9 +27,8 @@ export class ArtistComponent implements OnInit {
         return this.albumService.getAlbums(albums);
     }
 
-    openDialog() {
+    openDialog(type) {
 
-        console.log(this.artist.albums.join(','));
         this.getAlbums(this.artist.albums.join(',')).then(albums => {
             console.log(albums);
             this.albums = albums;

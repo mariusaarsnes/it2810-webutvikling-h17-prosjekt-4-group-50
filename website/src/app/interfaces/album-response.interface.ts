@@ -5,7 +5,7 @@ export interface AlbumResponse {
 	_id: string;
 	name: string;
 	imageLink: string;
-	songs: string[];
+	tracks: string[];
 	songsData: SongResponse[];
 	artists: string[];
 	artistsData: ArtistResponse[];

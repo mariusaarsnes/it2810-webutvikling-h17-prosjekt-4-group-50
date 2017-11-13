@@ -120,6 +120,11 @@
 		margin-bottom: 10px;
 		font-size: 35px;
 	}
+    #close-dialog span:hover {
+        font-family: Avenir, serif;
+        font-size: 35px;
+        color: gray;
+    }
 	#modal-album-dialog {
 		justify-content: center;
 	}

@@ -6,9 +6,9 @@
   <p class="track-info">{{artist.albums ? artist.albums.length : 0}} albums</p>
   <div class="bottom-buttons">
     <div class="bottom-button border-right">
-		<span>tracks</span>
+		<span (click)="openDialog('tracks')">tracks</span>
     </div>
     <div class="bottom-button">
-		<span (click)="openDialog(artist)">albums</span>
+		<span (click)="openDialog('albums')">albums</span>
     </div>
 </div>
