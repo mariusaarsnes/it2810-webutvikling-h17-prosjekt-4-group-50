@@ -1,5 +1,6 @@
 let mongoose = require('mongoose'),
     User = mongoose.model("User"),
+    Artist = mongoose.model("Artist"),
     Search = mongoose.model("Search"),
     error = require("../router/Error");
 
@@ -34,8 +35,7 @@ exports.createUser = (req, res, bcrypt) => {
             error(res, "Your username needs to be atleast 3 characters long!", 202)
         else if (req.body.password === "")
             error(res, "You have not entered a password!", 202);
-        else
-        if (user)
+        else if (user)
             error(res, "This user already exists. Please try again with another username!", 202);
         else {
             const hashedPassword = bcrypt.hashSync(req.body.password),
@@ -46,5 +46,39 @@ exports.createUser = (req, res, bcrypt) => {
                 res.json(task);
             });
         }
+    });
+};
+
+exports.findAggregateGenres = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        const ids = user.favorite_artists;
+        Artist.aggregate([
+            {$unwind: "$genres"},
+            {
+                $match: {
+                    _id: {$in: ids}
+                }
+            },
+            {
+                $group: {
+                    _id: "$genres",
+                    count: {"$sum": 1}
+                }
+            },
+        ]).exec((err, data) => {
+            if (err) error(res, "Failed", 500)
+            res.status(200).json(data);
+        })
+    });
+};
+
+
+exports.addFavoriteArtist = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        user.favorite_artists.push(req.params.id);
+        user.save((err, result) => {
+            if (err) error(res, err, 202);
+            res.status(200).json(result);
+        });
     });
 };

@@ -4,7 +4,6 @@ import {ArtistResponse} from '../../interfaces/artist-response.interface';
 import {MatDialog} from '@angular/material';
 import {DialogComponent} from './dialog.component';
 
-
 @Component({
     selector: 'app-artist',
     templateUrl: './artist.component.html',
@@ -29,4 +28,5 @@ export class ArtistComponent implements OnInit {
             console.log(`Dialog result: ${result}`);
         });
     }
+
 }

@@ -7,6 +7,10 @@
 	height:5px;
 	background-color: #13738c;
 }
+.navbar-search {
+	background-color: white;
+	font-family: "Intro Rust", sans-serif;
+}
 .navbar-bottom-container {
 	background-color: white;
 	margin-left: -20px;

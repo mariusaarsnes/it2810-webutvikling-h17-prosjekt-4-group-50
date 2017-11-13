@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArtistComponent } from './artist.component';
+import { WordcloudComponent } from './wordcloud.component';
 
-describe('TrackComponent', () => {
-  let component: ArtistComponent;
-  let fixture: ComponentFixture<ArtistComponent>;
+describe('WordcloudComponent', () => {
+  let component: WordcloudComponent;
+  let fixture: ComponentFixture<WordcloudComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArtistComponent ]
+      declarations: [ WordcloudComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArtistComponent);
+    fixture = TestBed.createComponent(WordcloudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

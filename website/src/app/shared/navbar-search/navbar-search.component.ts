@@ -1,15 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-navbar-search',
-  templateUrl: './navbar-search.component.html',
-  styleUrls: ['./navbar-search.component.css'],
+	selector: 'app-navbar-search',
+	templateUrl: './navbar-search.component.html',
+	styleUrls: ['./navbar-search.component.css'],
 })
 export class NavbarSearchComponent implements OnInit {
 
-  constructor() { }
+	constructor() {
 
-  ngOnInit() {
-  }
+	}
 
+	ngOnInit() {
+
+	}
+
+	filterlist = [];
+	sort = "none";
+	sortType = "ascending";
+
+	selectSort(e): void {
+		this.sort = e.target.value;
+	}
+
+	selectFilter(e): void {
+		const index = this.filterlist.findIndex(array => array[1] == e.target.name);
+		if (index > -1) {
+			this.filterlist.splice(index, 1);
+		} else {
+			this.filterlist.push([e.target.dataset["type"], e.target.name]);
+		}
+		this.filterlist = this.filterlist.slice();
+	};
 }
