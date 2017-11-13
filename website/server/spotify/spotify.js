@@ -72,11 +72,12 @@ module.exports = (req, res) => {
                     songs: []
                 });
             });
+            if (i === artistIDs.length) {
+                console.log("Done fetching Artists");
+                resolve(temp);
+            }
+
         });
-        if (i === artistIDs.length) {
-            console.log("Done fetching Artists");
-            resolve(temp);
-        }
     });
 
     parsedAlbumsPromise = new Promise(resolve => {
@@ -182,9 +183,9 @@ module.exports = (req, res) => {
             // and add the song to the right album and artist
             for (let key in values[2]) {
                 // Now we add the songs to the right album,
-                values[1][values[2][key].album].tracks.push(key);
+                values[1][values[2][key].album].songs.push(key);
                 values[2][key].artists.forEach(artistID => {
-                    values[0][artistID].tracks.push(key)
+                    values[0][artistID].songs.push(key)
                 })
             }
 

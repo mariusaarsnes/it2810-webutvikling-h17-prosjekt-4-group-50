@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { DialogComponent } from '../dialog/dialog.component';
-import { AlbumService } from "./album.service";
-import { ArtistResponse } from "../../interfaces/artist-response.interface";
-import { AlbumResponse } from "../../interfaces/album-response.interface";
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {DialogComponent} from '../dialog/dialog.component';
+import {AlbumService} from './album.service';
+import {ArtistResponse} from '../../interfaces/artist-response.interface';
+import {AlbumResponse} from '../../interfaces/album-response.interface';
 
 @Component({
-	selector: 'app-artist',
-	templateUrl: './artist.component.html',
-	styleUrls: ['./artist.component.css']
+    selector: 'app-artist',
+    templateUrl: './artist.component.html',
+    styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
 
@@ -33,8 +33,8 @@ export class ArtistComponent implements OnInit {
 
             const dialogRef = this.dialog.open(DialogComponent, {
 
-                height: "80%",
-                width: "70%",
+                height: '80%',
+                width: '70%',
                 data: [this.artist, this.albums],
             });
             dialogRef.afterClosed();
