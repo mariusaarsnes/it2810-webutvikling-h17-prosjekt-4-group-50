@@ -12,22 +12,22 @@ import {SearchPageComponent} from './components/search-page/search-page.componen
 import {FormsModule} from "@angular/forms";
 import {SearchResultComponent} from './components/search-result/search-result.component';
 import {ArtistComponent} from './components/artist/artist.component';
-import {SearchService} from "./components/search-result/search.service";
-import {HttpClientModule} from "@angular/common/http";
-import {AdditionalInfoComponent} from "./components/additional_info/additional-info.component";
-import {AdditionalInfoService} from "./components/additional_info/additional-info.service";
-import {DialogComponent} from "./components/artist/dialog.component";
-import {CanActivateService} from "./shared/auth/can-activate.service";
-import {Permissions} from "./shared/auth/Permissions";
 import {RegisterComponent} from "./register/register.component";
-import {LoginComponent} from "./login/login.component";
-import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import {NavbarProfileComponent} from './shared/navbar-profile/navbar-profile.component';
 import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
+import {SearchService} from "./components/search-result/search.service";
+import {DialogComponent} from "./components/dialog/dialog.component";
+import {AlbumService} from "./components/artist/album.service";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AgWordCloudModule} from "angular4-word-cloud";
 import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
 
+import {CanActivateService} from "./shared/auth/can-activate.service";
+import {Permissions} from "./shared/auth/Permissions";
+import {LoginComponent} from "./login/login.component";
+import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
+import {TrackComponent} from "./components/track/track.component";
 
 @NgModule({
     declarations: [
@@ -38,7 +38,6 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
         SearchPageComponent,
         SearchResultComponent,
         ArtistComponent,
-        AdditionalInfoComponent,
         DialogComponent,
         RegisterComponent,
         LoginComponent,
@@ -46,6 +45,7 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
         NavbarProfileComponent,
         MyInfoComponent,
         HistoryComponent,
+        TrackComponent,
         WordcloudComponent
     ],
     imports: [
@@ -59,24 +59,20 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
         RouterModule.forRoot([
             {
                 path: 'search',
-                component: SearchPageComponent,
+                component: NavbarSearchComponent,
                 //canActivate: [CanActivateService]
-            },
-            {
-                path: 'wordcloud',
-                component: WordcloudComponent
             },
             {
                 path: 'login',
                 component: LoginComponent,
             },
             {
-                path: 'register',
-                component: RegisterComponent,
+                path: 'wordcloud',
+                component: WordcloudComponent
             },
             {
-                path: 'info',
-                component: AdditionalInfoComponent
+                path: 'register',
+                component: RegisterComponent,
             },
             {
                 path: 'profilepage',
@@ -92,8 +88,9 @@ import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
     entryComponents: [
         DialogComponent
     ],
-    providers: [SearchService, AdditionalInfoService, CanActivateService, Permissions],
+    providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
     bootstrap: [AppComponent]
+
 })
 
 export class AppModule {
