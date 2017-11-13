@@ -85,12 +85,11 @@ import {TrackComponent} from './components/track/track.component';
             }
         ])
     ],
-    providers: [SearchService, AlbumService, CanActivateService, Permissions, HttpClient],
+    providers: [AlbumService, SearchService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent
     ],
     bootstrap: [AppComponent]
-
 })
 
 export class AppModule {

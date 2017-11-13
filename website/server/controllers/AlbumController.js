@@ -27,6 +27,16 @@ exports.findAlbumsByIds = ((req, res) => {
     );
 });
 
+exports.findAlbumById = ((req, res) => {
+    Album.find({
+            _id: req.params.id
+        }, (err, albums) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(albums[0]);
+        }
+    );
+});
+
 exports.findAlbumsById = ((req, res) => {
     Album.find({
             _id: req.params.id
