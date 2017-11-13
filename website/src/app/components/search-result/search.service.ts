@@ -92,7 +92,18 @@ export class SearchService {
         return this.http.get<SongResponse[]>('api/songs/' + ids.join(","));
     }
 
-    
+    getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(",")).switchMap(result => {
+            let observables = [];
+            result.forEach((res) => {
+                const album = this.getAlbum(res.album);
+                observables.push(Observable.of(res).combineLatest(album, (res, album) => {
+                    return <AlbumResponse>{...res, albumData: album};
+                }));
+            });
+            return observables;
+        });
+    }
 
     /**
      * Fetches all albums that contains the name.
