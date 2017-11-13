@@ -1,17 +1,17 @@
 <div *ngIf="user">
     <div class="info-wrapper">
-        <h1>Search history for {{username}}</h1>
+        <h1>View history for {{user.username}}</h1>
 
         <div class="search-info-wrapper">
             <div class="search-container">
-                <h3>Unique searches</h3>
+                <h3>Unique viewed items</h3>
                 <div class="underline"></div>
-                <h1>{{uniqueSearches}}</h1>
+                <h1>{{user.unique_views}}</h1>
             </div>
             <div class="search-container">
-                <h3>Total searches</h3>
+                <h3>Total viewed items</h3>
                 <div class="underline"></div>
-                <h1>{{totalSearches}}</h1>
+                <h1>{{user.total_views}}</h1>
             </div>
         </div>
         <div>
