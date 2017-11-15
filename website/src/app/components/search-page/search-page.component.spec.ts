@@ -4,7 +4,7 @@ import {SearchPageComponent} from './search-page.component';
 import {SearchResultComponent} from '../search-result/search-result.component';
 import {FormsModule} from '@angular/forms';
 import {ArtistComponent} from '../artist/artist.component';
-import {SearchService} from '../search-result/search.service';
+import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('SearchPageComponent', () => {
@@ -22,7 +22,7 @@ describe('SearchPageComponent', () => {
                 FormsModule
             ],
             providers: [
-                SearchService,
+                DataService,
                 HttpClient,
                 HttpHandler
             ]

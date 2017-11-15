@@ -1,16 +1,16 @@
 import {inject, TestBed} from '@angular/core/testing';
 
-import {SearchService} from './search.service';
+import {DataService} from './data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 
-describe('SearchService', () => {
+describe('DataService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [SearchService, HttpClient, HttpHandler]
+            providers: [DataService, HttpClient, HttpHandler]
         });
     });
 
-    it('should be created', inject([SearchService], (service: SearchService) => {
+    it('should be created', inject([DataService], (service: DataService) => {
         expect(service).toBeTruthy();
     }));
 });

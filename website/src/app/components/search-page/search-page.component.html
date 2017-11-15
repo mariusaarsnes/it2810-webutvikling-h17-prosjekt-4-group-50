@@ -2,5 +2,5 @@
   <div class="input-search-wrapper"><input type="text" [(ngModel)]="searchInput" placeholder="Search here" class="input-search"></div>
 </div>
 <br>
-<app-search-result [search]="searchInput" [sort]="sort" [sortType]="sortType" [filterList]="filterList" #child></app-search-result>
+<app-search-result [searchType]="searchType" [search]="searchInput" [sort]="sort" [sortType]="sortType" [filterList]="filterList" #child></app-search-result>
 

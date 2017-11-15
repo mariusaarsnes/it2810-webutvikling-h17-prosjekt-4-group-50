@@ -43,11 +43,12 @@ exports.findArtistById = ((req, res) => {
 
 exports.findArtists = ((req, res) => {
     const query = {
-        name: {
+    };
+    if (req.params.search_string !== "*")
+        query["name"] = {
             "$regex": req.params.search_string,
             "$options": "i"
-        },
-    };
+        };
     //Checks if the filter is not specified as none, append it to our query
     if (req.params.filter !== 'none') {
         const filters = req.params.filter.split(","),

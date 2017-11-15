@@ -1,4 +1,3 @@
-
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -17,7 +16,7 @@ import {AlbumResponse} from "../../interfaces/album-response.interface";
 })
 export class ArtistComponent implements OnInit {
 
-    constructor(public dialog: MatDialog, private searchService: SearchService) {
+    constructor(public dialog: MatDialog, private searchService: DataService) {
     }
 
     albums: AlbumResponse[];
@@ -49,7 +48,7 @@ export class ArtistComponent implements OnInit {
             console.log(this.songs);
             this.getAlbums(this.artist.albums).subscribe(albums => {
                 this.albums = albums;
-                
+
                 console.log(this.albums);
 
                 const dialogRef = this.dialog.open(dialog, {

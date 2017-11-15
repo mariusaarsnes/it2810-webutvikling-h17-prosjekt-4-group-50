@@ -15,9 +15,8 @@ exports.findSearchHistory = (req, res) => {
 
 exports.updateSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        const history = new History({ type: req.params.type, type_id: req.params.id });
+        const history = new History({type: req.body.type, type_id: req.body.id});
         user.search_history.push(history._id);
-        console.log(history);
         history.save();
         user.save((err, result) => {
             if (err) error(res, err, 202);
@@ -67,12 +66,51 @@ exports.findAggregateGenres = (req, res) => {
                 }
             },
         ]).exec((err, data) => {
-            if (err) error(res, "Failed", 500)
+            if (err) error(res, "Failed", 500);
             res.status(200).json(data);
         })
     });
 };
 
+exports.findSearchHistoryData = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        const ids = user.search_history;
+        History.aggregate([
+            {
+                $match: {
+                    _id: {$in: ids}
+                }
+            },
+            // Count all occurrences
+            {
+                $group: {
+                    _id: {
+                        _id: "$type_id",
+                    },
+                    count: {"$sum": 1}
+                }
+            },
+
+            // Sum all occurrences and count distinct
+            {
+                $group: {
+                    _id: {
+                        _id: "$type_id",
+                    },
+                    total_count: {"$sum": "$count"},
+                    distinct_count: {"$sum": 1}
+                }
+            }
+        ]).exec((err, data) => {
+            if (err) error(res, "Failed", 500);
+            else if (data.length > 0)
+                res.status(200).json(data[0]);
+            else
+                res.status(200).json({distinct_count: 0, total_count: 0});
+            console.log(data);
+        })
+    });
+};
 
 exports.addFavoriteArtist = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {

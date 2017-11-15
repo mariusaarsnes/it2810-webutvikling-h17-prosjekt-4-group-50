@@ -1,0 +1,14 @@
+<div class="container">
+	<div class="wrapper">
+		<img src="./assets/images/logo.png" alt="logo" class="logo"/>
+		<p id="errorText">{{result}}</p>
+		<form (ngSubmit)="onSubmit()" class="form">
+			<label>Username</label>
+			<input type="text" placeholder="Username" name="username" class="input" [(ngModel)]="username">
+			<label>Password</label>
+			<input type="password" placeholder="Password" name="password" class="input" [(ngModel)]="password">
+			<button type="submit">Login</button>
+		</form>
+		<p><a routerLink="/register" routerLinkActive="disabled">Don't have a user? Click here to register</a></p>
+	</div>
+</div>
