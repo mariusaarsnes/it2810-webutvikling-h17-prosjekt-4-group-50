@@ -21,17 +21,24 @@ export class RegisterComponent implements OnInit {
 
 	}
 
+	updateErrorText(text){
+		let elem: HTMLElement = document.getElementById('errorText');
+		elem.setAttribute("style", "display: block")
+		this.result = text;
+	}
+
 	onSubmit() {
 		if (this.username.length < 3)
-			this.result = "Your username needs to have atleast 3 characters!";
+			this.updateErrorText("Your username needs to have atleast 3 characters!");
 		else if (this.password === "")
-			this.result = "Your password field is empty! Please fill it out!";
+			this.updateErrorText("Your password field is empty! Please fill it out!")
 		else {
 			this.http.post("api/create_user/", {username: this.username, password: this.password}).subscribe(data => {
 				if (!data["message"])
-					console.log("");
-				else
-					this.result = data["message"];
+					this.router.navigate(['/login']);
+				else{
+					this.updateErrorText(data["message"]);
+				}
 			});
 		}
 	}
