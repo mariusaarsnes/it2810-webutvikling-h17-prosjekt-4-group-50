@@ -138,7 +138,7 @@ export class SearchService {
         });
     }
 
-    getSearchHistory() {
+    getSearchHistory(): Observable<SearchHistoryResponse[]> {
         return this.http.get<SearchHistoryResponse[]>('api/search_history').switchMap(data => {
             let observables = [];
             data.forEach(val => {
@@ -148,6 +148,12 @@ export class SearchService {
                 }));
             });
            return Observable.forkJoin(observables);
+        });
+    }
+
+    getSearchHistoryData(): Observable<> {
+        return this.http.get('api/search_history_data').map(data => {
+            return {count: data.count, distinct_count: data.distinct_count};
         });
     }
 
