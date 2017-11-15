@@ -6,4 +6,5 @@ export interface UserResponse {
     date_registered: string;
     favorite_artists: string[];
     favorite_artistsData: ArtistResponse[];
+    isAdmin: boolean;
 }

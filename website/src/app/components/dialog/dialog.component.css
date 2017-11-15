@@ -47,13 +47,13 @@
 	right: 0;
 }
 #close-dialog span {
-	font-family: Avenir, serif;
+	font-family: Avenir, Geneva, serif;
 	font-size: 25px;
 	color: darkgray;
 	cursor: pointer;
 }
 #close-dialog span:hover {
-	font-family: Avenir, serif;
+	font-family: Avenir, Geneva, serif;
 	font-size: 25px;
 	color: gray;
 }
