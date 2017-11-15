@@ -47,9 +47,3 @@
   font-family: "Intro Rust", sans-serif;
   color: #353535;
 }
-
-@media screen and (max-width: 480px) {
-    .info-wrapper {
-        float: none;
-    }
-}
