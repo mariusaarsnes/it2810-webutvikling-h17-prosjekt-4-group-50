@@ -168,4 +168,8 @@ export class SearchService {
         return null;
     }
 
+    updateSearchHistory(type: string, id: string) {
+        this.http.post('api/update_history', {type: type, type_id: id});
+    }
+
 }
