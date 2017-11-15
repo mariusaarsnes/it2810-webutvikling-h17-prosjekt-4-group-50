@@ -7,6 +7,7 @@ import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 import {UserResponse} from "../../interfaces/user-response.interface";
+import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -55,6 +56,14 @@ export class SearchService {
         });
     }
 
+    getArtist(id: string): Observable<ArtistResponse> {
+        return this.http.get<ArtistResponse>('api/artist/' + id);
+    }
+
+    getSong(id: string): Observable<SongResponse> {
+        return this.http.get<SongResponse>('api/song/' + id);
+    }
+
     /**
      * Fetches a list of genres + counts of the favorite artists
      * @returns {Observable<GenresResponse[]>}
@@ -79,7 +88,7 @@ export class SearchService {
                     return <SongResponse>{...res, albumData: album};
                 }));
             });
-            return observables;
+            return Observable.forkJoin(observables);
         });
     }
 
@@ -139,7 +148,7 @@ export class SearchService {
                     return <AlbumResponse>{...res, artistsData: both.artists, songsData: both.songs};
                 }));
             });
-            return observables;
+            return Observable.forkJoin(observables);
         });
     }
 
@@ -154,6 +163,31 @@ export class SearchService {
                 return <UserResponse>{...res, favorite_artistsData: artists};
             });
         });
+    }
+
+    getSearchHistory() {
+        return this.http.get<SearchHistoryResponse[]>('api/search_history').switchMap(data => {
+            let observables = [];
+            data.forEach(val => {
+                const schema = this.getSchemaById(val.type, val.type_id);
+                observables.push(Observable.of(val).combineLatest(schema, (val, schema) => {
+                    return <SearchHistoryResponse>{...val, typeData: schema};
+                }));
+            });
+           return Observable.forkJoin(observables);
+        });
+    }
+
+    getSchemaById(type: string, id: string) {
+        switch (type) {
+            case "album":
+                return this.getAlbum(id);
+            case "song":
+                return this.getSong(id);
+            case "artist":
+                return this.getArtist(id);
+        }
+        return null;
     }
 
 }

@@ -3,15 +3,16 @@ import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
 import { ArtistResponse } from "../../interfaces/artist-response.interface";
 import { AlbumResponse } from "../../interfaces/album-response.interface";
-import {SongResponse} from "../../interfaces/song-response.interface";
-import {SongsDialogComponent} from "../songs-dialog/songs-dialog.component";
-import {SearchService} from "../search-result/search.service";
-import {Observable} from "rxjs/Observable";
+import { SongResponse } from "../../interfaces/song-response.interface";
+import { SongsDialogComponent } from "../songs-dialog/songs-dialog.component";
+import { SearchService } from "../search-result/search.service";
+import { AlbumService } from './album.service';
+import { Observable } from "rxjs/Observable";
 
 @Component({
-	selector: 'app-artist',
-	templateUrl: './artist.component.html',
-	styleUrls: ['./artist.component.css']
+    selector: 'app-artist',
+    templateUrl: './artist.component.html',
+    styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
 
@@ -42,8 +43,8 @@ export class ArtistComponent implements OnInit {
 
             const dialogRef = this.dialog.open(DialogComponent, {
 
-                height: "80%",
-                width: "70%",
+                height: '80%',
+                width: '70%',
                 data: [this.artist, this.albums],
             });
             dialogRef.afterClosed();
