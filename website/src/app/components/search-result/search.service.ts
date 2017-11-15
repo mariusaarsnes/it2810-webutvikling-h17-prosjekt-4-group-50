@@ -177,6 +177,6 @@ export class SearchService {
     }
 
     register(username: string, password: string) {
-        return this.http.post('api/register', {username: username, password: password});
+        return this.http.post('api/create_user', {username: username, password: password});
     }
 }
