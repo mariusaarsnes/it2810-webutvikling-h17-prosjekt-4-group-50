@@ -6,16 +6,22 @@
             <div class="search-container">
                 <h3>Unique viewed items</h3>
                 <div class="underline"></div>
-                <div *ngIf="uniqueSearches">
+                <div *ngIf="uniqueSearches; else noUniquesearch">
                     <h1>{{uniqueSearches}}</h1>
                 </div>
+                <ng-template #noUniquesearch>
+                    <h1>0</h1>
+                </ng-template>
             </div>
             <div class="search-container">
                 <h3>Total viewed items</h3>
                 <div class="underline"></div>
-                <div *ngIf="totalSearches">
+                <div *ngIf="totalSearches; else noTotalsearch">
                     <h1>{{totalSearches}}</h1>
                 </div>
+                <ng-template #noTotalsearch>
+                    <h1>0</h1>
+                </ng-template>
             </div>
         </div>
         <div>
