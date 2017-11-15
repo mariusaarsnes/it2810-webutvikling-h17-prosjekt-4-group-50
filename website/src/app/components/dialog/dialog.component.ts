@@ -13,6 +13,9 @@ export class DialogComponent {
     id: string = "";
     album: AlbumResponse;
 
+    displayedColumns = ['', 'Title', 'Album'];
+    dataSource = new MatTableDataSource<>();
+
 	constructor(@Inject(MAT_DIALOG_DATA) public data: any, public thisDialogRef: MatDialogRef<DialogComponent>) {
 	}
 	closeDialog() {
@@ -21,6 +24,6 @@ export class DialogComponent {
     intoView(album) {
 	    this.album = album;
 	    this.show = true;
-        document.getElementById("modal-dialog").scrollIntoView();
+        document.getElementById("type-dialog").scrollIntoView();
     }
 }

@@ -97,9 +97,38 @@
 	width: 150px;
 }
 
-.show-dialog {
+#show-dialog {
     width: 100%;
-    background-color: lightgray;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#show-album-dialog {
+    display: flex;
+    flex-direction: row;
+}
+
+#show-dialog img {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#album-info-dialog {
+    width: 60%;
+    margin-left: 20px;
+}
+
+#album-info-dialog h3{
+    margin-top: 3px;
+    color: rgb(156, 43, 66);
+}
+
+#album-info-dialog h4{
+    margin-top: 10%;
+    margin-bottom: 0;
+
 }
 
 @media screen and (max-width: 480px) {
