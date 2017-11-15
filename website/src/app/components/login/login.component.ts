@@ -22,12 +22,18 @@ export class LoginComponent implements OnInit {
 
     }
 
+    updateErrorText(text){
+		let elem: HTMLElement = document.getElementById('errorText');
+		elem.setAttribute("style", "display: block")
+		this.result = text;
+	}
+
     onSubmit() {
         this.searchService.login(this.username, this.password).subscribe(data => {
             if (data['failed'] === 'false') {
                 this.router.navigate(['/search']);
             } else {
-                this.result = data['message'];
+                this.updateErrorText(data['message']);
             }
         });
     }
