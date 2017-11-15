@@ -19,6 +19,10 @@ export class HistoryComponent implements OnInit {
             this.user = data;
             this.profileType = data.isAdmin ? "admin" : "user"
             this.date = data.date_registered.substr(0,10);
+        });
+        this.searchService.getSearchHistoryData().subscribe(data => {
+            this.uniqueSearches = data.distinct_count;
+            this.totalSearches = data.total_count;
         })
     }
 
@@ -27,6 +31,6 @@ export class HistoryComponent implements OnInit {
     date: string;
 
     //SEARCH HISTORY
-    uniqueSearches = 60
-    totalSearches = 104
+    uniqueSearches: string;
+    totalSearches: string;
 }

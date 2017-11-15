@@ -98,8 +98,8 @@ exports.findSearchHistoryData = (req, res) => {
                     _id: {
                         _id: "$type_id",
                     },
-                    totalCount: {"$sum": "$count"},
-                    distinctCount: {"$sum": 1}
+                    total_count: {"$sum": "$count"},
+                    distinct_count: {"$sum": 1}
                 }
             }
         ]).exec((err, data) => {

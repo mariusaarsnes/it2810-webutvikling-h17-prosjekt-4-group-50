@@ -8,6 +8,7 @@ import {Observable} from "rxjs/Observable";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 import {UserResponse} from "../../interfaces/user-response.interface";
 import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
+import {SearchHistoryData} from "../../interfaces/search-history-data-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -178,13 +179,11 @@ export class SearchService {
         });
     }
 
-    getSearchHistoryData(): Observable<> {
-        return this.http.get('api/search_history_data').map(data => {
-            return {count: data.count, distinct_count: data.distinct_count};
-        });
+    getSearchHistoryData(): Observable<SearchHistoryData> {
+        return this.http.get('api/search_history_data');
     }
 
-    getSchemaById(type: string, id: string) {
+    getSchemaById(type: string, id: string): Observable<any> {
         switch (type) {
             case "album":
                 return this.getAlbum(id);

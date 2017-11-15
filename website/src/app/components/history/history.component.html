@@ -6,12 +6,16 @@
             <div class="search-container">
                 <h3>Unique viewed items</h3>
                 <div class="underline"></div>
-                <h1>{{user.unique_views}}</h1>
+                <div *ngIf="uniqueSearches">
+                    <h1>{{uniqueSearches}}</h1>
+                </div>
             </div>
             <div class="search-container">
                 <h3>Total viewed items</h3>
                 <div class="underline"></div>
-                <h1>{{user.total_views}}</h1>
+                <div *ngIf="totalSearches">
+                    <h1>{{totalSearches}}</h1>
+                </div>
             </div>
         </div>
         <div>
