@@ -26,6 +26,16 @@ exports.findSongsByIds = ((req, res) => {
     );
 });
 
+exports.findSongById = ((req, res) => {
+    Song.find({
+            _id: req.param.id
+        }, (err, songs) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(songs[0]);
+        }
+    );
+});
+
 exports.findSongsAdvanced = ((req, res) => {
     const query = {
         name: {
