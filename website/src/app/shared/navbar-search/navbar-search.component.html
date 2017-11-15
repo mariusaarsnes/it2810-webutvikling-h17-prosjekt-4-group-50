@@ -26,22 +26,12 @@
                         <option value="descending" selected="selected">Desc</option>
                     </select>
 				</div>
-				<div class="filter-by">
+				<div *ngIf="searchType == 'artist'" class="filter-by">
                     <p>Filter by:</p>&nbsp;&nbsp;
-                    <div *ngIf="searchType == 'artist'" class="filter-box">
+                    <div class="filter-box">
                         <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="edm">Edm</div>
                         <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="house">House</div>
                         <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="pop">Pop</div>
-                    </div>
-                    <div *ngIf="searchType == 'album'" class="filter-box">
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="yes">Yes</div>
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="some">Some</div>
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="hello">Hello</div>
-                    </div>
-                    <div *ngIf="searchType == 'track'" class="filter-box">
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="christmas">Christmas</div>
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="something">Something</div>
-                        <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="yo">Yo</div>
                     </div>
                 </div>
 			</div>

@@ -1,10 +1,7 @@
-import {Component, Input, OnInit, HostListener, Inject, OnChanges} from '@angular/core';
+import {Component, Input, OnInit, HostListener, Inject, OnChanges, SimpleChanges} from '@angular/core';
 import {DataService} from "../../data.service";
 import {HttpClient} from "@angular/common/http";
-import {ArtistResponse} from "../../interfaces/artist-response.interface";
-import {DOCUMENT} from "@angular/common";
-import {SongResponse} from "../../interfaces/song-response.interface";
-import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {DOCUMENT, NgStyle} from "@angular/common";
 
 
 @Component({
@@ -20,41 +17,43 @@ export class SearchResultComponent implements OnInit, OnChanges {
 				private http: HttpClient,
 				@Inject(DOCUMENT) private document: Document) {
 	}
-	artists: ArtistResponse[];
-	tracks: SongResponse[];
-	albums: AlbumResponse[];
+	artists = [];
+	tracks = [];
+	albums = [];
 
 	index = 0;
 	renderTreshold = 15;
 	canRenderNew = true;
-    prevSearchType = 'artist';
+	divWidth = 0;
 
-	ngOnChanges(changes: any) {
+
+
+	ngOnChanges(changes: SimpleChanges) {
 		if (this.searchString && this.searchString !== "") {
-			this.renderTreshold = 15;
-			this.getData();
+            this.clearData();
+            this.getData(this.index, this.renderTreshold);
 		} else {
 			this.getStandardData();
 		}
 	};
-	getData(): void {
+	getData(index: number, amount: number): void {
 
 	    switch (this.searchType) {
             case "artist":
-                this.searchService.getArtists(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe(artists => {
-                    this.artists = artists;
+                this.searchService.getArtists(this.searchString, amount, index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe(artists => {
+                    this.artists = this.artists.concat(artists);
                     this.canRenderNew = true;
                 });
                 break;
             case "album":
-                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( albums => {
-                    this.albums = albums;
+                this.searchService.getAlbums(this.searchString, amount, index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( albums => {
+                    this.albums = this.albums.concat(albums)
                     this.canRenderNew = true;
                 })
                 break;
             case "track":
-                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( tracks => {
-                    this.tracks = tracks;
+                this.searchService.getSongs(this.searchString, amount, index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( tracks => {
+                    this.tracks = this.tracks.concat(tracks);
                     this.canRenderNew = true;
                 });
                 break;
@@ -64,7 +63,6 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	    switch (this.searchType) {
             case "artist":
                 this.searchService.getArtists("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "popularity", this.sortType ? this.sortType : "descending").subscribe(artists => {
-
                     this.artists = artists;
                 });
             case "album":
@@ -77,8 +75,14 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
         }
 	};
+    clearData(): void {
+        this.index = 0;
+        this.artists = [];
+        this.albums = [];
+        this.tracks = [];
+    };
 	ngOnInit() {
-
+        this.divWidth = Math.floor((window.innerWidth / 342)) * 342;
 	};
 
 	@Input() filterList = [];
@@ -89,6 +93,10 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
 
 
+    @HostListener("window:resize", ['$event'])
+    onResize(e) {
+        this.divWidth = Math.floor((e.target.innerWidth / 342)) * 342;
+    }
 	@HostListener("window:scroll", [])
 	onWindowScroll() {
 		if (this.canRenderNew && this.searchString && this.searchString !== "") {
@@ -96,8 +104,8 @@ export class SearchResultComponent implements OnInit, OnChanges {
 			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 				//reached bottom
 				this.canRenderNew = false;
-				this.renderTreshold += 10;
-				this.getData();
+				this.index += this.renderTreshold;
+				this.getData(this.index, this.renderTreshold);
 			}
 		}
 	}

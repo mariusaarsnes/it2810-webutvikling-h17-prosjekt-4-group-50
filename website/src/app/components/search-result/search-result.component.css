@@ -1,4 +1,9 @@
+.result-container {
+    width: 100%;
+}
+
 .result-container > div {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
 }
