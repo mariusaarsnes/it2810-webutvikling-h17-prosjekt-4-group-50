@@ -1,17 +1,17 @@
 import {Injectable} from '@angular/core';
-import {ArtistResponse} from "../../interfaces/artist-response.interface";
+import {ArtistResponse} from "./interfaces/artist-response.interface";
 import {HttpClient} from "@angular/common/http";
 
-import {SongResponse} from "../../interfaces/song-response.interface";
-import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {SongResponse} from "./interfaces/song-response.interface";
+import {AlbumResponse} from "./interfaces/album-response.interface";
 import {Observable} from "rxjs/Observable";
-import {GenresResponse} from "../../interfaces/genres-response.interface";
-import {UserResponse} from "../../interfaces/user-response.interface";
-import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
-import {SearchHistoryData} from "../../interfaces/search-history-data-response.interface";
+import {GenresResponse} from "./interfaces/genres-response.interface";
+import {UserResponse} from "./interfaces/user-response.interface";
+import {SearchHistoryResponse} from "./interfaces/history-response.interface";
+import {SearchHistoryData} from "./interfaces/search-history-data-response.interface";
 
 @Injectable()
-export class SearchService {
+export class DataService {
 
     constructor(private http: HttpClient) {
 

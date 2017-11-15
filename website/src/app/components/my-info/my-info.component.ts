@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../../components/search-result/search.service';
+import { DataService } from '../../data.service';
 import { UserResponse } from '../../interfaces/user-response.interface';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserResponse } from '../../interfaces/user-response.interface';
 })
 export class MyInfoComponent implements OnInit {
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: DataService) { }
 
   ngOnInit() {
       this.searchService.getUser().subscribe(data => {

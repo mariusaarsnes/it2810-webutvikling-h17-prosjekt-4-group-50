@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { SearchService } from '../../components/search-result/search.service';
+import { DataService } from '../../data.service';
 import { UserResponse } from '../../interfaces/user-response.interface';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
@@ -15,7 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   encapsulation: ViewEncapsulation.None
 })
 export class FavoriteArtistsComponent implements OnInit {
-    constructor(private searchService: SearchService, private dialog: MatDialog) { }
+    constructor(private searchService: DataService, private dialog: MatDialog) { }
 
     ngOnInit() {
         this.searchService.getUser().subscribe(data => {

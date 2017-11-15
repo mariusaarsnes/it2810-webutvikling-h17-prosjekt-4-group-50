@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {SearchService} from "../components/search-result/search.service";
+import {DataService} from "../../data.service";
 
 @Component({
     selector: 'app-login',
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     password = '';
     result = '';
 
-    constructor(private router: Router, private searchService: SearchService) {
+    constructor(private router: Router, private searchService: DataService) {
 
     }
 
