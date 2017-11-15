@@ -1,3 +1,4 @@
+
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -8,10 +9,11 @@ import {SearchService} from "../search-result/search.service";
 import {Observable} from "rxjs/Observable";
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 
+
 @Component({
-	selector: 'app-artist',
-	templateUrl: './artist.component.html',
-	styleUrls: ['./artist.component.css']
+    selector: 'app-artist',
+    templateUrl: './artist.component.html',
+    styleUrls: ['./artist.component.css']
 })
 export class ArtistComponent implements OnInit {
 
@@ -57,9 +59,6 @@ export class ArtistComponent implements OnInit {
         this.getSongs(this.artist.songs).subscribe(songs => {
 
             this.songs = songs;
-
-
-
             const dialogRef = this.dialog.open(SongsDialogComponent, {
                 height: "80%",
                 width: "70%",
