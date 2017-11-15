@@ -1,18 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {AlbumResponse} from '../../interfaces/album-response.interface';
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+    selector: 'app-album',
+    templateUrl: './album.component.html',
+    styleUrls: ['./album.component.css']
 })
 export class AlbumComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  @Input() album: AlbumResponse;
+    @Input() album: AlbumResponse;
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

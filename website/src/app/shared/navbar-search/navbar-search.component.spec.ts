@@ -5,8 +5,10 @@ import {SearchPageComponent} from '../../components/search-page/search-page.comp
 import {FormsModule} from '@angular/forms';
 import {SearchResultComponent} from '../../components/search-result/search-result.component';
 import {ArtistComponent} from '../../components/artist/artist.component';
-import {SearchService} from '../../components/search-result/search.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {DataService} from '../../data.service';
+import {AlbumComponent} from '../../components/album/album.component';
+import {TrackComponent} from '../../components/track/track.component';
 
 describe('NavbarSearchComponent', () => {
     let component: NavbarSearchComponent;
@@ -14,8 +16,13 @@ describe('NavbarSearchComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [NavbarSearchComponent, SearchPageComponent, SearchResultComponent, ArtistComponent],
-            providers: [SearchService, HttpClient, HttpHandler],
+            declarations: [NavbarSearchComponent,
+                SearchPageComponent,
+                SearchResultComponent,
+                ArtistComponent,
+                AlbumComponent,
+                TrackComponent],
+            providers: [DataService, HttpClient, HttpHandler],
             imports: [
                 FormsModule
             ]

@@ -4,6 +4,9 @@ import {HistoryComponent} from './history.component';
 import {SearchHistoryListComponent} from '../search-history-list/search-history-list.component';
 import {MatCell, MatCellDef, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable} from '@angular/material';
 import {CdkColumnDef} from '@angular/cdk/table';
+import {DataService} from '../../data.service';
+import {HttpClient} from '@angular/common/http';
+import {HttpHandler} from '@angular/common/http';
 
 describe('HistoryComponent', () => {
     let component: HistoryComponent;
@@ -24,7 +27,7 @@ describe('HistoryComponent', () => {
                 MatTable
             ],
             providers: [
-                CdkColumnDef
+                CdkColumnDef, DataService, HttpClient, HttpHandler
             ]
         })
             .compileComponents();

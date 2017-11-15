@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {ArtistComponent} from '../artist/artist.component';
 import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {AlbumComponent} from '../album/album.component';
+import {TrackComponent} from '../track/track.component';
 
 describe('SearchPageComponent', () => {
     let component: SearchPageComponent;
@@ -16,7 +18,10 @@ describe('SearchPageComponent', () => {
             declarations: [
                 SearchPageComponent,
                 SearchResultComponent,
-                ArtistComponent
+                ArtistComponent,
+                AlbumComponent,
+                TrackComponent,
+
             ],
             imports: [
                 FormsModule

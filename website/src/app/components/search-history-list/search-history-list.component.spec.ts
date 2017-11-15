@@ -1,8 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SearchHistoryListComponent} from './search-history-list.component';
-import {MatCell, MatHeaderCell, MatHeaderRow, MatRow, MatRowDef, MatTable, MatTableModule} from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
+import {MatCell, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableModule} from '@angular/material';
 
 describe('SearchHistoryListComponent', () => {
     let component: SearchHistoryListComponent;
@@ -17,12 +16,13 @@ describe('SearchHistoryListComponent', () => {
                 MatCell,
                 MatHeaderRow,
                 MatRow,
+                MatHeaderRowDef
             ],
-             providers: [
-                 {provide: MatTable, useValue: 'test'},
-                 {provide: MatRowDef, useValue: {Columns:8}},
-                 MatTableModule
-             ]
+            providers: [
+                {provide: MatTable, useValue: 'test'},
+                {provide: MatRowDef, useValue: {Columns: 8}},
+                MatTableModule
+            ]
         })
             .compileComponents();
     }));

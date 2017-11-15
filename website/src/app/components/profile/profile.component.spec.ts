@@ -4,6 +4,8 @@ import {ProfileComponent} from './profile.component';
 import {NavbarProfileComponent} from '../../shared/navbar-profile/navbar-profile.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
+import {DataService} from '../../data.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('ProfileComponent', () => {
     let component: ProfileComponent;
@@ -12,6 +14,11 @@ describe('ProfileComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ProfileComponent, NavbarProfileComponent],
+            providers: [
+                DataService,
+                HttpClient,
+                HttpHandler
+            ],
             imports: [
                 RouterTestingModule,
                 FormsModule
