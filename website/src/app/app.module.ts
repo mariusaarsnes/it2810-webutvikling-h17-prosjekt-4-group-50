@@ -20,14 +20,16 @@ import {SearchService} from './components/search-result/search.service';
 import {DialogComponent} from './components/dialog/dialog.component';
 import {AlbumService} from './components/artist/album.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {CanActivateService} from './shared/auth/can-activate.service';
-import {Permissions} from './shared/auth/Permissions';
-import {APP_BASE_HREF} from '@angular/common';
-import {AgWordCloudModule} from 'angular4-word-cloud';
-import {WordcloudComponent} from './components/wordcloud/wordcloud.component';
-import {LoginComponent} from './login/login.component';
+import {AgWordCloudModule} from "angular4-word-cloud";
+import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
+import {FavoriteArtistsComponent} from './components/favorite-artists/favorite-artists.component';
+import {CanActivateService} from "./shared/auth/can-activate.service";
+import {Permissions} from "./shared/auth/Permissions";
+import {LoginComponent} from "./login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
-import {TrackComponent} from './components/track/track.component';
+import {TrackComponent} from "./components/track/track.component";
+import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
+import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -45,8 +47,10 @@ import {TrackComponent} from './components/track/track.component';
         NavbarProfileComponent,
         MyInfoComponent,
         HistoryComponent,
+        WordcloudComponent,
+        FavoriteArtistsComponent,
         TrackComponent,
-        WordcloudComponent
+        SongsDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -87,7 +91,8 @@ import {TrackComponent} from './components/track/track.component';
     ],
     providers: [AlbumService, SearchService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
-        DialogComponent
+        DialogComponent,
+        SongsDialogComponent
     ],
     bootstrap: [AppComponent]
 })

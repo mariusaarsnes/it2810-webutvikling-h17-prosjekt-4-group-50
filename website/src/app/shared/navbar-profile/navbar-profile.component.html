@@ -1,12 +1,14 @@
-<div class="navbar-bottom-container">
-	<div class="nav-bottom-left-container">
-		<div class="nav-bottom-left">
-			<h3 class="title-blue">{{username}}s page</h3>
-			<div class="under-line"></div>
-			<ul>
-				<li><a routerLink="my-info" routerLinkActive="disabled">My info</a></li>
-				<li><a routerLink="history" routerLinkActive="disabled">Search history</a></li>
-			</ul>
+<div *ngIf="user">
+	<div class="navbar-bottom-container">
+		<div class="nav-bottom-left-container">
+			<div class="nav-bottom-left">
+				<h3 class="title-blue">{{user.username}}s page</h3>
+				<div class="under-line"></div>
+				<ul>
+					<li><a routerLink="my-info" routerLinkActive="disabled">My info</a></li>
+					<li><a routerLink="history" routerLinkActive="disabled">Search history</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
