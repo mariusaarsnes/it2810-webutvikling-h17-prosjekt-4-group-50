@@ -16,14 +16,20 @@
 	</div>
 	<br><hr id="hr-dialog">
 	<h2 id="type-dialog">Albums</h2>
+    <div *ngIf="show" class="show-dialog" id="show-dialog">
+        <p>{{album.name}}</p>
+    </div>
 	<div id="modal-album-dialog">
 		<div *ngFor="let album of data[1];" class="album-info-dialog">
 			<div class="img-dialog">
-				<img class="album-img-dialog" src="{{album.imageLink}}" alt="Album picture">
+				<img class="album-img-dialog" (click)="intoView(album);"
+                     src="{{album.imageLink}}" alt="Album picture">
 			</div>
 			<div class="album-text-dialog">
 				<p>{{album.name}}</p>
 			</div>
+
 		</div>
+
 	</div>
 </div>

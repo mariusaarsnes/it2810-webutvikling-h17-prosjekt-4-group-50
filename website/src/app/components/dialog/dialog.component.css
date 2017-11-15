@@ -97,6 +97,11 @@
 	width: 150px;
 }
 
+.show-dialog {
+    width: 100%;
+    background-color: lightgray;
+}
+
 @media screen and (max-width: 480px) {
 	#modal-artist-dialog {
 		flex-direction: column;
