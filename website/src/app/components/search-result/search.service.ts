@@ -138,7 +138,7 @@ export class SearchService {
         });
     }
 
-    getSearchHistory() {
+    getSearchHistory(): Observable<SearchHistoryResponse> {
         return this.http.get<SearchHistoryResponse[]>('api/search_history').switchMap(data => {
             let observables = [];
             data.forEach(val => {

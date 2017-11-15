@@ -15,7 +15,7 @@ exports.findSearchHistory = (req, res) => {
 
 exports.updateSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        const history = new History({ type: req.params.type, type_id: req.params.id });
+        const history = new History({type: req.params.type, type_id: req.params.id});
         user.search_history.push(history._id);
         console.log(history);
         history.save();
@@ -67,12 +67,47 @@ exports.findAggregateGenres = (req, res) => {
                 }
             },
         ]).exec((err, data) => {
-            if (err) error(res, "Failed", 500)
+            if (err) error(res, "Failed", 500);
             res.status(200).json(data);
         })
     });
 };
 
+exports.findSearchHistoryData = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        const ids = user.search_history;
+        History.aggregate([
+            {
+                $match: {
+                    _id: {$in: ids}
+                }
+            },
+            // Count all occurrences
+            {
+                $group: {
+                    _id: {
+                        _id: "$type_id",
+                    },
+                    count: {"$sum": 1}
+                }
+            },
+
+            // Sum all occurrences and count distinct
+            {
+                $group: {
+                    _id: {
+                        _id: "$type_id",
+                    },
+                    totalCount: {"$sum": "$count"},
+                    distinctCount: {"$sum": 1}
+                }
+            }
+        ]).exec((err, data) => {
+            if (err) error(res, "Failed", 500)
+            else res.status(200).json(data[0]);
+        })
+    });
+};
 
 exports.addFavoriteArtist = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
