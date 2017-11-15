@@ -28,6 +28,7 @@ import {WordcloudComponent} from './components/wordcloud/wordcloud.component';
 import {LoginComponent} from './login/login.component';
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import {TrackComponent} from './components/track/track.component';
+import { AlbumComponent } from './components/album/album.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import {TrackComponent} from './components/track/track.component';
         MyInfoComponent,
         HistoryComponent,
         TrackComponent,
-        WordcloudComponent
+        WordcloudComponent,
+        AlbumComponent
     ],
     imports: [
         BrowserModule,

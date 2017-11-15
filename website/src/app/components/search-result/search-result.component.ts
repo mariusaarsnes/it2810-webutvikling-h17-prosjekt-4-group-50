@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DOCUMENT} from "@angular/common";
 import {SongResponse} from "../../interfaces/song-response.interface";
+import {AlbumResponse} from "../../interfaces/album-response.interface";
 
 
 @Component({
@@ -21,6 +22,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	}
 	artists: ArtistResponse[];
 	tracks: SongResponse[];
+	albums: AlbumResponse[];
 
 	index = 0;
 	renderTreshold = 15;
@@ -49,15 +51,16 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
                 break;
             case "album":
-                console.log("fetch albums");
+                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index).subscribe( albums => {
+                    this.albums = albums;
+                    this.canRenderNew = true;
+                })
                 break;
             case "track":
-                console.log("fetch tracks");
-                /*
                 this.searchService.getSongs(this.searchString, this.renderTreshold, this.index).subscribe( tracks => {
                     this.tracks = tracks;
                     this.canRenderNew = true;
-                });*/
+                });
                 break;
         }
 	};
