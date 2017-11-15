@@ -11,7 +11,7 @@ import {GenresResponse} from '../../interfaces/genres-response.interface';
 })
 export class WordcloudComponent implements OnInit {
 
-    loaded: boolean = true;
+    loaded: boolean = false;
 
     //The colors specified for our word cloud
     colors: Array<String> = [
@@ -48,6 +48,7 @@ export class WordcloudComponent implements OnInit {
             this.wordData = this.mapGenresToWordCloud(data);
             this.loaded = true;
         });
+
     }
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
