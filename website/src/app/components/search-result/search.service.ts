@@ -8,6 +8,7 @@ import {Observable} from "rxjs/Observable";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 import {UserResponse} from "../../interfaces/user-response.interface";
 import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
+import {SearchHistoryData} from "../../interfaces/search-history-data-response.interface";
 
 @Injectable()
 export class SearchService {
@@ -79,8 +80,8 @@ export class SearchService {
      * @param {number} index
      * @returns {Observable<SongResponse[]>}
      */
-    getSongs(name: string, amount: number, index: number): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + name + "/" + index + "/" + amount).switchMap(result => {
+    getSongs(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + name + "/" + sort + "/" + sortType + "/" + filter + "/" + filterValue + "/" + index + "/" + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const album = this.getAlbum(res.album);
@@ -108,8 +109,8 @@ export class SearchService {
      * @param {number} index
      * @returns {Observable<AlbumResponse[]>}
      */
-    getAlbums(name: string, amount: number, index: number): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + index + "/" + amount).switchMap(result => {
+    getAlbums(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[]> {
+        return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + sort + "/" + sortType + "/" + filter + "/" + filterValue + "/" + index + "/" + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const artists = this.getArtistsByIds(res.artists);
@@ -151,10 +152,8 @@ export class SearchService {
         });
     }
 
-    getSearchHistoryData(): Observable<> {
-        return this.http.get('api/search_history_data').map(data => {
-            return {count: data.count, distinct_count: data.distinct_count};
-        });
+    getSearchHistoryData(): Observable<SearchHistoryData> {
+        return this.http.get<SearchHistoryData>('api/search_history_data');
     }
 
     getSchemaById(type: string, id: string) {
@@ -167,6 +166,10 @@ export class SearchService {
                 return this.getArtist(id);
         }
         return null;
+    }
+
+    updateSearchHistory(type: string, id: string) {
+        this.http.post('api/update_history', {type: type, type_id: id});
     }
 
 }
