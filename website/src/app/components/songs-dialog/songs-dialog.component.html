@@ -17,6 +17,21 @@
     <br><hr id="hr-dialog">
     <h2 id="type-dialog">Tracks</h2>
     <div>
+        <div id="information-song-dialog">
+            <p id="title">Title</p>
+            <p id="album">Album</p>
+        </div>
+        <span *ngFor="let song of data[2]">
+            <span *ngFor="let album of data[1];" >
+                <div *ngIf="album._id == song.album" class="song-dialog">
+                    <img class ="song-img-dialog" src="{{album.imageLink}}" alt="Album image">
+                    <p *ngIf="song.name.length >= 22" class="title">{{song.name.substring(0,22).concat("...")}}</p>
+                    <p *ngIf="song.name.length < 22" class="title">{{song.name}}</p>
+                    <p *ngIf="album.name.length >= 41" class="album">{{album.name.substring(0,41).concat("...")}}</p>
+                    <p *ngIf="album.name.length < 41" class="album">{{album.name}}</p>
+                </div>
+            </span>
+        </span>
 
 
     </div>

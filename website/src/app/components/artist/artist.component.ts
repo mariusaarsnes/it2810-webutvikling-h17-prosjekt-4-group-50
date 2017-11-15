@@ -37,14 +37,22 @@ export class ArtistComponent implements OnInit {
     }
 
 
-    openDialogAlbums() {
+    openDialogAlbums(dialog) {
+        if (dialog === "albums") {
+            dialog = DialogComponent;
+        }
+        else {
+            dialog = SongsDialogComponent
+        }
         this.getSongs(this.artist.songs).subscribe(songs => {
             this.songs = songs;
+            console.log(this.songs);
             this.getAlbums(this.artist.albums).subscribe(albums => {
                 this.albums = albums;
+                
+                console.log(this.albums);
 
-                const dialogRef = this.dialog.open(DialogComponent, {
-
+                const dialogRef = this.dialog.open(dialog, {
                     height: "80%",
                     width: "70%",
                     data: [this.artist, this.albums, this.songs],
