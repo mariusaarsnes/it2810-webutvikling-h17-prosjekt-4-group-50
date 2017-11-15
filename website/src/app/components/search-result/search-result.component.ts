@@ -47,13 +47,13 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
                 break;
             case "album":
-                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index).subscribe( albums => {
+                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index, "none", "none", "none", "none").subscribe( albums => {
                     this.albums = albums;
                     this.canRenderNew = true;
                 })
                 break;
             case "track":
-                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index).subscribe( tracks => {
+                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index, "none", "none", "none", "none").subscribe( tracks => {
                     this.tracks = tracks;
                     this.canRenderNew = true;
                 });
@@ -67,11 +67,11 @@ export class SearchResultComponent implements OnInit, OnChanges {
                     this.artists = artists;
                 });
             case "album":
-                this.searchService.getAlbums("*", 15, 0).subscribe(albums => {
+                this.searchService.getAlbums("*", 15, 0, "none", "none", "none", "none").subscribe(albums => {
                     this.albums = albums;
                 });
             case "track":
-                this.searchService.getSongs("*", 15, 0).subscribe(tracks => {
+                this.searchService.getSongs("*", 15, 0, "none", "none", "none", "none").subscribe(tracks => {
                     this.tracks = tracks;
                 });
         }
