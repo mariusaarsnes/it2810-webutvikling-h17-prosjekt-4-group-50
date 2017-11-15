@@ -3,6 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {HistoryComponent} from './history.component';
 import {SearchHistoryListComponent} from '../search-history-list/search-history-list.component';
 import {MatCell, MatCellDef, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable} from '@angular/material';
+import {CdkColumnDef} from '@angular/cdk/table';
 
 describe('HistoryComponent', () => {
     let component: HistoryComponent;
@@ -20,8 +21,10 @@ describe('HistoryComponent', () => {
                 MatHeaderRowDef,
                 MatRow,
                 MatRowDef,
-                MatTable,
-
+                MatTable
+            ],
+            providers: [
+                CdkColumnDef
             ]
         })
             .compileComponents();

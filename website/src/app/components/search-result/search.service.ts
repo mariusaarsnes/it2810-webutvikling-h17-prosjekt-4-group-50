@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {ArtistResponse} from "../../interfaces/artist-response.interface";
-import {HttpClient} from "@angular/common/http";
+import {ArtistResponse} from '../../interfaces/artist-response.interface';
+import {HttpClient} from '@angular/common/http';
 
-import {SongResponse} from "../../interfaces/song-response.interface";
-import {AlbumResponse} from "../../interfaces/album-response.interface";
-import {Observable} from "rxjs/Observable";
-import {GenresResponse} from "../../interfaces/genres-response.interface";
-import {UserResponse} from "../../interfaces/user-response.interface";
-import {SearchHistoryResponse} from "../../interfaces/history-response.interface";
+import {SongResponse} from '../../interfaces/song-response.interface';
+import {AlbumResponse} from '../../interfaces/album-response.interface';
+import {Observable} from 'rxjs/Observable';
+import {GenresResponse} from '../../interfaces/genres-response.interface';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {SearchHistoryResponse} from '../../interfaces/history-response.interface';
 
 @Injectable()
 export class SearchService {
@@ -39,7 +39,7 @@ export class SearchService {
      * @returns {Observable<ArtistResponse[]>}
      */
     getArtistsByIds(ids: string[]): Observable<ArtistResponse[]> {
-        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(","));
+        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(','));
     }
 
     /**
@@ -80,7 +80,7 @@ export class SearchService {
      * @returns {Observable<SongResponse[]>}
      */
     getSongs(name: string, amount: number, index: number): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + name + "/" + index + "/" + amount).switchMap(result => {
+        return this.http.get<SongResponse[]>('api/songs/' + name + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const album = this.getAlbum(res.album);
@@ -98,7 +98,7 @@ export class SearchService {
      * @returns {Observable<SongResponse[]>}
      */
     getSongsByIds(ids: string[]): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + ids.join(","));
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(','));
     }
 
     /**
@@ -109,7 +109,7 @@ export class SearchService {
      * @returns {Observable<AlbumResponse[]>}
      */
     getAlbums(name: string, amount: number, index: number): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + index + "/" + amount).switchMap(result => {
+        return this.http.get<AlbumResponse[]>('api/albums/' + name + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const artists = this.getArtistsByIds(res.artists);
@@ -147,17 +147,17 @@ export class SearchService {
                     return <SearchHistoryResponse>{...val, typeData: schema};
                 }));
             });
-           return Observable.forkJoin(observables);
+            return Observable.forkJoin(observables);
         });
     }
 
     getSchemaById(type: string, id: string) {
         switch (type) {
-            case "album":
+            case 'album':
                 return this.getAlbum(id);
-            case "song":
+            case 'song':
                 return this.getSong(id);
-            case "artist":
+            case 'artist':
                 return this.getArtist(id);
         }
         return null;
