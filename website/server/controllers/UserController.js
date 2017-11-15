@@ -15,9 +15,8 @@ exports.findSearchHistory = (req, res) => {
 
 exports.updateSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        const history = new History({type: req.params.type, type_id: req.params.id});
+        const history = new History({type: req.body.type, type_id: req.body.id});
         user.search_history.push(history._id);
-        console.log(history);
         history.save();
         user.save((err, result) => {
             if (err) error(res, err, 202);
@@ -103,8 +102,12 @@ exports.findSearchHistoryData = (req, res) => {
                 }
             }
         ]).exec((err, data) => {
-            if (err) error(res, "Failed", 500)
-            else res.status(200).json(data[0]);
+            if (err) error(res, "Failed", 500);
+            else if (data.length > 0)
+                res.status(200).json(data[0]);
+            else
+                res.status(200).json({distinct_count: 0, total_count: 0});
+            console.log(data);
         })
     });
 };

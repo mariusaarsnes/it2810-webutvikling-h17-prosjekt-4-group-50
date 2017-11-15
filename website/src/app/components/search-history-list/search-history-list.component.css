@@ -9,6 +9,24 @@
     min-width: 500px;
 }
 
+.noHistory {
+    background-color: white;
+    width: auto;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    font-family: "Intro Rust", sans-serif;
+}
+
 .mat-table {
   overflow: auto;
   max-height: 500px;
