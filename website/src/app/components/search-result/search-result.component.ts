@@ -36,10 +36,6 @@ export class SearchResultComponent implements OnInit, OnChanges {
 		} else {
 			this.getStandardData();
 		}
-		if(this.prevSearchType !== this.searchType) {
-		    this.getStandardData();
-		    this.prevSearchType = this.searchType;
-        }
 	};
 	getData(): void {
 
@@ -51,7 +47,6 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
                 break;
             case "album":
-                console.log("heisannnn");
                 this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index).subscribe( albums => {
                     this.albums = albums;
                     this.canRenderNew = true;
@@ -65,16 +60,21 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 break;
         }
 	};
-	public getStandardData(): void {
+    getStandardData(): void {
 	    switch (this.searchType) {
             case "artist":
-                this.searchService.getArtists("", 15, 0, "none", "none", "popularity", "descending").subscribe(artists => {
+                this.searchService.getArtists("*", 15, 0, "none", "none", "popularity", "descending").subscribe(artists => {
                     this.artists = artists;
                 });
+            case "album":
+                this.searchService.getAlbums("*", 15, 0).subscribe(albums => {
+                    this.albums = albums;
+                });
+            case "track":
+                this.searchService.getSongs("*", 15, 0).subscribe(tracks => {
+                    this.tracks = tracks;
+                });
         }
-		this.artists = [];
-		this.tracks = [];
-		this.albums = [];
 	};
 	ngOnInit() {
 
@@ -90,7 +90,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
 	@HostListener("window:scroll", [])
 	onWindowScroll() {
-		if (this.canRenderNew) {
+		if (this.canRenderNew && this.searchString && this.searchString !== "") {
 			let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 				//reached bottom
