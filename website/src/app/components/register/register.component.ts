@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {DataService} from "../../data.service";
 
 @Component({
 	selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
 	password = "";
 	result = "";
 
-	constructor(private http: HttpClient, private router: Router) {
+	constructor(private router: Router, private searchService: DataService) {
 
 	}
 
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
 		else if (this.password === "")
 			this.result = "Your password field is empty! Please fill it out!";
 		else {
-			this.http.post("api/create_user/", {username: this.username, password: this.password}).subscribe(data => {
+		    this.searchService.register(this.username, this.password).subscribe(data => {
 				if (!data["message"])
 					console.log("");
 				else

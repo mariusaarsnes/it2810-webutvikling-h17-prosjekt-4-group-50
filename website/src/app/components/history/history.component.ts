@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchService } from '../../components/search-result/search.service';
+import { DataService } from '../../data.service';
 import { UserResponse } from '../../interfaces/user-response.interface';
 import { MatDialog } from '@angular/material';
 import { ArtistResponse } from '../../interfaces/artist-response.interface';
@@ -12,7 +12,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class HistoryComponent implements OnInit {
 
-    constructor(private searchService: SearchService) { }
+    constructor(private searchService: DataService) { }
 
     ngOnInit() {
         this.searchService.getUser().subscribe(data => {
