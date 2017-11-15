@@ -1,33 +1,34 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import {Component, OnInit, Input} from '@angular/core';
+import {MatDialog} from '@angular/material';
 import {DialogComponent} from '../dialog/dialog.component';
 import {SongResponse} from "../../interfaces/song-response.interface";
 
 @Component({
-  selector: 'app-track',
-  templateUrl: './track.component.html',
-  styleUrls: ['./track.component.css']
+    selector: 'app-track',
+    templateUrl: './track.component.html',
+    styleUrls: ['./track.component.css']
 })
 export class TrackComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+    constructor(public dialog: MatDialog) {
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+    }
 
-  @Input() track: SongResponse;
+    @Input() track: SongResponse;
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      height: '80%',
-      width: '70%'
+    openDialog() {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            height: '80%',
+            width: '70%'
 
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+    }
 
 }
 

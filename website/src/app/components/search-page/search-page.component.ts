@@ -16,7 +16,8 @@ export class SearchPageComponent implements OnInit {
 
 	@Input() filterList: string[];
 	@Input() sort: string;
-	@Input() sortType = "ascending";
+	@Input() sortType: string;
+	@Input() searchType: string;
 
 	searchInput: string;
 

@@ -27,9 +27,9 @@ import {CanActivateService} from "./shared/auth/can-activate.service";
 import {Permissions} from "./shared/auth/Permissions";
 import {LoginComponent} from "./components/login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
+import { AlbumComponent } from './components/album/album.component';
 import {TrackComponent} from "./components/track/track.component";
 import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
-import {APP_BASE_HREF} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -50,6 +50,7 @@ import {APP_BASE_HREF} from '@angular/common';
         WordcloudComponent,
         FavoriteArtistsComponent,
         TrackComponent,
+        AlbumComponent,
         SongsDialogComponent
     ],
     imports: [
