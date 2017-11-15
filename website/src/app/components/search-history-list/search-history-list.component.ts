@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
-import {SearchService} from '../search-result/search.service';
+import {DataService} from '../../data.service';
 import {SearchHistoryResponse} from '../../interfaces/history-response.interface';
 import 'rxjs/add/observable/of';
 
@@ -19,7 +19,7 @@ export class SearchHistoryListComponent implements OnInit {
     displayedColumns = ['type', 'name', 'date'];
     dataSource: SearchDataSource;
 
-    constructor(private searchService: SearchService) {
+    constructor(private searchService: DataService) {
 
     }
 

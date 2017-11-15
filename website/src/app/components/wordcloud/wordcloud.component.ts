@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AgWordCloudData} from "angular4-word-cloud";
-import {SearchService} from "../search-result/search.service";
+import {DataService} from "../../data.service";
 import {GenresResponse} from "../../interfaces/genres-response.interface";
 
 @Component({
@@ -40,7 +40,7 @@ export class WordcloudComponent implements OnInit {
         labels: false // false to hide hover labels
     };
 
-    constructor(private searchService: SearchService) {
+    constructor(private searchService: DataService) {
     }
 
     ngOnInit() {

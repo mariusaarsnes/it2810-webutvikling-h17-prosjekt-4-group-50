@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, HostListener, Inject, OnChanges} from '@angular/core';
-import {SearchService} from "./search.service";
+import {DataService} from "../../data.service";
 import {HttpClient} from "@angular/common/http";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DOCUMENT} from "@angular/common";
@@ -14,7 +14,7 @@ import {DOCUMENT} from "@angular/common";
 
 export class SearchResultComponent implements OnInit, OnChanges {
 
-	constructor(private searchService: SearchService,
+	constructor(private searchService: DataService,
 				private http: HttpClient,
 				@Inject(DOCUMENT) private document: Document) {
 	}

@@ -16,18 +16,21 @@
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 20px;
     margin: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 20px;
 }
 
 #errorText {
 	color: red;
 	display: none;
 }
-
-.gray{
-	color: #5a5a5a;
-	text-align: center;
-}
-
 .form {
 	width: 20em;
 	display: inline-flex;
@@ -54,11 +57,11 @@ button:hover {
 
 .container {
 	padding: 20px;
-	margin: 10px;
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 	font-family: "Intro Rust", sans-serif;
 }

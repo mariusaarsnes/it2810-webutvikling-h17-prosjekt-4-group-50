@@ -5,7 +5,7 @@ import { ArtistResponse } from "../../interfaces/artist-response.interface";
 import { AlbumResponse } from "../../interfaces/album-response.interface";
 import { SongResponse } from "../../interfaces/song-response.interface";
 import { SongsDialogComponent } from "../songs-dialog/songs-dialog.component";
-import { SearchService } from "../search-result/search.service";
+import { DataService } from "../../data.service";
 import { AlbumService } from './album.service';
 import { Observable } from "rxjs/Observable";
 
@@ -16,7 +16,7 @@ import { Observable } from "rxjs/Observable";
 })
 export class ArtistComponent implements OnInit {
 
-    constructor(public dialog: MatDialog, private searchService: SearchService) {
+    constructor(public dialog: MatDialog, private searchService: DataService) {
     }
 
     albums: AlbumResponse[];
