@@ -3,7 +3,6 @@
                                              class="input-search"></div>
 </div>
 <br>
-<app-search-result [attr.search]="searchInput" [attr.sort]="sort" [attr.sortType]="sortType"
-                   [attr.filterList]="filterList"
-                   #child></app-search-result>
+
+<app-search-result [searchType]="searchType" [search]="searchInput" [sort]="sort" [sortType]="sortType" [filterList]="filterList" #child></app-search-result>
 

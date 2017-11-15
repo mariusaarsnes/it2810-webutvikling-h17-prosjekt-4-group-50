@@ -8,19 +8,23 @@ import {Component, OnInit} from '@angular/core';
 export class NavbarSearchComponent implements OnInit {
 
     constructor() {
-
-    }
-
-    ngOnInit() {
-
     }
 
     filterlist = [];
-    sort = 'none';
-    sortType = 'ascending';
+    sort = 'popularity';
+    sortType = 'descending';
+    searchType = 'artist';
+
+    ngOnInit() {
+    }
+
 
     selectSort(e): void {
         this.sort = e.target.value;
+    }
+
+    selectSortType(e): void {
+        this.sortType = e.target.value;
     }
 
     selectFilter(e): void {
@@ -32,4 +36,9 @@ export class NavbarSearchComponent implements OnInit {
         }
         this.filterlist = this.filterlist.slice();
     };
+
+    setSearchType(e): void {
+        this.searchType = e.target.dataset['type'];
+    };
+
 }

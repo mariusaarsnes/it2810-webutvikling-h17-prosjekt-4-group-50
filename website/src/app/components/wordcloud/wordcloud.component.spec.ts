@@ -3,15 +3,15 @@ import {async, ComponentFixture, fakeAsync, TestBed} from '@angular/core/testing
 import {WordcloudComponent} from './wordcloud.component';
 import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
-import {AgWordCloudData, AgWordCloudModule} from 'angular4-word-cloud';
-import {SearchService} from '../search-result/search.service';
+import {AgWordCloudModule} from 'angular4-word-cloud';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {Observable} from 'rxjs/Observable';
 import {GenresResponse} from '../../interfaces/genres-response.interface';
+import {DataService} from '../../data.service';
 
 
-class MockSearchService {
+class MockDataService {
     public getFavoriteGenres(): Observable<GenresResponse[]> {
         return Observable.of([{
             _id: '1',
@@ -23,7 +23,7 @@ class MockSearchService {
 describe('WordcloudComponent', () => {
     let component: WordcloudComponent;
     let fixture: ComponentFixture<WordcloudComponent>;
-    let mock: MockSearchService;
+    let mock: MockDataService;
 
     beforeEach(async(() => {
 
@@ -32,7 +32,7 @@ describe('WordcloudComponent', () => {
                 WordcloudComponent,
             ],
             providers: [
-                SearchService,
+                DataService,
                 HttpClient,
                 HttpHandler
             ],
@@ -45,13 +45,13 @@ describe('WordcloudComponent', () => {
         }).overrideComponent(WordcloudComponent, {
             set: {
                 providers: [
-                    {provide: SearchService, useClass: MockSearchService}
+                    {provide: DataService, useClass: MockDataService}
                 ]
             }
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(WordcloudComponent);
             component = fixture.componentInstance;
-            mock = fixture.debugElement.injector.get(SearchService);
+            mock = fixture.debugElement.injector.get(DataService);
         });
     }));
 

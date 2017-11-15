@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AgWordCloudData} from 'angular4-word-cloud';
-import {SearchService} from '../search-result/search.service';
+import {DataService} from '../../data.service';
 import {GenresResponse} from '../../interfaces/genres-response.interface';
 
 @Component({
@@ -11,9 +11,9 @@ import {GenresResponse} from '../../interfaces/genres-response.interface';
 })
 export class WordcloudComponent implements OnInit {
 
-    loaded: boolean = false;
+    loaded = false;
 
-    //The colors specified for our word cloud
+    // The colors specified for our word cloud
     colors: Array<String> = [
         'blue',
         'green',
@@ -40,7 +40,7 @@ export class WordcloudComponent implements OnInit {
         labels: false // false to hide hover labels
     };
 
-    constructor(private searchService: SearchService) {
+    constructor(private searchService: DataService) {
     }
 
     ngOnInit() {

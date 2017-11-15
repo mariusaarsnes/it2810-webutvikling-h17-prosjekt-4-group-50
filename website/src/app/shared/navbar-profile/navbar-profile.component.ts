@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../data.service';
+import { UserResponse } from '../../interfaces/user-response.interface';
 
 @Component({
   selector: 'app-navbar-profile',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchService: DataService) { }
 
   ngOnInit() {
+      this.searchService.getUser().subscribe(data => {
+          this.user = data;
+      })
   }
-  username = "username"
+
+  user: UserResponse;
 }

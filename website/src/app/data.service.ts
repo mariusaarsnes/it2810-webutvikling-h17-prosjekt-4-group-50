@@ -1,16 +1,18 @@
 import {Injectable} from '@angular/core';
-import {ArtistResponse} from '../../interfaces/artist-response.interface';
+
+import {ArtistResponse} from './interfaces/artist-response.interface';
 import {HttpClient} from '@angular/common/http';
 
-import {SongResponse} from '../../interfaces/song-response.interface';
-import {AlbumResponse} from '../../interfaces/album-response.interface';
+import {SongResponse} from './interfaces/song-response.interface';
+import {AlbumResponse} from './interfaces/album-response.interface';
 import {Observable} from 'rxjs/Observable';
-import {GenresResponse} from '../../interfaces/genres-response.interface';
-import {UserResponse} from '../../interfaces/user-response.interface';
-import {SearchHistoryResponse} from '../../interfaces/history-response.interface';
+import {GenresResponse} from './interfaces/genres-response.interface';
+import {UserResponse} from './interfaces/user-response.interface';
+import {SearchHistoryResponse} from './interfaces/history-response.interface';
+import {SearchHistoryData} from './interfaces/search-history-data-response.interface';
 
 @Injectable()
-export class SearchService {
+export class DataService {
 
     constructor(private http: HttpClient) {
 
@@ -29,8 +31,12 @@ export class SearchService {
      * @param {string} sortType
      * @returns {Observable<ArtistResponse[]>}
      */
-    getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
-        return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
+    getArtists(name: string, amount: number, index: number, filter: string,
+               filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
+        console.log('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
+        return this.http.get<ArtistResponse[]>('api/artists/' +
+            name + '/' + sort + '/' + sortType + '/' + filter + '/' +
+            filterValue + '/' + index + '/' + amount);
     }
 
     /**
@@ -77,10 +83,16 @@ export class SearchService {
      * @param {string} name
      * @param {number} amount
      * @param {number} index
+     * @param {string} filter
+     * @param {string} filterValue
+     * @param {string} sort
+     * @param {string} sortType
      * @returns {Observable<SongResponse[]>}
      */
-    getSongs(name: string, amount: number, index: number): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + name + '/' + index + '/' + amount).switchMap(result => {
+    getSongs(name: string, amount: number, index: number, filter: string,
+             filterValue: string, sort: string, sortType: string): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + name + '/' + sort
+            + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const album = this.getAlbum(res.album);
@@ -102,14 +114,47 @@ export class SearchService {
     }
 
     /**
+     * Fetches all songs and links them with their corresponding album.
+     * @param {string[]} ids
+     * @returns {Observable<SongResponse[]>}
+     */
+    getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(',')).switchMap(result => {
+            let observables = [];
+            result.forEach((res) => {
+                const album = this.getAlbum(res.album);
+                observables.push(Observable.of(res).combineLatest(album, (res, album) => {
+                    return <SongResponse>{...res, albumData: album};
+                }));
+            });
+            return observables;
+        });
+    }
+
+    /**
+     *
+     * @param {string[]} ids
+     * @returns {Observable<AlbumResponse[]>}
+     */
+    getAlbumsByIds(ids: string[]): Observable<AlbumResponse[]> {
+        return this.http.get<AlbumResponse[]>('api/albums/' + ids.join(','));
+    }
+
+    /**
      * Fetches all albums that contains the name.
      * @param {string} name
      * @param {number} amount
      * @param {number} index
+     * @param {string} filter
+     * @param {string} filterValue
+     * @param {string} sort
+     * @param {string} sortType
      * @returns {Observable<AlbumResponse[]>}
      */
-    getAlbums(name: string, amount: number, index: number): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' + name + '/' + index + '/' + amount).switchMap(result => {
+    getAlbums(name: string, amount: number, index: number, filter: string,
+              filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[]> {
+        return this.http.get<AlbumResponse[]>('api/albums/' + name + '/' + sort + '/' + sortType + '/' +
+            filter + '/' + filterValue + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const artists = this.getArtistsByIds(res.artists);
@@ -151,7 +196,11 @@ export class SearchService {
         });
     }
 
-    getSchemaById(type: string, id: string) {
+    getSearchHistoryData(): Observable<SearchHistoryData> {
+        return this.http.get<SearchHistoryData>('api/search_history_data');
+    }
+
+    getSchemaById(type: string, id: string): Observable<any> {
         switch (type) {
             case 'album':
                 return this.getAlbum(id);
@@ -163,4 +212,15 @@ export class SearchService {
         return null;
     }
 
+    updateSearchHistory(type: string, id: string) {
+        return this.http.post('api/update_history', {type: type, type_id: id});
+    }
+
+    login(username: string, password: string) {
+        return this.http.post('api/login', {username: username, password: password});
+    }
+
+    register(username: string, password: string) {
+        return this.http.post('api/create_user', {username: username, password: password});
+    }
 }

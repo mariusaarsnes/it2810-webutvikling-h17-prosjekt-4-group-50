@@ -6,7 +6,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    float: left;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .search-container {
@@ -16,6 +17,7 @@
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 5px;
   margin: 10px;
+  margin-bottom: 30px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -35,6 +37,7 @@
 
 .info-wrapper h1{
   margin: 0;
+  margin-bottom: 20px;
   font-family: "Intro Rust", sans-serif;
   color: #5a5a5a;
 }
@@ -43,10 +46,4 @@
   margin: 0;
   font-family: "Intro Rust", sans-serif;
   color: #353535;
-}
-
-@media screen and (max-width: 480px) {
-    .info-wrapper {
-        float: none;
-    }
 }

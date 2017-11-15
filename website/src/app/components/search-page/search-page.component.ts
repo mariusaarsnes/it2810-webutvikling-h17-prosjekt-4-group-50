@@ -11,13 +11,15 @@ export class SearchPageComponent implements OnInit {
     constructor() {
     }
 
+    @Input() filterList: string[];
+    @Input() sort: string;
+    @Input() sortType: string;
+    @Input() searchType: string;
+
+    searchInput: string;
+
     ngOnInit() {
     }
 
-    @Input() filterList: string[];
-    @Input() sort: string;
-    @Input() sortType = 'ascending';
-
-    searchInput: string;
 
 }
