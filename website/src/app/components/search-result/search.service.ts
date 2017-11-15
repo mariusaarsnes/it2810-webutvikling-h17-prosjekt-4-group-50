@@ -169,7 +169,14 @@ export class SearchService {
     }
 
     updateSearchHistory(type: string, id: string) {
-        this.http.post('api/update_history', {type: type, type_id: id});
+        return this.http.post('api/update_history', {type: type, type_id: id});
     }
 
+    login(username: string, password: string) {
+        return this.http.post('api/login', {username: username, password: password});
+    }
+
+    register(username: string, password: string) {
+        return this.http.post('api/register', {username: username, password: password});
+    }
 }
