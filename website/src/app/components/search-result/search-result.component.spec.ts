@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SearchResultComponent} from './search-result.component';
 import {ArtistComponent} from '../artist/artist.component';
-import {SearchService} from './search.service';
+import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('SearchResultComponent', () => {
@@ -16,7 +16,7 @@ describe('SearchResultComponent', () => {
                 ArtistComponent
             ],
             providers: [
-                SearchService,
+                DataService,
                 HttpClient,
                 HttpHandler
             ]

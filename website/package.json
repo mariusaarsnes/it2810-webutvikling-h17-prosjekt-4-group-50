@@ -32,7 +32,7 @@
     "core-js": "^2.4.1",
     "d3": "^4.11.0",
     "express-session": "^1.15.6",
-    "mongoose": "^4.13.1",
+    "mongoose": "^4.13.2",
     "passord": "^1.1.2",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

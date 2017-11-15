@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
+import {DataService} from "../../data.service";
 
 @Component({
     selector: 'app-login',
@@ -13,11 +14,8 @@ export class LoginComponent implements OnInit {
     password = '';
     result = '';
 
-    constructor(private http: HttpClient, private router: Router) {
-        /*this.http.get("/api/logged_in").subscribe(data => {
-            if (data["result"])
-                this.router.navigate(['/search']);
-        });*/
+    constructor(private router: Router, private searchService: DataService) {
+
     }
 
     ngOnInit() {
@@ -25,7 +23,7 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit() {
-        this.http.post('api/login/', {username: this.username, password: this.password}).subscribe(data => {
+        this.searchService.login(this.username, this.password).subscribe(data => {
             if (data['failed'] === 'false') {
                 this.router.navigate(['/search']);
             } else {

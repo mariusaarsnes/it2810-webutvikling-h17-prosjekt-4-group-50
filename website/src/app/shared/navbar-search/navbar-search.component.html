@@ -18,12 +18,12 @@
 					<p>Sort by: </p>&nbsp;&nbsp;
 					<select (change)="selectSort($event)" name="sortBy" class="input-select">
 						<option value="none">None</option>
-						<option value="popularity">Popularity</option>
+						<option *ngIf="searchType === 'artist'" value="popularity" selected="selected">Popularity</option>
 						<option value="name">Name</option>
 					</select>
                     <select (change)="selectSortType($event)" name="sortType" class="input-select">
                         <option value="ascending">Asc</option>
-                        <option value="descending">Desc</option>
+                        <option value="descending" selected="selected">Desc</option>
                     </select>
 				</div>
 				<div class="filter-by">

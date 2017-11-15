@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, HostListener, Inject, OnChanges} from '@angular/core';
-import {SearchService} from "./search.service";
+import {DataService} from "../../data.service";
 import {HttpClient} from "@angular/common/http";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DOCUMENT} from "@angular/common";
@@ -16,7 +16,7 @@ import {AlbumResponse} from "../../interfaces/album-response.interface";
 
 export class SearchResultComponent implements OnInit, OnChanges {
 
-	constructor(private searchService: SearchService,
+	constructor(private searchService: DataService,
 				private http: HttpClient,
 				@Inject(DOCUMENT) private document: Document) {
 	}
@@ -47,13 +47,13 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
                 break;
             case "album":
-                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index, "none", "none", "none", "none").subscribe( albums => {
+                this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( albums => {
                     this.albums = albums;
                     this.canRenderNew = true;
                 })
                 break;
             case "track":
-                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index, "none", "none", "none", "none").subscribe( tracks => {
+                this.searchService.getSongs(this.searchString, this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "ascending").subscribe( tracks => {
                     this.tracks = tracks;
                     this.canRenderNew = true;
                 });
@@ -63,15 +63,16 @@ export class SearchResultComponent implements OnInit, OnChanges {
     getStandardData(): void {
 	    switch (this.searchType) {
             case "artist":
-                this.searchService.getArtists("*", 15, 0, "none", "none", "popularity", "descending").subscribe(artists => {
+                this.searchService.getArtists("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "popularity", this.sortType ? this.sortType : "descending").subscribe(artists => {
+
                     this.artists = artists;
                 });
             case "album":
-                this.searchService.getAlbums("*", 15, 0, "none", "none", "none", "none").subscribe(albums => {
+                this.searchService.getAlbums("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(albums => {
                     this.albums = albums;
                 });
             case "track":
-                this.searchService.getSongs("*", 15, 0, "none", "none", "none", "none").subscribe(tracks => {
+                this.searchService.getSongs("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(tracks => {
                     this.tracks = tracks;
                 });
         }

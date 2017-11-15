@@ -9,7 +9,7 @@
     min-width: 500px;
 }
 
-.noHistory {
+.no-artist-wrap {
     background-color: white;
     width: auto;
     padding: 20px;
@@ -23,8 +23,9 @@
     justify-content: center;
 }
 
-p {
-    font-family: "Intro Rust", sans-serif;
+.image-scaler {
+    width: 150px;
+    height: 150px;
 }
 
 .mat-table {
@@ -41,8 +42,12 @@ mat-row:active{
     background-color: grey
 }
 
+p {
+    font-family: "Intro Rust", sans-serif;
+}
+
 @media screen and (max-width: 600px) {
-    .mat-column-date {
+    .mat-column-popularity {
         display: none;
     }
     .example-container {

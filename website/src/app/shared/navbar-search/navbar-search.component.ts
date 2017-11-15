@@ -14,8 +14,8 @@ export class NavbarSearchComponent implements OnInit {
 	}
 
 	filterlist  = [];
-	sort        = "none";
-	sortType    = "ascending";
+	sort        = "popularity";
+	sortType    = "descending";
 	searchType  = "artist";
 
 	selectSort(e): void {
