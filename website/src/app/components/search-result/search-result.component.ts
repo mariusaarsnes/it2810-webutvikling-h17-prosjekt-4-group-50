@@ -34,10 +34,10 @@ export class SearchResultComponent implements OnInit, OnChanges {
 			this.renderTreshold = 15;
 			this.getData();
 		} else {
-			this.clearArtists();
+			this.getStandardData();
 		}
 		if(this.prevSearchType !== this.searchType) {
-		    this.clearArtists();
+		    this.getStandardData();
 		    this.prevSearchType = this.searchType;
         }
 	};
@@ -51,6 +51,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 });
                 break;
             case "album":
+                console.log("heisannnn");
                 this.searchService.getAlbums(this.searchString, this.renderTreshold, this.index).subscribe( albums => {
                     this.albums = albums;
                     this.canRenderNew = true;
@@ -64,8 +65,16 @@ export class SearchResultComponent implements OnInit, OnChanges {
                 break;
         }
 	};
-	public clearArtists(): void {
+	public getStandardData(): void {
+	    switch (this.searchType) {
+            case "artist":
+                this.searchService.getArtists("", 15, 0, "none", "none", "popularity", "descending").subscribe(artists => {
+                    this.artists = artists;
+                });
+        }
 		this.artists = [];
+		this.tracks = [];
+		this.albums = [];
 	};
 	ngOnInit() {
 
