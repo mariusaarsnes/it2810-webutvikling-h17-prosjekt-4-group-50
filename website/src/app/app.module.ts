@@ -29,7 +29,6 @@ import {LoginComponent} from "./components/login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import { AlbumComponent } from './components/album/album.component';
 import {TrackComponent} from "./components/track/track.component";
-import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
 
 @NgModule({
     declarations: [
@@ -51,7 +50,6 @@ import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.compo
         FavoriteArtistsComponent,
         TrackComponent,
         AlbumComponent,
-        SongsDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -93,7 +91,6 @@ import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.compo
     providers: [AlbumService, DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
-        SongsDialogComponent
     ],
     bootstrap: [AppComponent]
 })

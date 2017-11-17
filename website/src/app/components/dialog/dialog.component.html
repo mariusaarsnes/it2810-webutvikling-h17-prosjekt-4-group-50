@@ -15,29 +15,51 @@
 
 	</div>
 	<br><hr id="hr-dialog">
-	<h2 id="type-dialog">Albums</h2>
-    <div *ngIf="show"  id="show-dialog">
-        <div id="show-album-dialog">
-            <img src="{{album.imageLink}}" alt="Chosen album">
-            <div id="album-info-dialog">
-                <h4>Album</h4>
-                <h3>{{album.name}}</h3>
+    <div *ngIf="data[3] === true">
+        <h2 id="type-dialog">Albums</h2>
+        <div *ngIf="show"  id="show-dialog">
+            <div id="show-album-dialog">
+                <img src="{{album.imageLink}}" alt="Chosen album">
+                <div id="album-info-dialog">
+                    <h4>Album</h4>
+                    <h3>{{album.name}}</h3>
+                </div>
+
             </div>
+            <div>
 
+            </div>
         </div>
+        <div id="modal-album-dialog">
+            <div *ngFor="let album of data[1];" class="album-info-dialog">
+                <div class="img-dialog">
+                    <img class="album-img-dialog" (click)="intoView(album);"
+                         src="{{album.imageLink}}" alt="Album picture">
+                </div>
+                <div class="album-text-dialog">
+                    <p>{{album.name}}</p>
+                </div>
 
+            </div>
+        </div>
     </div>
-	<div id="modal-album-dialog">
-		<div *ngFor="let album of data[1];" class="album-info-dialog">
-			<div class="img-dialog">
-				<img class="album-img-dialog" (click)="intoView(album);"
-                     src="{{album.imageLink}}" alt="Album picture">
-			</div>
-			<div class="album-text-dialog">
-				<p>{{album.name}}</p>
-			</div>
-
-		</div>
-
-	</div>
+    <div *ngIf="data[3] === false">
+        <h2 id="type-dialog2">Tracks</h2>
+        <div>
+            <div id="information-song-dialog">
+                <p id="title">Title</p>
+                <p id="album">Album</p>
+            </div>
+            <span *ngFor="let song of data[2]">
+                <div class="song-dialog">
+                    <img class ="song-img-dialog" src="{{song.albumData.imageLink}}" alt="Album image">
+                    <p *ngIf="song.name.length >= 22" class="title">{{song.name.substring(0,22).concat("...")}}</p>
+                    <p *ngIf="song.name.length < 22" class="title">{{song.name}}</p>
+                    <p *ngIf="song.albumData.name.length >= 41" class="album">
+                        {{song.albumData.name.substring(0,41).concat("...")}}</p>
+                    <p *ngIf="song.albumData.name.length < 41" class="album">{{song.albumData.name}}</p>
+                </div>
+            </span>
+        </div>
+    </div>
 </div>
