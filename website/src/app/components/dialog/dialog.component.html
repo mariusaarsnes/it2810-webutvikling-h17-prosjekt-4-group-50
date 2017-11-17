@@ -1,20 +1,37 @@
 <div id="modal-dialog">
-	<div id="modal-artist-dialog">
-		<div id="right-dialog">
-			<img id="artist-img-dialog" src="{{data[0].imageLink}}" alt="Artist picture"/>
+	<div class="modal-artist-dialog" *ngIf="isArray(data[0]) == false">
+		<div class="right-dialog">
+			<img class="artist-img-dialog" src="{{data[0].imageLink}}" alt="Artist picture"/>
 		</div>
-		<div id="left-dialog">
+		<div class="left-dialog">
 			<h3>Artist</h3>
 			<h1>{{data[0].name}}</h1>
 			<p id="genres-dialog">Genres: {{data[0].genres.slice(0,4).join(', ')}}</p>
 			<p id="popularity-dialog">Popularity: {{data[0].popularity}}</p>
 		</div>
-		<div id="close-dialog" (click)="closeDialog()">
+		<div class="close-dialog" (click)="closeDialog()">
 			<span>X</span>
 		</div>
 
 	</div>
-	<br><hr id="hr-dialog">
+    <div class="modal-artist-dialog"  *ngIf="isArray(data[0]) == true">
+        <div class="right-dialog">
+            <img class="artist-img-dialog" src="{{data[1].imageLink}}" alt="Album picture"/>
+        </div>
+        <div class="left-dialog">
+            <h3>Album</h3>
+            <h1>{{data[1].name}}</h1>
+            <div *ngFor="let artist of data[1].albumData">
+                <p>{{artist.name}}</p>
+            </div>
+            
+        </div>
+        <div class="close-dialog" (click)="closeDialog()">
+            <span>X</span>
+        </div>
+    </div>
+
+    <br><hr id="hr-dialog">
     <div *ngIf="data[3] === true">
         <h2 id="type-dialog">Albums</h2>
         <div *ngIf="show"  id="show-dialog">
@@ -53,11 +70,11 @@
             <span *ngFor="let song of data[2]">
                 <div class="song-dialog">
                     <img class ="song-img-dialog" src="{{song.albumData.imageLink}}" alt="Album image">
-                    <p *ngIf="song.name.length >= 22" class="title">{{song.name.substring(0,22).concat("...")}}</p>
-                    <p *ngIf="song.name.length < 22" class="title">{{song.name}}</p>
-                    <p *ngIf="song.albumData.name.length >= 41" class="album">
-                        {{song.albumData.name.substring(0,41).concat("...")}}</p>
-                    <p *ngIf="song.albumData.name.length < 41" class="album">{{song.albumData.name}}</p>
+                    <p *ngIf="song.name.length >= 17" class="title">{{song.name.substring(0,17).concat("...")}}</p>
+                    <p *ngIf="song.name.length < 17" class="title">{{song.name}}</p>
+                    <p *ngIf="song.albumData.name.length >= 30" class="album">
+                        {{song.albumData.name.substring(0,30).concat("...")}}</p>
+                    <p *ngIf="song.albumData.name.length < 30" class="album">{{song.albumData.name}}</p>
                 </div>
             </span>
         </div>

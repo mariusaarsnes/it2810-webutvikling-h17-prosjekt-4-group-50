@@ -26,4 +26,7 @@ export class DialogComponent {
 	    this.show = true;
         document.getElementById("type-dialog").scrollIntoView();
     }
+    isArray(obj : any ) {
+        return Array.isArray(obj)
+    }
 }

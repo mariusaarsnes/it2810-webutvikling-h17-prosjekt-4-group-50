@@ -36,7 +36,7 @@ export class ArtistComponent implements OnInit {
     }
 
 
-    openDialogAlbums(dialog) {
+    openDialog(dialog) {
         this.showAlbum = dialog === "albums";
 
         console.log(this.showAlbum);
