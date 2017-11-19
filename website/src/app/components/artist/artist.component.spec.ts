@@ -33,6 +33,7 @@ describe('ArtistComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(ArtistComponent);
         component = fixture.componentInstance;
+
         // Creating a mock artist to test that the rendering is correct
         component.artist = {
             _id: '123', name: 'test', type: 'artist', popularity: 99, albums: ['1', '2'], __v: 12,
@@ -43,5 +44,12 @@ describe('ArtistComponent', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('Should show correct information about the artist', () => {
+        const compiled = fixture.debugElement.nativeElement;
+
+        expect(compiled.querySelector('h4').textContent).toBe(component.artist.name);
+        expect(compiled.querySelector('p').textContent).toBe(component.artist.songs.length + ' albums');
     });
 });

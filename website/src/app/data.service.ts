@@ -62,7 +62,7 @@ export class DataService {
         });
     }
 
-    getArtist(id: string): Observable<ArtistResponse> {
+    getArtist(id: string){
         return this.http.get<ArtistResponse>('api/artist/' + id);
     }
 
@@ -217,10 +217,11 @@ export class DataService {
     }
 
     login(username: string, password: string) {
-        return this.http.post('api/login', {username: username, password: password});
+        return Observable.of(this.http.post('api/login', {username: username, password: password}));
     }
 
     register(username: string, password: string) {
-        return this.http.post('api/create_user', {username: username, password: password});
+        let temp =  this.http.post('api/create_user', {username: username, password: password});
+        return Observable.of(temp);
     }
 }
