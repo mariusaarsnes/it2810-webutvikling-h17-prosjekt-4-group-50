@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AgWordCloudData} from "angular4-word-cloud";
-import {DataService} from "../../data.service";
-import {GenresResponse} from "../../interfaces/genres-response.interface";
+import {AgWordCloudData} from 'angular4-word-cloud';
+import {DataService} from '../../data.service';
+import {GenresResponse} from '../../interfaces/genres-response.interface';
 
 @Component({
     selector: 'wordcloud',
@@ -11,9 +11,9 @@ import {GenresResponse} from "../../interfaces/genres-response.interface";
 })
 export class WordcloudComponent implements OnInit {
 
-    loaded: boolean = true;
+    loaded = false;
 
-    //The colors specified for our word cloud
+    // The colors specified for our word cloud
     colors: Array<String> = [
         'blue',
         'green',
@@ -48,11 +48,12 @@ export class WordcloudComponent implements OnInit {
             this.wordData = this.mapGenresToWordCloud(data);
             this.loaded = true;
         });
+
     }
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
         return data.map(genre => {
-            return <AgWordCloudData>{text: genre._id, size: genre.count}
+            return <AgWordCloudData>{text: genre._id, size: genre.count};
         });
     }
 
