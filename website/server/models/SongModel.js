@@ -13,7 +13,7 @@ let mongoose = require("mongoose"),
             type: String
         },
         duration: {
-            type: Number
+            type: Array
         },
         album: {
             type: String
