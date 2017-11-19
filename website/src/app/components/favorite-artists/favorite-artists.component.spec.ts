@@ -10,6 +10,16 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {OVERLAY_PROVIDERS, ScrollStrategyOptions} from '@angular/cdk/overlay';
 import {ScrollDispatcher} from '@angular/cdk/scrolling';
 import {Platform} from '@angular/cdk/platform';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {Observable} from 'rxjs/Observable';
+import {SearchHistoryData} from '../../interfaces/search-history-data-response.interface';
+
+
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+}
 
 describe('FavoriteArtistsComponent', () => {
     let component: FavoriteArtistsComponent;
@@ -23,13 +33,13 @@ describe('FavoriteArtistsComponent', () => {
                 MatRow, MatRowDef,
                 MatTable],
             providers: [
-                DataService, HttpClient, HttpHandler, MatDialog, OVERLAY_PROVIDERS, ScrollStrategyOptions, ScrollDispatcher, Platform
+                {provide: DataService, useClass: MockDataService},
+                HttpClient, HttpHandler, MatDialog, OVERLAY_PROVIDERS, ScrollStrategyOptions, ScrollDispatcher, Platform
             ],
             imports: [
                 MatDialogModule
             ]
-        })
-            .compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {

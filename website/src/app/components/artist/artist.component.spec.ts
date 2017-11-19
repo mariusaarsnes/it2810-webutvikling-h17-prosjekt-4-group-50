@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ArtistComponent} from './artist.component';
-import {MAT_DIALOG_SCROLL_STRATEGY, MatDialog} from '@angular/material';
+import {MAT_DIALOG_SCROLL_STRATEGY, MatDialogModule} from '@angular/material';
 import {Overlay, OVERLAY_PROVIDERS, OverlayContainer, ScrollStrategyOptions} from '@angular/cdk/overlay';
 import {ScrollDispatcher, ViewportRuler} from '@angular/cdk/scrolling';
 import {Platform} from '@angular/cdk/platform';
@@ -18,12 +18,15 @@ describe('ArtistComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ArtistComponent],
             providers: [
-                MatDialog, Overlay, ScrollStrategyOptions,
+                Overlay, ScrollStrategyOptions,
                 ScrollDispatcher, Platform, ViewportRuler,
                 OverlayContainer, OVERLAY_PROVIDERS,
                 {provide: MAT_DIALOG_SCROLL_STRATEGY, useValue: {}}, DataService,
                 HttpClient, HttpHandler
             ],
+            imports: [
+                MatDialogModule,
+            ]
         }).compileComponents();
     }));
 

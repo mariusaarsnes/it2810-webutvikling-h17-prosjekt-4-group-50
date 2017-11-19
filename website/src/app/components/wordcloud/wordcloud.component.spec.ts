@@ -32,7 +32,7 @@ describe('WordcloudComponent', () => {
                 WordcloudComponent,
             ],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
             ],
@@ -42,12 +42,6 @@ describe('WordcloudComponent', () => {
                 AgWordCloudModule,
                 HttpClientTestingModule
             ]
-        }).overrideComponent(WordcloudComponent, {
-            set: {
-                providers: [
-                    {provide: DataService, useClass: MockDataService}
-                ]
-            }
         }).compileComponents().then(() => {
             fixture = TestBed.createComponent(WordcloudComponent);
             component = fixture.componentInstance;
@@ -61,12 +55,6 @@ describe('WordcloudComponent', () => {
     });
 
     it('Should resolve test data on init', fakeAsync(() => {
-        const spy = spyOn(mock, 'getFavoriteGenres').and.returnValue(
-            Observable.of([{
-                _id: '1',
-                count: 3
-            }])
-        );
 
         // First we check to se if the variables are correct before the component is initialized.
         expect(component.loaded).toBe(false);

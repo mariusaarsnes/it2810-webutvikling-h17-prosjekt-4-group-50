@@ -1,8 +1,18 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SearchHistoryListComponent} from './search-history-list.component';
-import {MatCell, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableModule} from '@angular/material';
+import {MatRowDef, MatTable, MatTableModule} from '@angular/material';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import {DataService} from '../../data.service';
+import {SearchHistoryResponse} from '../../interfaces/history-response.interface';
+import {Observable} from 'rxjs/Observable';
 
+
+class MockDataService {
+    public getSearchHistory(): Observable<SearchHistoryResponse> {
+        return Observable.of();
+    }
+}
 describe('SearchHistoryListComponent', () => {
     let component: SearchHistoryListComponent;
     let fixture: ComponentFixture<SearchHistoryListComponent>;
@@ -11,17 +21,16 @@ describe('SearchHistoryListComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SearchHistoryListComponent,
-                MatTable,
-                MatHeaderCell,
-                MatCell,
-                MatHeaderRow,
-                MatRow,
-                MatHeaderRowDef
             ],
             providers: [
-                {provide: MatTable, useValue: 'test'},
                 {provide: MatRowDef, useValue: {Columns: 8}},
+                {provide: DataService, useClass: MockDataService}
+            ],
+            imports: [
                 MatTableModule
+            ],
+            schemas: [
+                CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA
             ]
         })
             .compileComponents();

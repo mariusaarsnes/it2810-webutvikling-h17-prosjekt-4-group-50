@@ -15,7 +15,14 @@ import {
 } from '@angular/material';
 import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {UserResponse} from '../../interfaces/user-response.interface';
 
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+}
 describe('MyInfoComponent', () => {
     let component: MyInfoComponent;
     let fixture: ComponentFixture<MyInfoComponent>;
@@ -36,7 +43,7 @@ describe('MyInfoComponent', () => {
                 MatTable
             ],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
             ]

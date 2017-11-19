@@ -7,7 +7,18 @@ import {CdkColumnDef} from '@angular/cdk/table';
 import {DataService} from '../../data.service';
 import {HttpClient} from '@angular/common/http';
 import {HttpHandler} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {SearchHistoryData} from '../../interfaces/search-history-data-response.interface';
 
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+    public getSearchHistoryData(): Observable<SearchHistoryData> {
+        return Observable.of();
+    }
+}
 describe('HistoryComponent', () => {
     let component: HistoryComponent;
     let fixture: ComponentFixture<HistoryComponent>;
@@ -27,7 +38,9 @@ describe('HistoryComponent', () => {
                 MatTable
             ],
             providers: [
-                CdkColumnDef, DataService, HttpClient, HttpHandler
+                CdkColumnDef,
+                {provide: DataService, useClass: MockDataService},
+                HttpClient, HttpHandler
             ]
         })
             .compileComponents();

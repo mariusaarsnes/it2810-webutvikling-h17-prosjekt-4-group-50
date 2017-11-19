@@ -6,7 +6,14 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {Observable} from 'rxjs/Observable';
 
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+}
 describe('ProfileComponent', () => {
     let component: ProfileComponent;
     let fixture: ComponentFixture<ProfileComponent>;
@@ -15,7 +22,7 @@ describe('ProfileComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ProfileComponent, NavbarProfileComponent],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
             ],

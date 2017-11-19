@@ -9,7 +9,26 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {DataService} from '../../data.service';
 import {AlbumComponent} from '../../components/album/album.component';
 import {TrackComponent} from '../../components/track/track.component';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {Observable} from 'rxjs/Observable';
+import {ArtistResponse} from '../../interfaces/artist-response.interface';
+import {AlbumResponse} from '../../interfaces/album-response.interface';
+import {SongResponse} from '../../interfaces/song-response.interface';
 
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+    public getArtists(): Observable<ArtistResponse[]> {
+        return Observable.of([]);
+    }
+    public getAlbums(): Observable<AlbumResponse[]> {
+        return Observable.of([]);
+    }
+    public getSongs(): Observable<SongResponse[]> {
+        return Observable.of([]);
+    }
+}
 describe('NavbarSearchComponent', () => {
     let component: NavbarSearchComponent;
     let fixture: ComponentFixture<NavbarSearchComponent>;
@@ -22,7 +41,9 @@ describe('NavbarSearchComponent', () => {
                 ArtistComponent,
                 AlbumComponent,
                 TrackComponent],
-            providers: [DataService, HttpClient, HttpHandler],
+            providers: [
+                {provide: DataService, useClass: MockDataService},
+                HttpClient, HttpHandler],
             imports: [
                 FormsModule
             ]
