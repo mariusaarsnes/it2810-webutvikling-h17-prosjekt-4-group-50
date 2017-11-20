@@ -27,10 +27,6 @@
     color: rgb(156, 43, 66);
 }
 
-#type-dialog2 {
-    color: rgb(156, 43, 66);
-}
-
 
 #genres-dialog {
 	margin-top: 0;
@@ -121,7 +117,7 @@
     position: relative;
 }
 
-#show-dialog img {
+#chosen-album {
     width: 180px;
     height: 180px;
     overflow: hidden;
@@ -149,36 +145,6 @@
 
 }
 
-.song-img-dialog {
-    width: 50px;
-    height: 100%;
-    margin-right: 10px;
-    overflow: hidden;
-}
-
-.song-dialog {
-    display: flex;
-    height: 50px;
-    flex-direction: row;
-    box-shadow: 0 0 20px -4px rgba(0,0,0,0.20);
-    margin-bottom: 10px;
-
-}
-.song-dialog:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-#information-song-dialog {
-    display: flex;
-    flex-direction: row;
-}
-#information-song-dialog #title{
-    margin-left: 60px;
-    width: 35%;
-}
-.song-dialog .title{
-    width: 35%;
-}
 
 @media screen and (max-width: 480px) {
 	.modal-artist-dialog {
@@ -213,20 +179,18 @@
     }
     #album-info-dialog {
         margin-left: 0;
+        width: 100%;
+        order: 3;
     }
-
-    .song-dialog .title{
-        margin-left: 5px;
-        margin-right: 5px;
-        width: 80%;
+    #chosen-album {
+        order: 2;
+        width: 90%;
+        height: 90%;
+        overflow: hidden;
     }
-    .song-dialog .album {
-        display: none;
+    #album-info-dialog h3 {
+        font-size: 25px;
     }
-    #information-song-dialog #album{
-        display: none;
-    }
-
 
 }
 @media screen and (max-width: 320px) {

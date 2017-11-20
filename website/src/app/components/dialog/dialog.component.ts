@@ -12,7 +12,6 @@ import {HostListener} from "@angular/core";
 
 export class DialogComponent implements OnInit {
     show: boolean = false;
-    id: string = "";
     album: AlbumResponse;
     divWidth : number;
 
@@ -37,9 +36,6 @@ export class DialogComponent implements OnInit {
 	    this.show = true;
         document.getElementById("type-dialog").scrollIntoView();
 
-    }
-    isArray(obj : any ) {
-        return Array.isArray(obj)
     }
 
 }
