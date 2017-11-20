@@ -16,8 +16,7 @@ Stack. The MEANS stack provides a set of Open Source components that together pr
 Starting from the top, to the bottom, the stack is made up of:
 
 - **Angular**: A front-end framework which runs the projects javascript in the web browser. We chose to go for 
-Angular 4,
- simply because it is the newest version of Angular.
+Angular 4, simply because it was the newest version of Angular.
 - **Express**: A back-end **framework** running on top of Node. The Express framework can be used to render 
 everything on the page, route between pages and much more. In our project we have decided to use very little of the 
 functionality express provides. Focusing on the **Express.Router library** to help us interact with the REST-api and 
@@ -46,7 +45,7 @@ Artist:
 
     let Artist = new Schema({
 
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         genres:     {type: Array},
         imageLink:  {type: String},
@@ -61,7 +60,7 @@ Album:
 
 
     let Album = new Schema({
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         genres:     {type: Array},
         imageLink:  {type: String},
@@ -73,7 +72,7 @@ Album:
 Songs:
 
     let Song = new Schema({
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         imageLink:  {type: String},
         type:       {type: String},
@@ -86,20 +85,20 @@ Songs:
 Users:
 
     let User = new Schema({
-        username:       {type: String,},
-        password:       {type: String,},
-        search_history: {type: Array,},
-        admin:          {
-                            type: Boolean,
-                            default: false,
-                        }
-        });
-        
-Searches:
+        username:         {type: String,},
+        password:         {type: String,},
+        search_history:   {type: Array,},
+        admin:            {
+                              type: Boolean,
+                              default: false,
+                          },
+        date_registered:  {
+                              type: Date,
+                              default: Date.now
+                          },
+        favorite_artists: {type Array,}
+    });
 
-    let Search = new Schema({
-            search_string: {type: String}
-        });
     
 ### Design <a name= "Design"></a>
 We have decided to go for a very simple design. The main focus of this project is the database interaction, and we 
@@ -112,8 +111,10 @@ and probably will be made changes to the final design.
 
 
 ### Project Structure <a name="ProjectStructure"></a>
-Our structure is, right now, a bit messy. The frontend and back-end are split in two different main directories. The 
-thought of this as a logical differentiation at first, but now see benefits of having the functionality of the 
-server-side in a sub-folder while the functionality of the website is at the root folder. Alternatively, have the 
-website in a main folder and the server in a subfolder under the website. Seeing as we are most likely to change the 
-project structure in the future, we have not added a description of it in this document, just yet.
+Our project struckture is really straight forward, with a locgical folder structure.
+
+(Insert bilde av folder strukturen)
+
+forklare hva som skjer i strukturen
+
+  
