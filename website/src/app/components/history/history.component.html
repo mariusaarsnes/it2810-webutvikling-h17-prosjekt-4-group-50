@@ -3,7 +3,7 @@
         <h1>View history for {{user.username}}</h1>
 
         <div class="search-info-wrapper">
-            <div class="search-container">
+            <div class="search-container mat-elevation-z8">
                 <h3>Unique viewed items</h3>
                 <div class="underline"></div>
                 <div *ngIf="uniqueSearches; else noUniquesearch">
@@ -13,7 +13,7 @@
                     <h1>0</h1>
                 </ng-template>
             </div>
-            <div class="search-container">
+            <div class="search-container mat-elevation-z8">
                 <h3>Total viewed items</h3>
                 <div class="underline"></div>
                 <div *ngIf="totalSearches; else noTotalsearch">

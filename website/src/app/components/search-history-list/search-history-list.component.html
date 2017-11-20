@@ -21,15 +21,12 @@
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"
-                     (click)="handleRowClick(row)"
-            >
-            </mat-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
     </div>
 </div>
 <ng-template #noHistory>
-    <div class="noHistory">
+    <div class="noHistory mat-elevation-z8">
         <p>No history found</p>
     </div>
 </ng-template>

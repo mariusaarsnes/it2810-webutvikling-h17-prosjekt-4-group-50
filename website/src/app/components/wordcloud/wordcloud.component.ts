@@ -28,7 +28,7 @@ export class WordcloudComponent implements OnInit {
 
     options = {
         settings: {
-            minFontSize: 10,
+            minFontSize: 1,
             maxFontSize: 100,
         },
         margin: {

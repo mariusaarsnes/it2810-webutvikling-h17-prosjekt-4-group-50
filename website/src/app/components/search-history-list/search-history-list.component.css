@@ -33,14 +33,6 @@ p {
   font-family: "Intro Rust", sans-serif;
 }
 
-mat-row:hover{
-    background-color: lightgrey
-}
-
-mat-row:active{
-    background-color: grey
-}
-
 @media screen and (max-width: 600px) {
     .mat-column-date {
         display: none;
