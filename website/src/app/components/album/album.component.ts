@@ -4,8 +4,9 @@ import {SongResponse} from "../../interfaces/song-response.interface";
 import {DataService} from "../../data.service";
 import {MatDialog} from "@angular/material";
 import {Observable} from "rxjs/Observable";
+import {SongDialogComponent} from "../song-dialog/song-dialog.component";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
-import {DialogComponent} from "../dialog/dialog.component";
+
 
 @Component({
     selector: 'app-album',
@@ -20,7 +21,6 @@ export class AlbumComponent implements OnInit {
 
     songs: SongResponse[];
     artists: ArtistResponse[];
-    showAlbum: boolean = false;
 
     ngOnInit(): void {
     }
@@ -28,30 +28,19 @@ export class AlbumComponent implements OnInit {
     @Input() album: AlbumResponse;
 
     getSongs(songs): Observable<SongResponse[]> {
-        return this.searchService.getSongsByIdsWithAlbums(songs);
+        return this.searchService.getSongsByIds(songs);
     }
 
-    getArtistsByIds(ids): Observable<ArtistResponse[]> {
-        return this.searchService.getArtistsByIds(ids);
-    }
-
-
-    openDialog(dialog) {
-        this.showAlbum = dialog === "albums";
+    openDialog() {
 
         this.artists = this.album.artistsData;
         console.log(this.album);
-
-        this.album.artistsData.forEach(artist => {
-            console.log(artist.name);
-        });
-
         this.getSongs(this.album.songs).subscribe(songs => {
             this.songs = songs;
-            const dialogRef = this.dialog.open(DialogComponent, {
+            const dialogRef = this.dialog.open(SongDialogComponent, {
                 height: "80%",
                 width: "70%",
-                data: [this.artists, this.album, this.songs, this.showAlbum],
+                data: [this.artists, this.album, this.songs],
             });
             dialogRef.afterClosed();
         });
