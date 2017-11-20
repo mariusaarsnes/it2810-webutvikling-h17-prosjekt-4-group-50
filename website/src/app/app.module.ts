@@ -29,10 +29,7 @@ import { AlbumComponent } from './components/album/album.component';
 import {TrackComponent} from "./components/track/track.component";
 import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
 import {
-    MatPaginator, MatSort, MatTable, MatTableModule, MatTabHeader,
-    MatHeaderRow, MatHeaderCell, MatHeaderCellDef, MatHeaderRowDef,
-    MatSortHeader, MatRow, MatRowDef,  MatCell, MatCellDef,
-    _MatCell, _MatCellDef, _MatHeaderCellDef, _MatHeaderRowDef,
+    MatTableModule,
     MatDialogModule
 } from '@angular/material';
 
@@ -57,23 +54,6 @@ import {
         TrackComponent,
         AlbumComponent,
         DialogTableComponent,
-        MatTabHeader,
-        MatHeaderRow,
-        MatHeaderCell,
-        MatHeaderCellDef,
-        MatHeaderRowDef,
-        MatSortHeader,
-        MatRow,
-        MatRowDef,
-        MatCell,
-        MatCellDef,
-        _MatCell,
-        _MatCellDef,
-        _MatHeaderCellDef,
-        _MatHeaderRowDef,
-        MatTable,
-        MatPaginator,
-        MatSort
     ],
     imports: [
         BrowserModule,
