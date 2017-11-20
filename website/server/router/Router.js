@@ -13,6 +13,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Router middleware. Can be used to verify input (API token?)
      */
     router.use((req, res, next) => {
+
         next();
     });
 
@@ -26,8 +27,10 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      */
     router.get("/user", userController.findUser);
     router.get("/aggregate_genres", isAuthorized, userController.findAggregateGenres);
-    router.post("/add_favorite_artist/:id", userController.addFavoriteArtist);
-    router.get("/update_history", userController.updateSearchHistory);
+    router.get("/is_favorite/:id", userController.isFavorite);
+    router.put("/add_favorite_artist", userController.addFavoriteArtist);
+    router.put("/remove_favorite_artist", userController.removeFavoriteArtist);
+    router.put("/update_history", userController.updateSearchHistory);
     router.get("/search_history", userController.findSearchHistory);
     router.get("/search_history_data", userController.findSearchHistoryData);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));

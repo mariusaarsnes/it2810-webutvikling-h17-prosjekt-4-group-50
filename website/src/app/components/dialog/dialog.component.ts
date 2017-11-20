@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {DataService} from "../../data.service";
 
 @Component({
     selector: 'app-dialog',
@@ -12,15 +13,16 @@ export class DialogComponent {
     show: boolean = false;
     id: string = "";
     album: AlbumResponse;
+    isFavorite: boolean;
 
-
-
-
-	constructor(@Inject(MAT_DIALOG_DATA) public data: any, public thisDialogRef: MatDialogRef<DialogComponent>) {
+	constructor(@Inject(MAT_DIALOG_DATA) public data: any, public thisDialogRef: MatDialogRef<DialogComponent>,
+                private searchService: DataService) {
 	}
+
 	closeDialog() {
 		this.thisDialogRef.close();
 	}
+
     intoView(album) {
 	    this.album = album;
 	    this.show = true;

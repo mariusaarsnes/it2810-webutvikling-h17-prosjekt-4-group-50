@@ -21,9 +21,12 @@ export class ArtistComponent implements OnInit {
     albums: AlbumResponse[];
     songs: SongResponse[];
     showAlbum: boolean = false;
-
+    isFavorite: boolean;
 
     ngOnInit(): void {
+        this.searchService.isFavorite(this.artist._id).subscribe(isFavorite => {
+            this.isFavorite = isFavorite;
+        });
     }
 
     @Input() artist: ArtistResponse;
@@ -36,16 +39,13 @@ export class ArtistComponent implements OnInit {
         return this.searchService.getSongsByIdsWithAlbums(songs);
     }
 
-
     openDialog(dialog) {
         this.showAlbum = dialog === "albums";
-
-        console.log(this.showAlbum);
         this.getSongs(this.artist.songs).subscribe(songs => {
             this.songs = songs;
             this.getAlbums(this.artist.albums).subscribe(albums => {
                 this.albums = albums;
-
+                this.searchService.updateSearchHistory("artist", this.artist._id);
                 const dialogRef = this.dialog.open(DialogComponent, {
                     height: "80%",
                     width: "70%",
@@ -55,4 +55,13 @@ export class ArtistComponent implements OnInit {
             });
         });
     }
+
+    favorite() {
+        if (this.isFavorite)
+            this.searchService.removeFavoriteArtist(this.artist._id).subscribe();
+        else
+            this.searchService.addFavoriteArtist(this.artist._id).subscribe();
+        this.isFavorite = !this.isFavorite;
+    }
+
 }

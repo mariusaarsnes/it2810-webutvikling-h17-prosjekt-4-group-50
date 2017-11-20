@@ -30,6 +30,7 @@ export class AlbumComponent implements OnInit {
     getSongs(songs): Observable<SongResponse[]> {
         return this.searchService.getSongsByIdsWithAlbums(songs);
     }
+
     getArtistsByIds(ids): Observable<ArtistResponse[]> {
         return this.searchService.getArtistsByIds(ids);
     }

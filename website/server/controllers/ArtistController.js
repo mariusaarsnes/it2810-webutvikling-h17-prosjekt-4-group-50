@@ -34,7 +34,10 @@ exports.findArtistById = ((req, res) => {
             _id: req.params.id
         }, (err, artists) => {
             if (err) error(res, err, 500);
-            res.status(200).json(artists[0]);
+            if (artists.length > 0)
+                res.status(200).json(artists[0]);
+            else
+                res.status(200).json({});
         }
     );
 });
@@ -60,8 +63,8 @@ exports.findArtists = ((req, res) => {
         amount = parseInt(req.params.amount);
     Artist.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
         .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, artists) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(artists);
+        if (err) error(res, err, 500)
+        else res.status(200).json(artists);
     });
 });
 
