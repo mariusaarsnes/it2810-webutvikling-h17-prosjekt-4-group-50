@@ -55,15 +55,17 @@
 	right: 0;
 }
 .close-dialog span {
-	font-family: Avenir, Geneva, serif;
+	font-family: 'Intro Rust', serif;
 	font-size: 25px;
 	color: darkgray;
 	cursor: pointer;
 }
 .close-dialog span:hover {
-	font-family: Avenir, Geneva, serif;
-	font-size: 25px;
 	color: gray;
+}
+
+.close-dialog #hide {
+    font-size: 18px;
 }
 
 .artist-img-dialog {
@@ -79,10 +81,9 @@
 
 #modal-album-dialog {
 	display: flex;
-	flex-direction: row;
 	width: 100%;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+    margin: 0 auto;
 
 }
 
@@ -98,6 +99,7 @@
 
 .album-img-dialog {
 	border-radius: 5px;
+    cursor: pointer;
 	width: 100%;
 }
 
@@ -114,6 +116,7 @@
 #show-album-dialog {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
 #show-dialog img {
@@ -193,14 +196,16 @@
 		font-size: 35px;
 	}
     .close-dialog span:hover {
-        font-family: Avenir, serif;
         font-size: 35px;
         color: gray;
     }
-	.modal-album-dialog {
-		justify-content: center;
-	}
 
+    #show-album-dialog {
+        flex-direction: column;
+    }
+    #album-info-dialog {
+        margin-left: 0;
+    }
 
     .song-dialog .title{
         margin-left: 5px;
@@ -220,4 +225,5 @@
 	#modal-album-dialog {
 		justify-content: center;
 	}
+
 }

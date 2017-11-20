@@ -9,3 +9,12 @@
     overflow: auto;
     max-height: 200px;
 }
+
+
+
+@media screen and (max-width: 480px) {
+    .mat-column-duration {
+        display: none;
+    }
+
+}

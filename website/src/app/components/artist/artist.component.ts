@@ -24,6 +24,7 @@ export class ArtistComponent implements OnInit {
 
 
     ngOnInit(): void {
+
     }
 
     @Input() artist: ArtistResponse;
@@ -40,7 +41,6 @@ export class ArtistComponent implements OnInit {
     openDialog(dialog) {
         this.showAlbum = dialog === "albums";
 
-        console.log(this.showAlbum);
         this.getSongs(this.artist.songs).subscribe(songs => {
             this.songs = songs;
             this.getAlbums(this.artist.albums).subscribe(albums => {

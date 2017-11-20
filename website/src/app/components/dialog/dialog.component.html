@@ -12,7 +12,6 @@
 		<div class="close-dialog" (click)="closeDialog()">
 			<span>X</span>
 		</div>
-
 	</div>
     <div class="modal-artist-dialog"  *ngIf="isArray(data[0]) == true">
         <div class="right-dialog">
@@ -37,13 +36,17 @@
                     <h4>Album</h4>
                     <h3>{{album.name}}</h3>
                 </div>
-
+                <div class="close-dialog" (click)="show = !show">
+                    <span id="hide"> Hide</span>
+                </div>
             </div>
             <div>
-                <dialog-table></dialog-table>
+                <br>
+                <dialog-table [album]="album"></dialog-table>
             </div>
         </div>
-        <div id="modal-album-dialog">
+
+        <div id="modal-album-dialog" [style.width.px]="divWidth">
             <div *ngFor="let album of data[1];" class="album-info-dialog">
                 <div class="img-dialog">
                     <img class="album-img-dialog" (click)="intoView(album);"
@@ -61,16 +64,15 @@
         <div>
             <div id="information-song-dialog">
                 <p id="title">Title</p>
-                <p id="album">Album</p>
+                <p id="album">Duration</p>
             </div>
             <span *ngFor="let song of data[2]">
                 <div class="song-dialog">
                     <img class ="song-img-dialog" src="{{song.albumData.imageLink}}" alt="Album image">
                     <p *ngIf="song.name.length >= 17" class="title">{{song.name.substring(0,17).concat("...")}}</p>
                     <p *ngIf="song.name.length < 17" class="title">{{song.name}}</p>
-                    <p *ngIf="song.albumData.name.length >= 30" class="album">
-                        {{song.albumData.name.substring(0,30).concat("...")}}</p>
-                    <p *ngIf="song.albumData.name.length < 30" class="album">{{song.albumData.name}}</p>
+                    <p class="album"> {{song.duration[0]}} min {{song.duration[1]}} sek</p>
+
                 </div>
             </span>
 
