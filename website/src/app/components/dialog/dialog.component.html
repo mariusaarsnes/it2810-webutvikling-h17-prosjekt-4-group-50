@@ -35,6 +35,7 @@
                 <div id="album-info-dialog">
                     <h4>Album</h4>
                     <h3>{{album.name}}</h3>
+                    <h5>Tracks: {{album.songs.length}}</h5>
                 </div>
                 <div class="close-dialog" (click)="show = !show">
                     <span id="hide"> Hide</span>
@@ -42,6 +43,7 @@
             </div>
             <div>
                 <br>
+                <h3>Tracks</h3>
                 <dialog-table [album]="album"></dialog-table>
             </div>
         </div>

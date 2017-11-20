@@ -28,7 +28,6 @@ export class DialogComponent implements OnInit {
 
     @HostListener("window:resize", ['$event'])
     onResize(e) {
-	    console.log(document.getElementById('modal-dialog').offsetWidth);
         this.divWidth = Math.floor((document.getElementById('modal-dialog').offsetWidth / 160)) * 160;
     }
 

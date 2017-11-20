@@ -91,6 +91,8 @@
 	margin-right: 2%;
 }
 
+
+
 .img-dialog {
 	width: 150px;
 	height: 150px;
@@ -131,16 +133,22 @@
     margin-left: 20px;
 }
 
-#album-info-dialog h3{
+#album-info-dialog h3 {
     margin-top: 3px;
+    margin-bottom: 0;
     color: rgb(156, 43, 66);
 }
 
-#album-info-dialog h4{
+#album-info-dialog h4 {
     margin-top: 10%;
     margin-bottom: 0;
 
 }
+#album-info-dialog h5 {
+    margin-top: 0;
+
+}
+
 .song-img-dialog {
     width: 50px;
     height: 100%;

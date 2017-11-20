@@ -24,7 +24,6 @@ export class DialogTableComponent implements OnChanges {
         this.searchService.getSongsByIds(this.album.songs).subscribe(songs => {
             this.songs = songs;
             this.dataSource = new DialogDataSource(this.songs);
-            console.log(this.songs);
         });
     }
     @Input() album: AlbumResponse;
