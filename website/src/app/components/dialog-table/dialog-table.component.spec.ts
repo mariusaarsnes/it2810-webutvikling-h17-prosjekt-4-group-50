@@ -1,5 +1,8 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DialogTableComponent} from './dialog-table.component';
+import {MatDialogModule, MatTableModule} from '@angular/material';
+import {NO_ERRORS_SCHEMA} from '@angular/core';
+import {DialogComponent} from '../dialog/dialog.component';
 
 describe('DialogTableComponent', () => {
     let component: DialogTableComponent;
@@ -7,7 +10,9 @@ describe('DialogTableComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DialogTableComponent]
+            declarations: [DialogTableComponent],
+            imports: [MatDialogModule, MatTableModule],
+            schemas: [NO_ERRORS_SCHEMA]
         })
             .compileComponents();
     }));

@@ -1,7 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AlbumComponent} from './album.component';
-import {By} from '@angular/platform-browser';
+import {MatDialogModule} from '@angular/material';
+import {DataService} from '../../data.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('AlbumComponent', () => {
     let component: AlbumComponent;
@@ -10,7 +12,9 @@ describe('AlbumComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [AlbumComponent]
+            declarations: [AlbumComponent],
+            providers: [DataService, HttpClient, HttpHandler],
+            imports: [MatDialogModule]
         })
             .compileComponents();
     }));

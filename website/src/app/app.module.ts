@@ -30,7 +30,7 @@ import {TrackComponent} from "./components/track/track.component";
 import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
 import {
     MatTableModule,
-    MatDialogModule
+    MatDialogModule, MatCommonModule
 } from '@angular/material';
 
 @NgModule({
@@ -60,6 +60,7 @@ import {
         HttpClientModule,
         BrowserAnimationsModule,
         FormsModule,
+        MatCommonModule,
         MatDialogModule,
         MatTableModule,
         AgWordCloudModule.forRoot(),

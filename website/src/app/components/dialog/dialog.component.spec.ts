@@ -1,8 +1,10 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DialogComponent} from './dialog.component';
-import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef, MatHeaderRowDef, MatTableModule} from '@angular/material';
 import {By} from '@angular/platform-browser';
+import {DialogTableComponent} from '../dialog-table/dialog-table.component';
+import {CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 
 describe('DialogComponent', () => {
     let component: DialogComponent;
@@ -10,12 +12,13 @@ describe('DialogComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DialogComponent],
+            declarations: [DialogComponent, DialogTableComponent],
             providers: [
                 {provide: MAT_DIALOG_DATA, useValue: {}},
-                {provide: MatDialogRef, useValues: {}}
+                {provide: MatDialogRef, useValues: {}},
             ],
-            imports: [MatDialogModule]
+            imports: [MatDialogModule, MatTableModule],
+            schemas: [NO_ERRORS_SCHEMA]
         })
             .compileComponents();
     }));
