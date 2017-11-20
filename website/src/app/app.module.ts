@@ -17,7 +17,6 @@ import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
 import {DataService} from './data.service';
 import {DialogComponent} from './components/dialog/dialog.component';
-import {AlbumService} from './components/artist/album.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AgWordCloudModule} from 'angular4-word-cloud';
 import {WordcloudComponent} from './components/wordcloud/wordcloud.component';
@@ -26,14 +25,11 @@ import {CanActivateService} from './shared/auth/can-activate.service';
 import {Permissions} from './shared/auth/Permissions';
 import {LoginComponent} from './components/login/login.component';
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
-import {AlbumComponent} from './components/album/album.component';
-import {TrackComponent} from './components/track/track.component';
-import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
+import { AlbumComponent } from './components/album/album.component';
+import {TrackComponent} from "./components/track/track.component";
+import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
 import {
-    MatPaginator, MatSort, MatTable, MatTableModule, MatTabHeader,
-    MatHeaderRow, MatHeaderCell, MatHeaderCellDef, MatHeaderRowDef,
-    MatSortHeader, MatRow, MatRowDef,  MatCell, MatCellDef,
-    _MatCell, _MatCellDef, _MatHeaderCellDef, _MatHeaderRowDef,
+    MatTableModule,
     MatDialogModule
 } from '@angular/material';
 
@@ -57,24 +53,7 @@ import {
         FavoriteArtistsComponent,
         TrackComponent,
         AlbumComponent,
-        SongsDialogComponent,
-        MatTabHeader,
-        MatHeaderRow,
-        MatHeaderCell,
-        MatHeaderCellDef,
-        MatHeaderRowDef,
-        MatSortHeader,
-        MatRow,
-        MatRowDef,
-        MatCell,
-        MatCellDef,
-        _MatCell,
-        _MatCellDef,
-        _MatHeaderCellDef,
-        _MatHeaderRowDef,
-        MatTable,
-        MatPaginator,
-        MatSort
+        DialogTableComponent,
     ],
     imports: [
         BrowserModule,
@@ -113,10 +92,9 @@ import {
             }
         ])
     ],
-    providers: [AlbumService, DataService, CanActivateService, Permissions, HttpClient],
+    providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
-        SongsDialogComponent
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

@@ -127,7 +127,7 @@ export class DataService {
                     return <SongResponse>{...res, albumData: album};
                 }));
             });
-            return observables;
+            return Observable.forkJoin(observables);
         });
     }
 

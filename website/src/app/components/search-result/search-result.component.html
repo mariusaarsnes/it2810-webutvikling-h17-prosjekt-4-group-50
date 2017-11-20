@@ -1,17 +1,17 @@
 <div class="result-container">
     <div *ngIf="searchType === 'artist' && artists" [style.width.px]="divWidth">
         <div *ngFor="let artist of artists">
-            <app-artist [attr.artist]="artist" id={{artist.id}}></app-artist>
+            <app-artist [artist]="artist" id={{artist.id}}></app-artist>
         </div>
     </div>
     <div *ngIf="searchType === 'album' && albums" [style.width.px]="divWidth">
         <div *ngFor="let album of albums">
-            <app-album [attr.album]="album" id={{album.id}}></app-album>
+            <app-album [album]="album" id={{album.id}}></app-album>
         </div>
     </div>
     <div *ngIf="searchType === 'track' && tracks" [style.width.px]="divWidth">
         <div *ngFor="let track of tracks">
-            <app-track [attr.track]="track" id={{track.id}}></app-track>
+            <app-track [track]="track" id={{track.id}}></app-track>
         </div>
     </div>
 </div>
