@@ -1,7 +1,7 @@
 <div *ngIf="user">
     <div *ngIf="user.favorite_artists?.length > 0; else noFavArtist">
         <div class="example-container mat-elevation-z8">
-            <mat-table #table [attr.dataSource]="dataSource">
+            <mat-table #table [dataSource]="dataSource">
 
                 <!-- type Column -->
                 <ng-container matColumnDef="image">
@@ -31,7 +31,7 @@
         </div>
     </div>
     <ng-template #noFavArtist>
-        <div class="no-artist-wrap">
+        <div class="no-artist-wrap mat-elevation-z8">
             <p>No favorite artists</p>
         </div>
     </ng-template>

@@ -107,7 +107,6 @@ exports.findSearchHistoryData = (req, res) => {
                 res.status(200).json(data[0]);
             else
                 res.status(200).json({distinct_count: 0, total_count: 0});
-            console.log(data);
         })
     });
 };

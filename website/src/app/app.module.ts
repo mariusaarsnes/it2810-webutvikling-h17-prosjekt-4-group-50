@@ -32,6 +32,7 @@ import {
     MatTableModule,
     MatDialogModule, MatCommonModule
 } from '@angular/material';
+import { SongDialogComponent } from './components/song-dialog/song-dialog.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import {
         TrackComponent,
         AlbumComponent,
         DialogTableComponent,
+        SongDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -75,10 +77,6 @@ import {
                 component: LoginComponent,
             },
             {
-                path: 'wordcloud',
-                component: WordcloudComponent
-            },
-            {
                 path: 'register',
                 component: RegisterComponent,
             },
@@ -96,6 +94,7 @@ import {
     providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
+        SongDialogComponent,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

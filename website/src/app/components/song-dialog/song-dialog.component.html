@@ -1,0 +1,36 @@
+<div id="modal-dialog">
+    <div class="modal-artist-dialog">
+        <div class="right-dialog">
+            <img class="artist-img-dialog" src="{{data[1].imageLink}}" alt="Album picture"/>
+        </div>
+        <div class="left-dialog">
+            <h3>Album</h3>
+            <h1>{{data[1].name}}</h1>
+        </div>
+        <div class="close-dialog" (click)="closeDialog()">
+            <span>X</span>
+        </div>
+    </div>
+    <br><hr id="hr-dialog">
+    <div>
+        <h2 id="type-dialog2">Tracks</h2>
+        <div>
+            <div id="information-song-dialog">
+                <p id="title">Title</p>
+                <p id="album">Duration</p>
+            </div>
+            <span *ngFor="let song of data[2]">
+                <div class="song-dialog">
+                    <img class ="song-img-dialog" src="{{data[1].imageLink}}" alt="Album image">
+                    <p *ngIf="song.name.length >= 17" class="title">{{song.name.substring(0,17).concat("...")}}</p>
+                    <p *ngIf="song.name.length < 17" class="title">{{song.name}}</p>
+                    <p class="album"> {{song.duration[0]}} min {{song.duration[1]}} sek</p>
+                </div>
+            </span>
+        </div>
+    </div>
+
+
+
+
+</div>

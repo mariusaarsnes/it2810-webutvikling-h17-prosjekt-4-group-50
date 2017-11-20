@@ -15,7 +15,13 @@ import {DialogComponent} from '../dialog/dialog.component';
     encapsulation: ViewEncapsulation.None
 })
 export class FavoriteArtistsComponent implements OnInit {
+
+    user: UserResponse;
+    displayedColumns = ['image', 'name', 'popularity'];
+    dataSource: ArtistDataSource;
+
     constructor(private searchService: DataService, private dialog: MatDialog) {
+
     }
 
     ngOnInit() {
@@ -25,12 +31,7 @@ export class FavoriteArtistsComponent implements OnInit {
         });
     }
 
-    user: UserResponse;
-
-    displayedColumns = ['image', 'name', 'popularity'];
-    dataSource: ArtistDataSource;
-
-    //Denne logger søkestrengen du trykker på i listen
+    //Denne åpner søkestrengen du trykker på i listen
     handleRowClick = (row) => {
         this.openDialog(row);
     };
@@ -56,13 +57,11 @@ export class FavoriteArtistsComponent implements OnInit {
  */
 export class ArtistDataSource extends DataSource<any> {
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-
+    data: ArtistResponse[];
     constructor(data: ArtistResponse[]) {
         super();
         this.data = data;
     }
-
-    data: ArtistResponse[];
 
     connect(): Observable<ArtistResponse[]> {
         return Observable.of(this.data);
