@@ -4,6 +4,7 @@ import {LoginComponent} from './login.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
+import {DataService} from '../../data.service';
 
 describe('LoginComponent', () => {
     let component: LoginComponent;
@@ -16,6 +17,7 @@ describe('LoginComponent', () => {
             providers: [
                 HttpClient,
                 HttpHandler,
+                DataService
             ]
         })
             .compileComponents();

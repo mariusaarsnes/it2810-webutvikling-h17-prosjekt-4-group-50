@@ -148,10 +148,14 @@ module.exports = (req, res) => {
                                     tempArtists.push(artist.id)
                                 }
                             });
+                            let ms = track.duration_ms,
+                                min = Math.floor((ms/1000/60) << 0),
+                                sec = Math.floor((ms/1000) % 60);
+
                             temp[track.id] = new Song({
                                 _id: track.id,
                                 name: track.name,
-                                duration: track.duration,
+                                duration: [min,sec],
                                 artists: tempArtists,
                                 album: key
                             });

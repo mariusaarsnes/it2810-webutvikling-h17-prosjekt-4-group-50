@@ -1,37 +1,38 @@
 <div *ngIf="user">
-    <div *ngIf="user.favorite_artists?.length > 0; else noFavArtist" >
+    <div *ngIf="user.favorite_artists?.length > 0; else noFavArtist">
         <div class="example-container mat-elevation-z8">
-          <mat-table #table [dataSource]="dataSource">
+            <mat-table #table [attr.dataSource]="dataSource">
 
-              <!-- type Column -->
-              <ng-container matColumnDef="image">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let element"> <img src="{{element.imageLink}}" class="image-scaler"> </mat-cell>
-              </ng-container>
+                <!-- type Column -->
+                <ng-container matColumnDef="image">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element"><img src="{{element.imageLink}}" class="image-scaler">
+                    </mat-cell>
+                </ng-container>
 
-            <!-- search Column -->
-            <ng-container matColumnDef="name">
-              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-            </ng-container>
+                <!-- search Column -->
+                <ng-container matColumnDef="name">
+                    <mat-header-cell *matHeaderCellDef> Name</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
+                </ng-container>
 
-            <!-- Date Column -->
-            <ng-container matColumnDef="popularity">
-              <mat-header-cell *matHeaderCellDef> Popularity </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.popularity}} </mat-cell>
-            </ng-container>
+                <!-- Date Column -->
+                <ng-container matColumnDef="popularity">
+                    <mat-header-cell *matHeaderCellDef> Popularity</mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.popularity}}</mat-cell>
+                </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"
-                    (click)="handleRowClick(row)"
-                    >
-            </mat-row>
-          </mat-table>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"
+                         (click)="handleRowClick(row)"
+                >
+                </mat-row>
+            </mat-table>
         </div>
     </div>
-        <ng-template #noFavArtist>
-            <div class="no-artist-wrap">
-                <p>No favorite artists</p>
-            </div>
-        </ng-template>
+    <ng-template #noFavArtist>
+        <div class="no-artist-wrap">
+            <p>No favorite artists</p>
+        </div>
+    </ng-template>
 </div>

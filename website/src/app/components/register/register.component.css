@@ -62,3 +62,12 @@ button:hover {
 	justify-content: center;
 	font-family: "Intro Rust", sans-serif;
 }
+@media screen and (max-width: 480px) {
+    .wrapper {
+		width: 100%
+	}
+
+	.form {
+		width: 100%
+	}
+}

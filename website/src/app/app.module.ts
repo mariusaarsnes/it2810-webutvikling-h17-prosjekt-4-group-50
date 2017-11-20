@@ -1,8 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 
-import {MatDialogModule, MatTableModule} from '@angular/material';
 import {SearchHistoryListComponent} from './components/search-history-list/search-history-list.component';
 import {AppComponent} from './app.component';
 import {ProfileComponent} from './components/profile/profile.component';
@@ -18,18 +17,21 @@ import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
 import {DataService} from './data.service';
 import {DialogComponent} from './components/dialog/dialog.component';
-import {AlbumService} from './components/artist/album.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-import {AgWordCloudModule} from "angular4-word-cloud";
-import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
+import {AgWordCloudModule} from 'angular4-word-cloud';
+import {WordcloudComponent} from './components/wordcloud/wordcloud.component';
 import {FavoriteArtistsComponent} from './components/favorite-artists/favorite-artists.component';
-import {CanActivateService} from "./shared/auth/can-activate.service";
-import {Permissions} from "./shared/auth/Permissions";
-import {LoginComponent} from "./components/login/login.component";
+import {CanActivateService} from './shared/auth/can-activate.service';
+import {Permissions} from './shared/auth/Permissions';
+import {LoginComponent} from './components/login/login.component';
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import { AlbumComponent } from './components/album/album.component';
 import {TrackComponent} from "./components/track/track.component";
-import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.component';
+import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
+import {
+    MatTableModule,
+    MatDialogModule
+} from '@angular/material';
 
 @NgModule({
     declarations: [
@@ -51,7 +53,7 @@ import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.compo
         FavoriteArtistsComponent,
         TrackComponent,
         AlbumComponent,
-        SongsDialogComponent
+        DialogTableComponent,
     ],
     imports: [
         BrowserModule,
@@ -65,7 +67,7 @@ import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.compo
             {
                 path: 'search',
                 component: NavbarSearchComponent,
-                //canActivate: [CanActivateService]
+                // canActivate: [CanActivateService]
             },
             {
                 path: 'login',
@@ -90,12 +92,12 @@ import {SongsDialogComponent} from './components/songs-dialog/songs-dialog.compo
             }
         ])
     ],
-    providers: [AlbumService, DataService, CanActivateService, Permissions, HttpClient],
+    providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
-        SongsDialogComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 
 export class AppModule {
