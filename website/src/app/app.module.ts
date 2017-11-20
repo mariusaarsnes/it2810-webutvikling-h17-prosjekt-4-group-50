@@ -18,7 +18,6 @@ import {MyInfoComponent} from './components/my-info/my-info.component';
 import {HistoryComponent} from './components/history/history.component';
 import {DataService} from './data.service';
 import {DialogComponent} from './components/dialog/dialog.component';
-import {AlbumService} from './components/artist/album.service';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AgWordCloudModule} from "angular4-word-cloud";
 import {WordcloudComponent} from "./components/wordcloud/wordcloud.component";
@@ -29,6 +28,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
 import { AlbumComponent } from './components/album/album.component';
 import {TrackComponent} from "./components/track/track.component";
+import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
 
 @NgModule({
     declarations: [
@@ -50,6 +50,7 @@ import {TrackComponent} from "./components/track/track.component";
         FavoriteArtistsComponent,
         TrackComponent,
         AlbumComponent,
+        DialogTableComponent,
     ],
     imports: [
         BrowserModule,
@@ -88,7 +89,7 @@ import {TrackComponent} from "./components/track/track.component";
             }
         ])
     ],
-    providers: [AlbumService, DataService, CanActivateService, Permissions, HttpClient],
+    providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
     ],
