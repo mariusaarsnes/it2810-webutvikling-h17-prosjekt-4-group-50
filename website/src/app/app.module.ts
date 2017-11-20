@@ -74,10 +74,6 @@ import {
                 component: LoginComponent,
             },
             {
-                path: 'wordcloud',
-                component: WordcloudComponent
-            },
-            {
                 path: 'register',
                 component: RegisterComponent,
             },
