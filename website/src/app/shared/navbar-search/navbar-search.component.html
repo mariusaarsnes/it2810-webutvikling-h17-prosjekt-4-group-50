@@ -1,33 +1,34 @@
 <div class="navbar-search">
-	<div class="navbar-bottom-container">
-		<div class="nav-bottom-left-container">
+	<div class="container">
+		<div class="left-container">
 			<div class="nav-bottom-left">
 				<h3 class="title-blue">Search music</h3>
 				<div class="under-line"></div>
 				<ul class="search-type-selectors">
-					<li><a [ngClass]="{'selected-type' : searchType == 'artist'}" (click)="setSearchType($event)" data-type="artist">Artists</a></li>
+					<li id="first"><a [ngClass]="{'selected-type' : searchType == 'artist'}" (click)="setSearchType($event)" data-type="artist">Artists</a></li>
 					<li><a [ngClass]="{'selected-type' : searchType == 'album'}" (click)="setSearchType($event)" data-type="album">Albums</a></li>
 					<li><a [ngClass]="{'selected-type' : searchType == 'track'}" (click)="setSearchType($event)" data-type="track">Tracks</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="nav-bottom-right-container">
-			<div class="nav-bottom-right">
-				<h3 class="title-blue">Search settings</h3>
-				<div class="sort-by">
-					<p>Sort by: </p>&nbsp;&nbsp;
-					<select (change)="selectSort($event)" name="sortBy" class="input-select">
-						<option value="none">None</option>
-						<option *ngIf="searchType === 'artist'" value="popularity" selected="selected">Popularity</option>
-						<option value="name">Name</option>
-					</select>
-                    <select (change)="selectSortType($event)" name="sortType" class="input-select">
-                        <option value="ascending">Asc</option>
-                        <option value="descending" selected="selected">Desc</option>
-                    </select>
-				</div>
-				<div *ngIf="searchType == 'artist'" class="filter-by">
-                    <p>Filter by:</p>&nbsp;&nbsp;
+        <div class="center-container">
+            <div class="sort-by">
+                <p>Sort by: </p>
+                <select (change)="selectSort($event)" name="sortBy" class="input-select">
+                    <option value="none">None</option>
+                    <option *ngIf="searchType === 'artist'" value="popularity" selected="selected">Popularity</option>
+                    <option value="name">Name</option>
+                </select>
+                <select (change)="selectSortType($event)" name="sortType" class="input-select">
+                    <option value="ascending">Asc</option>
+                    <option value="descending" selected="selected">Desc</option>
+                </select>
+            </div>
+        </div>
+		<div class="right-container">
+			<div class="filter-by">
+				<div *ngIf="searchType == 'artist'" class="filter-by-inner">
+                    <p>Filter by: </p>&nbsp;&nbsp;
                     <div class="filter-box">
                         <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="edm">Edm</div>
                         <div class="filter-button"><input type="checkbox" (change)="selectFilter($event)" data-type="genres" name="house">House</div>

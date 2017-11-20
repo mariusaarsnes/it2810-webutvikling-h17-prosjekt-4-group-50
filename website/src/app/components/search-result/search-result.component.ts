@@ -25,6 +25,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	renderTreshold = 15;
 	canRenderNew = true;
 	divWidth = 0;
+	searchResultWidth = 320;
 
 
 
@@ -82,7 +83,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
         this.tracks = [];
     };
 	ngOnInit() {
-        this.divWidth = Math.floor((window.innerWidth / 342)) * 342;
+        this.divWidth = Math.floor((window.innerWidth / this.searchResultWidth)) * this.searchResultWidth;
 	};
 
 	@Input() filterList = [];
@@ -95,7 +96,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
     @HostListener("window:resize", ['$event'])
     onResize(e) {
-        this.divWidth = Math.floor((e.target.innerWidth / 342)) * 342;
+        this.divWidth = Math.floor((e.target.innerWidth / this.searchResultWidth)) * this.searchResultWidth;
     }
 	@HostListener("window:scroll", [])
 	onWindowScroll() {
