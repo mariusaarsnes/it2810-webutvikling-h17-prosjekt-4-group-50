@@ -53,7 +53,7 @@ export class WordcloudComponent implements OnInit {
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
         return data.map((genre, index) => {
-            return <AgWordCloudData>{text: genre._id, size: index == 0 ? genre.count + 2 : genre.count};
+            return <AgWordCloudData>{text: genre._id, size: index == 0 ? genre.count * 5 + 1 : genre.count * 5};
         });
     }
 

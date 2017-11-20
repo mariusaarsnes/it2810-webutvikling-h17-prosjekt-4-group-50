@@ -38,7 +38,7 @@ export class ArtistComponent implements OnInit {
     openDialog() {
         this.getAlbums(this.artist.albums).subscribe(albums => {
             this.albums = albums;
-
+            this.searchService.updateSearchHistory('artist', this.artist._id).subscribe();
             const dialogRef = this.dialog.open(DialogComponent, {
                 height: "80%",
                 width: "70%",

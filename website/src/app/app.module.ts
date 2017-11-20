@@ -69,7 +69,7 @@ import { SongDialogComponent } from './components/song-dialog/song-dialog.compon
             {
                 path: 'search',
                 component: NavbarSearchComponent,
-                // canActivate: [CanActivateService]
+                canActivate: [CanActivateService]
             },
             {
                 path: 'login',
@@ -82,12 +82,17 @@ import { SongDialogComponent } from './components/song-dialog/song-dialog.compon
             {
                 path: 'profilepage',
                 component: ProfileComponent,
+                canActivate: [CanActivateService],
                 children: [
                     {path: '', redirectTo: 'my-info', pathMatch: 'full'},
                     {path: 'my-info', component: MyInfoComponent},
                     {path: 'history', component: HistoryComponent}
                 ]
-            }
+            },
+            {
+                path: '**',
+                redirectTo: 'search',
+            },
         ])
     ],
     providers: [DataService, CanActivateService, Permissions, HttpClient],
