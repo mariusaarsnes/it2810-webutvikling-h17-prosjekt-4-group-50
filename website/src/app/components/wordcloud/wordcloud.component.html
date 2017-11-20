@@ -1,7 +1,7 @@
 <div *ngIf="loaded">
     <div *ngIf="wordData; else displayMessage">
         <div AgWordCloud
-             #word_cloud_chart=ag-word-cloud
+             #word_cloud_chart= ag-word-cloud
              [wordData]="wordData"
              [options]="options"
              [color]="colors"

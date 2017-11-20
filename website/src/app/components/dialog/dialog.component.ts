@@ -3,9 +3,9 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 
 @Component({
-	selector: 'app-dialog',
-	templateUrl: './dialog.component.html',
-	styleUrls: ['./dialog.component.css']
+    selector: 'app-dialog',
+    templateUrl: './dialog.component.html',
+    styleUrls: ['./dialog.component.css']
 })
 
 export class DialogComponent {
@@ -29,4 +29,5 @@ export class DialogComponent {
     isArray(obj : any ) {
         return Array.isArray(obj)
     }
+
 }

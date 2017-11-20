@@ -4,6 +4,7 @@ import {RegisterComponent} from './register.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {DataService} from '../../data.service';
 
 describe('RegisterComponent', () => {
     let component: RegisterComponent;
@@ -19,6 +20,7 @@ describe('RegisterComponent', () => {
             providers: [
                 HttpClient,
                 HttpHandler,
+                DataService
             ]
         })
             .compileComponents();

@@ -1,24 +1,25 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-	selector: 'app-search-page',
-	templateUrl: './search-page.component.html',
-	styleUrls: ['./search-page.component.css']
+    selector: 'app-search-page',
+    templateUrl: './search-page.component.html',
+    styleUrls: ['./search-page.component.css']
 
 })
 export class SearchPageComponent implements OnInit {
 
-	constructor() {
-	}
+    constructor() {
+    }
 
-	ngOnInit() {
-	}
+    @Input() filterList: string[];
+    @Input() sort: string;
+    @Input() sortType: string;
+    @Input() searchType: string;
 
-	@Input() filterList: string[];
-	@Input() sort: string;
-	@Input() sortType: string;
-	@Input() searchType: string;
+    searchInput: string;
 
-	searchInput: string;
+    ngOnInit() {
+    }
+
 
 }

@@ -8,6 +8,8 @@ import {SearchResultComponent} from './components/search-result/search-result.co
 import {FormsModule} from '@angular/forms';
 import {ArtistComponent} from './components/artist/artist.component';
 import {RouterTestingModule} from '@angular/router/testing';
+import {AlbumComponent} from './components/album/album.component';
+import {TrackComponent} from './components/track/track.component';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -19,7 +21,9 @@ describe('AppComponent', () => {
                 LoginComponent,
                 RegisterComponent,
                 SearchResultComponent,
-                ArtistComponent
+                ArtistComponent,
+                AlbumComponent,
+                TrackComponent
 
             ],
             imports: [

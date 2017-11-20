@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+<<<<<<< HEAD
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {SongResponse} from "../../interfaces/song-response.interface";
 import {DataService} from "../../data.service";
@@ -7,13 +8,17 @@ import {Observable} from "rxjs/Observable";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DialogComponent} from "../dialog/dialog.component";
 
+=======
+import {AlbumResponse} from '../../interfaces/album-response.interface';
+>>>>>>> 979c85b62fd616c16e48984e41612723298e0c22
 
 @Component({
-  selector: 'app-album',
-  templateUrl: './album.component.html',
-  styleUrls: ['./album.component.css']
+    selector: 'app-album',
+    templateUrl: './album.component.html',
+    styleUrls: ['./album.component.css']
 })
 export class AlbumComponent implements OnInit {
+
 
     constructor(public dialog: MatDialog, private searchService: DataService) {
     }
@@ -55,5 +60,4 @@ export class AlbumComponent implements OnInit {
             dialogRef.afterClosed();
         });
 
-    }
 }

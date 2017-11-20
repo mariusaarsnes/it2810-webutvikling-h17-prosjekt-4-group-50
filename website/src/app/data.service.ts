@@ -1,14 +1,15 @@
 import {Injectable} from '@angular/core';
-import {ArtistResponse} from "./interfaces/artist-response.interface";
-import {HttpClient} from "@angular/common/http";
 
-import {SongResponse} from "./interfaces/song-response.interface";
-import {AlbumResponse} from "./interfaces/album-response.interface";
-import {Observable} from "rxjs/Observable";
-import {GenresResponse} from "./interfaces/genres-response.interface";
-import {UserResponse} from "./interfaces/user-response.interface";
-import {SearchHistoryResponse} from "./interfaces/history-response.interface";
-import {SearchHistoryData} from "./interfaces/search-history-data-response.interface";
+import {ArtistResponse} from './interfaces/artist-response.interface';
+import {HttpClient} from '@angular/common/http';
+
+import {SongResponse} from './interfaces/song-response.interface';
+import {AlbumResponse} from './interfaces/album-response.interface';
+import {Observable} from 'rxjs/Observable';
+import {GenresResponse} from './interfaces/genres-response.interface';
+import {UserResponse} from './interfaces/user-response.interface';
+import {SearchHistoryResponse} from './interfaces/history-response.interface';
+import {SearchHistoryData} from './interfaces/search-history-data-response.interface';
 
 @Injectable()
 export class DataService {
@@ -30,9 +31,12 @@ export class DataService {
      * @param {string} sortType
      * @returns {Observable<ArtistResponse[]>}
      */
-    getArtists(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
+    getArtists(name: string, amount: number, index: number, filter: string,
+               filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
         console.log('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
-        return this.http.get<ArtistResponse[]>('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
+        return this.http.get<ArtistResponse[]>('api/artists/' +
+            name + '/' + sort + '/' + sortType + '/' + filter + '/' +
+            filterValue + '/' + index + '/' + amount);
     }
 
     /**
@@ -41,7 +45,7 @@ export class DataService {
      * @returns {Observable<ArtistResponse[]>}
      */
     getArtistsByIds(ids: string[]): Observable<ArtistResponse[]> {
-        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(","));
+        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(','));
     }
 
     /**
@@ -79,10 +83,16 @@ export class DataService {
      * @param {string} name
      * @param {number} amount
      * @param {number} index
+     * @param {string} filter
+     * @param {string} filterValue
+     * @param {string} sort
+     * @param {string} sortType
      * @returns {Observable<SongResponse[]>}
      */
-    getSongs(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + name + "/" + sort + "/" + sortType + "/" + filter + "/" + filterValue + "/" + index + "/" + amount).switchMap(result => {
+    getSongs(name: string, amount: number, index: number, filter: string,
+             filterValue: string, sort: string, sortType: string): Observable<SongResponse[]> {
+        return this.http.get<SongResponse[]>('api/songs/' + name + '/' + sort
+            + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const album = this.getAlbum(res.album);
@@ -100,7 +110,7 @@ export class DataService {
      * @returns {Observable<SongResponse[]>}
      */
     getSongsByIds(ids: string[]): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + ids.join(","));
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(','));
     }
 
     /**
@@ -109,7 +119,7 @@ export class DataService {
      * @returns {Observable<SongResponse[]>}
      */
     getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + ids.join(",")).switchMap(result => {
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(',')).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const album = this.getAlbum(res.album);
@@ -127,7 +137,7 @@ export class DataService {
      * @returns {Observable<AlbumResponse[]>}
      */
     getAlbumsByIds(ids: string[]): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' +  ids.join(","));
+        return this.http.get<AlbumResponse[]>('api/albums/' + ids.join(','));
     }
 
     /**
@@ -135,10 +145,16 @@ export class DataService {
      * @param {string} name
      * @param {number} amount
      * @param {number} index
+     * @param {string} filter
+     * @param {string} filterValue
+     * @param {string} sort
+     * @param {string} sortType
      * @returns {Observable<AlbumResponse[]>}
      */
-    getAlbums(name: string, amount: number, index: number, filter: string, filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' + name + "/" + sort + "/" + sortType + "/" + filter + "/" + filterValue + "/" + index + "/" + amount).switchMap(result => {
+    getAlbums(name: string, amount: number, index: number, filter: string,
+              filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[]> {
+        return this.http.get<AlbumResponse[]>('api/albums/' + name + '/' + sort + '/' + sortType + '/' +
+            filter + '/' + filterValue + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
                 const artists = this.getArtistsByIds(res.artists);
@@ -176,7 +192,7 @@ export class DataService {
                     return <SearchHistoryResponse>{...val, typeData: schema};
                 }));
             });
-           return Observable.forkJoin(observables);
+            return Observable.forkJoin(observables);
         });
     }
 
@@ -186,11 +202,11 @@ export class DataService {
 
     getSchemaById(type: string, id: string): Observable<any> {
         switch (type) {
-            case "album":
+            case 'album':
                 return this.getAlbum(id);
-            case "song":
+            case 'song':
                 return this.getSong(id);
-            case "artist":
+            case 'artist':
                 return this.getArtist(id);
         }
         return null;
