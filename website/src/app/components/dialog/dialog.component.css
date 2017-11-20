@@ -2,7 +2,7 @@
 	font-family: "Intro Rust", sans-serif;
 }
 
-#modal-artist-dialog {
+.modal-artist-dialog {
 	display: flex;
 	flex-direction: row;
 
@@ -10,19 +10,27 @@
 	position: relative;
 }
 
-#left-dialog h3{
+.left-dialog h3{
 	margin-top: 10%;
 	margin-bottom: 0;
 }
-#left-dialog h1 {
+.left-dialog h1 {
 	margin-top: 3px;
     color: rgb(156, 43, 66);
 
+}
+.left-dialog {
+    width: 70%;
 }
 
 #type-dialog {
     color: rgb(156, 43, 66);
 }
+
+#type-dialog2 {
+    color: rgb(156, 43, 66);
+}
+
 
 #genres-dialog {
 	margin-top: 0;
@@ -33,7 +41,7 @@
 	margin-top: 2px;
 }
 
-#right-dialog {
+.right-dialog {
 	width: 200px;
 	height: 200px;
 	overflow: hidden;
@@ -41,24 +49,24 @@
 	border-radius: 5px;
 }
 
-#close-dialog {
+.close-dialog {
 	align-self: flex-start;
 	position: absolute;
 	right: 0;
 }
-#close-dialog span {
+.close-dialog span {
 	font-family: Avenir, Geneva, serif;
 	font-size: 25px;
 	color: darkgray;
 	cursor: pointer;
 }
-#close-dialog span:hover {
+.close-dialog span:hover {
 	font-family: Avenir, Geneva, serif;
 	font-size: 25px;
 	color: gray;
 }
 
-#artist-img-dialog {
+.artist-img-dialog {
 	width: 100%;
 	border-radius: 5px;
 }
@@ -97,37 +105,116 @@
 	width: 150px;
 }
 
+#show-dialog {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#show-album-dialog {
+    display: flex;
+    flex-direction: row;
+}
+
+#show-dialog img {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#album-info-dialog {
+    width: 60%;
+    margin-left: 20px;
+}
+
+#album-info-dialog h3{
+    margin-top: 3px;
+    color: rgb(156, 43, 66);
+}
+
+#album-info-dialog h4{
+    margin-top: 10%;
+    margin-bottom: 0;
+
+}
+.song-img-dialog {
+    width: 50px;
+    height: 100%;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.song-dialog {
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    box-shadow: 0 0 20px -4px rgba(0,0,0,0.20);
+    margin-bottom: 10px;
+
+}
+.song-dialog:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#information-song-dialog {
+    display: flex;
+    flex-direction: row;
+}
+#information-song-dialog #title{
+    margin-left: 60px;
+    width: 35%;
+}
+.song-dialog .title{
+    width: 35%;
+}
+
 @media screen and (max-width: 480px) {
-	#modal-artist-dialog {
+	.modal-artist-dialog {
 		flex-direction: column;
 	}
-	#right-dialog {
+	.right-dialog {
 		width: 100%;
 		height: auto;
 		order: 2;
 	}
-	#left-dialog {
+	.left-dialog {
 		width: 100%;
 		order: 3;
 	}
-	#close-dialog {
+	.close-dialog {
 		order: 1;
 		width: 100%;
 		position: static;
 	}
-	#close-dialog span{
+	.close-dialog span{
 		float: right;
 		margin-bottom: 10px;
 		font-size: 35px;
 	}
-    #close-dialog span:hover {
+    .close-dialog span:hover {
         font-family: Avenir, serif;
         font-size: 35px;
         color: gray;
     }
-	#modal-album-dialog {
+	.modal-album-dialog {
 		justify-content: center;
 	}
+
+
+    .song-dialog .title{
+        margin-left: 5px;
+        margin-right: 5px;
+        width: 80%;
+    }
+    .song-dialog .album {
+        display: none;
+    }
+    #information-song-dialog #album{
+        display: none;
+    }
+
+
 }
 @media screen and (max-width: 320px) {
 	#modal-album-dialog {
