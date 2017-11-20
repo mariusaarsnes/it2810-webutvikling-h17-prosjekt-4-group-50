@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-<<<<<<< HEAD
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {SongResponse} from "../../interfaces/song-response.interface";
 import {DataService} from "../../data.service";
@@ -7,10 +6,6 @@ import {MatDialog} from "@angular/material";
 import {Observable} from "rxjs/Observable";
 import {ArtistResponse} from "../../interfaces/artist-response.interface";
 import {DialogComponent} from "../dialog/dialog.component";
-
-=======
-import {AlbumResponse} from '../../interfaces/album-response.interface';
->>>>>>> 979c85b62fd616c16e48984e41612723298e0c22
 
 @Component({
     selector: 'app-album',
@@ -59,5 +54,5 @@ export class AlbumComponent implements OnInit {
             });
             dialogRef.afterClosed();
         });
-
+    }
 }
