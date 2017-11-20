@@ -2,7 +2,8 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {DialogTableComponent} from './dialog-table.component';
 import {MatDialogModule, MatTableModule} from '@angular/material';
 import {NO_ERRORS_SCHEMA} from '@angular/core';
-import {DialogComponent} from '../dialog/dialog.component';
+import {DataService} from '../../data.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('DialogTableComponent', () => {
     let component: DialogTableComponent;
@@ -12,7 +13,8 @@ describe('DialogTableComponent', () => {
         TestBed.configureTestingModule({
             declarations: [DialogTableComponent],
             imports: [MatDialogModule, MatTableModule],
-            schemas: [NO_ERRORS_SCHEMA]
+            schemas: [NO_ERRORS_SCHEMA],
+            providers: [DataService, HttpHandler, HttpClient]
         })
             .compileComponents();
     }));
