@@ -41,6 +41,10 @@ export class AlbumComponent implements OnInit {
         this.artists = this.album.artistsData;
         console.log(this.album);
 
+        this.album.artistsData.forEach(artist => {
+            console.log(artist.name);
+        });
+
         this.getSongs(this.album.songs).subscribe(songs => {
             this.songs = songs;
             const dialogRef = this.dialog.open(DialogComponent, {

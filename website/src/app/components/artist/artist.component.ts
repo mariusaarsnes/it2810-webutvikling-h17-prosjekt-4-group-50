@@ -22,6 +22,7 @@ export class ArtistComponent implements OnInit {
     songs: SongResponse[];
     showAlbum: boolean = false;
 
+
     ngOnInit(): void {
     }
 
@@ -42,11 +43,8 @@ export class ArtistComponent implements OnInit {
         console.log(this.showAlbum);
         this.getSongs(this.artist.songs).subscribe(songs => {
             this.songs = songs;
-            console.log(this.songs);
             this.getAlbums(this.artist.albums).subscribe(albums => {
                 this.albums = albums;
-
-                console.log(this.albums);
 
                 const dialogRef = this.dialog.open(DialogComponent, {
                     height: "80%",

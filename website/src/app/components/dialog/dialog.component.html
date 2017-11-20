@@ -21,10 +21,6 @@
         <div class="left-dialog">
             <h3>Album</h3>
             <h1>{{data[1].name}}</h1>
-            <div *ngFor="let artist of data[1].albumData">
-                <p>{{artist.name}}</p>
-            </div>
-            
         </div>
         <div class="close-dialog" (click)="closeDialog()">
             <span>X</span>
@@ -44,7 +40,7 @@
 
             </div>
             <div>
-
+                <dialog-table></dialog-table>
             </div>
         </div>
         <div id="modal-album-dialog">
