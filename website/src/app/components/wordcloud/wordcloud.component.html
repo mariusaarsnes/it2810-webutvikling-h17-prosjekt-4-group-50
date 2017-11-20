@@ -1,16 +1,18 @@
 <div *ngIf="loaded">
-    <div *ngIf="wordData; else displayMessage">
+    <div *ngIf="wordData?.length > 0; else displayMessage">
         <div AgWordCloud
              #word_cloud_chart= ag-word-cloud
              [wordData]="wordData"
              [options]="options"
              [color]="colors"
-             class="font">
+             class="font mat-elevation-z8">
         </div>
     </div>
 
     <ng-template #displayMessage>
-        <p>Are you logged in?</p>
-        <p>We could not make a wordcloud for your genres since you are not following any artists!</p>
+        <div class="displayMessage mat-elevation-z8">
+            <p>We could not make a wordcloud for your genres...</p>
+            <p>Get yours by following any artists!</p>
+        </div>
     </ng-template>
 </div>

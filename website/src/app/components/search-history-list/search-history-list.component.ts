@@ -16,6 +16,8 @@ import 'rxjs/add/observable/of';
 
 export class SearchHistoryListComponent implements OnInit {
 
+    data: SearchHistoryResponse[];
+    date: string;
     displayedColumns = ['type', 'name', 'date'];
     dataSource: SearchDataSource;
 
@@ -30,14 +32,6 @@ export class SearchHistoryListComponent implements OnInit {
 
         });
     }
-
-    //Denne logger søkestrengen du trykker på i listen
-    handleRowClick = (row) => {
-        console.log(row.typeData.name, row.type, row.date)
-    }
-
-    data: SearchHistoryResponse[];
-    date: string;
 }
 
 
