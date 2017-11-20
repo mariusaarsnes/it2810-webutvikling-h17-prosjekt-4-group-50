@@ -22,12 +22,10 @@ export class ArtistComponent implements OnInit {
     songs: SongResponse[];
     showAlbum: boolean = false;
 
-
     ngOnInit(): void {
     }
 
     @Input() artist: ArtistResponse;
-
 
     getAlbums(albums): Observable<AlbumResponse[]> {
         return this.searchService.getAlbumsByIds(albums);
@@ -35,8 +33,6 @@ export class ArtistComponent implements OnInit {
     getSongs(songs): Observable<SongResponse[]> {
         return this.searchService.getSongsByIdsWithAlbums(songs);
     }
-
-
     openDialog(dialog) {
         this.showAlbum = dialog === "albums";
 
