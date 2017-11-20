@@ -32,6 +32,7 @@ import {
     MatTableModule,
     MatDialogModule
 } from '@angular/material';
+import { SongDialogComponent } from './components/song-dialog/song-dialog.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import {
         TrackComponent,
         AlbumComponent,
         DialogTableComponent,
+        SongDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -91,6 +93,7 @@ import {
     providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
+        SongDialogComponent,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

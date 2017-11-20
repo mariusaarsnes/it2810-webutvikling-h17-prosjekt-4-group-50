@@ -1,7 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, ViewEncapsulation} from '@angular/core';
 import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
+import {AlbumResponse} from "../../interfaces/album-response.interface";
+import {SongResponse} from "../../interfaces/song-response.interface";
+import {DataService} from "../../data.service";
 
 @Component({
     selector: 'dialog-table',
@@ -9,40 +12,42 @@ import "rxjs/add/observable/of";
     styleUrls: ['./dialog-table.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class DialogTableComponent implements OnInit {
+export class DialogTableComponent implements OnChanges {
 
 
-    displayedColumns = ['title', 'duration'];
-    dataSource = new ExampleDataSource();
-    constructor() { }
-    ngOnInit() {
+    displayedColumns = ['name', 'duration'];
+    dataSource : DialogDataSource;
+    songs: SongResponse[];
+
+    constructor(private searchService : DataService) {}
+    ngOnChanges() {
+        this.searchService.getSongsByIds(this.album.songs).subscribe(songs => {
+            this.songs = songs;
+            this.dataSource = new DialogDataSource(this.songs);
+        });
     }
+    @Input() album: AlbumResponse;
+
+
 }
-export interface Element {
-    title: string;
-    duration: string;
-}
-const data: Element[] = [
-    {title: "Dave's Picks, Volume 24: Berkeley", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-    {title: "Queen", duration: "06-11-2017"},
-];
 /**
  * Data source to provide what data should be rendered in the table. The observable provided
  * in connect should emit exactly the data that should be rendered by the table. If the data is
  * altered, the observable should emit that new set of data on the stream. In our case here,
  * we return a stream that contains only one set of data that doesn't change.
  */
-export class ExampleDataSource extends DataSource<any> {
+export class DialogDataSource extends DataSource<any> {
     /** Connect function called by the table to retrieve one stream containing the data to render. */
-    connect(): Observable<Element[]> {
-        return Observable.of(data);
+
+    constructor(data: SongResponse[]) {
+        super();
+        this.data = data;
     }
-    disconnect() {}
+    data: SongResponse[];
+
+    connect(): Observable<SongResponse[]> {
+        return Observable.of(this.data);
+    }
+    disconnect() {
+    }
 }
