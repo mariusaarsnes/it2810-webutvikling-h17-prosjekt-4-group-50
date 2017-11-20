@@ -28,7 +28,7 @@ export class WordcloudComponent implements OnInit {
 
     options = {
         settings: {
-            minFontSize: 1,
+            minFontSize: 20,
             maxFontSize: 100,
         },
         margin: {
@@ -52,8 +52,8 @@ export class WordcloudComponent implements OnInit {
     }
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
-        return data.map(genre => {
-            return <AgWordCloudData>{text: genre._id, size: genre.count};
+        return data.map((genre, index) => {
+            return <AgWordCloudData>{text: genre._id, size: index == 0 ? genre.count + 2 : genre.count};
         });
     }
 

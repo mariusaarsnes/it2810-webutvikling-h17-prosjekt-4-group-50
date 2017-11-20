@@ -26,7 +26,10 @@ exports.updateSearchHistory = (req, res) => {
 };
 
 exports.findUser = (req, res) => {
-    res.json(req.user);
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) error(res, "Error", 202);
+        else res.status(200).json(user);
+    });
 };
 
 exports.createUser = (req, res, bcrypt) => {
@@ -132,8 +135,6 @@ exports.addFavoriteArtist = (req, res) => {
 exports.removeFavoriteArtist = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
         user.favorite_artists.splice(user.favorite_artists.indexOf(req.body.id), 1);
-        console.log(req.body.id);
-        console.log(user.favorite_artists);
         user.save((err, result) => {
             if (err) error(res, err, 202);
             res.status(200).json(result);
