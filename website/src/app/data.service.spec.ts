@@ -68,6 +68,7 @@ describe('DataService', () => {
         });
     });
     describe('#getArtistsByIds', () => {
+        /*
         it('Should return an Observable<ArtistResponse[]>', () => {
             const answer = [
                 {
@@ -104,8 +105,8 @@ describe('DataService', () => {
                     imageLink: 'link'
                 }];
             const ids = ['1', '2', '3'];
-            service.getArtistsByIds(['1', '2', '3']).subscribe(artists => {
-                expect(artists.length).toBe(ids.length);
+
+            service.getArtistsByIds(ids).subscribe(artists => {
                 expect(artists[0]._id).toBe(ids[0]);
                 expect(artists[1]._id).toBe(ids[1]);
                 expect(artists[2]._id).toBe(ids[2]);
@@ -115,37 +116,65 @@ describe('DataService', () => {
             expect(req.request.method).toBe('GET');
             req.flush(answer);
         });
+        */
+        it('Should return error if artists with given ID does not exist', (done) => {
+            service.getArtistsByIds(['invalidID1', 'invalidID2']).subscribe((res: any) => {
+                expect(res.failure.error.type).toBe('500');
+                done();
+            });
+
+            const req = httpMock.expectOne('api/artists/invalidID1,invalidID2');
+            expect(req.request.method).toBe('GET');
+            req.error(new ErrorEvent('500'));
+
+        });
     });
     describe('#getAlbum', () => {
         it('Should return an Observable<AlbumResponse>', () => {
-            const answer = [
+            const answer = {
+                _id: '1',
+                name: 'album',
+                imageLink: 'link',
+                songs: ['song1', 'song2'],
+                songsData: [{_id: 'song1'}, {_id: 'song2'}],
+                artists: ['1', '2'],
+                artistsData: [{_id: 'artist1'}]
+            };
+            const artistAnswer = [
                 {
                     _id: '1',
-                    name: 'album',
-                    imageLink: 'link',
-                    songs: ['song1', 'song2'],
-                    songsData: [{_id: 'song1'}, {_id: 'song2'}],
-                    artists: ['artist1', 'artist2'],
-                    artistsData: [{_id: 'artist1'}, {_id: 'artist2'}]
+                    name: 'artist1',
+                    type: 'artist',
+                    popularity: 90,
+                    albums: ['album1', 'album2'],
+                    songs: ['Song1', 'Song2'],
+                    __v: 1,
+                    genres: ['genre1'],
+                    imageLink: 'link'
                 }];
 
             const id = '1';
             service.getAlbum('1').subscribe(album => {
                 expect(album.name).toBe('album');
                 expect(album._id).toBe(id);
+                expect(album.artistsData[0]._id).toBe(id);
             });
 
             const req = httpMock.expectOne('api/album/' + id);
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+
+            const req2 = httpMock.expectOne('api/artists/' + answer.artists.join(','));
+            expect(req2.request.method).toBe('GET');
+            req2.flush(artistAnswer);
         });
     });
 
-
     describe('#getArtist', () => {
         it('Should return an Observable<ArtistResponse>', () => {
+            const id = 'id';
             const answer = {
-                _id: 'id',
+                _id: id,
                 name: 'artist1',
                 type: 'artst',
                 popularity: 90,
@@ -155,14 +184,34 @@ describe('DataService', () => {
                 genres: ['genre1'],
                 imageLink: 'link'
             };
-            service.getArtist('7hssUdpvtY5oiARaUDgFZ3').subscribe(artist => {
+            service.getArtist(id).subscribe(artist => {
+                expect(artist._id).toBe(id);
                 expect(artist.name).toBe('artist1');
                 expect(artist.popularity).toBe(90);
             });
-            const req = httpMock.expectOne('api/artist/7hssUdpvtY5oiARaUDgFZ3');
+            const req = httpMock.expectOne('api/artist/' + id);
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+        });
+    });
 
+    describe('#getSong', () => {
+        it('Should return an Observable<SongResponse>', () => {
+            const id = '1';
+            const answer = {
+                _id: id,
+                name: 'song1',
+                album: 'album',
+                duration: [4, 11],
+                albumData: {},
+                artists: ['artist1', 'artist2']
+            };
+            service.getSong(id).subscribe(artist => {
+                expect(artist._id).toBe(id);
+            });
+            const req = httpMock.expectOne('api/song/' + id);
+            expect(req.request.method).toBe('GET');
+            req.flush(answer);
         });
     });
 });

@@ -44,8 +44,8 @@ export class DataService {
      * @param {string[]} ids
      * @returns {Observable<ArtistResponse[]>}
      */
-    getArtistsByIds(ids: string[]): Observable<ArtistResponse[]> {
-        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(','));
+    getArtistsByIds(ids: string[]): Observable<ArtistResponse[] | any> {
+        return this.http.get<ArtistResponse[]>('api/artists/' + ids.join(',')).catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -62,7 +62,7 @@ export class DataService {
         });
     }
 
-    getArtist(id: string){
+    getArtist(id: string) {
         return this.http.get<ArtistResponse>('api/artist/' + id);
     }
 
@@ -221,7 +221,7 @@ export class DataService {
     }
 
     register(username: string, password: string) {
-        let temp =  this.http.post('api/create_user', {username: username, password: password});
+        let temp = this.http.post('api/create_user', {username: username, password: password});
         return Observable.of(temp);
     }
 }
