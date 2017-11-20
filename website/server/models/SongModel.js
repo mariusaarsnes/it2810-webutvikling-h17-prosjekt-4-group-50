@@ -12,6 +12,9 @@ let mongoose = require("mongoose"),
         type: {
             type: String
         },
+        popularity: {
+            type:Number
+        },
         duration: {
             type: Array
         },

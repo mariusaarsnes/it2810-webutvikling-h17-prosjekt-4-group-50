@@ -7,7 +7,8 @@ module.exports = (isAuthorized, isAdmin, passport) => {
         albumController = require("../controllers/AlbumController"),
         artistController = require("../controllers/ArtistController"),
         generalController = require("../controllers/GeneralController"),
-        spotify = require("../spotify/spotify");
+        spotify = require("../spotify/spotify"),
+        spoty_test = require('../spotify/test');
 
     /**
      * Router middleware. Can be used to verify input (API token?)
@@ -20,6 +21,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Query to populate the database with data from Spotify
      */
     router.get("/populate_database/:access_token", isAdmin, spotify);
+    router.get("/db_test/:access_token", spoty_test);
 
     /**
      * User related API queries
