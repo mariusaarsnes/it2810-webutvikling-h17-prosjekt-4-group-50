@@ -10,7 +10,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 @Component({
     selector: 'app-album',
     templateUrl: './album.component.html',
-    styleUrls: ['./album.component.css']
+    styleUrls: ['../../../assets/styles/sharedStyles/search-result-element.css']
 })
 export class AlbumComponent implements OnInit {
 

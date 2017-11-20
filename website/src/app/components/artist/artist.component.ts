@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 @Component({
     selector: 'app-artist',
     templateUrl: './artist.component.html',
-    styleUrls: ['./artist.component.css']
+    styleUrls: ['../../../assets/styles/sharedStyles/search-result-element.css']
 })
 export class ArtistComponent implements OnInit {
 
