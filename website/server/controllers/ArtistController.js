@@ -67,7 +67,6 @@ exports.findArtists = ((req, res) => {
             query[key] = { $all: temp[key]};
         }
     }
-    console.log(query);
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
     Artist.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
