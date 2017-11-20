@@ -53,29 +53,29 @@ export class DataService {
      * @param {string} id
      * @returns {Observable<AlbumResponse>}
      */
-    getAlbum(id: string): Observable<AlbumResponse> {
+    getAlbum(id: string): Observable<AlbumResponse | any> {
         return this.http.get<AlbumResponse>('api/album/' + id).switchMap(res => {
             let observable = this.getArtistsByIds(res.artists);
             return Observable.of(res).combineLatest(observable, (res, artists) => {
                 return <AlbumResponse>{...res, artistsData: artists};
             });
-        });
+        }).catch(e => Observable.of({failure: e}));
     }
 
-    getArtist(id: string) {
-        return this.http.get<ArtistResponse>('api/artist/' + id);
+    getArtist(id: string): Observable<ArtistResponse | any> {
+        return this.http.get<ArtistResponse>('api/artist/' + id).catch(e => Observable.of({failure: e}));
     }
 
-    getSong(id: string): Observable<SongResponse> {
-        return this.http.get<SongResponse>('api/song/' + id);
+    getSong(id: string): Observable<SongResponse | any> {
+        return this.http.get<SongResponse>('api/song/' + id).catch(e => Observable.of({failure: e}));
     }
 
     /**
      * Fetches a list of genres + counts of the favorite artists
      * @returns {Observable<GenresResponse[]>}
      */
-    getFavoriteGenres(): Observable<GenresResponse[]> {
-        return this.http.get<GenresResponse[]>('api/aggregate_genres');
+    getFavoriteGenres(): Observable<GenresResponse[] | any> {
+        return this.http.get<GenresResponse[]>('api/aggregate_genres').catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -109,8 +109,8 @@ export class DataService {
      * @param {string[]} ids
      * @returns {Observable<SongResponse[]>}
      */
-    getSongsByIds(ids: string[]): Observable<SongResponse[]> {
-        return this.http.get<SongResponse[]>('api/songs/' + ids.join(','));
+    getSongsByIds(ids: string[]): Observable<SongResponse[] | any> {
+        return this.http.get<SongResponse[]>('api/songs/' + ids.join(',')).catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -118,7 +118,7 @@ export class DataService {
      * @param {string[]} ids
      * @returns {Observable<SongResponse[]>}
      */
-    getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[]> {
+    getSongsByIdsWithAlbums(ids: string[]): Observable<SongResponse[] | any> {
         return this.http.get<SongResponse[]>('api/songs/' + ids.join(',')).switchMap(result => {
             let observables = [];
             result.forEach((res) => {
@@ -128,7 +128,7 @@ export class DataService {
                 }));
             });
             return Observable.forkJoin(observables);
-        });
+        }).catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -136,8 +136,8 @@ export class DataService {
      * @param {string[]} ids
      * @returns {Observable<AlbumResponse[]>}
      */
-    getAlbumsByIds(ids: string[]): Observable<AlbumResponse[]> {
-        return this.http.get<AlbumResponse[]>('api/albums/' + ids.join(','));
+    getAlbumsByIds(ids: string[]): Observable<AlbumResponse[] | any> {
+        return this.http.get<AlbumResponse[]>('api/albums/' + ids.join(',')).catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -152,7 +152,7 @@ export class DataService {
      * @returns {Observable<AlbumResponse[]>}
      */
     getAlbums(name: string, amount: number, index: number, filter: string,
-              filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[]> {
+              filterValue: string, sort: string, sortType: string): Observable<AlbumResponse[] | any> {
         return this.http.get<AlbumResponse[]>('api/albums/' + name + '/' + sort + '/' + sortType + '/' +
             filter + '/' + filterValue + '/' + index + '/' + amount).switchMap(result => {
             let observables = [];
@@ -167,7 +167,7 @@ export class DataService {
                 }));
             });
             return Observable.forkJoin(observables);
-        });
+        }).catch(e => Observable.of({failure:e}));
     }
 
     /**
