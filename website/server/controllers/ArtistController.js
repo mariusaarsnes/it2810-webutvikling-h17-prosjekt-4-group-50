@@ -56,9 +56,18 @@ exports.findArtists = ((req, res) => {
     if (req.params.filter !== 'none') {
         const filters = req.params.filter.split(","),
             filterValues = req.params.filter_value.split(",");
-        for (let i = 0; i < filters.length; i++)
-            query[filters[i]] = filterValues[i];
+        const temp = {};
+        for (let i = 0; i < filters.length; i++) {
+            if (temp[filters[i]])
+                temp[filters[i]].push(filterValues[i]);
+            else
+                temp[filters[i]] = [filterValues[i]];
+        }
+        for (let key in temp) {
+            query[key] = { $all: temp[key]};
+        }
     }
+    console.log(query);
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
     Artist.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
