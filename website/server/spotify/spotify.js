@@ -140,7 +140,6 @@ module.exports = (req, res) => {
                         let j = 0;
                         data.body.items.forEach(track => {
                             j++;
-
                             let tempArtists = [];
 
                             track.artists.forEach(artist => {
@@ -149,15 +148,16 @@ module.exports = (req, res) => {
                                 }
                             });
                             let ms = track.duration_ms,
-                                min = Math.floor((ms/1000/60) << 0),
-                                sec = Math.floor((ms/1000) % 60);
+                                min = Math.floor((ms / 1000 / 60) << 0),
+                                sec = Math.floor((ms / 1000) % 60);
 
                             temp[track.id] = new Song({
                                 _id: track.id,
                                 name: track.name,
-                                duration: [min,sec],
+                                duration: [min, sec],
                                 artists: tempArtists,
-                                album: key
+                                album: key,
+
                             });
 
                             if (j === data.body.items.length) {
@@ -167,7 +167,7 @@ module.exports = (req, res) => {
                                 console.log("Done with parsing Songs");
                                 resolve(temp)
                             }
-                        })
+                        });
                     }).catch(reason => {
                         console.log(reason)
 
@@ -178,46 +178,122 @@ module.exports = (req, res) => {
 
         });
 
-        allPromises = Promise.all([parsedArtistsPromise, parsedAlbumsPromise, parsedSongsPromise]).then(values => {
-            console.log("Done with parsing everything.");
-            console.log("Start updating artists models to contain albums");
+        function chunkify(a, n, balanced) {
 
+            if (n < 2)
+                return [a];
 
-            // Loop through each key in songs dictionary
-            // and add the song to the right album and artist
-            for (let key in values[2]) {
-                // Now we add the songs to the right album,
-                values[1][values[2][key].album].songs.push(key);
-                values[2][key].artists.forEach(artistID => {
-                    values[0][artistID].songs.push(key)
-                })
-            }
+            let len = a.length,
+                out = [],
+                i = 0,
+                size;
 
-            //Loop through each key in album dictionary
-            for (let key in values[1]) {
-                // For each artist in each album add this album to the artist if the artist is on that we will save
-                values[1][key].artists.forEach(artist => {
-                    if (artist in values[0]) {
-                        values[0][artist].albums.push(key);
-                    }
-                })
+            if (len % n === 0) {
+                size = Math.floor(len / n);
+                while (i < len) {
+                    out.push(a.slice(i, i += size));
+                }
             }
 
-            // Save all songs
-            for (let key in values[2]) {
-                values[2][key].save();
+            else if (balanced) {
+                while (i < len) {
+                    size = Math.ceil((len - i) / n--);
+                    out.push(a.slice(i, i += size));
+                }
             }
-            // Save all albums
-            for (let key in values[1]) {
-                values[1][key].save();
+
+            else {
+
+                n--;
+                size = Math.floor(len / n);
+                if (len % size === 0)
+                    size--;
+                while (i < size * n) {
+                    out.push(a.slice(i, i += size));
+                }
+                out.push(a.slice(size * n));
+
             }
-            // Save all artists
-            for (let key in values[0]) {
-                //console.log(values[0][key]);
-                values[0][key].save();
-            }
-            console.log("Finished populating database");
-        })
+
+            return out;
+        }
+
+        parsedSongsPromise.then(parsedSongs => {
+            popularityPromise = new Promise(resolve => {
+                console.log("Start adding popularity to songs");
+                let temp = [];
+                for (let key in parsedSongs) {
+                    temp.push(key);
+                }
+                let chunked = chunkify(temp, 220, true);
+
+                let i = 0;
+                let innerLoopDone = 0;
+                for (let j = 0; j < chunked.length; j++) {
+                    i++;
+                    setTimeout(() => {
+                        spotifyApi.getTracks(chunked[j]).then(data => {
+                            let k = 0;
+                            data.body.tracks.forEach(track => {
+                                k++;
+                                parsedSongs[track.id].popularity = track.popularity;
+
+                                if (k === data.body.tracks.length) {
+                                    innerLoopDone++;
+                                }
+                                if (i === Object.keys(chunked).length && innerLoopDone === Object.keys(chunked).length) {
+                                    console.log("Done with adding popularity to songs");
+                                    resolve(parsedSongs)
+                                }
+                            })
+
+                        })
+                    }, 200 * i)
+                }
+            });
+
+            allPromises = Promise.all([parsedArtistsPromise, parsedAlbumsPromise, popularityPromise]).then(values => {
+                console.log("Done with parsing everything.");
+                console.log("Start updating artists models to contain albums");
+
+
+                // Loop through each key in songs dictionary
+                // and add the song to the right album and artist
+                for (let key in values[2]) {
+                    // Now we add the songs to the right album,
+                    values[1][values[2][key].album].songs.push(key);
+                    values[2][key].artists.forEach(artistID => {
+                        values[0][artistID].songs.push(key)
+                    })
+                }
+
+                //Loop through each key in album dictionary
+                for (let key in values[1]) {
+                    // For each artist in each album add this album to the artist if the artist is on that we will save
+                    values[1][key].artists.forEach(artist => {
+                        if (artist in values[0]) {
+                            values[0][artist].albums.push(key);
+                        }
+                    })
+                }
+
+                // Save all songs
+                for (let key in values[2]) {
+                    values[2][key].save();
+                }
+                // Save all albums
+                for (let key in values[1]) {
+                    values[1][key].save();
+                }
+                // Save all artists
+                for (let key in values[0]) {
+                    //console.log(values[0][key]);
+                    values[0][key].save();
+                }
+
+                console.log("Finished populating database");
+            })
+        });
 
     });
 };
