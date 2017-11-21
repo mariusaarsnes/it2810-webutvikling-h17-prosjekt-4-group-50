@@ -2,15 +2,21 @@
     <div class="info-wrapper">
         <h1>Profile info for {{user.username}}</h1>
         <h2>Credentials</h2>
-        <div class="search-container">
+        <div class="search-container mat-elevation-z8">
             <h3>Username: {{user.username}}</h3>
             <h3>Profiletype: {{profileType}}</h3>
             <br>
             <h3>Member since: {{date}}</h3>
         </div>
-        <div>
-            <h2>Favorite Artists</h2>
-            <favorite-artists></favorite-artists>
-        <div>
+        <div class="split-content">
+            <div class="split-content-container">
+                <h2>Favorite Artists</h2>
+                <favorite-artists></favorite-artists>
+            </div>
+            <div class="split-content-container wordcloud">
+                <h2>Your favorite genres</h2>
+                <wordcloud></wordcloud>
+            </div>
+        </div>
     </div>
 </div>
