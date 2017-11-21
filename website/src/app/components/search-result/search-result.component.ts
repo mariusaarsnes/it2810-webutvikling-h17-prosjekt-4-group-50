@@ -25,9 +25,9 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	renderTreshold = 15;
 	canRenderNew = true;
 	divWidth = 0;
+	placesPerRow = 0;
+	placesLeftToFill = 0;
 	searchResultWidth = 320;
-
-
 
 	ngOnChanges(changes: SimpleChanges) {
 		if (this.searchString && this.searchString !== "") {
@@ -63,15 +63,15 @@ export class SearchResultComponent implements OnInit, OnChanges {
     getStandardData(): void {
 	    switch (this.searchType) {
             case "artist":
-                this.searchService.getArtists("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "popularity", this.sortType ? this.sortType : "descending").subscribe(artists => {
+                this.searchService.getArtists("*", this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "popularity", this.sortType ? this.sortType : "descending").subscribe(artists => {
                     this.artists = artists;
                 });
             case "album":
-                this.searchService.getAlbums("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(albums => {
+                this.searchService.getAlbums("*", this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(albums => {
                     this.albums = albums;
                 });
             case "track":
-                this.searchService.getSongs("*", 15, 0, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(tracks => {
+                this.searchService.getSongs("*", this.renderTreshold, this.index, this.filterList.length > 0 ? this.filterList.map(array => array[0]).join(",") : "none", this.filterList.length > 0 ? this.filterList.map(array => array[1]).join(",") : "none", this.sort ? this.sort : "none", this.sortType ? this.sortType : "descending").subscribe(tracks => {
                     this.tracks = tracks;
                 });
         }
@@ -83,7 +83,10 @@ export class SearchResultComponent implements OnInit, OnChanges {
         this.tracks = [];
     };
 	ngOnInit() {
-        this.divWidth = Math.floor((window.innerWidth / this.searchResultWidth)) * this.searchResultWidth;
+	    this.placesPerRow = Math.floor((window.innerWidth - 40) / this.searchResultWidth);
+	    this.placesLeftToFill = (this.index + this.renderTreshold) % this.placesPerRow;
+	    console.log(this.placesLeftToFill);
+        this.divWidth = Math.floor((((window.innerWidth - 40) / this.searchResultWidth))) * this.searchResultWidth;
 	};
 
 	@Input() filterList = [];
@@ -96,7 +99,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
     @HostListener("window:resize", ['$event'])
     onResize(e) {
-        this.divWidth = Math.floor((e.target.innerWidth / this.searchResultWidth)) * this.searchResultWidth;
+        this.divWidth = Math.floor(((e.target.innerWidth) / this.searchResultWidth)) * this.searchResultWidth;
     }
 	@HostListener("window:scroll", [])
 	onWindowScroll() {

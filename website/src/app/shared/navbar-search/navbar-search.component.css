@@ -13,8 +13,8 @@
 }
 .container {
 	background-color: white;
-	margin-left: -18px;
-	margin-right: -18px;
+	margin-left: -20px;
+	margin-right: -20px;
 	margin-top: -20px;
 	display: flex;
     flex-wrap: wrap;
