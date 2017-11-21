@@ -9,11 +9,8 @@ let mongoose = require("mongoose"),
             type: String,
             required: "Kindly enter the name of the song"
         },
-        type: {
-            type: String
-        },
         popularity: {
-            type:Number
+            type: Number
         },
         duration: {
             type: Array

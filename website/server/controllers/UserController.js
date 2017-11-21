@@ -48,6 +48,18 @@ exports.createUser = (req, res, bcrypt) => {
         }
     });
 };
+exports.deleteUser = (req, res) => {
+    User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
+        if (!user)
+            error(res, 'This username does not exist', 202);
+        else
+            User.deleteOne({username: req.body.username.toLowerCase()}, (err, result) => {
+                if (err) error(res, error, 202);
+                res.status(200).json(result);
+            });
+    });
+
+};
 
 exports.findAggregateGenres = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {

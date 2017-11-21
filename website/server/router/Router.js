@@ -33,6 +33,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/search_history", userController.findSearchHistory);
     router.get("/search_history_data", userController.findSearchHistoryData);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
+    router.post('/delete_user', userController.deleteUser);
     router.post('/login',
         passport.authenticate('local', {
             successRedirect: '/api/logged_in/failed/false/message/Successfully logged in!',

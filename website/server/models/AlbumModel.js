@@ -12,9 +12,6 @@ let mongoose = require("mongoose"),
         imageLink: {
             type: String
         },
-        type: {
-            type: String
-        },
         artists: {
             type: Array
         },
