@@ -16,7 +16,7 @@
                 <p>Sort by: </p>
                 <select (change)="selectSort($event)" name="sortBy" class="input-select">
                     <option value="none">None</option>
-                    <option *ngIf="searchType === 'artist'" value="popularity" selected="selected">Popularity</option>
+                    <option *ngIf="searchType === 'artist' || 'track'" value="popularity" selected="selected">Popularity</option>
                     <option value="name">Name</option>
                 </select>
                 <select (change)="selectSortType($event)" name="sortType" class="input-select">
