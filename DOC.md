@@ -7,7 +7,8 @@ that can be found here.
 2. [Database](#Database) 
 3. [Design](#Design)
 4. [Project Structure](#ProjectStructure)
-
+5. [Server](#Server)
+6. [Application](#Application)
 
 ### Architecture <a name="Architecture"></a>
 A given requirement for the project is that we use Nodejs on the backend, and Angular frontend. This made
@@ -115,6 +116,36 @@ Our project struckture is really straight forward, with a locgical folder struct
 
 (Insert bilde av folder strukturen)
 
-forklare hva som skjer i strukturen
+Our components are located inn /website/src/app. Here we have 2 different types of components; normal components, shared components (components used in multiple times). We also have interfaces in the app folder, these files maps data to angular objects. 
+As you can see from the picture above each componentfolder contains the CSS, HTML, TS and test file for the given component.
 
-  
+In the assets folder we have our fonts and images.
+
+Our server code is located under /website/server. Here you will find the DataModels described earlier in models. API routess can be founder in router and API page code under static. The code we used for gathering data from the spotify API can be found under spotify. Under controllers you find the code for quering the database and sending the response back to the user.
+
+### Server <a name="Server"></a>
+
+Sortering 
+
+(DANIEL OG FREDRIK)
+
+session og auth av bruker 
+
+(DANIEL)
+
+### Application <a name="Application"></a>
+
+#### Main page
+Innholdet på hovedsiden / search
+
+(FREDRIK OG DANIEL OG MH)
+
+We have implemented dynamic load on scroll in our search response grid in the main page. This is done by having an index pointing at how far into the query we have loaded, based on how far you have scrolled. This way the database only gets a certain amount of data every query, and thus optimizing the loadspeed of the website.
+
+#### My page
+"My page" has two sub pages, "My info" and "Visit history".
+
+My info contains your username and when your profile was created.
+You also find your favorite artists here, and a wordcloud generated based on the genres of your favorite artists. Note that the wordcloud is automatically generated and you will not see the wordcloud unless you have at least one favorite artist. If you click any artist in the favorite list, the artist will be displayed like it would on the main page.
+
+Visit history contains information of how many unique visits and total visits you have had. There is also a list showing your latest visits. Note that this list is not clickable.
