@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
 			this.updateErrorText("Your password field is empty! Please fill it out!")
 		else {
 		    this.searchService.register(this.username, this.password).subscribe(data => {
+		        console.log(data);
 				if (!data["message"])
 					this.router.navigate(['/login']);
 				else{

@@ -10,16 +10,16 @@ import {GenresResponse} from './interfaces/genres-response.interface';
 import {UserResponse} from './interfaces/user-response.interface';
 import {SearchHistoryResponse} from './interfaces/history-response.interface';
 import {SearchHistoryData} from './interfaces/search-history-data-response.interface';
-import {Headers} from "@angular/http";
 
 @Injectable()
 export class DataService {
 
-    headers: Headers;
+    loggedIn: boolean = false;
 
     constructor(private http: HttpClient) {
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
+        this.isLoggedIn().subscribe(data => {
+            this.loggedIn = data;
+        });
     }
 
     /**
@@ -231,6 +231,14 @@ export class DataService {
         });
     }
 
+    isLoggedIn(): Observable<boolean> {
+        return this.http.get<any>('api/logged_in').map(data => {
+            if (data.result)
+                return true;
+            return false;
+        })
+    }
+
     updateSearchHistory(type: string, id: string) {
         return this.http.put('api/update_history', {type: type, type_id: id});
     }
@@ -242,5 +250,9 @@ export class DataService {
     register(username: string, password: string) {
         let temp = this.http.post('api/create_user', {username: username, password: password});
         return Observable.of(temp);
+    }
+
+    logout() {
+        return this.http.post('api/logout', {});
     }
 }

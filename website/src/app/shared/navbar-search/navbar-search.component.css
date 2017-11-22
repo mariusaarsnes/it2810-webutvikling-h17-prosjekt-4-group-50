@@ -11,35 +11,41 @@
 	background-color: white;
 	font-family: "Intro Rust", sans-serif;
 }
-.navbar-bottom-container {
+.container {
 	background-color: white;
 	margin-left: -20px;
 	margin-right: -20px;
 	margin-top: -20px;
 	display: flex;
+    flex-wrap: wrap;
 }
-.nav-bottom-left-container {
-	flex: 1 1 auto;
+.left-container {
+    width: 300px;
 }
-.nav-bottom-right-container {
-	flex: 1 1 auto;
+.right-container {
+    width: 280px;
 	display: flex;
-	justify-content: flex-end;
+    align-items: flex-end;
 }
-.nav-bottom-right {
-	widows:300px;
+.center-container {
+    width: 280px;
+    display: flex;
+    font-size: 15px;
+    align-items: flex-end;
+}
+.filter-by {
+    width: 280px;
 	margin-right: 20px;
+    font-size: 15px;
 }
-.nav-bottom-right h3 {
-	margin: 0;
+.filter-by-inner {
+    display: flex;
+    color: black;
+    font-size: 15px;
+    align-items: center;
 }
-.nav-bottom-right p {
-	font-size: 10px;
-	margin: 0;
-	margin-top: 3px;
-}
-.nav-bottom-right {
-	color: #5a5a5a;
+.filter-by p {
+	font-size: 15px;
 }
 .nav-bottom-left {
 	margin-left: 20px;
@@ -55,6 +61,9 @@
 	color: #5a5a5a;
 	transition: all .4s ease-in-out;
 }
+.nav-bottom-left ul #first {
+    padding-left: 0;
+}
 .nav-bottom-left ul li a:hover {
 	color: black;
 }
@@ -64,14 +73,15 @@
 }
 .sort-by {
 	display: flex;
-	margin-top: 10px;
-}
-.filter-by {
-    display: flex;
+    align-items: center;
 }
 .filter-box {
     display: flex;
     font-size: 10px;
+}
+.input-select {
+    margin-left: 10px;
+    border-image: none;
 }
 .input-select:focus {
 	outline-style: none;
@@ -83,4 +93,18 @@
 .selected-type {
     color: black !important;
     font-size: 16px;
+}
+
+
+@media screen and (max-width: 864px) {
+    .container {
+        flex-direction: column;
+        margin: 0;
+    }
+    .center-container {
+        margin-left: 20px;
+    }
+    .right-container {
+        margin-left: 20px;
+    }
 }

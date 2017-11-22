@@ -13,8 +13,8 @@ exports.addArtist = (req, res) => {
     });
 
     artist.save((err, task) => {
-        if (err) res.send(err);
-        res.status(201).json(task);
+        if (err) res.send(err)
+        else res.status(201).json(task);
     });
 };
 
@@ -23,8 +23,8 @@ exports.findArtistsByIds = ((req, res) => {
     Artist.find({
             _id: {$in: ids}
         }, (err, artists) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(artists);
+            if (err) error(res, err, 500)
+            else res.status(200).json(artists);
         }
     );
 });
@@ -77,7 +77,7 @@ exports.findArtists = ((req, res) => {
 
 exports.findAllArtists = (req, res) => {
     Artist.find({}, (err, task) => {
-        if (err) res.send(err);
-        res.status(200).json(task);
+        if (err) res.send(err)
+        else res.status(200).json(task);
     });
 };

@@ -26,6 +26,7 @@
 .image-scaler {
     width: 150px;
     height: 150px;
+    overflow: hidden;
 }
 
 .mat-table {
@@ -35,11 +36,12 @@
 }
 
 mat-row:hover{
-    background-color: lightgrey
+    background-color: lightgrey;
+    cursor: pointer;
 }
 
 mat-row:active{
-    background-color: grey
+    background-color: grey;
 }
 
 p {
