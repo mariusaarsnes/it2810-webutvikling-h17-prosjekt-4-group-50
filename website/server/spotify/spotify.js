@@ -44,14 +44,29 @@ let artistIDs = [
     '1L9i6qZYIGQedgM9QLSyzb'
 ];
 
+/**
+ * The code uses promises so may be a little difficult to understand.
+ * Basically what happens is that first we fetch all the artists from the list of IDs above. When this is finished
+ * (and the promise has returned) we fetch all the labums of each artist. when this is done we fetch all tracks for
+ * each album. after all tracks has been fetched we need to fetch the popularity of each track, since this is not
+ * fetched when using getAlbumTracks.
+ *
+ * Since there are loops with promises inside, with loops inside there again it is necessary to use a couple
+ * counting variables to keep track of which promises that are done, and so on.
+ *
+ * Also, the spotify API does not like it when you make to many accesses to it too quickly. therefore it was
+ * necessary to at a delay when fetching songs so that we would not be blocked.
+ *
+ * at the end of everything, we populate the database with the parsed data
+ */
 module.exports = (req, res) => {
     let SpotifyWebApi = require('spotify-web-api-node');
 
     let spotifyApi = new SpotifyWebApi();
 
-    // Access-token to the DB. This needs to be changed at certain interval.
+    // Access-token to the DB. This needs to be changed at a certain interval.
     spotifyApi.setAccessToken(req.params.access_token);
-    // Fetching all the artists from artists1, containing all the IDs
+    // Fetching all the artists from artistIDs, containing all the IDs
     parsedArtistsPromise = new Promise(resolve => {
         console.log("Fetching artists");
         let i = 0;

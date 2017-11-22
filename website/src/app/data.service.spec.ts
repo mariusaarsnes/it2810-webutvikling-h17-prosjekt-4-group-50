@@ -3,6 +3,12 @@ import {getTestBed, TestBed} from '@angular/core/testing';
 import {DataService} from './data.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
+
+/**
+ * We have tried to write as simple tests as possible. We use a mockbackend to fake the result from the database, to see if the service
+ * acts as we want it to.
+ */
+
 describe('DataService', () => {
     let injector: TestBed;
     let service: DataService;
