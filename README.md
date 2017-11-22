@@ -30,7 +30,7 @@ Read our [documentation](DOC.md) to learn more about the project architecture, t
    
    Install the angular CLI for your terminal in order to be able to build our project with the following command:
    
-   `npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest --save`
+   `npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest --save`
    
    Now that you have our project locally navigate to the \website folder and install the dependencies with 
    
