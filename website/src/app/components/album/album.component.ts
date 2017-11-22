@@ -34,7 +34,7 @@ export class AlbumComponent implements OnInit {
     openDialog() {
 
         this.artists = this.album.artistsData;
-        console.log(this.album);
+        this.searchService.updateSearchHistory('album', this.album._id).subscribe();
         this.getSongs(this.album.songs).subscribe(songs => {
             this.songs = songs;
             const dialogRef = this.dialog.open(SongDialogComponent, {

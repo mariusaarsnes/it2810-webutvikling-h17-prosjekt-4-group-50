@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {AlbumResponse} from "../../interfaces/album-response.interface";
 import {HostListener} from "@angular/core";
 
-
 @Component({
     selector: 'app-dialog',
     templateUrl: './dialog.component.html',
@@ -17,6 +16,7 @@ export class DialogComponent implements OnInit {
 
 	constructor(@Inject(MAT_DIALOG_DATA) public data: any, public thisDialogRef: MatDialogRef<DialogComponent>) {
 	}
+
 	closeDialog() {
 		this.thisDialogRef.close();
 	}
@@ -29,7 +29,6 @@ export class DialogComponent implements OnInit {
     onResize(e) {
         this.divWidth = Math.floor((document.getElementById('modal-dialog').offsetWidth / 160)) * 160;
     }
-
 
     intoView(album) {
 	    this.album = album;
