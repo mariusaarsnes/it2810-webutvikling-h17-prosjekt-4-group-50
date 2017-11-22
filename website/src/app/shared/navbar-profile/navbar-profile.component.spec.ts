@@ -5,6 +5,8 @@ import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {UserResponse} from '../../interfaces/user-response.interface';
 import {Observable} from 'rxjs/Observable';
+import {FormsModule} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
 
 
 class MockDataService {
@@ -22,7 +24,10 @@ describe('NavbarProfileComponent', () => {
             declarations: [NavbarProfileComponent],
             providers: [
                 {provide: DataService, useClass: MockDataService},
-                HttpClient, HttpHandler]
+                HttpClient, HttpHandler],
+            imports: [
+                RouterTestingModule
+            ]
         })
             .compileComponents();
     }));
