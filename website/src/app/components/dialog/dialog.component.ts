@@ -21,7 +21,6 @@ export class DialogComponent implements OnInit {
 		this.thisDialogRef.close();
 	}
 
-	//Finds the width of the screen
 	ngOnInit() {
     }
 
@@ -31,7 +30,6 @@ export class DialogComponent implements OnInit {
 	    this.album = album;
 	    this.show = true;
         document.getElementById("type-dialog").scrollIntoView();
-
     }
 
 }

@@ -11,6 +11,7 @@ export class SearchPageComponent implements OnInit {
     constructor() {
     }
 
+    //input variables concerning filtering, sorting and generally searching. These will be shipped forward to search-result component
     @Input() filterList: string[];
     @Input() sort: string;
     @Input() sortType: string;

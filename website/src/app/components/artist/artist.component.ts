@@ -17,10 +17,11 @@ export class ArtistComponent implements OnInit {
     constructor(public dialog: MatDialog, private searchService: DataService) {
     }
 
-    albums: AlbumResponse[];
-    isFavorite: boolean;
+    albums: AlbumResponse[]; //albums for the artist
+    isFavorite: boolean; //variable for checking if artist is favorite or not
 
     ngOnInit(): void {
+        //fetch if an artist is favorite or not
         this.searchService.isFavorite(this.artist._id).subscribe(isFavorite => {
             this.isFavorite = isFavorite;
         });
@@ -54,13 +55,14 @@ export class ArtistComponent implements OnInit {
         });
 
     }
-
+    //function for toggeling wheter an artist is favorite or not
     favorite() {
+
         if (this.isFavorite)
-            this.searchService.removeFavoriteArtist(this.artist._id).subscribe();
+            this.searchService.removeFavoriteArtist(this.artist._id).subscribe(); //remove artist from favorite in db
         else
-            this.searchService.addFavoriteArtist(this.artist._id).subscribe();
-        this.isFavorite = !this.isFavorite;
+            this.searchService.addFavoriteArtist(this.artist._id).subscribe(); //add artist to favorite in db
+        this.isFavorite = !this.isFavorite; //toggle favorite bool
     }
 
 }

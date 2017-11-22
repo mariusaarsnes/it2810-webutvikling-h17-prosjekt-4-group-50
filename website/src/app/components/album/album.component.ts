@@ -19,8 +19,8 @@ export class AlbumComponent implements OnInit {
     constructor(public dialog: MatDialog, private searchService: DataService) {
     }
 
-    songs: SongResponse[];
-    artists: ArtistResponse[];
+    songs: SongResponse[]; //list with fetched songs
+    artists: ArtistResponse[]; //list with fetched artists
 
     ngOnInit(): void {
     }
