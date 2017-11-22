@@ -13,7 +13,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Router middleware. Can be used to verify input (API token?)
      */
     router.use((req, res, next) => {
-        next();
+       next();
     });
 
     /**
@@ -24,12 +24,14 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     /**
      * User related API queries
      */
-    router.get("/user", userController.findUser);
+    router.get("/user", isAuthorized, userController.findUser);
     router.get("/aggregate_genres", isAuthorized, userController.findAggregateGenres);
-    router.post("/add_favorite_artist/:id", userController.addFavoriteArtist);
-    router.get("/update_history", userController.updateSearchHistory);
-    router.get("/search_history", userController.findSearchHistory);
-    router.get("/search_history_data", userController.findSearchHistoryData);
+    router.get("/is_favorite/:id", isAuthorized, userController.isFavorite);
+    router.put("/add_favorite_artist", isAuthorized, userController.addFavoriteArtist);
+    router.put("/remove_favorite_artist", isAuthorized, userController.removeFavoriteArtist);
+    router.put("/update_history", isAuthorized, userController.updateSearchHistory);
+    router.get("/search_history", isAuthorized, userController.findSearchHistory);
+    router.get("/search_history_data", isAuthorized, userController.findSearchHistoryData);
     router.post('/create_user', (req, res) => userController.createUser(req, res, bcrypt));
     router.post('/login',
         passport.authenticate('local', {
@@ -37,7 +39,7 @@ module.exports = (isAuthorized, isAdmin, passport) => {
             failureRedirect: '/api/logged_in/failed/true/message/Invalid username or password!',
         })
     );
-    router.post('/logout', (req, res) => {
+    router.post('/logout', isAuthorized, (req, res) => {
         req.logout();
         res.redirect("/api/message/Successfully logged out!");
     });
@@ -53,12 +55,12 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     //A more advanced query which finds all albums that contains the search string
     //Then sorts it on the attribute given with the sort type given (Ascending/descending)
     //It also supports filtering on the attribute given with the given value
-    router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", albumController.findAlbumsAdvanced);
+    router.get("/albums/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", isAuthorized, albumController.findAlbumsAdvanced);
     //Finds all almbums with ids in the provided array
-    router.get("/albums/:ids", albumController.findAlbumsByIds);
-    router.get("/album/:id", albumController.findAlbumById);
-    router.get("/albums/:search_string/:index/:amount", albumController.findAlbums);
-    router.get("/albums", albumController.findAllAlbums);
+    router.get("/albums/:ids", isAuthorized, albumController.findAlbumsByIds);
+    router.get("/album/:id", isAuthorized, albumController.findAlbumById);
+    router.get("/albums/:search_string/:index/:amount", isAuthorized, albumController.findAlbums);
+    router.get("/albums", isAuthorized, albumController.findAllAlbums);
 
     router.post("/add_album/:id/:name/:imageLink/:type/:arist", isAdmin, albumController.addAlbum);
 
@@ -66,24 +68,24 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Artist related API queries
      */
     //Find all artists with ids in the provided array
-    router.get("/artists/:ids", artistController.findArtistsByIds);
-    router.get("/artist/:id", artistController.findArtistById);
-    router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", artistController.findArtists);
+    router.get("/artists/:ids", isAuthorized, artistController.findArtistsByIds);
+    router.get("/artist/:id", isAuthorized, artistController.findArtistById);
+    router.get("/artists/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", isAuthorized, artistController.findArtists);
 
-    router.get("/artists", artistController.findAllArtists);
-    router.get("/artists/:search_string/:index/:amount", artistController.findArtists);
+    router.get("/artists", isAuthorized, artistController.findAllArtists);
+    router.get("/artists/:search_string/:index/:amount", isAuthorized, artistController.findArtists);
 
     router.post("/add_artist/:id/:name/:genres/:imageLink/:type/:popularity", isAdmin, artistController.addArtist);
 
     /**
      * Song related API queries
      */
-    router.get("/songs/:ids", songController.findSongsByIds);
-    router.get("/song/:id", songController.findSongById);
-    router.get("/songs/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", songController.findSongsAdvanced);
+    router.get("/songs/:ids", isAuthorized, songController.findSongsByIds);
+    router.get("/song/:id", isAuthorized, songController.findSongById);
+    router.get("/songs/:search_string/:sort/:type/:filter/:filter_value/:index/:amount", isAuthorized, songController.findSongsAdvanced);
 
-    router.get("/songs", songController.findAllSongs);
-    router.get("/songs/:search_string/:index/:amount", songController.findSongs);
+    router.get("/songs", isAuthorized, songController.findAllSongs);
+    router.get("/songs/:search_string/:index/:amount", isAuthorized, songController.findSongs);
 
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
 

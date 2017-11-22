@@ -105,7 +105,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 	onWindowScroll() {
 		if (this.canRenderNew && this.searchString && this.searchString !== "") {
 			let number = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 30) {
 				//reached bottom
 				this.canRenderNew = false;
 				this.index += this.renderTreshold;
