@@ -3,7 +3,7 @@
 #### Frontend
 To test frontned we have used Karma together with Jasmine. We have mostly focused on testing that the components 
 render correctly, and testing our DataService which interacts with our REST api backend. The test files can be found 
-with the component it is testing.
+with the component it is testing. To test the service we have used Mocks. 
 
 To run the fronted tests:
 - Clone the project (can be skipped if you already have the repo): `git clone https://github
