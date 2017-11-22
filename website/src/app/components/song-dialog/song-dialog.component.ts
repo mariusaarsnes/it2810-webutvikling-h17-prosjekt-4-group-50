@@ -11,6 +11,7 @@ export class SongDialogComponent implements OnInit {
     constructor(@Inject(MAT_DIALOG_DATA) public data: any, public thisDialogRef: MatDialogRef<SongDialogComponent>) {
     }
 
+    // Closes the dialog when button is clicked. 
     closeDialog() {
         this.thisDialogRef.close();
     }

@@ -25,18 +25,24 @@ export class AlbumComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    //Current album
     @Input() album: AlbumResponse;
 
+    // Get all songs by their ids, input is a list
     getSongs(songs): Observable<SongResponse[]> {
         return this.searchService.getSongsByIds(songs);
     }
 
+    //Opens the song dialog on click of button
     openDialog() {
-
         this.artists = this.album.artistsData;
         this.searchService.updateSearchHistory('album', this.album._id).subscribe();
+
+        // Gets all the songs that belongs to the current album
         this.getSongs(this.album.songs).subscribe(songs => {
             this.songs = songs;
+
+            //Opens the song dialog with data that contains artists, album and the songs.
             const dialogRef = this.dialog.open(SongDialogComponent, {
                 height: "80%",
                 width: "70%",

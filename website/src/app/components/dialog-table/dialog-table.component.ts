@@ -14,12 +14,14 @@ import {DataService} from "../../data.service";
 })
 export class DialogTableComponent implements OnChanges {
 
-
+    // Columns to be displayed.
     displayedColumns = ['name', 'duration'];
     dataSource : DialogDataSource;
     songs: SongResponse[];
 
     constructor(private searchService : DataService) {}
+
+    //Detects changes to which album is chosen.
     ngOnChanges() {
         this.searchService.getSongsByIds(this.album.songs).subscribe(songs => {
             this.songs = songs;
