@@ -1,6 +1,12 @@
 const request = require('request');
 const base = 'http://localhost:8084/api';
 
+/**
+ * We have tried to write as simple and understandable tests as possible, therefore we feel that it is not necessary
+ * to comment to much here. Generally, we try to fetch something from the database we know is there, or know is not
+ * there and see if the result is as expected
+ */
+
 describe('API/ ', () => {
 
     describe('GET album/:id', () => {
@@ -31,6 +37,7 @@ describe('API/ ', () => {
         it('Should return correct parameters', () => {
                 let album = JSON.parse(data.body);
 
+                // The returned parameters should be the same type as the mode in the album model.
                 expect(album._id).toEqual(jasmine.any(String));
                 expect(album.name).toEqual(jasmine.any(String));
                 expect(album.imageLink).toEqual(jasmine.any(String));
