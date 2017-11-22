@@ -6,7 +6,7 @@ let mongoose = require('mongoose'),
 
 exports.findSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, result) => {
-        History.find({_id: {$in: result.search_history}}, (err, searchHistory) => {
+        History.find({_id: {$in: result.search_history}}).sort({date: '-1'}).exec((err, searchHistory) => {
             if (err) error(res, err, 202)
             else res.status(200).json(searchHistory);
         });
