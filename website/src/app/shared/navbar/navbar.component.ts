@@ -16,10 +16,12 @@ export class NavbarComponent implements OnInit {
 
     }
 
+    //function for loggin out
     logout() {
+        //log the user out
         this.searchService.logout().subscribe(data => {
             this.router.navigate(['/login']);
-            this.searchService.loggedIn = false;
+            this.searchService.loggedIn = false; //set logged in to false
         });
     }
 

@@ -29,7 +29,6 @@ p {
 
 .example-container3 .mat-table {
     overflow: auto;
-    width: 500px;
     max-height: 500px;
     font-family: "Intro Rust", sans-serif;
 }
@@ -40,6 +39,6 @@ p {
     }
 
     .example-container3 {
-        min-width: 300px;
+        min-width: 280px;
     }
 }

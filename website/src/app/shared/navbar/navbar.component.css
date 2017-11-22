@@ -48,4 +48,11 @@ a {
   color: #13738c;
 }
 
-
+@media screen and (max-width: 360px) {
+    .logout {
+        position: relative;
+    }
+    .logo {
+        width: 70px;
+    }
+}
