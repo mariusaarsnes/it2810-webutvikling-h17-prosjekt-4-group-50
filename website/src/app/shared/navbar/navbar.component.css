@@ -5,6 +5,20 @@ a {
   color: #13738c;
   margin: 5px;
 }
+.navbar-list {
+    position: relative;
+}
+.show {
+    display: block;
+    cursor: pointer;
+}
+.hide {
+    display: none;
+}
+.logout {
+    position: absolute;
+    right: 10px;
+}
 .logo {
   width: 100px;
 }

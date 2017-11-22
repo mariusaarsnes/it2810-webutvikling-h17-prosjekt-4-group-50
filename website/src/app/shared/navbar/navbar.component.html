@@ -1,9 +1,12 @@
 <div class="navbar-container">
 	<div class="navbar-top-container">
-		<ul>
+		<ul class="navbar-list">
 			<li><a routerLink="/search" routerLinkActive="disabled"><img class="logo" alt="logo" src="../assets/images/logo.png"/></a></li>
 			<li><a routerLink="/search" routerLinkActive="disabled">Search music</a></li>
 			<li><a routerLink="/profilepage" routerLinkActive="disabled">My page</a></li>
+                <li class="logout" [ngClass]="[searchService.loggedIn ? 'show' : 'hide']">
+                    <a (click)="logout()">Logout</a>
+                </li>
 		</ul>
 	</div>
 </div>

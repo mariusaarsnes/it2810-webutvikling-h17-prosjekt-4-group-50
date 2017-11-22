@@ -10,8 +10,8 @@ exports.addSong = (req, res) => {
         duration: req.params.duration
     });
     song.save((err, task) => {
-        if (err) res.send(err);
-        res.status(201).json(task);
+        if (err) res.send(err)
+        else res.status(201).json(task);
     });
 };
 
@@ -20,18 +20,18 @@ exports.findSongsByIds = ((req, res) => {
     Song.find({
             _id: { $in: ids }
         }, (err, songs) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(songs);
+            if (err) error(res, err, 500)
+            else res.status(200).json(songs);
         }
     );
 });
 
 exports.findSongById = ((req, res) => {
     Song.find({
-            _id: req.param.id
+            _id: req.params.id
         }, (err, songs) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(songs[0]);
+            if (err) error(res, err, 500)
+            else res.status(200).json(songs[0]);
         }
     );
 });
@@ -55,8 +55,8 @@ exports.findSongsAdvanced = ((req, res) => {
         amount = parseInt(req.params.amount);
     Song.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
         .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, songs) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(songs);
+        if (err) error(res, err, 500)
+        else res.status(200).json(songs);
     });
 });
 
@@ -67,15 +67,15 @@ exports.findSongs = ((req, res) => {
             "$options": "i"
         }
     }).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, songs) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(songs);
+        if (err) error(res, err, 500)
+        else res.status(200).json(songs);
     });
 });
 
 exports.findAllSongs = (req, res) => {
     Song.find({}, (err, task) => {
-        if (err) res.send(err);
-        res.status(200).json(task);
+        if (err) res.send(err)
+        else res.status(200).json(task);
     });
 };
 

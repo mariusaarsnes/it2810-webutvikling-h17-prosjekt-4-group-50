@@ -6,7 +6,6 @@ module.exports = (isAuthorized, isAdmin, passport) => {
         userController = require("../controllers/UserController"),
         albumController = require("../controllers/AlbumController"),
         artistController = require("../controllers/ArtistController"),
-        generalController = require("../controllers/GeneralController"),
         spotify = require("../spotify/spotify");
 
     /**
@@ -88,12 +87,6 @@ module.exports = (isAuthorized, isAdmin, passport) => {
     router.get("/songs/:search_string/:index/:amount", isAuthorized, songController.findSongs);
 
     router.post("/add_song/:id/:name/:type/:duration", isAdmin, songController.addSong);
-
-    /**
-     * General related API queries (E.g find all artists/songs/albums that contains some text
-     */
-    router.get("/get_all/:search_string", isAuthorized, generalController.findAll)
-        .post("/get_all/:search_string", isAuthorized, userController.updateSearchHistory);
 
     /**
      * Called by the authentication function and returns a json object containing if it managed
