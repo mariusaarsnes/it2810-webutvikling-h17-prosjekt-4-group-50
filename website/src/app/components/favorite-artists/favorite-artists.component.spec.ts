@@ -2,7 +2,14 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {FavoriteArtistsComponent} from './favorite-artists.component';
 import {
-    MatCell, MatDialog, MatDialogModule, MatHeaderCell, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+    MatCell,
+    MatDialog,
+    MatDialogModule,
+    MatHeaderCell,
+    MatHeaderRow,
+    MatHeaderRowDef,
+    MatRow,
+    MatRowDef,
     MatTable
 } from '@angular/material';
 import {DataService} from '../../data.service';
@@ -12,7 +19,6 @@ import {ScrollDispatcher} from '@angular/cdk/scrolling';
 import {Platform} from '@angular/cdk/platform';
 import {UserResponse} from '../../interfaces/user-response.interface';
 import {Observable} from 'rxjs/Observable';
-import {SearchHistoryData} from '../../interfaces/search-history-data-response.interface';
 
 
 class MockDataService {

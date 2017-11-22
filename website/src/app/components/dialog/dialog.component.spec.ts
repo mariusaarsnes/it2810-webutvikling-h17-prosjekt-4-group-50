@@ -42,7 +42,7 @@ describe('DialogComponent', () => {
 
     it('Should show correct information in the dialog', () => {
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toBe(component.data[0].name);
+        expect(compiled.querySelector('h1').textContent.trim()).toBe(component.data[0].name);
         expect(compiled.querySelector('p').textContent).toBe('Genres: ' + component.data[0].genres[0] + ', ' +
             component.data[0].genres[1] + ', ' + component.data[0].genres[2]);
         expect(compiled.querySelector('p').nextElementSibling.textContent).toBe('Popularity: ' + component.data[0].popularity);

@@ -9,6 +9,17 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {AlbumComponent} from '../album/album.component';
 import {TrackComponent} from '../track/track.component';
 
+class MockDataService {
+    public getAlbums() {
+        return {};
+    }
+    public getArtists() {
+        return {};
+    }
+    public getSongs() {
+        return {};
+    }
+}
 describe('SearchPageComponent', () => {
     let component: SearchPageComponent;
     let fixture: ComponentFixture<SearchPageComponent>;
@@ -27,7 +38,7 @@ describe('SearchPageComponent', () => {
                 FormsModule
             ],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
             ]

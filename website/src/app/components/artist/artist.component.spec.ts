@@ -7,7 +7,15 @@ import {ScrollDispatcher, ViewportRuler} from '@angular/cdk/scrolling';
 import {Platform} from '@angular/cdk/platform';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {DataService} from '../../data.service';
+import {Observable} from 'rxjs/Observable';
 
+class MockDataService {
+    isLoggedIn = true;
+
+    public isFavorite(): Observable<boolean> {
+        return Observable.of(true);
+    }
+}
 
 describe('ArtistComponent', () => {
     let component: ArtistComponent;
@@ -21,7 +29,7 @@ describe('ArtistComponent', () => {
                 Overlay, ScrollStrategyOptions,
                 ScrollDispatcher, Platform, ViewportRuler,
                 OverlayContainer, OVERLAY_PROVIDERS,
-                {provide: MAT_DIALOG_SCROLL_STRATEGY, useValue: {}}, DataService,
+                {provide: MAT_DIALOG_SCROLL_STRATEGY, useValue: {}}, {provide: DataService, useClass:MockDataService},
                 HttpClient, HttpHandler
             ],
             imports: [

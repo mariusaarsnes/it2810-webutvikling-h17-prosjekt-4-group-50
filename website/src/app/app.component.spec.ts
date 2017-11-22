@@ -10,6 +10,12 @@ import {ArtistComponent} from './components/artist/artist.component';
 import {RouterTestingModule} from '@angular/router/testing';
 import {AlbumComponent} from './components/album/album.component';
 import {TrackComponent} from './components/track/track.component';
+import {DataService} from './data.service';
+import {HttpClient, HttpHandler} from '@angular/common/http';
+
+class MockDataService {
+    isLoggedIn = true;
+}
 
 describe('AppComponent', () => {
     beforeEach(async(() => {
@@ -26,6 +32,8 @@ describe('AppComponent', () => {
                 TrackComponent
 
             ],
+            providers: [{provide: DataService, useClass: MockDataService},
+                HttpClient, HttpHandler],
             imports: [
                 RouterTestingModule,
                 FormsModule

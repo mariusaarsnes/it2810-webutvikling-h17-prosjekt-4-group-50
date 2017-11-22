@@ -67,6 +67,10 @@ describe('DataService', () => {
                 'value' + '/' + '0' + '/' + '2');
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
+
         });
     });
     describe('#getArtistsByIds', () => {
@@ -118,6 +122,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/artists/1,2,3');
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return error if artists with given ID does not exist', () => {
             service.getArtistsByIds(['invalidID1', 'invalidID2']).subscribe((res: any) => {
@@ -127,6 +134,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/artists/invalidID1,invalidID2');
             expect(req.request.method).toBe('GET');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
 
         });
     });
@@ -170,6 +180,9 @@ describe('DataService', () => {
             const req2 = httpMock.expectOne('api/artists/' + answer.artists.join(','));
             expect(req2.request.method).toBe('GET');
             req2.flush(artistAnswer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return a 500 error if id of album does not exists in database', () => {
             const id = 'invalidID';
@@ -180,6 +193,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/album/' + id);
             expect(req.request.method).toBe('GET');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
 
@@ -207,6 +223,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/artist/' + id);
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return an 500 error if ID is not in the database', () => {
             const id = 'invalidID';
@@ -217,6 +236,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/artist/' + id);
             expect((req.request.method)).toBe('GET');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
 
@@ -240,6 +262,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/song/' + id);
             expect(req.request.method).toBe('GET');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return a 500 error when searching for song with _id not in database', () => {
             const id = 'invalidID';
@@ -250,6 +275,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/song/' + id);
             expect(req.request.method).toBe('GET');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getFavoriteGenres', () => {
@@ -269,6 +297,9 @@ describe('DataService', () => {
 
             const req = httpMock.expectOne('api/aggregate_genres');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return a 500 error if no favorite genres', () => {
             service.getFavoriteGenres().subscribe((res: any) => {
@@ -276,6 +307,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/aggregate_genres');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return an 401 error if the user is not authorized', () => {
             service.getFavoriteGenres().subscribe((res: any) => {
@@ -283,6 +317,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/aggregate_genres');
             req.error(new ErrorEvent('401'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
 
@@ -326,6 +363,9 @@ describe('DataService', () => {
             const req5 = httpMock.expectOne('api/artists/1');
             expect(req5.request.method).toEqual('GET');
             req5.flush({});
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getSongsByIds', () => {
@@ -355,6 +395,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/songs/' + ids.join(','));
             expect(req.request.method).toEqual('GET');
             req.flush(answer);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
 
         it('Should return 500 error if IDs not in database', () => {
@@ -364,6 +407,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/songs/' + invalidIDs.join(','));
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
 
         it('Should return 401 if not authorized', () => {
@@ -373,6 +419,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/songs/' + ids.join(','));
             req.error(new ErrorEvent('401'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getSongsByIdsWithAlbums', () => {
@@ -398,6 +447,9 @@ describe('DataService', () => {
             const req2 = httpMock.expectOne('api/album/album1');
             expect(req2.request.method).toEqual('GET');
             req2.flush({});
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return a 500 error if an invalid ID is searched for', () => {
             service.getSongsByIdsWithAlbums(['invalidID']).subscribe((res: any) => {
@@ -405,6 +457,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/songs/invalidID');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return 401 if not authorized', () => {
             const ids = ['1', '2'];
@@ -413,6 +468,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/songs/' + ids.join(','));
             req.error(new ErrorEvent('401'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getAlbumsByIds', () => {
@@ -426,6 +484,9 @@ describe('DataService', () => {
 
             const req = httpMock.expectOne('api/albums/' + ids.join(','));
             req.flush([{}, {}, {}]);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return a 500 error if an invalid ID is searched for', () => {
             service.getAlbumsByIds(['invalidID']).subscribe((res: any) => {
@@ -433,6 +494,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/albums/invalidID');
             req.error(new ErrorEvent('500'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return 401 if not authorized', () => {
             const ids = ['1', '2'];
@@ -441,6 +505,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/albums/' + ids.join(','));
             req.error(new ErrorEvent('401'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getAlbums', () => {
@@ -459,6 +526,8 @@ describe('DataService', () => {
 
             const req3 = httpMock.expectOne(('api/songs/song1'));
             req3.flush([{}]);
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return 401 if not authorized', () => {
             service.getAlbums('album', 2, 0, 'filter', 'value', 'sort', 'type').subscribe((res: any) => {
@@ -466,6 +535,9 @@ describe('DataService', () => {
             });
             const req = httpMock.expectOne('api/albums/album/sort/type/filter/value/0/2');
             req.error(new ErrorEvent('401'));
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getUser', () => {
@@ -482,6 +554,9 @@ describe('DataService', () => {
             const req2 = httpMock.expectOne('api/artists/1');
             expect(req2.request.method).toEqual('GET');
             req2.flush([{}]);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getSearchHistory', () => {
@@ -493,6 +568,9 @@ describe('DataService', () => {
 
             const req = httpMock.expectOne('api/search_history');
             req.flush([{}]);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getSearchHistoryData', () => {
@@ -504,6 +582,9 @@ describe('DataService', () => {
 
             const req = httpMock.expectOne('api/search_history_data');
             req.flush({});
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
     describe('#getSchemaById', () => {
@@ -528,6 +609,9 @@ describe('DataService', () => {
 
             const req2 = httpMock.expectOne('api/artists/artist1');
             req2.flush([{}]);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
         it('Should return an Observable<SongResponse> if input type is song', () => {
             const song = {
@@ -546,6 +630,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/song/1');
             expect(req.request.method).toBe('GET');
             req.flush(song);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
 
         });
         it('Should return an Observable<ArtistResponse> if input type is artist', () => {
@@ -567,6 +654,9 @@ describe('DataService', () => {
             const req = httpMock.expectOne('api/artist/1');
             expect(req.request.method).toBe('GET');
             req.flush(artist);
+
+            const isLoggedInReq = httpMock.expectOne('api/logged_in');
+            isLoggedInReq.flush({});
         });
     });
 });

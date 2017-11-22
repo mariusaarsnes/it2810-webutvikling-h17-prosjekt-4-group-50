@@ -8,6 +8,7 @@ import {Observable} from 'rxjs/Observable';
 
 
 class MockDataService {
+    isLoggedIn = true;
     public getUser(): Observable<UserResponse> {
         return Observable.of();
     }

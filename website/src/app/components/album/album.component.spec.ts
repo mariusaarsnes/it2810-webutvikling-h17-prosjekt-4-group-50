@@ -5,6 +5,11 @@ import {MatDialogModule} from '@angular/material';
 import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 
+
+class MockDataService {
+    isLoggedIn = true;
+}
+
 describe('AlbumComponent', () => {
     let component: AlbumComponent;
     let fixture: ComponentFixture<AlbumComponent>;
@@ -13,7 +18,7 @@ describe('AlbumComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [AlbumComponent],
-            providers: [DataService, HttpClient, HttpHandler],
+            providers: [{provide: DataService, useClass: MockDataService}, HttpClient, HttpHandler],
             imports: [MatDialogModule]
         })
             .compileComponents();

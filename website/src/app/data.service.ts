@@ -170,7 +170,7 @@ export class DataService {
                 }));
             });
             return Observable.forkJoin(observables);
-        }).catch(e => Observable.of({failure:e}));
+        }).catch(e => Observable.of({failure: e}));
     }
 
     /**
@@ -216,11 +216,11 @@ export class DataService {
     }
 
     removeFavoriteArtist(id: string) {
-        return this.http.put("api/remove_favorite_artist", {id: id});
+        return this.http.put('api/remove_favorite_artist', {id: id});
     }
 
     addFavoriteArtist(id: string) {
-        return this.http.put("api/add_favorite_artist", {id: id});
+        return this.http.put('api/add_favorite_artist', {id: id});
     }
 
     isFavorite(id: string): Observable<boolean> {
@@ -236,7 +236,7 @@ export class DataService {
             if (data.result)
                 return true;
             return false;
-        })
+        });
     }
 
     updateSearchHistory(type: string, id: string) {
@@ -244,12 +244,11 @@ export class DataService {
     }
 
     login(username: string, password: string) {
-        return Observable.of(this.http.post('api/login', {username: username, password: password}));
+        return this.http.post('api/login', {username: username, password: password});
     }
 
     register(username: string, password: string) {
-        let temp = this.http.post('api/create_user', {username: username, password: password});
-        return Observable.of(temp);
+        return this.http.post('api/create_user', {username: username, password: password});
     }
 
     logout() {

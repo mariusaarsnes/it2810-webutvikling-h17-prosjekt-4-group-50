@@ -19,7 +19,7 @@ describe('SongDialogComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SongDialogComponent);
         component = fixture.componentInstance;
-        component.data = [{},{
+        component.data = [{}, {
             name: 'name',
             imageLink: 'link',
             genres: ['1', '2', '3'],
