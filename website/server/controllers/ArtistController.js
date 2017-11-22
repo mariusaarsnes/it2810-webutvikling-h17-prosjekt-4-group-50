@@ -37,11 +37,10 @@ exports.findArtistById = ((req, res) => {
             if (artists.length > 0)
                 res.status(200).json(artists[0]);
             else
-                res.status(200).json({});
+                res.status(500).json({});
         }
     );
 });
-
 
 
 exports.findArtists = ((req, res) => {
