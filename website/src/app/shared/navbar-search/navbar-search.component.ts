@@ -17,17 +17,17 @@ export class NavbarSearchComponent implements OnInit {
 
     ngOnInit() {
     }
-
-
+    //function for selecting sort variable
     selectSort(e): void {
         this.sort = e.target.value;
     }
-
+    //function for selecting sort type
     selectSortType(e): void {
         this.sortType = e.target.value;
     }
-
+    //function for selecting filters
     selectFilter(e): void {
+        //create an 2d array with filtertype and filter value
         const index = this.filterlist.findIndex(array => array[1] == e.target.name);
         if (index > -1) {
             this.filterlist.splice(index, 1);
@@ -36,7 +36,7 @@ export class NavbarSearchComponent implements OnInit {
         }
         this.filterlist = this.filterlist.slice();
     };
-
+    //function for selecting search type
     setSearchType(e): void {
         this.searchType = e.target.dataset['type'];
     };

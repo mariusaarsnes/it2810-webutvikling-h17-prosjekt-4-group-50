@@ -1,5 +1,5 @@
-.example-container {
-    border: 1px solid rgba(0,0,0,0.1);
+.example-container3 {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     background-color: white;
     width: auto;
     padding: 20px;
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin: 10px;
     text-align: center;
@@ -27,17 +27,18 @@ p {
     font-family: "Intro Rust", sans-serif;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-  font-family: "Intro Rust", sans-serif;
+.example-container3 .mat-table {
+    overflow: auto;
+    max-height: 500px;
+    font-family: "Intro Rust", sans-serif;
 }
 
 @media screen and (max-width: 600px) {
     .mat-column-date {
         display: none;
     }
-    .example-container {
-        min-width: 300px;
+
+    .example-container3 {
+        min-width: 280px;
     }
 }

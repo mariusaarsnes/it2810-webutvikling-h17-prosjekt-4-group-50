@@ -16,7 +16,7 @@ export class TrackComponent implements OnInit {
     ngOnInit() {
 
     }
-
+    //the track rendered
     @Input() track: SongResponse;
 
 

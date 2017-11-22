@@ -1,4 +1,4 @@
-.example-container {
+.example-container2 {
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 5px;
     display: flex;
@@ -29,18 +29,17 @@
     overflow: hidden;
 }
 
-.mat-table {
+.example-container2 .mat-table {
   overflow: auto;
   max-height: 500px;
   font-family: "Intro Rust", sans-serif;
 }
-
-mat-row:hover{
+.example-container2 mat-row:hover{
     background-color: lightgrey;
     cursor: pointer;
 }
 
-mat-row:active{
+.example-container2 mat-row:active{
     background-color: grey;
 }
 
@@ -52,7 +51,7 @@ p {
     .mat-column-popularity {
         display: none;
     }
-    .example-container {
-        min-width: 300px;
+    .example-container2 {
+        min-width: 280px;
     }
 }
