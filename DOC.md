@@ -136,9 +136,10 @@ session og auth av bruker
 
 ### Application <a name="Application"></a>
 
-#### Main page
-Innholdet på hovedsiden / search
+#### Main page / Search page
 
+As for our main page it primarily consists of all search functionality.
+It consists of all search results which can be filtered by type(Artists, Albums, Tracks), a search string and categories. There are some minor differences on how the different types look, and some different functionality concerning interactions with the results. For instance, one can interact with tracks and albums, while tracks is purely for showing track results.
 (FREDRIK OG DANIEL OG MH)
 
 We have implemented dynamic load on scroll in our search response grid in the main page. This is done by having an index pointing at how far into the query we have loaded, based on how far you have scrolled. This way the database only gets a certain amount of data every query, and thus optimizing the loadspeed of the website.
