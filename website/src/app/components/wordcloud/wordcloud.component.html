@@ -1,5 +1,5 @@
 <div *ngIf="loaded">
-    <div *ngIf="wordData?.length > 0; else displayMessage" id="wordcloud">
+    <div *ngIf="wordData?.length > 1; else displayMessage" id="wordcloud">
         <div AgWordCloud
              #word_cloud_chart= ag-word-cloud
              [wordData]="wordData"
@@ -12,7 +12,7 @@
     <ng-template #displayMessage>
         <div class="displayMessage mat-elevation-z8">
             <p>We could not make a wordcloud for your genres...</p>
-            <p>Get yours by following any artists!</p>
+            <p>Get yours by following more artists!</p>
         </div>
     </ng-template>
 </div>
