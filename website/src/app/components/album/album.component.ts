@@ -11,7 +11,7 @@ import {ArtistResponse} from "../../interfaces/artist-response.interface";
 @Component({
     selector: 'app-album',
     templateUrl: './album.component.html',
-    styleUrls: ['./album.component.css']
+    styleUrls: ['../../../assets/styles/sharedStyles/search-result-element.css']
 })
 export class AlbumComponent implements OnInit {
 
