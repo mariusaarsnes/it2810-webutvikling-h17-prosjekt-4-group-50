@@ -19,7 +19,8 @@ describe('API/ ', () => {
             expect(data.response.statusCode).toEqual(200);
         });
         it('Should return something, given a valid ID', () => {
-            expect(data.body.length).toBeGreaterThan(0);
+            expect(data.body.length).toBeGreaterThan(2);
+
         });
         it('Should return an object, given valid ID ', () => {
             expect(JSON.parse(data.body)).toEqual(jasmine.any(Object));
@@ -39,7 +40,7 @@ describe('API/ ', () => {
         );
         it('Should return empty body given invalid ID', done => {
             request.get(base + '/album/invalidID', (error, response, body) => {
-                expect(body.length).toEqual(0);
+                expect(JSON.parse(body)).toEqual({});
                 done();
             })
         })
@@ -144,7 +145,7 @@ describe('API/ ', () => {
             expect(data.response.statusCode).toEqual(200);
         });
         it('Should return something given a valid ID', () => {
-            expect(data.body.length).toBeGreaterThan(0);
+            expect(data.body.length).toBeGreaterThan(2);
         });
         it('Should return correct artist, given valid ID', () => {
             let artist = JSON.parse(data.body);
@@ -170,7 +171,7 @@ describe('API/ ', () => {
         );
         it('Should return empty body given invalid ID', done => {
             request.get(base + '/artist/invalidID', (error, response, body) => {
-                expect(body.length).toEqual(0);
+                expect(JSON.parse(body)).toEqual({});
                 done();
             })
         })
@@ -191,7 +192,7 @@ describe('API/ ', () => {
             expect(data.response.statusCode).toEqual(200);
         });
         it('Should return something, given a valid IDs', () => {
-            expect(data.body.length).toBeGreaterThan(0);
+            expect(data.body.length).toBeGreaterThan(2);
         });
         it('Should return a list, given valid IDs ', () => {
             expect(JSON.parse(data.body)).toEqual(jasmine.any(Array));
@@ -277,7 +278,7 @@ describe('API/ ', () => {
             expect(data.response.statusCode).toEqual(200);
         });
         it('Should return something given a valid ID', () => {
-            expect(data.body.length).toBeGreaterThan(0);
+            expect(data.body.length).toBeGreaterThan(2);
         });
         it('Should return correct song, given valid ID', () => {
             let song = JSON.parse(data.body);
@@ -300,7 +301,7 @@ describe('API/ ', () => {
         );
         it('Should return empty body given invalid ID', done => {
             request.get(base + '/song/invalidID', (error, response, body) => {
-                expect(body.length).toEqual(0);
+                expect(JSON.parse(body)).toEqual({});
                 done();
             })
         })
@@ -340,7 +341,7 @@ describe('API/ ', () => {
                 done();
             })
         });
-        it('Should return correct parameters for each album', () => {
+        it('Should return correct parameters for each song', () => {
             let list = JSON.parse(data.body);
 
             for (let k = 1; k < list.length; k++) {
