@@ -112,9 +112,10 @@ and probably will be made changes to the final design.
 
 
 ### Project Structure <a name="ProjectStructure"></a>
-Our project struckture is really straight forward, with a locgical folder structure.
+Our project structure is really straight forward, with a locgical folder structure.
 
-(Insert bilde av folder strukturen)
+![Image of folder structure part 1](images/folder_structure1.png)
+![Image of folder structure part 2](images/folder_structure2.png)
 
 Our components are located inn /website/src/app. Here we have 2 different types of components; normal components, shared components (components used in multiple times). We also have interfaces in the app folder, these files maps data to angular objects. 
 As you can see from the picture above each componentfolder contains the CSS, HTML, TS and test file for the given component.
