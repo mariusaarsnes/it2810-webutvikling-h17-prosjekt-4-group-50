@@ -23,3 +23,9 @@ text {
     align-items: center;
     justify-content: center;
 }
+
+#wordcloud {
+    max-width: 500px;
+    min-width: 400px;
+    width: auto;
+}

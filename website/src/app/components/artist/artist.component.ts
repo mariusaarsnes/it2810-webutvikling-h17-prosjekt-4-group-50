@@ -18,7 +18,6 @@ export class ArtistComponent implements OnInit {
     }
 
     albums: AlbumResponse[];
-    songs: SongResponse[];
     isFavorite: boolean;
 
     ngOnInit(): void {
