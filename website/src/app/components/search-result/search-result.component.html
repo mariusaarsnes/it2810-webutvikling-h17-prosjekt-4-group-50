@@ -3,16 +3,19 @@
         <div *ngFor="let artist of artists">
             <app-artist [artist]="artist" id={{artist.id}}></app-artist>
         </div>
+        <div [style.width.px] = "widthOfAfterContent"></div>
     </div>
     <div *ngIf="searchType === 'album' && albums">
         <div *ngFor="let album of albums">
             <app-album [album]="album" id={{album.id}}></app-album>
         </div>
+        <div [style.width.px] = "widthOfAfterContent"></div>
     </div>
     <div *ngIf="searchType === 'track' && tracks">
         <div *ngFor="let track of tracks">
             <app-track [track]="track" id={{track.id}}></app-track>
         </div>
+        <div [style.width.px] = "widthOfAfterContent"></div>
     </div>
 </div>
 
