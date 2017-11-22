@@ -1,5 +1,5 @@
 <div *ngIf="loaded">
-    <div *ngIf="wordData?.length > 0; else displayMessage">
+    <div *ngIf="wordData?.length > 0; else displayMessage" id="wordcloud">
         <div AgWordCloud
              #word_cloud_chart= ag-word-cloud
              [wordData]="wordData"

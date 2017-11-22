@@ -46,6 +46,8 @@
 }
 
 .split-content-container {
+    max-width: 500px;
+    min-width: 400px;
     width: auto;
     display: flex;
     flex-direction: column;

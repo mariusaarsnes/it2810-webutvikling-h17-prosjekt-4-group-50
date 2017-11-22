@@ -26,6 +26,7 @@
 .image-scaler {
     width: 150px;
     height: 150px;
+    overflow: hidden;
 }
 
 .mat-table {

@@ -1,4 +1,25 @@
+.favorite {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.favorite-toggled {
+    background-image: url('../../../assets/images/star_toggled.png');
+}
+
+.favorite-untoggled {
+    background-image: url('../../../assets/images/star_untoggled.png');
+}
+
+
 .artist-container {
+    position: relative;
     background-color: white;
     width: 258px;
     padding: 20px;
