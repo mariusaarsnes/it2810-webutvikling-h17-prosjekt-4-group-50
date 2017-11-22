@@ -1,0 +1,57 @@
+.example-container2 {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    text-align: center;
+    max-height: 363px;
+    min-width: 500px;
+}
+
+.no-artist-wrap {
+    background-color: white;
+    width: auto;
+    padding: 20px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-scaler {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.example-container2 .mat-table {
+  overflow: auto;
+  max-height: 500px;
+  font-family: "Intro Rust", sans-serif;
+}
+.example-container2 mat-row:hover{
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
+.example-container2 mat-row:active{
+    background-color: grey;
+}
+
+p {
+    font-family: "Intro Rust", sans-serif;
+}
+
+@media screen and (max-width: 600px) {
+    .mat-column-popularity {
+        display: none;
+    }
+    .example-container2 {
+        min-width: 280px;
+    }
+}

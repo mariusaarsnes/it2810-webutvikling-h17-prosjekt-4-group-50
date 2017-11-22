@@ -1,0 +1,210 @@
+#modal-dialog {
+	font-family: "Intro Rust", sans-serif;
+}
+
+.modal-artist-dialog {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	position: relative;
+}
+
+.left-dialog h3{
+	margin-top: 10%;
+	margin-bottom: 0;
+}
+.left-dialog h1 {
+	margin-top: 3px;
+    color: rgb(156, 43, 66);
+
+}
+.left-dialog {
+    width: 70%;
+}
+
+#type-dialog {
+    color: rgb(156, 43, 66);
+    margin-bottom: 0;
+}
+
+#click-on-albums {
+    font-size: 14px;
+    margin-top: 0;
+    color: rgb(90, 90, 90);
+}
+
+
+#genres-dialog {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+#popularity-dialog {
+	margin-bottom: 0;
+	margin-top: 2px;
+}
+
+.right-dialog {
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	margin-right: 3%;
+	border-radius: 5px;
+}
+
+.close-dialog {
+	align-self: flex-start;
+	position: absolute;
+	right: 0;
+}
+.close-dialog span {
+	font-family: 'Intro Rust', serif;
+	font-size: 25px;
+	color: darkgray;
+	cursor: pointer;
+}
+.close-dialog span:hover {
+	color: gray;
+}
+
+.close-dialog #hide {
+    font-size: 18px;
+}
+
+.artist-img-dialog {
+	width: 100%;
+	border-radius: 5px;
+}
+
+#hr-dialog {
+	opacity: 0.2;
+    width: 100%;
+}
+
+
+#modal-album-dialog {
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+    margin: 0 auto;
+
+}
+
+.album-info-dialog {
+	margin-right: 2%;
+}
+
+
+
+.img-dialog {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+
+.album-img-dialog {
+	border-radius: 5px;
+    cursor: pointer;
+	width: 100%;
+}
+
+.album-text-dialog {
+	width: 150px;
+}
+
+#show-dialog {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+#show-album-dialog {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+#chosen-album {
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#album-info-dialog {
+    width: 60%;
+    margin-left: 20px;
+}
+
+#album-info-dialog h3 {
+    margin-top: 3px;
+    margin-bottom: 0;
+    color: rgb(156, 43, 66);
+}
+
+#album-info-dialog h4 {
+    margin-top: 10%;
+    margin-bottom: 0;
+
+}
+#album-info-dialog h5 {
+    margin-top: 0;
+
+}
+
+
+@media screen and (max-width: 480px) {
+	.modal-artist-dialog {
+		flex-direction: column;
+	}
+	.right-dialog {
+		width: 100%;
+		height: auto;
+		order: 2;
+	}
+	.left-dialog {
+		width: 100%;
+		order: 3;
+	}
+	.close-dialog {
+		order: 1;
+		width: 100%;
+		position: static;
+	}
+	.close-dialog span{
+		float: right;
+		margin-bottom: 10px;
+		font-size: 35px;
+	}
+    .close-dialog span:hover {
+        font-size: 35px;
+        color: gray;
+    }
+
+    #show-album-dialog {
+        flex-direction: column;
+    }
+    #album-info-dialog {
+        margin-left: 0;
+        width: 100%;
+        order: 3;
+    }
+    #chosen-album {
+        order: 2;
+        width: 90%;
+        height: 90%;
+        overflow: hidden;
+    }
+    #album-info-dialog h3 {
+        font-size: 25px;
+    }
+    #modal-album-dialog {
+        justify-content: center;
+    }
+
+}
+@media screen and (max-width: 320px) {
+	#modal-album-dialog {
+		justify-content: center;
+	}
+
+}

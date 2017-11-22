@@ -1,0 +1,12 @@
+<div class="artist-container">
+    <div class="image-wrapper">
+        <img src="{{album.imageLink}}" alt="artist picture"/>
+    </div>
+    <h4>{{album.name}}</h4>
+    <p class="track-info">{{album.songs ? album.songs.length : 0}} songs</p>
+    <div class="bottom-buttons">
+        <div class="bottom-button">
+            <span (click)="openDialog('tracks')">tracks</span>
+        </div>
+    </div>
+</div>
