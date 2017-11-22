@@ -35,11 +35,12 @@
 }
 
 mat-row:hover{
-    background-color: lightgrey
+    background-color: lightgrey;
+    cursor: pointer;
 }
 
 mat-row:active{
-    background-color: grey
+    background-color: grey;
 }
 
 p {

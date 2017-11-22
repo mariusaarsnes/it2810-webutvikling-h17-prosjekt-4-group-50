@@ -5,5 +5,10 @@
 .result-container > div {
     display: flex;
     flex-wrap: wrap;
-    margin: 0 auto;
+    justify-content: center;
+}
+
+.result-container > div:after {
+    content: "";
+    width: 320px;
 }

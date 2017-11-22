@@ -27,6 +27,12 @@
     color: rgb(156, 43, 66);
 }
 
+#click-on-albums {
+    font-size: 14px;
+    margin-top: 0;
+
+}
+
 
 #genres-dialog {
 	margin-top: 0;

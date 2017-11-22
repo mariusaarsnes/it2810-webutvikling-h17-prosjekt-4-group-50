@@ -7,14 +7,14 @@
 	height:5px;
 	background-color: #13738c;
 }
-.navbar-bottom-container {
+.left-container {
 	background-color: white;
 	margin-left: -20px;
 	margin-right: -20px;
 	margin-top: -20px;
 	display: flex;
 }
-.nav-bottom-left-container {
+.left-container {
 	flex: 1 1 auto;
 }
 .nav-bottom-left {
