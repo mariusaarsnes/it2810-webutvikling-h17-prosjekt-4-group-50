@@ -117,8 +117,7 @@ Our project structure is really straight forward, with a logical folder structur
 ![Image of folder structure part 1](images/folder_structure1.png)
 ![Image of folder structure part 2](images/folder_structure2.png)
 
-Our components are located inn /website/src/app. Here we have 2 different types of components; normal components and shared components (components used multiple times). We also have interfaces in the app folder, these files maps data to angular objects. 
-As you can see from the picture above each component folder contains the CSS, HTML, TS and test file for the given component.
+Our components are located inn /website/src/app. Here we have 2 different types of components; normal components and shared components (components used multiple times). We also have interfaces in the app folder, these files maps data to angular objects. Each component folder contains the CSS, HTML, TS and test file for the given component.
 
 In the assets folder we have our fonts and images.
 
@@ -142,6 +141,13 @@ As for our main page it primarily consists of all search functionality.
 It consists of all search results which can be filtered by type(Artists, Albums, Tracks), a search string and categories. There are some minor differences on how the different result types look, and some different functionality concerning interactions with the results. For instance, one can interact with tracks and albums, while tracks is purely for showing track results. Also, we have implemented functionality regarding sorting of the results, mainly one can sort on popularity and name both ascending and descending. In the case where album is the current search type, one can not sort on popularity due to no reference data in the database. 
 
 We have also implemented dynamic load on scroll in our search response grid in the main page. This is done by having an index pointing at how far into the query we have loaded, based on how far you have scrolled. This way the database only gets a certain amount of data every query, and thus optimizing the loadspeed of the website.
+
+#### Dialog (Modal)
+The dialog has two implementations, "Song dialog" and "Dialog", both are created by using Material UI. The dialogs were created so that it would be possible to get more extensive information than what was available from the main page.
+
+The Dialog is triggered when you click on the button named "albums" beneath an artist. The dialog dislpays information about the chosen artist, in addition to all albums. If one of the albums is clicked, you get an enlarged picture of the album and a list of all the tracks that belong to the album. Both the dialog and the tracks are scrollable.
+
+The Song dialog is triggered when "tracks" beneath an album is clicked. This dialog dislpays album information and all tracks that belongs to the album.
 
 #### My page
 "My page" has two sub pages, "My info" and "Visit history".
