@@ -19,7 +19,6 @@ module.exports = (isAuthorized, isAdmin, passport) => {
      * Query to populate the database with data from Spotify
      */
     router.get("/populate_database/:access_token", isAdmin, spotify);
-    router.get("/db_test/:access_token", spoty_test);
 
     /**
      * User related API queries
