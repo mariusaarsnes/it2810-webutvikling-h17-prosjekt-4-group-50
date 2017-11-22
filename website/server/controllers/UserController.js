@@ -15,7 +15,7 @@ exports.findSearchHistory = (req, res) => {
 
 exports.updateSearchHistory = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        const history = new History({type: req.body.type, type_id: req.body.id});
+        const history = new History({type: req.body.type, type_id: req.body.type_id});
         user.search_history.push(history._id);
         history.save();
         user.save((err, result) => {
@@ -26,7 +26,10 @@ exports.updateSearchHistory = (req, res) => {
 };
 
 exports.findUser = (req, res) => {
-    res.json(req.user);
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) error(res, "Error", 202);
+        else res.status(200).json(user);
+    });
 };
 
 exports.createUser = (req, res, bcrypt) => {
@@ -111,9 +114,27 @@ exports.findSearchHistoryData = (req, res) => {
     });
 };
 
+exports.isFavorite = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        if (err) error(res, "Failed", 500)
+        else
+            res.status(200).json({response: user.favorite_artists.indexOf(req.params.id) >= 0});
+    });
+};
+
 exports.addFavoriteArtist = (req, res) => {
     User.findOne({username: req.user.username}, (err, user) => {
-        user.favorite_artists.push(req.params.id);
+        user.favorite_artists.push(req.body.id);
+        user.save((err, result) => {
+            if (err) error(res, err, 202);
+            res.status(200).json(result);
+        });
+    });
+};
+
+exports.removeFavoriteArtist = (req, res) => {
+    User.findOne({username: req.user.username}, (err, user) => {
+        user.favorite_artists.splice(user.favorite_artists.indexOf(req.body.id), 1);
         user.save((err, result) => {
             if (err) error(res, err, 202);
             res.status(200).json(result);
