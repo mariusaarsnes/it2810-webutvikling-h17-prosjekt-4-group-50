@@ -15,13 +15,12 @@ export class WordcloudComponent implements OnInit {
 
     // The colors specified for our word cloud
     colors: Array<String> = [
-        'blue',
-        'green',
-        'orange',
-        'brown',
-        'black',
-        'gray',
-        'cyan',
+        '#9C2B42',
+        '#401F3E',
+        '#1B738A',
+        '#363636',
+        '#A63D40',
+        '#CCA43B',
     ];
 
     wordData: Array<AgWordCloudData>;
