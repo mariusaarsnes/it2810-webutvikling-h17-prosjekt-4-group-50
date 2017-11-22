@@ -7,7 +7,8 @@ that can be found here.
 2. [Database](#Database) 
 3. [Design](#Design)
 4. [Project Structure](#ProjectStructure)
-
+5. [Server](#Server)
+6. [Application](#Application)
 
 ### Architecture <a name="Architecture"></a>
 A given requirement for the project is that we use Nodejs on the backend, and Angular frontend. This made
@@ -16,8 +17,7 @@ Stack. The MEANS stack provides a set of Open Source components that together pr
 Starting from the top, to the bottom, the stack is made up of:
 
 - **Angular**: A front-end framework which runs the projects javascript in the web browser. We chose to go for 
-Angular 4,
- simply because it is the newest version of Angular.
+Angular 4, simply because it was the newest version of Angular.
 - **Express**: A back-end **framework** running on top of Node. The Express framework can be used to render 
 everything on the page, route between pages and much more. In our project we have decided to use very little of the 
 functionality express provides. Focusing on the **Express.Router library** to help us interact with the REST-api and 
@@ -46,7 +46,7 @@ Artist:
 
     let Artist = new Schema({
 
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         genres:     {type: Array},
         imageLink:  {type: String},
@@ -61,7 +61,7 @@ Album:
 
 
     let Album = new Schema({
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         genres:     {type: Array},
         imageLink:  {type: String},
@@ -73,7 +73,7 @@ Album:
 Songs:
 
     let Song = new Schema({
-        id:         {type: String},
+        _id:        {type: String},
         name:       {type: String},
         imageLink:  {type: String},
         type:       {type: String},
@@ -86,20 +86,20 @@ Songs:
 Users:
 
     let User = new Schema({
-        username:       {type: String,},
-        password:       {type: String,},
-        search_history: {type: Array,},
-        admin:          {
-                            type: Boolean,
-                            default: false,
-                        }
-        });
-        
-Searches:
+        username:         {type: String,},
+        password:         {type: String,},
+        search_history:   {type: Array,},
+        admin:            {
+                              type: Boolean,
+                              default: false,
+                          },
+        date_registered:  {
+                              type: Date,
+                              default: Date.now
+                          },
+        favorite_artists: {type Array,}
+    });
 
-    let Search = new Schema({
-            search_string: {type: String}
-        });
     
 ### Design <a name= "Design"></a>
 We have decided to go for a very simple design. The main focus of this project is the database interaction, and we 
@@ -112,8 +112,41 @@ and probably will be made changes to the final design.
 
 
 ### Project Structure <a name="ProjectStructure"></a>
-Our structure is, right now, a bit messy. The frontend and back-end are split in two different main directories. The 
-thought of this as a logical differentiation at first, but now see benefits of having the functionality of the 
-server-side in a sub-folder while the functionality of the website is at the root folder. Alternatively, have the 
-website in a main folder and the server in a subfolder under the website. Seeing as we are most likely to change the 
-project structure in the future, we have not added a description of it in this document, just yet.
+Our project structure is really straight forward, with a locgical folder structure.
+
+![Image of folder structure part 1](images/folder_structure1.png)
+![Image of folder structure part 2](images/folder_structure2.png)
+
+Our components are located inn /website/src/app. Here we have 2 different types of components; normal components, shared components (components used in multiple times). We also have interfaces in the app folder, these files maps data to angular objects. 
+As you can see from the picture above each componentfolder contains the CSS, HTML, TS and test file for the given component.
+
+In the assets folder we have our fonts and images.
+
+Our server code is located under /website/server. Here you will find the DataModels described earlier in models. API routess can be founder in router and API page code under static. The code we used for gathering data from the spotify API can be found under spotify. Under controllers you find the code for quering the database and sending the response back to the user.
+
+### Server <a name="Server"></a>
+
+Sortering 
+
+(DANIEL OG FREDRIK)
+
+session og auth av bruker 
+
+(DANIEL)
+
+### Application <a name="Application"></a>
+
+#### Main page
+Innholdet på hovedsiden / search
+
+(FREDRIK OG DANIEL OG MH)
+
+We have implemented dynamic load on scroll in our search response grid in the main page. This is done by having an index pointing at how far into the query we have loaded, based on how far you have scrolled. This way the database only gets a certain amount of data every query, and thus optimizing the loadspeed of the website.
+
+#### My page
+"My page" has two sub pages, "My info" and "Visit history".
+
+My info contains your username and when your profile was created.
+You also find your favorite artists here, and a wordcloud generated based on the genres of your favorite artists. Note that the wordcloud is automatically generated and you will not see the wordcloud unless you have at least one favorite artist. If you click any artist in the favorite list, the artist will be displayed like it would on the main page.
+
+Visit history contains information of how many unique visits and total visits you have had. There is also a list showing your latest visits. Note that this list is not clickable.
