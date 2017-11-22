@@ -4,7 +4,6 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core'
 
 import {SearchHistoryListComponent} from './components/search-history-list/search-history-list.component';
 import {AppComponent} from './app.component';
-import {ProfileComponent} from './components/profile/profile.component';
 import {NavbarComponent} from './shared/navbar/navbar.component';
 import {RouterModule} from '@angular/router';
 import {SearchPageComponent} from './components/search-page/search-page.component';
@@ -37,7 +36,6 @@ import { SongDialogComponent } from './components/song-dialog/song-dialog.compon
 @NgModule({
     declarations: [
         AppComponent,
-        ProfileComponent,
         SearchHistoryListComponent,
         NavbarComponent,
         SearchPageComponent,
@@ -81,7 +79,7 @@ import { SongDialogComponent } from './components/song-dialog/song-dialog.compon
             },
             {
                 path: 'profilepage',
-                component: ProfileComponent,
+                component: NavbarProfileComponent,
                 canActivate: [CanActivateService],
                 children: [
                     {path: '', redirectTo: 'my-info', pathMatch: 'full'},

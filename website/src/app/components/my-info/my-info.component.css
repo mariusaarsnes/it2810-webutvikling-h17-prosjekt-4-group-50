@@ -47,14 +47,13 @@
 
 .split-content-container {
     max-width: 500px;
-    min-width: 400px;
     width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     text-align: center;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 @media screen and (max-width: 600px) {
