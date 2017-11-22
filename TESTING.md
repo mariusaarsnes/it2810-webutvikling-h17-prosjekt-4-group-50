@@ -20,6 +20,7 @@ To run the backend tests:
 - Clone the project (can be skipped if you already have the repo): `git clone https://github
 .com/IT2810/it2810-webutvikling-h17-prosjekt-4-group-50.git`
 - run `npm install`
+- run `npm install -g jasmine`
 - run `jasmine test`
 
 
