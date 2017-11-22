@@ -26,20 +26,30 @@ export class ArtistComponent implements OnInit {
         });
     }
 
+    // Current artist
     @Input() artist: ArtistResponse;
 
+    // Get all albums by their ids, input is a list
     getAlbums(albums): Observable<AlbumResponse[]> {
         return this.searchService.getAlbumsByIds(albums);
     }
+
+    //Opens the dialog on click of button
     openDialog() {
+
+        //Gets all albums by the albums ids in the artist.
         this.getAlbums(this.artist.albums).subscribe(albums => {
             this.albums = albums;
             this.searchService.updateSearchHistory('artist', this.artist._id).subscribe();
+
+            // Code for opening the material ui dialog, sends data that contains
+            // artist and the albums
             const dialogRef = this.dialog.open(DialogComponent, {
                 height: "80%",
                 width: "70%",
                 data: [this.artist, this.albums],
             });
+            // Close the dialog.
             dialogRef.afterClosed();
         });
 
