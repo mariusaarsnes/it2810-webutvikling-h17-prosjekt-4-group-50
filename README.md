@@ -1,6 +1,8 @@
 # IT2810 - Web Development Project 4 - Group 50
 With this application you can search for artists, songs, albums ang genres to get information out of our database.
 
+It is available here: [it2810-50.idi.ntnu.no:8084](http://it2810-50.idi.ntnu.no:8084)
+
 ### Table of contents:
 1. [About us](#AboutUs)
 2. [Documentation](#Documentation)
@@ -19,6 +21,8 @@ Read our [documentation](DOC.md) to learn more about the project architecture, t
   Read About our [testing](TESTING.md) to get an overview of our thoughts and overall progress with testing. 
 
 ### Setup <a name="Setup"></a>
+
+#### How to run locally
    If you want to clone our repository and run our project locally, then you can do this by opening the terminal 
    and write:
    
@@ -40,4 +44,4 @@ Read our [documentation](DOC.md) to learn more about the project architecture, t
    
    `ng build --watch`
    
-   Our website will now be build and be hosted on localhost:8084
+   Our website will now be built locally and are hosted on localhost:8084
