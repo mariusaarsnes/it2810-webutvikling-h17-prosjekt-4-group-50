@@ -24,6 +24,10 @@ Read our [documentation](DOC.md) to learn more about the project architecture, t
    
    `git clone https://github.com/IT2810/it2810-webutvikling-h17-prosjekt-4-group-50.git`
    
+   Install the angular CLI for your terminal in order to be able to build our project with the following command:
+   
+   `npm install @angular/{common,compiler,compiler-cli,core,forms,http,platform-browser,platform-browser-dynamic,platform-server,router,animations}@latest typescript@latest --save`
+   
    Now that you have our project locally navigate to the \website folder and install the dependencies with 
    
    `npm install`
@@ -34,6 +38,6 @@ Read our [documentation](DOC.md) to learn more about the project architecture, t
    
    Then open a new tab of the terminal and run
    
-   `ng build`
+   `ng build --watch`
    
    Our website will now be build and be hosted on localhost:8084
