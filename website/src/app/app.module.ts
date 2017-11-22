@@ -24,14 +24,11 @@ import {CanActivateService} from './shared/auth/can-activate.service';
 import {Permissions} from './shared/auth/Permissions';
 import {LoginComponent} from './components/login/login.component';
 import {NavbarSearchComponent} from './shared/navbar-search/navbar-search.component';
-import { AlbumComponent } from './components/album/album.component';
-import {TrackComponent} from "./components/track/track.component";
-import { DialogTableComponent } from './components/dialog-table/dialog-table.component';
-import {
-    MatTableModule,
-    MatDialogModule
-} from '@angular/material';
-import { SongDialogComponent } from './components/song-dialog/song-dialog.component';
+import {AlbumComponent} from './components/album/album.component';
+import {TrackComponent} from './components/track/track.component';
+import {DialogTableComponent} from './components/dialog-table/dialog-table.component';
+import {MatDialogModule, MatTableModule} from '@angular/material';
+import {SongDialogComponent} from './components/song-dialog/song-dialog.component';
 
 @NgModule({
     declarations: [

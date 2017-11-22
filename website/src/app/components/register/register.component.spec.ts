@@ -5,7 +5,13 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpHandler} from '@angular/common/http';
 import {DataService} from '../../data.service';
+import {Mock} from 'protractor/built/driverProviders';
 
+class MockDataService {
+    public register() {
+        return {};
+    }
+}
 describe('RegisterComponent', () => {
     let component: RegisterComponent;
     let fixture: ComponentFixture<RegisterComponent>;
@@ -20,7 +26,7 @@ describe('RegisterComponent', () => {
             providers: [
                 HttpClient,
                 HttpHandler,
-                DataService
+                {provide: DataService, useClass: MockDataService}
             ]
         })
             .compileComponents();

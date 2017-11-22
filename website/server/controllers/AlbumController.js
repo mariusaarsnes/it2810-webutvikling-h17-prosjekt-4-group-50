@@ -19,23 +19,24 @@ exports.addAlbum = (req, res) => {
 exports.findAlbumsByIds = ((req, res) => {
     const ids = req.params.ids.split(",");
     Album.find({
-        _id: { $in: ids }
-    }, (err, albums) => {
-            if (err) error(res, err, 500)
-            else res.status(200).json(albums);
+            _id: {$in: ids}
+        }, (err, albums) => {
+            if (err) error(res, err, 500);
+            res.status(200).json(albums);
         }
     );
 });
+
 
 exports.findAlbumById = ((req, res) => {
     Album.find({
             _id: req.params.id
         }, (err, albums) => {
-            if (err) error(res, err, 500)
+            if (err) error(res, err, 500);
             else if (albums.length > 0)
                 res.status(200).json(albums[0]);
             else
-                res.status(200).json({})
+                res.status(500).json({});
         }
     );
 });
@@ -51,8 +52,7 @@ exports.findAlbumsById = ((req, res) => {
 });
 
 exports.findAlbumsAdvanced = ((req, res) => {
-    const query = {
-    };
+    const query = {};
     if (req.params.search_string !== "*")
         query["name"] = {
             "$regex": req.params.search_string,

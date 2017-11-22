@@ -11,11 +11,20 @@ import {
     MatHeaderRowDef,
     MatRow,
     MatRowDef,
-    MatTable
+    MatTable, MatTableModule
 } from '@angular/material';
 import {DataService} from '../../data.service';
 import {HttpClient, HttpHandler} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {UserResponse} from '../../interfaces/user-response.interface';
+import {WordcloudComponent} from '../wordcloud/wordcloud.component';
+import {AgWordCloudModule} from 'angular4-word-cloud';
 
+class MockDataService {
+    public getUser(): Observable<UserResponse> {
+        return Observable.of();
+    }
+}
 describe('MyInfoComponent', () => {
     let component: MyInfoComponent;
     let fixture: ComponentFixture<MyInfoComponent>;
@@ -25,21 +34,14 @@ describe('MyInfoComponent', () => {
             declarations: [
                 MyInfoComponent,
                 FavoriteArtistsComponent,
-                MatHeaderCell,
-                MatHeaderCellDef,
-                MatCell,
-                MatCellDef,
-                MatHeaderRow,
-                MatHeaderRowDef,
-                MatRow,
-                MatRowDef,
-                MatTable
+                WordcloudComponent
             ],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
-            ]
+            ],
+            imports: [MatTableModule, AgWordCloudModule]
         })
             .compileComponents();
     }));

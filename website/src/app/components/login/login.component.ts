@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {DataService} from "../../data.service";
+import {DataService} from '../../data.service';
 
 @Component({
     selector: 'app-login',
@@ -22,11 +21,11 @@ export class LoginComponent implements OnInit {
 
     }
 
-    updateErrorText(text){
-		let elem: HTMLElement = document.getElementById('errorText');
-		elem.setAttribute("style", "display: block")
-		this.result = text;
-	}
+    updateErrorText(text) {
+        let elem: HTMLElement = document.getElementById('errorText');
+        elem.setAttribute('style', 'display: block');
+        this.result = text;
+    }
 
     onSubmit() {
         this.searchService.login(this.username, this.password).subscribe(data => {

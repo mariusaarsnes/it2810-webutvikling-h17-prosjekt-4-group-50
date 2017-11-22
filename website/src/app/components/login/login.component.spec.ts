@@ -6,6 +6,12 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {RouterTestingModule} from '@angular/router/testing';
 import {DataService} from '../../data.service';
 
+class MockDataService {
+    public login() {
+        return {failed: false};
+    }
+}
+
 describe('LoginComponent', () => {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
@@ -17,7 +23,7 @@ describe('LoginComponent', () => {
             providers: [
                 HttpClient,
                 HttpHandler,
-                DataService
+                {provide: DataService, useClass: MockDataService}
             ]
         })
             .compileComponents();
@@ -26,10 +32,11 @@ describe('LoginComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
+
     });
 
     it('should create', () => {
+        fixture.detectChanges();
         expect(component).toBeTruthy();
     });
 });

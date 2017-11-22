@@ -30,8 +30,11 @@ exports.findSongById = ((req, res) => {
     Song.find({
             _id: req.params.id
         }, (err, songs) => {
-            if (err) error(res, err, 500)
-            else res.status(200).json(songs[0]);
+            if (err) error(res, err, 500);
+            else if (songs.length > 0)
+                res.status(200).json(songs[0]);
+            else
+                res.status(500).json({});
         }
     );
 });

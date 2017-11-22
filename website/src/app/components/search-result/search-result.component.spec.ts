@@ -7,6 +7,20 @@ import {HttpClient, HttpHandler} from '@angular/common/http';
 import {AlbumComponent} from '../album/album.component';
 import {TrackComponent} from '../track/track.component';
 
+class MockDataService {
+    public getAlbums() {
+        return {};
+    }
+
+    public getArtists() {
+        return {};
+    }
+
+    public getSongs() {
+        return {};
+    }
+}
+
 describe('SearchResultComponent', () => {
     let component: SearchResultComponent;
     let fixture: ComponentFixture<SearchResultComponent>;
@@ -20,7 +34,7 @@ describe('SearchResultComponent', () => {
                 TrackComponent
             ],
             providers: [
-                DataService,
+                {provide: DataService, useClass: MockDataService},
                 HttpClient,
                 HttpHandler
             ]

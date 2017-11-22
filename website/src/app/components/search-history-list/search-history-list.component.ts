@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {DataService} from '../../data.service';
 import {SearchHistoryResponse} from '../../interfaces/history-response.interface';
 import 'rxjs/add/observable/of';
-
+import '@angular/material';
 /**
  * @title Basic table
  */

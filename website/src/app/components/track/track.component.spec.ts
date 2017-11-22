@@ -33,8 +33,9 @@ describe('TrackComponent', () => {
             _id: 'id',
             name: 'track1',
             album: 'album',
-            albumData: {_id: 'id', name: 'album', imageLink: 'link', songs: [], songsData: [], artists: [], artistsData:[]},
-            artists: []
+            albumData: {_id: 'id', name: 'album', imageLink: 'link', songs: [], songsData: [], artists: [], artistsData: []},
+            artists: [],
+            duration:[]
         };
         fixture.detectChanges();
     });
