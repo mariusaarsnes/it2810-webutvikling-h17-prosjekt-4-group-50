@@ -32,6 +32,7 @@ import {
     MatTableModule,
     MatDialogModule
 } from '@angular/material';
+import { SongDialogComponent } from './components/song-dialog/song-dialog.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import {
         TrackComponent,
         AlbumComponent,
         DialogTableComponent,
+        SongDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -67,7 +69,7 @@ import {
             {
                 path: 'search',
                 component: NavbarSearchComponent,
-                // canActivate: [CanActivateService]
+                canActivate: [CanActivateService]
             },
             {
                 path: 'login',
@@ -80,17 +82,23 @@ import {
             {
                 path: 'profilepage',
                 component: ProfileComponent,
+                canActivate: [CanActivateService],
                 children: [
                     {path: '', redirectTo: 'my-info', pathMatch: 'full'},
                     {path: 'my-info', component: MyInfoComponent},
                     {path: 'history', component: HistoryComponent}
                 ]
-            }
+            },
+            {
+                path: '**',
+                redirectTo: 'search',
+            },
         ])
     ],
     providers: [DataService, CanActivateService, Permissions, HttpClient],
     entryComponents: [
         DialogComponent,
+        SongDialogComponent,
     ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]

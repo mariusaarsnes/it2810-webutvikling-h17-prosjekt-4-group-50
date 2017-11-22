@@ -1,78 +1,52 @@
 <div id="modal-dialog">
-	<div class="modal-artist-dialog" *ngIf="isArray(data[0]) == false">
+	<div class="modal-artist-dialog">
 		<div class="right-dialog">
 			<img class="artist-img-dialog" src="{{data[0].imageLink}}" alt="Artist picture"/>
 		</div>
 		<div class="left-dialog">
 			<h3>Artist</h3>
-			<h1>{{data[0].name}}</h1>
+			<h1>
+                {{data[0].name}}
+            </h1>
 			<p id="genres-dialog">Genres: {{data[0].genres.slice(0,4).join(', ')}}</p>
 			<p id="popularity-dialog">Popularity: {{data[0].popularity}}</p>
 		</div>
 		<div class="close-dialog" (click)="closeDialog()">
 			<span>X</span>
 		</div>
-
 	</div>
-    <div class="modal-artist-dialog"  *ngIf="isArray(data[0]) == true">
-        <div class="right-dialog">
-            <img class="artist-img-dialog" src="{{data[1].imageLink}}" alt="Album picture"/>
-        </div>
-        <div class="left-dialog">
-            <h3>Album</h3>
-            <h1>{{data[1].name}}</h1>
-        </div>
-        <div class="close-dialog" (click)="closeDialog()">
-            <span>X</span>
-        </div>
-    </div>
-
     <br><hr id="hr-dialog">
-    <div *ngIf="data[3] === true">
-        <h2 id="type-dialog">Albums</h2>
-        <div *ngIf="show"  id="show-dialog">
-            <div id="show-album-dialog">
-                <img src="{{album.imageLink}}" alt="Chosen album">
-                <div id="album-info-dialog">
-                    <h4>Album</h4>
-                    <h3>{{album.name}}</h3>
-                </div>
 
+    <h2 id="type-dialog">Albums</h2>
+    <p id="click-on-albums">Click on album to view tracks</p>
+    <div *ngIf="show"  id="show-dialog">
+        <div id="show-album-dialog">
+            <img src="{{album.imageLink}}" alt="Chosen album" id="chosen-album">
+            <div id="album-info-dialog">
+                <h4>Album</h4>
+                <h3>{{album.name}}</h3>
+                <h5>Tracks: {{album.songs.length}}</h5>
             </div>
-            <div>
-                <dialog-table></dialog-table>
+            <div id="hide-dialog" class="close-dialog" (click)="show = !show">
+                <span id="hide"> Hide</span>
             </div>
         </div>
-        <div id="modal-album-dialog">
-            <div *ngFor="let album of data[1];" class="album-info-dialog">
-                <div class="img-dialog">
-                    <img class="album-img-dialog" (click)="intoView(album);"
-                         src="{{album.imageLink}}" alt="Album picture">
-                </div>
-                <div class="album-text-dialog">
-                    <p>{{album.name}}</p>
-                </div>
-
-            </div>
+        <div>
+            <br>
+            <h3>Tracks</h3>
+            <dialog-table [album]="album"></dialog-table>
         </div>
     </div>
-    <div *ngIf="data[3] === false">
-        <h2 id="type-dialog2">Tracks</h2>
-        <div>
-            <div id="information-song-dialog">
-                <p id="title">Title</p>
-                <p id="album">Album</p>
+
+    <div id="modal-album-dialog" [style.width.px]="divWidth">
+        <div *ngFor="let album of data[1];" class="album-info-dialog">
+            <div class="img-dialog">
+                <img class="album-img-dialog" (click)="intoView(album);"
+                     src="{{album.imageLink}}" alt="Album picture">
             </div>
-            <span *ngFor="let song of data[2]">
-                <div class="song-dialog">
-                    <img class ="song-img-dialog" src="{{song.albumData.imageLink}}" alt="Album image">
-                    <p *ngIf="song.name.length >= 17" class="title">{{song.name.substring(0,17).concat("...")}}</p>
-                    <p *ngIf="song.name.length < 17" class="title">{{song.name}}</p>
-                    <p *ngIf="song.albumData.name.length >= 30" class="album">
-                        {{song.albumData.name.substring(0,30).concat("...")}}</p>
-                    <p *ngIf="song.albumData.name.length < 30" class="album">{{song.albumData.name}}</p>
-                </div>
-            </span>
+            <div class="album-text-dialog">
+                <p>{{album.name}}</p>
+            </div>
 
         </div>
     </div>

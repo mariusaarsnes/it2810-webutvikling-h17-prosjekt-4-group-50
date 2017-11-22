@@ -11,8 +11,8 @@ exports.addAlbum = (req, res) => {
         artist: req.params.artist,
     });
     album.save((err, album) => {
-        if (err) error(res, err, 500);
-        res.status(201).json(album);
+        if (err) error(res, err, 500)
+        else res.status(201).json(album);
     });
 };
 
@@ -21,8 +21,8 @@ exports.findAlbumsByIds = ((req, res) => {
     Album.find({
         _id: { $in: ids }
     }, (err, albums) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(albums);
+            if (err) error(res, err, 500)
+            else res.status(200).json(albums);
         }
     );
 });
@@ -31,8 +31,11 @@ exports.findAlbumById = ((req, res) => {
     Album.find({
             _id: req.params.id
         }, (err, albums) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(albums[0]);
+            if (err) error(res, err, 500)
+            else if (albums.length > 0)
+                res.status(200).json(albums[0]);
+            else
+                res.status(200).json({})
         }
     );
 });
@@ -41,8 +44,8 @@ exports.findAlbumsById = ((req, res) => {
     Album.find({
             _id: req.params.id
         }, (err, album) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(album[0]);
+            if (err) error(res, err, 500)
+            else res.status(200).json(album[0]);
         }
     );
 });
@@ -66,8 +69,8 @@ exports.findAlbumsAdvanced = ((req, res) => {
         amount = parseInt(req.params.amount);
     Album.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
         .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, albums) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(albums);
+        if (err) error(res, err, 500)
+        else res.status(200).json(albums);
     });
 });
 
@@ -78,15 +81,15 @@ exports.findAlbums = ((req, res) => {
             "$options": "i"
         }
     }).skip(parseInt(req.params.index)).limit(parseInt(req.params.amount)).exec((err, albums) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(albums);
+            if (err) error(res, err, 500)
+            else res.status(200).json(albums);
         }
     );
 });
 
 exports.findAllAlbums = (req, res) => {
     Album.find({}, (err, albums) => {
-        if (err) res.send(err);
-        res.status(200).json(albums);
+        if (err) res.send(err)
+        else res.status(200).json(albums);
     });
 };

@@ -1,14 +1,14 @@
 <div class="artist-container">
-  <div class="image-wrapper">
-    <img src="{{artist.imageLink}}" alt="artist picture"/>
-  </div>
-  <h4>{{artist.name}}</h4>
-  <p class="track-info">{{artist.albums ? artist.albums.length : 0}} albums</p>
-  <div class="bottom-buttons">
-    <div class="bottom-button border-right">
-		<span (click)="openDialog('tracks')">tracks</span>
+    <div class="image-wrapper">
+        <img src="{{artist.imageLink}}" alt="artist picture"/>
     </div>
-    <div class="bottom-button">
-		<span (click)="openDialog('albums')">albums</span>
+    <div (click)="favorite()" class="favorite" [ngClass]="[isFavorite ? 'favorite-toggled' : 'favorite-untoggled']">
+    </div>
+    <h4>{{artist.name}}</h4>
+    <p class="track-info">{{artist.albums ? artist.albums.length : 0}} albums</p>
+    <div class="bottom-buttons">
+        <div class="bottom-button">
+            <span (click)="openDialog('albums')">albums</span>
+        </div>
     </div>
 </div>

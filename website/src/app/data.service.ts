@@ -14,8 +14,12 @@ import {SearchHistoryData} from './interfaces/search-history-data-response.inter
 @Injectable()
 export class DataService {
 
-    constructor(private http: HttpClient) {
+    loggedIn: boolean = false;
 
+    constructor(private http: HttpClient) {
+        this.isLoggedIn().subscribe(data => {
+            this.loggedIn = data;
+        });
     }
 
     /**
@@ -33,7 +37,6 @@ export class DataService {
      */
     getArtists(name: string, amount: number, index: number, filter: string,
                filterValue: string, sort: string, sortType: string): Observable<ArtistResponse[]> {
-        console.log('api/artists/' + name + '/' + sort + '/' + sortType + '/' + filter + '/' + filterValue + '/' + index + '/' + amount);
         return this.http.get<ArtistResponse[]>('api/artists/' +
             name + '/' + sort + '/' + sortType + '/' + filter + '/' +
             filterValue + '/' + index + '/' + amount);
@@ -212,8 +215,32 @@ export class DataService {
         return null;
     }
 
+    removeFavoriteArtist(id: string) {
+        return this.http.put("api/remove_favorite_artist", {id: id});
+    }
+
+    addFavoriteArtist(id: string) {
+        return this.http.put("api/add_favorite_artist", {id: id});
+    }
+
+    isFavorite(id: string): Observable<boolean> {
+        return this.http.get<any>('api/is_favorite/' + id).map(data => {
+            if (data.response === true)
+                return true;
+            return false;
+        });
+    }
+
+    isLoggedIn(): Observable<boolean> {
+        return this.http.get<any>('api/logged_in').map(data => {
+            if (data.result)
+                return true;
+            return false;
+        })
+    }
+
     updateSearchHistory(type: string, id: string) {
-        return this.http.post('api/update_history', {type: type, type_id: id});
+        return this.http.put('api/update_history', {type: type, type_id: id});
     }
 
     login(username: string, password: string) {
@@ -222,5 +249,9 @@ export class DataService {
 
     register(username: string, password: string) {
         return this.http.post('api/create_user', {username: username, password: password});
+    }
+
+    logout() {
+        return this.http.post('api/logout', {});
     }
 }

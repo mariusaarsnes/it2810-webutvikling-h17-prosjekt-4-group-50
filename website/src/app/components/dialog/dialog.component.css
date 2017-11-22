@@ -25,10 +25,13 @@
 
 #type-dialog {
     color: rgb(156, 43, 66);
+    margin-bottom: 0;
 }
 
-#type-dialog2 {
-    color: rgb(156, 43, 66);
+#click-on-albums {
+    font-size: 14px;
+    margin-top: 0;
+    color: rgb(90, 90, 90);
 }
 
 
@@ -55,15 +58,17 @@
 	right: 0;
 }
 .close-dialog span {
-	font-family: Avenir, Geneva, serif;
+	font-family: 'Intro Rust', serif;
 	font-size: 25px;
 	color: darkgray;
 	cursor: pointer;
 }
 .close-dialog span:hover {
-	font-family: Avenir, Geneva, serif;
-	font-size: 25px;
 	color: gray;
+}
+
+.close-dialog #hide {
+    font-size: 18px;
 }
 
 .artist-img-dialog {
@@ -79,16 +84,17 @@
 
 #modal-album-dialog {
 	display: flex;
-	flex-direction: row;
 	width: 100%;
 	flex-wrap: wrap;
-	justify-content: flex-start;
+    margin: 0 auto;
 
 }
 
 .album-info-dialog {
 	margin-right: 2%;
 }
+
+
 
 .img-dialog {
 	width: 150px;
@@ -98,6 +104,7 @@
 
 .album-img-dialog {
 	border-radius: 5px;
+    cursor: pointer;
 	width: 100%;
 }
 
@@ -114,9 +121,10 @@
 #show-album-dialog {
     display: flex;
     flex-direction: row;
+    position: relative;
 }
 
-#show-dialog img {
+#chosen-album {
     width: 180px;
     height: 180px;
     overflow: hidden;
@@ -128,46 +136,22 @@
     margin-left: 20px;
 }
 
-#album-info-dialog h3{
+#album-info-dialog h3 {
     margin-top: 3px;
+    margin-bottom: 0;
     color: rgb(156, 43, 66);
 }
 
-#album-info-dialog h4{
+#album-info-dialog h4 {
     margin-top: 10%;
     margin-bottom: 0;
 
 }
-.song-img-dialog {
-    width: 50px;
-    height: 100%;
-    margin-right: 10px;
-    overflow: hidden;
-}
-
-.song-dialog {
-    display: flex;
-    height: 50px;
-    flex-direction: row;
-    box-shadow: 0 0 20px -4px rgba(0,0,0,0.20);
-    margin-bottom: 10px;
+#album-info-dialog h5 {
+    margin-top: 0;
 
 }
-.song-dialog:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
 
-#information-song-dialog {
-    display: flex;
-    flex-direction: row;
-}
-#information-song-dialog #title{
-    margin-left: 60px;
-    width: 35%;
-}
-.song-dialog .title{
-    width: 35%;
-}
 
 @media screen and (max-width: 480px) {
 	.modal-artist-dialog {
@@ -193,31 +177,32 @@
 		font-size: 35px;
 	}
     .close-dialog span:hover {
-        font-family: Avenir, serif;
         font-size: 35px;
         color: gray;
     }
-	.modal-album-dialog {
-		justify-content: center;
-	}
 
-
-    .song-dialog .title{
-        margin-left: 5px;
-        margin-right: 5px;
-        width: 80%;
+    #show-album-dialog {
+        flex-direction: column;
     }
-    .song-dialog .album {
-        display: none;
+    #album-info-dialog {
+        margin-left: 0;
+        width: 100%;
+        order: 3;
     }
-    #information-song-dialog #album{
-        display: none;
+    #chosen-album {
+        order: 2;
+        width: 90%;
+        height: 90%;
+        overflow: hidden;
     }
-
+    #album-info-dialog h3 {
+        font-size: 25px;
+    }
 
 }
 @media screen and (max-width: 320px) {
 	#modal-album-dialog {
 		justify-content: center;
 	}
+
 }

@@ -13,8 +13,8 @@ exports.addArtist = (req, res) => {
     });
 
     artist.save((err, task) => {
-        if (err) res.send(err);
-        res.status(201).json(task);
+        if (err) res.send(err)
+        else res.status(201).json(task);
     });
 };
 
@@ -23,8 +23,8 @@ exports.findArtistsByIds = ((req, res) => {
     Artist.find({
             _id: {$in: ids}
         }, (err, artists) => {
-            if (err) error(res, err, 500);
-            res.status(200).json(artists);
+            if (err) error(res, err, 500)
+            else res.status(200).json(artists);
         }
     );
 });
@@ -34,7 +34,10 @@ exports.findArtistById = ((req, res) => {
             _id: req.params.id
         }, (err, artists) => {
             if (err) error(res, err, 500);
-            res.status(200).json(artists[0]);
+            if (artists.length > 0)
+                res.status(200).json(artists[0]);
+            else
+                res.status(200).json({});
         }
     );
 });
@@ -53,21 +56,29 @@ exports.findArtists = ((req, res) => {
     if (req.params.filter !== 'none') {
         const filters = req.params.filter.split(","),
             filterValues = req.params.filter_value.split(",");
-        for (let i = 0; i < filters.length; i++)
-            query[filters[i]] = filterValues[i];
+        const temp = {};
+        for (let i = 0; i < filters.length; i++) {
+            if (temp[filters[i]])
+                temp[filters[i]].push(filterValues[i]);
+            else
+                temp[filters[i]] = [filterValues[i]];
+        }
+        for (let key in temp) {
+            query[key] = { $all: temp[key]};
+        }
     }
     const offset = parseInt(req.params.index),
         amount = parseInt(req.params.amount);
     Artist.find(query).sort(req.params.sort === 'none' ? {} : {[req.params.sort]: req.params.type})
         .skip(offset).limit(amount < 0 ? undefined : amount).exec((err, artists) => {
-        if (err) error(res, err, 500);
-        res.status(200).json(artists);
+        if (err) error(res, err, 500)
+        else res.status(200).json(artists);
     });
 });
 
 exports.findAllArtists = (req, res) => {
     Artist.find({}, (err, task) => {
-        if (err) res.send(err);
-        res.status(200).json(task);
+        if (err) res.send(err)
+        else res.status(200).json(task);
     });
 };

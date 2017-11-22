@@ -15,20 +15,19 @@ export class WordcloudComponent implements OnInit {
 
     // The colors specified for our word cloud
     colors: Array<String> = [
-        'blue',
-        'green',
-        'orange',
-        'brown',
-        'black',
-        'gray',
-        'cyan',
+        '#9C2B42',
+        '#401F3E',
+        '#1B738A',
+        '#363636',
+        '#A63D40',
+        '#CCA43B',
     ];
 
     wordData: Array<AgWordCloudData>;
 
     options = {
         settings: {
-            minFontSize: 1,
+            minFontSize: 20,
             maxFontSize: 100,
         },
         margin: {
@@ -52,8 +51,8 @@ export class WordcloudComponent implements OnInit {
     }
 
     mapGenresToWordCloud(data: GenresResponse[]): Array<AgWordCloudData> {
-        return data.map(genre => {
-            return <AgWordCloudData>{text: genre._id, size: genre.count};
+        return data.map((genre, index) => {
+            return <AgWordCloudData>{text: genre._id, size: index == 0 ? genre.count * 5 + 1 : genre.count * 5};
         });
     }
 
