@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         this.searchService.login(this.username, this.password).subscribe(data => {
             if (data['failed'] === 'false') {
                 this.router.navigate(['/search']);
+                this.searchService.loggedIn = true;
             } else {
                 this.updateErrorText(data['message']);
             }
