@@ -125,13 +125,11 @@ Our server code is located under /website/server. Here you will find the DataMod
 
 ### Server <a name="Server"></a>
 
-####Sorting & Filtering
+#### Sorting & Filtering
 
 Sorting and filtering in the API is handled by the same query. It is possible to filter on multiple attributes, but it is only possible to sort on one attribute. There are in total 3 queries that allows for sorting/filtering, one for each of the searchable models (Tracks, Albums and Artists).
 
-(DANIEL OG FREDRIK)
-
-####Passport & Session
+#### Passport & Session
 Passport is the authentification middleware used to handle sessions. Passport serves as a authenticator for requests, and in our application it is used to authenticate login requests. Whenever a login request is made, passport will verify if the login is valid by checking the database, then set a cookie in the users browser if it is valid. Whenever a person logs out passport will deserialize the user and remove the cookie.  
 
 ### Application <a name="Application"></a>
